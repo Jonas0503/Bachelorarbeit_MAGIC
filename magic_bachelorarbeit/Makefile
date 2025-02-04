@@ -1,0 +1,19 @@
+# inspired by these videos: https://www.youtube.com/watch?v=LfIPVIsH4ZU https://www.youtube.com/watch?v=CRlqU9XzVr4
+
+CC = gcc
+CFLAGS = -g -Wall
+OBJS = ./obj/galois.o ./obj/main.o ./obj/util.o
+BIN = ./bin/main
+
+all: $(BIN)
+
+# linking
+$(BIN): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $@
+
+# compilation in machine code
+./obj/%.o: ./src/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -f ./bin/* ./obj/*
