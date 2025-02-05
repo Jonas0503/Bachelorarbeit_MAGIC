@@ -1,5 +1,4 @@
 #include "galois.h"
-#include "util.h"
 
 #include "stdint.h"
 #include "stdio.h"
@@ -8,16 +7,23 @@
 
 int main(int argc, char const *argv[])
 {
-    uint32_t a[] = {1, 2, 3};
-    uint32_t b[] = {7, 8};
+    bignum n;
+    new_bignum(&n, "42");
+    print_bignum_big_endian(&n);
 
-    uint32_t *r = add(a, b, 3, 2);
+    bignum a, b, r;
+    new_bignum(&a, "42");
+    print_bignum_big_endian(&a);
+    new_bignum(&b, "3");
+    print_bignum_big_endian(&b);
 
-    print_array(a, 3);
-    print_array(b, 2);
-    print_array(r, 3);
+    add(&r, &a, &b);
+    print_bignum_big_endian(&r);
 
-    free(r);
+    destroy_bignum(&n);
+    destroy_bignum(&a);
+    destroy_bignum(&b);
+    destroy_bignum(&r);
 
     return 0;
 }

@@ -2,7 +2,7 @@
 
 CC = gcc
 CFLAGS = -g -Wall
-OBJS = ./obj/galois.o ./obj/main.o ./obj/util.o
+OBJS = $(wildcard ./obj/*.o)
 BIN = ./bin/main
 
 all: $(BIN)

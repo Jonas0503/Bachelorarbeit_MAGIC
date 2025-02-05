@@ -5,31 +5,28 @@
 #include "stdio.h"
 
 
-uint32_t *add(uint32_t *a, uint32_t *b, int size_a, int size_b) {
-    int resulting_size;
+void add(bignum *result, bignum *a, bignum *b) {
+    int resulting_size = a->size;
 
-    if (size_a < size_b) resulting_size = size_b;
-    else if (size_a > size_b) resulting_size = size_a;
+    if (a->size < b->size) resulting_size = b->size;
 
-    uint32_t *result = malloc(sizeof(uint32_t) * resulting_size);
+    result->size = resulting_size;
+    result->digits = calloc(resulting_size, sizeof(uint32_t));
 
     for (int i = 0; i < resulting_size; i++) {
-        if (i >= size_a) {
-            result[i] = b[i];
+        if (i >= a->size) {
+            result->digits[i] = b->digits[i];
         }
-        else if (i >= size_b) {
-            result[i] = a[i];
+        else if (i >= b->size) {
+            result->digits[i] = a->digits[i];
         }
         else {
-            result[i] = a[i] ^ b[i];
+            result->digits[i] = a->digits[i] ^ b->digits[i];
         }
     }
-
-    return result;
 }
 
 
-uint32_t *sub(uint32_t *a, uint32_t *b, int size_a, int size_b) {
-    return add(a, b, size_a, size_b);
+void sub(bignum *result, bignum *a, bignum *b) {
+    add(result, a, b);
 }
-
