@@ -1,30 +1,32 @@
 #include "galois.h"
+#include "util.h"
+#include "bignum.h"
 
 #include "stdint.h"
 #include "stdio.h"
 #include "stdlib.h"
 
 
-int main(int argc, char const *argv[])
-{
-    bignum n;
-    new_bignum(&n, "42");
-    print_bignum_big_endian(&n);
+int main(int argc, char const *argv[]) {
+    bignum n, k, r, r2, zero;
+    uint32_t a[] = {0x0022522a, 0x000fcb22};
+    uint32_t b[] = {0x0022522a, 0x040fcb22};
+    uint32_t z[] = {0x0};
+    init_bignum(&n, a, 2);
+    init_bignum(&k, b, 2);
+    init_bignum(&zero, z, 1);
+    print_bignum(&n);
+    print_bignum(&k);
 
-    bignum a, b, r;
-    new_bignum(&a, "42");
-    print_bignum_big_endian(&a);
-    new_bignum(&b, "3");
-    print_bignum_big_endian(&b);
+    add(&r, &n, &k);
+    print_bignum(&r);
 
-    add(&r, &a, &b);
-    print_bignum_big_endian(&r);
+    bignum_and(&r2, &n, &k);
+    print_bignum(&r2);
 
-    destroy_bignum(&n);
-    destroy_bignum(&a);
-    destroy_bignum(&b);
-    destroy_bignum(&r);
+    printf("%d\n", bignum_is_not_zero(&n));
+    printf("%d\n", bignum_is_not_zero(&zero));
 
-    return 0;
+    return 1;
 }
 

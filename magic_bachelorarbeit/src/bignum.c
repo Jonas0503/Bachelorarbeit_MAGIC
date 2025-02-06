@@ -1,74 +1,94 @@
-// inspired by this blog: https://austinhenley.com/blog/bignum2.html
 #include "bignum.h"
 
 #include "stdint.h"
-#include "string.h"
+#include "stdio.h"
 #include "stdlib.h"
 #include "stdbool.h"
-#include "stdio.h"
 
 
-void new_bignum(bignum *n, char *string) {
-    int length = strlen(string);
-    int number_of_chunks = (length + 8) / 9;
+void init_bignum(bignum *bn, uint32_t *hex, int size) {
+    bn->number_of_chunks = size;
+    bn->chunks = calloc(size, sizeof(uint32_t));
 
-    n->size = number_of_chunks;
-    n->digits = calloc(length, sizeof(uint32_t));
-
-    for (int i = 0; i < length; i++) {
-        int chunck_position = i / 9;
-        int position_in_chunk = i % 9;
-        uint32_t digit = string[length - 1 - i] - '0';
-        uint32_t multiplier = 1;
-
-        for (int k = 0; k < position_in_chunk; k++) {
-            multiplier *= 10;
-        }
-
-        n->digits[chunck_position] += digit * multiplier;
+    for (int i = 0; i < size; i++) {
+        bn->chunks[i] = hex[size-1-i];
     }
 }
 
 
-void destroy_bignum(bignum *n) {
-    free(n->digits);
-}
+void print_bignum(bignum *bn) {
+    if (bn->number_of_chunks == 0) printf("0");
 
-
-void print_bignum_little_endian(bignum *n) {
-    bool first_block = true;
-
-    for (int i = 0; i < n->size; i++) {
-        if (first_block) {
-            printf("%u", n->digits[i]);
-            first_block = false;
+    for (int i = bn->number_of_chunks-1; i >= 0; i--) {
+        if (i <= bn->number_of_chunks-2) {
+            printf("%08x", bn->chunks[i]);
         }
         else {
-            printf("%09u", n->digits[i]);
+            printf("%x", bn->chunks[i]);
         }
     }
-
-    if (first_block) printf("0");
 
     printf("\n");
 }
 
 
-void print_bignum_big_endian(bignum *n) {
-    // TODO: Remove leading zeros
-    bool first_block = true;
+void bignum_xor(bignum *result, bignum *a, bignum *b) {
+    int resulting_size = a->number_of_chunks;
 
-    for (int i = n->size; i >= 0; i--) {
-        if (first_block) {
-            printf("%u", n->digits[i]);
-            first_block = false;
+    if (a->number_of_chunks < b->number_of_chunks) resulting_size = b->number_of_chunks;
+
+    result->number_of_chunks = resulting_size;
+    result->chunks = malloc(sizeof(uint32_t) * resulting_size);
+
+    for (int i = 0; i < resulting_size; i++) {
+        if (i >= a->number_of_chunks) {
+            result->chunks[i] = b->chunks[i];
+        }
+        else if (i >= b->number_of_chunks) {
+            result->chunks[i] = a->chunks[i];
         }
         else {
-            printf("%09u", n->digits[i]);
+            result->chunks[i] = a->chunks[i] ^ b->chunks[i];
         }
     }
+}
 
-    if (first_block) printf("0");
 
-    printf("\n");
+void bignum_and(bignum *result, bignum *a, bignum *b) {
+    int resulting_size = a->number_of_chunks;
+
+    if (a->number_of_chunks < b->number_of_chunks) resulting_size = b->number_of_chunks;
+
+    result->number_of_chunks = resulting_size;
+    result->chunks = malloc(sizeof(uint32_t) * resulting_size);
+
+    for (int i = 0; i < resulting_size; i++) {
+        if (i >= a->number_of_chunks || i >= b->number_of_chunks) {
+            result->chunks[i] = 0x00000000;
+        }
+        else {
+            result->chunks[i] = a->chunks[i] & b->chunks[i];
+        }
+    }
+}
+
+
+bool bignum_is_not_zero(bignum *n) {
+    if (n->number_of_chunks == 0) return false;
+
+    for (int i = 0; i < n->number_of_chunks; i++) {
+        if (n->chunks[i] != 0x0) return true;
+    }
+
+    return false;
+}
+
+
+void bignum_shift_left_by_one(bignum *result, bignum *n) {
+    // TODO
+}
+
+
+void bignum_shift_right_by_one(bignum *result, bignum *n) {
+    // TODO
 }
