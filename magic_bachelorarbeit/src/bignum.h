@@ -17,5 +17,6 @@ void bignum_and(bignum *result, bignum *a, bignum *b);
 bool bignum_is_not_zero(bignum *n);
 void bignum_shift_left_by_one(bignum *result, bignum *n);
 void bignum_shift_right_by_one(bignum *result, bignum *n);
+void bignum_shift_right_by_x(bignum *result, bignum *n, int x);
 
 #endif

@@ -4,6 +4,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "stdbool.h"
+#include "string.h"
 
 
 void init_bignum(bignum *bn, uint32_t *hex, int size) {
@@ -96,7 +97,7 @@ void bignum_shift_left_by_one(bignum *result, bignum *n) {
 
     result->chunks = malloc(sizeof(uint32_t) * result->number_of_chunks);
 
-    for (int i = 0; i < n->number_of_chunks; i++) {
+    for (int i = 0; i < result->number_of_chunks; i++) {
         if (i == 0) {
             result->chunks[i] = n->chunks[i] << 1;
         }
@@ -107,9 +108,11 @@ void bignum_shift_left_by_one(bignum *result, bignum *n) {
 }
 
 
-void bignum_shift_right_by_one(bignum *result, bignum *n) {
+static void bignum_shift_right_by_one_internal(bignum *result, bignum *n, int iteration) {
     result->number_of_chunks = n->number_of_chunks;
-    result->chunks = malloc(sizeof(uint32_t) * n->number_of_chunks);
+    if (iteration == 0) {
+        result->chunks = malloc(sizeof(uint32_t) * n->number_of_chunks);
+    }
 
     for (int i = 0; i < n->number_of_chunks; i++) {
         if (i == n->number_of_chunks - 1) {
@@ -119,4 +122,25 @@ void bignum_shift_right_by_one(bignum *result, bignum *n) {
             result->chunks[i] = (n->chunks[i] >> 1) | (n->chunks[i+1] << 31);
         }
     }
+}
+
+
+void bignum_shift_right_by_one(bignum *result, bignum *n) {
+    bignum_shift_right_by_one_internal(result, n, 0);
+}
+
+
+void bignum_shift_right_by_x(bignum *result, bignum *n, int x) {
+    bignum tmp_n;
+    tmp_n.number_of_chunks = n->number_of_chunks;
+    tmp_n.chunks = malloc(sizeof(uint32_t) * n->number_of_chunks);
+    memcpy(tmp_n.chunks, n->chunks, sizeof(uint32_t) * n->number_of_chunks);
+
+    for (int i = 0; i < x; i++) {
+        bignum_shift_right_by_one_internal(result, &tmp_n, i);
+        tmp_n.number_of_chunks = result->number_of_chunks;
+        memcpy(tmp_n.chunks, result->chunks, sizeof(uint32_t) * n->number_of_chunks);
+    }
+
+    free(tmp_n.chunks);
 }

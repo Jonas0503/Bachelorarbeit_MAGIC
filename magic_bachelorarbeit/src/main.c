@@ -11,7 +11,7 @@ int main(int argc, char const *argv[]) {
     bignum n, k, r, r2, zero, s, rs;
     uint32_t a[] = {0x0022522a, 0x000fcb22};
     uint32_t b[] = {0x0022522a, 0x040fcb22};
-    uint32_t c[] = {0x4faaf452, 0x123};
+    uint32_t c[] = {0xffffffff, 0x123};
     uint32_t z[] = {0x0};
     init_bignum(&n, a, 2);
     init_bignum(&k, b, 2);
@@ -34,6 +34,11 @@ int main(int argc, char const *argv[]) {
 
     bignum_shift_left_by_one(&rs, &s);
     print_bignum(&rs);
+
+    print_bignum(&s);
+    bignum_shift_right_by_x(&rs, &s, 128);
+    print_bignum(&rs);
+    print_bignum(&s);
 
     return 1;
 }
