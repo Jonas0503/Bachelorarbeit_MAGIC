@@ -87,7 +87,23 @@ bool bignum_is_not_zero(bignum *n) {
 
 
 void bignum_shift_left_by_one(bignum *result, bignum *n) {
-    // TODO
+    if (n->chunks[n->number_of_chunks - 1] & (1 << 31)) {
+        result->number_of_chunks = n->number_of_chunks + 1;
+    }
+    else {
+        result->number_of_chunks = n->number_of_chunks;
+    }
+
+    result->chunks = malloc(sizeof(uint32_t) * result->number_of_chunks);
+
+    for (int i = 0; i < n->number_of_chunks; i++) {
+        if (i == 0) {
+            result->chunks[i] = n->chunks[i] << 1;
+        }
+        else {
+            result->chunks[i] = (n->chunks[i] << 1) | (n->chunks[i-1] >> 31);
+        }
+    }
 }
 
 
@@ -99,6 +115,8 @@ void bignum_shift_right_by_one(bignum *result, bignum *n) {
         if (i == n->number_of_chunks - 1) {
             result->chunks[i] = n->chunks[i] >> 1;
         }
-        result->chunks[i] = (n->chunks[i] >> 1) | n->chunks[i+1] << 31;
+        else {
+            result->chunks[i] = (n->chunks[i] >> 1) | (n->chunks[i+1] << 31);
+        }
     }
 }
