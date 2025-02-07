@@ -12,19 +12,21 @@ void init_bignum(bignum *bn, uint32_t *hex, int size) {
 
     for (int i = 0; i < size; i++) {
         bn->chunks[i] = hex[size-1-i];
+        // bn->chunks[i] = hex[i];
     }
 }
 
 
 void print_bignum(bignum *bn) {
+    printf("0x");
     if (bn->number_of_chunks == 0) printf("0");
 
     for (int i = bn->number_of_chunks-1; i >= 0; i--) {
-        if (i <= bn->number_of_chunks-2) {
-            printf("%08x", bn->chunks[i]);
+        if (i == bn->number_of_chunks-1) {
+            printf("%x", bn->chunks[i]);
         }
         else {
-            printf("%x", bn->chunks[i]);
+            printf("%08x", bn->chunks[i]);
         }
     }
 
@@ -90,5 +92,13 @@ void bignum_shift_left_by_one(bignum *result, bignum *n) {
 
 
 void bignum_shift_right_by_one(bignum *result, bignum *n) {
-    // TODO
+    result->number_of_chunks = n->number_of_chunks;
+    result->chunks = malloc(sizeof(uint32_t) * n->number_of_chunks);
+
+    for (int i = 0; i < n->number_of_chunks; i++) {
+        if (i == n->number_of_chunks - 1) {
+            result->chunks[i] = n->chunks[i] >> 1;
+        }
+        result->chunks[i] = (n->chunks[i] >> 1) | n->chunks[i+1] << 31;
+    }
 }
