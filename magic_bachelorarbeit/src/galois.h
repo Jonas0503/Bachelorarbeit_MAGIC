@@ -4,9 +4,9 @@
 #include "stdint.h"
 #include "bignum.h"
 
-
-void add(bignum *result, bignum *a, bignum *b);
-void sub(bignum *result, bignum *a, bignum *b);
-void mult(bignum *result, bignum *a, bignum *b);
+bignum init_polynom();
+bignum add(bignum a, bignum b);
+bignum sub(bignum a, bignum b);
+bignum mult(bignum a, bignum b);
 
 #endif

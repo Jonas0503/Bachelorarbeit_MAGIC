@@ -8,37 +8,25 @@
 
 
 int main(int argc, char const *argv[]) {
-    bignum n, k, r, r2, zero, s, rs;
-    uint32_t a[] = {0x0022522a, 0x000fcb22};
-    uint32_t b[] = {0x0022522a, 0x040fcb22};
-    uint32_t c[] = {0xffffffff, 0x123};
-    uint32_t z[] = {0x0};
-    init_bignum(&n, a, 2);
-    init_bignum(&k, b, 2);
-    init_bignum(&zero, z, 1);
-    init_bignum(&s, c, 2);
-    print_bignum(&n);
-    print_bignum(&k);
+    bignum p = init_polynom();
 
-    add(&r, &n, &k);
-    print_bignum(&r);
+    uint32_t ahex[] = {0x4d8ab6de, 0x23244984, 0xb729b6a2, 0x5aa7aeb7};
+    uint32_t bhex[] = {0xda368e24, 0x11d4913c, 0xe7f39d6e, 0xa979eb85};
 
-    bignum_and(&r2, &n, &k);
-    print_bignum(&r2);
+    bignum a = bignum_init(ahex, 4);
+    bignum b = bignum_init(bhex, 4);
 
-    printf("%d\n", bignum_is_not_zero(&n));
-    printf("%d\n", bignum_is_not_zero(&zero));
+    bignum product = mult(a, b);
+    printf("Product: ");
+    bignum_print(product);
 
-    bignum_shift_right_by_one(&rs, &s);
-    print_bignum(&rs);
+    bignum_print(b);
+    b = bignum_shift_left_by_one(b);
+    bignum_print(b);
 
-    bignum_shift_left_by_one(&rs, &s);
-    print_bignum(&rs);
-
-    print_bignum(&s);
-    bignum_shift_right_by_x(&rs, &s, 128);
-    print_bignum(&rs);
-    print_bignum(&s);
+    b = bignum_xor(b, p);
+    bignum_print(p);
+    bignum_print(b);
 
     return 1;
 }
