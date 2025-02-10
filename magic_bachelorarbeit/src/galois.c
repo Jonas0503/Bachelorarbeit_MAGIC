@@ -6,44 +6,41 @@
 #include "stdio.h"
 
 
-const int DEGREE = 128;
-
-
 bignum init_polynom() {
     // x**128 + x**7 + x**2 + x + 1
     uint32_t hex_poly[] = {0x1, 0x00000000, 0x00000000, 0x00000000, 0x00000087};
 
-    return bignum_init(hex_poly, 5);
+    return init_bignum(hex_poly, 5);
 }
 
 
 bignum add(bignum a, bignum b) {
-    return bignum_xor(a, b);
+    bignum result = init_bignum_to_zero();
+    xor_bignum(&result, true, a, b);
+    return result;
 }
 
 
 bignum sub(bignum a, bignum b) {
-    return bignum_xor(a, b);
+    return add(a, b);
 }
 
 
-bignum mult(bignum a, bignum b) {
-    bignum polynom = init_polynom();
-    bignum result = bignum_init_zero();
+bignum mult(bignum a, bignum b, bignum polynom, int polynom_degree) {
+    bignum result = init_bignum_to_zero();
 
-    while (bignum_is_not_zero(a) && bignum_is_not_zero(b)) {
-        if (bignum_is_odd(a)) {
-            result = bignum_xor(result, b);
+    while (is_bignum_zero(a) && is_bignum_zero(b)) {
+        if (is_bignum_odd(a)) {
+            xor_bignum(&result, true, result, b);
         }
 
-        a = bignum_shift_right_by_one(a);
-        b = bignum_shift_left_by_one(b);
+        shift_right_by_one_bignum(&a, true, a);
+        shift_left_by_one_bignum(&b, true, b);
 
-        if (!bignum_is_inside_galois_field(b, DEGREE)) {
-            b = bignum_xor(b, polynom);
+        if (!is_bignum_inside_galois_field(b, polynom_degree)) {
+            xor_bignum(&b, true, b, polynom);
         }
     }
 
     return result;
 }
-

@@ -2,19 +2,16 @@
 
 #include "string.h"
 #include "stdio.h"
+#include "stdlib.h"
 
 
-// TODO: Polynom erstmal im Voraus berechnen und einfach einsetzen
-// Man weiß, wie viele Ziffern ein Polynom der Größe 2^128 haben kann
-void polynom_degree_128_to_bignum(bignum *result, int *polynom, int size) {
-    char binary_string[polynom[0]+1];
-    memset(binary_string, '0', polynom[0]);
-
-    for (int i = 0; i < size; i++) {
-        binary_string[polynom[0]-polynom[i]] = '1';
+uint32_t *allocate_memory_for_chunks(bool already_allocated, bignum *n, int size_in_bytes) {
+    if (already_allocated) {
+        n->chunks = realloc(n->chunks, size_in_bytes);
+    }
+    else {
+        n->chunks = malloc(size_in_bytes);
     }
 
-    binary_string[polynom[0]] = '\0';
-
-    printf("%s\n", binary_string);
+    return n->chunks;
 }

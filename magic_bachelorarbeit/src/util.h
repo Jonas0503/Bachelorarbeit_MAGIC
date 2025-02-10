@@ -1,4 +1,6 @@
 #include "bignum.h"
 
+#include "stdint.h"
 
-void polynom_to_bignum(bignum *result, int *polynom, int size);
+
+uint32_t *allocate_memory_for_chunks(bool already_allocated, bignum *n, int size_in_bytes);

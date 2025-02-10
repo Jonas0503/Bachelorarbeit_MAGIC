@@ -12,21 +12,18 @@ int main(int argc, char const *argv[]) {
 
     uint32_t ahex[] = {0x4d8ab6de, 0x23244984, 0xb729b6a2, 0x5aa7aeb7};
     uint32_t bhex[] = {0xda368e24, 0x11d4913c, 0xe7f39d6e, 0xa979eb85};
+    uint32_t khex[] = {0xb46d1c48, 0x23a92279, 0xcfe73adc, 0x52f3d78d};
 
-    bignum a = bignum_init(ahex, 4);
-    bignum b = bignum_init(bhex, 4);
+    bignum a = init_bignum(ahex, 4);
+    bignum b = init_bignum(bhex, 4);
+    bignum k = init_bignum(khex, 4);
 
-    bignum product = mult(a, b);
+    bignum product = mult(a, b, p, 128);
     printf("Product: ");
-    bignum_print(product);
+    print_bignum(product);
 
-    bignum_print(b);
-    b = bignum_shift_left_by_one(b);
-    bignum_print(b);
-
-    b = bignum_xor(b, p);
-    bignum_print(p);
-    bignum_print(b);
+    xor_bignum(&a, true, a, a);
+    print_bignum(a);
 
     return 1;
 }

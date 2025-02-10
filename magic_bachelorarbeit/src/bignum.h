@@ -10,18 +10,18 @@ typedef struct {
     int number_of_chunks;
 } bignum;
 
-bignum bignum_init(uint32_t *hex, int size);
-bignum bignum_init_zero();
-bignum bignum_init_one();
-void bignum_destroy(bignum n);
-void bignum_print(bignum n);
-bignum bignum_xor(bignum a, bignum b);
-bignum bignum_and(bignum a, bignum b);
-bool bignum_is_not_zero(bignum n);
-bignum bignum_shift_left_by_one(bignum n);
-bignum bignum_shift_right_by_one(bignum n);
-bignum bignum_shift_right_by_x(bignum n, int x);
-bool bignum_is_odd(bignum n);
-bool bignum_is_inside_galois_field(bignum n, int degree);
+bignum init_bignum(uint32_t *hex, int size);
+bignum init_bignum_to_zero();
+bignum init_bignum_to_one();
+void destroy_bignum(bignum n);
+void print_bignum(bignum n);
+void xor_bignum(bignum *result, bool already_malloc, bignum a, bignum b);
+bool is_bignum_zero(bignum n);
+void shift_left_by_one_bignum(bignum *result, bool already_allocated, bignum n);
+void shift_right_by_one_bignum(bignum *result, bool already_allocated, bignum n);
+void shift_right_by_x_bignum(bignum *result, bool already_allocated, bignum n, int x);
+bool is_bignum_odd(bignum n);
+bool is_bignum_inside_galois_field(bignum n, int degree);
+bignum copy_bignum(bignum n);
 
 #endif

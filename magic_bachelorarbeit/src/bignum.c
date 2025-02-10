@@ -1,4 +1,5 @@
 #include "bignum.h"
+#include "util.h"
 
 #include "stdint.h"
 #include "stdio.h"
@@ -7,7 +8,7 @@
 #include "string.h"
 
 
-bignum bignum_init(uint32_t *hex, int size) {
+bignum init_bignum(uint32_t *hex, int size) {
     bignum n;
     n.number_of_chunks = size;
     n.chunks = calloc(size, sizeof(uint32_t));
@@ -20,7 +21,7 @@ bignum bignum_init(uint32_t *hex, int size) {
 }
 
 
-bignum bignum_init_zero() {
+bignum init_bignum_to_zero() {
     bignum n;
 
     n.number_of_chunks = 1;
@@ -31,7 +32,7 @@ bignum bignum_init_zero() {
 }
 
 
-bignum bignum_init_one() {
+bignum init_bignum_to_one() {
     bignum n;
 
     n.number_of_chunks = 1;
@@ -42,12 +43,12 @@ bignum bignum_init_one() {
 }
 
 
-void bignum_destroy(bignum n) {
+void destroy_bignum(bignum n) {
     free(n.chunks);
 }
 
 
-void bignum_print(bignum n) {
+void print_bignum(bignum n) {
     printf("0x");
     if (n.number_of_chunks == 0) printf("0");
 
@@ -65,54 +66,35 @@ void bignum_print(bignum n) {
 }
 
 
-bignum bignum_xor(bignum a, bignum b) {
-    bignum result;
-    int resulting_size = a.number_of_chunks;
+void xor_bignum(bignum *result, bool already_allocated, bignum a, bignum b) {
+    bignum tmp_a = copy_bignum(a);
+    bignum tmp_b = copy_bignum(b);
 
-    if (a.number_of_chunks < b.number_of_chunks) resulting_size = b.number_of_chunks;
+    int resulting_size = tmp_a.number_of_chunks;
 
-    result.number_of_chunks = resulting_size;
-    result.chunks = malloc(sizeof(uint32_t) * resulting_size);
+    if (tmp_a.number_of_chunks < tmp_b.number_of_chunks) resulting_size = tmp_b.number_of_chunks;
+
+    result->number_of_chunks = resulting_size;
+    result->chunks = allocate_memory_for_chunks(already_allocated, result, sizeof(uint32_t) * resulting_size);
 
     for (int i = 0; i < resulting_size; i++) {
-        if (i >= a.number_of_chunks) {
-            result.chunks[i] = b.chunks[i];
+        if (i >= tmp_a.number_of_chunks) {
+            result->chunks[i] = tmp_b.chunks[i];
         }
-        else if (i >= b.number_of_chunks) {
-            result.chunks[i] = a.chunks[i];
+        else if (i >= tmp_b.number_of_chunks) {
+            result->chunks[i] = tmp_a.chunks[i];
         }
         else {
-            result.chunks[i] = a.chunks[i] ^ b.chunks[i];
+            result->chunks[i] = tmp_a.chunks[i] ^ tmp_b.chunks[i];
         }
     }
 
-    return result;
+    destroy_bignum(tmp_a);
+    destroy_bignum(tmp_b);
 }
 
 
-bignum bignum_and(bignum a, bignum b) {
-    bignum result;
-    int resulting_size = a.number_of_chunks;
-
-    if (a.number_of_chunks < b.number_of_chunks) resulting_size = b.number_of_chunks;
-
-    result.number_of_chunks = resulting_size;
-    result.chunks = malloc(sizeof(uint32_t) * resulting_size);
-
-    for (int i = 0; i < resulting_size; i++) {
-        if (i >= a.number_of_chunks || i >= b.number_of_chunks) {
-            result.chunks[i] = 0x0;
-        }
-        else {
-            result.chunks[i] = a.chunks[i] & b.chunks[i];
-        }
-    }
-
-    return result;
-}
-
-
-bool bignum_is_not_zero(bignum n) {
+bool is_bignum_zero(bignum n) {
     if (n.number_of_chunks == 0) return false;
 
     for (int i = 0; i < n.number_of_chunks; i++) {
@@ -123,83 +105,84 @@ bool bignum_is_not_zero(bignum n) {
 }
 
 
-bignum bignum_shift_left_by_one(bignum n) {
-    bignum result;
+void shift_left_by_one_bignum(bignum *result, bool already_allocated, bignum n) {
+    bignum tmp_n = copy_bignum(n);
 
     if (n.chunks[n.number_of_chunks - 1] & (1 << 31)) {
-        result.number_of_chunks = n.number_of_chunks + 1;
+        result->number_of_chunks = tmp_n.number_of_chunks + 1;
     }
     else {
-        result.number_of_chunks = n.number_of_chunks;
+        result->number_of_chunks = tmp_n.number_of_chunks;
     }
 
-    result.chunks = malloc(sizeof(uint32_t) * result.number_of_chunks);
+    result->chunks = allocate_memory_for_chunks(already_allocated, result, sizeof(uint32_t) * result->number_of_chunks);
 
-    for (int i = 0; i < result.number_of_chunks; i++) {
+    for (int i = 0; i < result->number_of_chunks; i++) {
         if (i == 0) {
-            result.chunks[i] = n.chunks[i] << 1;
+            result->chunks[i] = tmp_n.chunks[i] << 1;
         }
         else {
-            result.chunks[i] = (n.chunks[i] << 1) | (n.chunks[i-1] >> 31);
+            result->chunks[i] = (tmp_n.chunks[i] << 1) | (tmp_n.chunks[i-1] >> 31);
         }
     }
+
+    destroy_bignum(tmp_n);
+}
+
+
+void shift_right_by_one_bignum(bignum *result, bool already_allocated, bignum n) {
+    bignum tmp_n = copy_bignum(n);
+
+    result->number_of_chunks = tmp_n.number_of_chunks;
+    result->chunks = allocate_memory_for_chunks(already_allocated, result, sizeof(uint32_t) * tmp_n.number_of_chunks);
+
+    for (int i = 0; i < tmp_n.number_of_chunks; i++) {
+        if (i == tmp_n.number_of_chunks - 1) {
+            result->chunks[i] = tmp_n.chunks[i] >> 1;
+        }
+        else {
+            result->chunks[i] = (tmp_n.chunks[i] >> 1) | (tmp_n.chunks[i+1] << 31);
+        }
+    }
+
+    destroy_bignum(tmp_n);
+}
+
+
+void shift_right_by_x_bignum(bignum *result, bool already_allocated, bignum n, int x) {
+    bignum tmp_n = copy_bignum(n);
+
+    for (int i = 0; i < x; i++) {
+        shift_right_by_one_bignum(result, already_allocated, tmp_n);
+        tmp_n.number_of_chunks = result->number_of_chunks;
+        memcpy(tmp_n.chunks, result->chunks, sizeof(uint32_t) * n.number_of_chunks);
+        already_allocated = true;
+    }
+
+    destroy_bignum(tmp_n);
+}
+
+
+bool is_bignum_odd(bignum n) {
+    return n.chunks[0] & 0x1;
+}
+
+
+bool is_bignum_inside_galois_field(bignum n, int degree) {
+    bignum x;
+    shift_right_by_x_bignum(&x, false, n, degree);
+    bool result =  !is_bignum_zero(x);
+    destroy_bignum(x);
 
     return result;
 }
 
 
-static bignum bignum_shift_right_by_one_internal(bignum n, int iteration) {
-    bignum result;
-
-    result.number_of_chunks = n.number_of_chunks;
-    if (iteration == 0) {
-        result.chunks = malloc(sizeof(uint32_t) * n.number_of_chunks);
-    }
-
-    for (int i = 0; i < n.number_of_chunks; i++) {
-        if (i == n.number_of_chunks - 1) {
-            result.chunks[i] = n.chunks[i] >> 1;
-        }
-        else {
-            result.chunks[i] = (n.chunks[i] >> 1) | (n.chunks[i+1] << 31);
-        }
-    }
-
-    return result;
-}
-
-
-bignum bignum_shift_right_by_one(bignum n) {
-    return bignum_shift_right_by_one_internal(n, 0);
-}
-
-
-bignum bignum_shift_right_by_x(bignum n, int x) {
-    bignum result;
-
+bignum copy_bignum(bignum n) {
     bignum tmp_n;
     tmp_n.number_of_chunks = n.number_of_chunks;
     tmp_n.chunks = malloc(sizeof(uint32_t) * n.number_of_chunks);
     memcpy(tmp_n.chunks, n.chunks, sizeof(uint32_t) * n.number_of_chunks);
 
-    for (int i = 0; i < x; i++) {
-        result = bignum_shift_right_by_one_internal(tmp_n, i);
-        tmp_n.number_of_chunks = result.number_of_chunks;
-        memcpy(tmp_n.chunks, result.chunks, sizeof(uint32_t) * n.number_of_chunks);
-    }
-
-    free(tmp_n.chunks);
-
-    return result;
-}
-
-
-bool bignum_is_odd(bignum n) {
-    return n.chunks[0] & 0x1;
-}
-
-
-bool bignum_is_inside_galois_field(bignum n, int degree) {
-    bignum x = bignum_shift_right_by_x(n, degree);
-    return !bignum_is_not_zero(x);
+    return tmp_n;
 }
