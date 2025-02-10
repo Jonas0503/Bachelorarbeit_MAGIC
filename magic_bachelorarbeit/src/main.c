@@ -8,22 +8,27 @@
 
 
 int main(int argc, char const *argv[]) {
-    bignum p = init_polynom();
+    bignum p = init_irreducible_polynom_128();
 
     uint32_t ahex[] = {0x4d8ab6de, 0x23244984, 0xb729b6a2, 0x5aa7aeb7};
     uint32_t bhex[] = {0xda368e24, 0x11d4913c, 0xe7f39d6e, 0xa979eb85};
-    uint32_t khex[] = {0xb46d1c48, 0x23a92279, 0xcfe73adc, 0x52f3d78d};
+    uint32_t khex[] = {0x18ac6ab8, 0xd22ef8c5, 0x5c73070a, 0x328a58e7};
 
     bignum a = init_bignum(ahex, 4);
     bignum b = init_bignum(bhex, 4);
     bignum k = init_bignum(khex, 4);
+    bignum product, result;
 
-    bignum product = mult(a, b, p, 128);
+    mult(&a, true, a, a, p, 128);
     printf("Product: ");
-    print_bignum(product);
-
-    xor_bignum(&a, true, a, a);
     print_bignum(a);
+
+    mult_inverse(&result, false, k, p, 128);
+    printf("Inverse: ");
+    print_bignum(result);
+
+    bool x = is_bignum_greater_zero(a);
+    printf("%i\n", x);
 
     return 1;
 }

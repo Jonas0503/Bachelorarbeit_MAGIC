@@ -32,6 +32,13 @@ bignum init_bignum_to_zero() {
 }
 
 
+void set_existing_bignum_to_zero(bignum *n) {
+    n->number_of_chunks = 1;
+    n->chunks = realloc(n->chunks, sizeof(uint32_t));
+    n->chunks[0] = 0x0;
+}
+
+
 bignum init_bignum_to_one() {
     bignum n;
 
@@ -40,6 +47,13 @@ bignum init_bignum_to_one() {
     n.chunks[0] = 0x1;
 
     return n;
+}
+
+
+void set_existing_bignum_to_one(bignum *n) {
+    n->number_of_chunks = 1;
+    n->chunks = realloc(n->chunks, sizeof(uint32_t));
+    n->chunks[0] = 0x1;
 }
 
 
@@ -94,7 +108,7 @@ void xor_bignum(bignum *result, bool already_allocated, bignum a, bignum b) {
 }
 
 
-bool is_bignum_zero(bignum n) {
+bool is_bignum_not_zero(bignum n) {
     if (n.number_of_chunks == 0) return false;
 
     for (int i = 0; i < n.number_of_chunks; i++) {
@@ -171,7 +185,7 @@ bool is_bignum_odd(bignum n) {
 bool is_bignum_inside_galois_field(bignum n, int degree) {
     bignum x;
     shift_right_by_x_bignum(&x, false, n, degree);
-    bool result =  !is_bignum_zero(x);
+    bool result =  !is_bignum_not_zero(x);
     destroy_bignum(x);
 
     return result;
