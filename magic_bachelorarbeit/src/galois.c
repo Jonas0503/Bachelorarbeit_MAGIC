@@ -19,7 +19,7 @@ void add(bignum *result, bool already_allocated, bignum a, bignum b) {
     bignum tmp_a = copy_bignum(a);
     bignum tmp_b = copy_bignum(b);
 
-    xor_bignum(result, true, tmp_a, tmp_b);
+    xor_bignum(result, already_allocated, tmp_a, tmp_b);
 
     destroy_bignum(tmp_a);
     destroy_bignum(tmp_b);

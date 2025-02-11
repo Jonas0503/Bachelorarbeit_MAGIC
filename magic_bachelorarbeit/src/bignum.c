@@ -76,11 +76,18 @@ void print_bignum(bignum n) {
             chunk_before_is_zero = true;
             continue;
         }
-        if (chunk_before_is_zero && n.chunks[i] == 0) continue;
-        if (i == n.number_of_chunks-1) {
+        else if (chunk_before_is_zero && i == 0) {
+            printf("0");
+        }
+        else if (chunk_before_is_zero && n.chunks[i] == 0) {
+            continue;
+        }
+        else if (i == n.number_of_chunks-1) {
+            chunk_before_is_zero = false;
             printf("%x", n.chunks[i]);
         }
         else {
+            chunk_before_is_zero = false;
             printf("%08x", n.chunks[i]);
         }
     }
