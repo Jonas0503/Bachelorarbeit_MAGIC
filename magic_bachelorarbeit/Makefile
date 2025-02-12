@@ -3,23 +3,35 @@
 CC = gcc
 CFLAGS = -g -Wall
 OBJS = ./obj/galois.o ./obj/bignum.o ./obj/util.o
-OBJS_MAIN_FILE = ./obj/main.o
-OBJS_TEST = ./obj/galois_test.o
-BIN = ./bin/main
+OBJ_MAIN_FILE = ./obj/main.o
+BIN_TEST_GALOIS = ./bin/test_galois
+BIN_TEST_BIGNUM = ./bin/test_bignum
+BIN_TESTS = $(BIN_TEST_BIGNUM) $(BIN_TEST_GALOIS)
+BIN_MAIN = ./bin/main
 
-all: $(BIN)
+# run the program without tests
+all: $(BIN_MAIN)
 
 # linking for the actual program
-$(BIN): $(OBJS) $(OBJS_MAIN_FILE)
-	$(CC) $(CFLAGS) $(OBJS) $(OBJS_MAIN_FILE) -o $@
+$(BIN_MAIN): $(OBJS) $(OBJ_MAIN_FILE)
+	$(CC) $(CFLAGS) $(OBJS) $(OBJ_MAIN_FILE) -o $@
 
 # compilation in machine code for the actual program
 ./obj/%.o: ./src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# linking for tests
-./bin/test: $(OBJS_TEST) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS_TEST) $(OBJS) -o $@
+# running all tests
+test: $(BIN_TESTS)
+	$(BIN_TEST_BIGNUM)
+	$(BIN_TEST_GALOIS)
+
+# linking for galois tests
+$(BIN_TEST_GALOIS): ./obj/test_galois.o $(OBJS)
+	$(CC) $(CFLAGS) $< $(OBJS) -o $@
+
+# linking for bignum tests
+$(BIN_TEST_BIGNUM): ./obj/test_bignum.o $(OBJS)
+	$(CC) $(CFLAGS) $< $(OBJS) -o $@
 
 # compilation in machine code for tests and include header files from ./src
 ./obj/%.o: ./test/%.c

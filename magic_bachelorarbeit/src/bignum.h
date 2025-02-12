@@ -52,7 +52,7 @@ void print_bignum(bignum n);
 /// @param result The bignum where the result of XOR is saved.
 /// @param already_malloc Is the bignum in result already initialized?
 /// @param a The bignum to be XORed.
-/// @param b The number to be XORed.
+/// @param b The bignum to be XORed.
 void xor_bignum(bignum *result, bool already_malloc, bignum a, bignum b);
 
 
