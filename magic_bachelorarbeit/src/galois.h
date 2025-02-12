@@ -5,11 +5,6 @@
 #include "bignum.h"
 
 
-/// @brief Creates an irreducible polynom for an Galois Field in 2**128.
-/// @return The irreducible polynom as a bignum.
-bignum init_irreducible_polynom_128();
-
-
 /// @brief Adds two bignums.
 /// @param result The bignum where the result of the addition is saved.
 /// @param already_allocated Is the bignum in result already initialized?
@@ -31,17 +26,13 @@ void sub(bignum *result, bool already_allocated, bignum a, bignum b);
 /// @param already_allocated Is the bignum in result already initialized?
 /// @param a First number.
 /// @param b Second number.
-/// @param polynom The irreducible polynom for the Galois Field.
-/// @param polynom_degree The degree of the irreducible polynom.
-void mult(bignum *result, bool already_allocated, bignum a, bignum b, bignum polynom, int polynom_degree);
+void mult(bignum *result, bool already_allocated, bignum a, bignum b);
 
 
 /// @brief Calculates the multiplicative inverse of the bignum n (n**-1).
 /// @param result The bignum where the result of the inversion is saved.
 /// @param already_allocated Is the bignum in result already initialized?
 /// @param n The number to find the multiplicative inverse.
-/// @param polynom The irreducible polynom for the Galois Field.
-/// @param polynom_degree The degree of the irreducible polynom.
-void mult_inverse(bignum *result, bool already_allocated, bignum n, bignum polynom, int polynom_degree);
+void mult_inverse(bignum *result, bool already_allocated, bignum n);
 
 #endif

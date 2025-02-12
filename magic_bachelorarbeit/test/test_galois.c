@@ -2,8 +2,10 @@
 #include "galois.h"
 
 
-void test_init_irreducible_polynom_128(void) {
-    bignum polynom = init_irreducible_polynom_128();
+void test_irreducible_polynom_128(void) {
+    // With "extern" I can use the const IRREDUCIBLE_POLYNOMIAL_128 in this file
+    extern const bignum IRREDUCIBLE_POLYNOMIAL_128;
+    bignum polynom = IRREDUCIBLE_POLYNOMIAL_128;
 
     TEST_CHECK(polynom.number_of_chunks == 5);
     TEST_CHECK(polynom.chunks[0] == 0x00000087);
@@ -11,8 +13,6 @@ void test_init_irreducible_polynom_128(void) {
     TEST_CHECK(polynom.chunks[2] == 0x00000000);
     TEST_CHECK(polynom.chunks[3] == 0x00000000);
     TEST_CHECK(polynom.chunks[4] == 0x1);
-
-    destroy_bignum(polynom);
 }
 
 
@@ -72,10 +72,9 @@ void test_mult_two_different_numbers(void) {
 
     bignum a = init_bignum(ahex, 4);
     bignum b = init_bignum(bhex, 4);
-    bignum polynom = init_irreducible_polynom_128();
     bignum result;
 
-    mult(&result, false, a, b, polynom, 128);
+    mult(&result, false, a, b);
 
     TEST_CHECK(result.number_of_chunks == 5);
     for (int i = 0; i < 4; i++) {
@@ -86,7 +85,6 @@ void test_mult_two_different_numbers(void) {
     destroy_bignum(a);
     destroy_bignum(b);
     destroy_bignum(result);
-    destroy_bignum(polynom);
 }
 
 
@@ -97,9 +95,8 @@ void test_mult_same_numbers_and_overwrite_the_number(void) {
     uint32_t expected[] = {0xfb091077, 0xda4ebf05, 0x0628e468, 0xec2087d8};
 
     bignum a = init_bignum(ahex, 4);
-    bignum polynom = init_irreducible_polynom_128();
 
-    mult(&a, true, a, a, polynom, 128);
+    mult(&a, true, a, a);
 
     TEST_CHECK(a.number_of_chunks == 5);
     for (int i = 0; i < 4; i++) {
@@ -108,7 +105,6 @@ void test_mult_same_numbers_and_overwrite_the_number(void) {
     TEST_CHECK(a.chunks[4] == 0);
 
     destroy_bignum(a);
-    destroy_bignum(polynom);
 }
 
 
@@ -119,10 +115,9 @@ void test_mult_inverse(void) {
     uint32_t expected[] = {0x1ef29611, 0x1058e3e3, 0x10cc8e7a, 0xd57d0b69};
 
     bignum a = init_bignum(ahex, 4);
-    bignum polynom = init_irreducible_polynom_128();
     bignum result;
 
-    mult_inverse(&result, false, a, polynom, 128);
+    mult_inverse(&result, false, a);
 
     TEST_CHECK(result.number_of_chunks == 5);
     for (int i = 0; i < 4; i++) {
@@ -131,7 +126,6 @@ void test_mult_inverse(void) {
     TEST_CHECK(result.chunks[4] == 0);
 
     destroy_bignum(a);
-    destroy_bignum(polynom);
     destroy_bignum(result);
 }
 
@@ -143,9 +137,8 @@ void test_mult_inverse_with_overwriting_the_number(void) {
     uint32_t expected[] = {0x1ef29611, 0x1058e3e3, 0x10cc8e7a, 0xd57d0b69};
 
     bignum a = init_bignum(ahex, 4);
-    bignum polynom = init_irreducible_polynom_128();
 
-    mult_inverse(&a, true, a, polynom, 128);
+    mult_inverse(&a, true, a);
 
     TEST_CHECK(a.number_of_chunks == 5);
     for (int i = 0; i < 4; i++) {
@@ -154,12 +147,11 @@ void test_mult_inverse_with_overwriting_the_number(void) {
     TEST_CHECK(a.chunks[4] == 0);
 
     destroy_bignum(a);
-    destroy_bignum(polynom);
 }
 
 
 TEST_LIST = {
-    {"init_irreducible_polynom_128", test_init_irreducible_polynom_128},
+    {"irreducible_polynom_128", test_irreducible_polynom_128},
     {"add_sub_two_different_numbers", test_add_sub_two_different_numbers},
     {"test_add_same_numbers_and_overwrite_the_number", test_add_same_numbers_and_overwrite_the_number},
     {"mult_two_different_numbers", test_mult_two_different_numbers},

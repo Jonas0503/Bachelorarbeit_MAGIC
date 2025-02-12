@@ -213,6 +213,7 @@ void test_shift_right_by_x(void) {
     for (int i = 0; i < 3; i++) {
         TEST_CHECK(result.chunks[i] == expected[2-i]);
     }
+    TEST_CHECK(result.chunks[3] == 0);
 
     destroy_bignum(a);
     destroy_bignum(result);
@@ -233,6 +234,7 @@ void test_shift_right_by_x_overwriting_variable(void) {
     for (int i = 0; i < 3; i++) {
         TEST_CHECK(a.chunks[i] == expected[2-i]);
     }
+    TEST_CHECK(a.chunks[3] == 0);
 
     destroy_bignum(a);
 }
