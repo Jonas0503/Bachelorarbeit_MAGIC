@@ -1,8 +1,8 @@
 # inspired by these videos: https://www.youtube.com/watch?v=LfIPVIsH4ZU https://www.youtube.com/watch?v=CRlqU9XzVr4
 
 CC = gcc
-CFLAGS = -g -Wall
-OBJS = ./obj/galois.o ./obj/bignum.o ./obj/util.o
+CFLAGS = -g -Wall -lc
+OBJS = ./obj/galois.o ./obj/bignum.o ./obj/util.o ./obj/salsa20.o
 OBJ_MAIN_FILE = ./obj/main.o
 BIN_TEST_GALOIS = ./bin/test_galois
 BIN_TEST_BIGNUM = ./bin/test_bignum
