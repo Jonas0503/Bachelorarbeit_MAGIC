@@ -10,7 +10,14 @@
 /// @return The allocted memory for the chunks of numbers.
 uint32_t *allocate_memory_for_chunks(bool already_allocated, bignum *n, int size_in_bytes);
 
+/// @brief Convert a 64-bit value into two 32-bit values.
+/// @param a The 64-bit value.
+/// @param left_part The left side of the number a and the input value is not relevant.
+/// @param right_part The right side of the number a and the input value is not relevant.
+void convert_64_bit_into_two_32_bit(uint64_t a, uint32_t *left_part, uint32_t *right_part);
 
-void print_internal_state(uint32_t state[16]);
-void convert_64_bit_into_two_32_bit(uint64_t a, uint32_t *b, uint32_t *c);
+/// @brief Convert two 32-bit values into a 64-bit value.
+/// @param left_part The 32 bits on the left.
+/// @param right_part The 32 bits on the right.
+/// @return The 64-bit number as the concatenation of left_part and right_part.
 uint64_t convert_two_32_bit_into_64_bit(uint32_t left_part, uint32_t right_part);

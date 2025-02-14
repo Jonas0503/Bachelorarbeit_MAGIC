@@ -1,7 +1,9 @@
 #include "salsa20.h"
 #include "util.h"
 
-#include "stdio.h"
+
+// implementation based upon the official specification: https://cr.yp.to/snuffle/spec.pdf
+
 
 uint32_t shift_left_and_rotate(uint32_t value, int number_of_shifts) {
     return (value << number_of_shifts) | (value >> (32 - number_of_shifts));
@@ -9,16 +11,19 @@ uint32_t shift_left_and_rotate(uint32_t value, int number_of_shifts) {
 
 
 void quarterround(uint32_t *a, uint32_t *b, uint32_t *c, uint32_t *d) {
+    // get the actual values
     uint32_t a_value = *(a);
     uint32_t b_value = *(b);
     uint32_t c_value = *(c);
     uint32_t d_value = *(d);
 
+    // the salsa operations
     b_value ^= shift_left_and_rotate(a_value + d_value, 7);
     c_value ^= shift_left_and_rotate(b_value + a_value, 9);
     d_value ^= shift_left_and_rotate(c_value + b_value, 13);
     a_value ^= shift_left_and_rotate(d_value + c_value, 18);
 
+    // write the updated values back
     *(a) = a_value;
     *(b) = b_value;
     *(c) = c_value;
@@ -61,7 +66,7 @@ void salsa20_hash(uint32_t state_in[16], uint32_t state_out[16]) {
         state[i] = state_in[i];
     }
 
-    // 20 rounds
+    // 10 double rounds -> 20 rounds
     for (int i = 0; i < 10; i++) {
         doubleround(state);
     }
@@ -100,7 +105,7 @@ void salsa20_expansion(uint32_t state_in[16], uint32_t state_out[16], uint32_t k
 }
 
 
-void salsa20_encryption(uint32_t key[8], uint32_t nonce[2], uint32_t *message_in, uint32_t *message_out, uint64_t message_length) {
+void salsa20_encryption_decryption(uint32_t key[8], uint32_t nonce[2], uint32_t *message_in, uint32_t *message_out, uint64_t message_length) {
     uint32_t state_in[16], state_out[16];
 
     uint32_t nonce_with_position[4];
@@ -110,7 +115,9 @@ void salsa20_encryption(uint32_t key[8], uint32_t nonce[2], uint32_t *message_in
     uint64_t position = 0;
     convert_64_bit_into_two_32_bit(position, &nonce_with_position[3], &nonce_with_position[2]);
 
+    // iterates over the message
     for (int i = 0; i < message_length; i++) {
+        // a new state every 16 fields (a state has 16 array fields)
         if (i % 16 == 0) {
             position = update_position(position, nonce_with_position, i);
             salsa20_expansion(state_in, state_out, key, nonce_with_position);
@@ -121,6 +128,7 @@ void salsa20_encryption(uint32_t key[8], uint32_t nonce[2], uint32_t *message_in
 
 
 uint64_t update_position(uint64_t position, uint32_t nonce_with_position[4], int loop_index) {
+    // position is stored in 64-bits and must be converted into two 32-bits in the state/nonce
     position = convert_two_32_bit_into_64_bit(nonce_with_position[3], nonce_with_position[2]);
     position = (loop_index / 16);
     convert_64_bit_into_two_32_bit(position, &nonce_with_position[3], &nonce_with_position[2]);
@@ -129,4 +137,14 @@ uint64_t update_position(uint64_t position, uint32_t nonce_with_position[4], int
     nonce_with_position[3] = littleendian(nonce_with_position[3]);
 
     return position;
+}
+
+
+void print_internal_state_of_salsa(uint32_t state[16]) {
+    for (int i = 0; i < 16; i++) {
+        if (i % 4 == 0) printf("\n");
+        printf("0x%08x ", state[i]);
+    }
+
+    printf("\n");
 }

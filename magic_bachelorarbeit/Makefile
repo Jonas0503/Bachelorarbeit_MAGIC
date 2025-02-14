@@ -6,7 +6,8 @@ OBJS = ./obj/galois.o ./obj/bignum.o ./obj/util.o ./obj/salsa20.o
 OBJ_MAIN_FILE = ./obj/main.o
 BIN_TEST_GALOIS = ./bin/test_galois
 BIN_TEST_BIGNUM = ./bin/test_bignum
-BIN_TESTS = $(BIN_TEST_BIGNUM) $(BIN_TEST_GALOIS)
+BIN_TEST_SALSA20 = ./bin/test_salsa20
+BIN_TESTS = $(BIN_TEST_BIGNUM) $(BIN_TEST_GALOIS) $(BIN_TEST_SALSA20)
 BIN_MAIN = ./bin/main
 
 # run the program without tests
@@ -24,6 +25,7 @@ $(BIN_MAIN): $(OBJS) $(OBJ_MAIN_FILE)
 test: $(BIN_TESTS)
 	$(BIN_TEST_BIGNUM)
 	$(BIN_TEST_GALOIS)
+	$(BIN_TEST_SALSA20)
 
 # linking for galois tests
 $(BIN_TEST_GALOIS): ./obj/test_galois.o $(OBJS)
@@ -31,6 +33,10 @@ $(BIN_TEST_GALOIS): ./obj/test_galois.o $(OBJS)
 
 # linking for bignum tests
 $(BIN_TEST_BIGNUM): ./obj/test_bignum.o $(OBJS)
+	$(CC) $(CFLAGS) $< $(OBJS) -o $@
+
+# linking for salsa20 tests
+$(BIN_TEST_SALSA20): ./obj/test_salsa20.o $(OBJS)
 	$(CC) $(CFLAGS) $< $(OBJS) -o $@
 
 # compilation in machine code for tests and include header files from ./src

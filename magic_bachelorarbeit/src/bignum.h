@@ -24,7 +24,7 @@ bignum init_bignum_to_zero();
 
 
 /// @brief An already initialized bignum is set to zero with one chunk.
-/// @param n The already initialized bignum.
+/// @param n The address of the already initialized bignum.
 void set_existing_bignum_to_zero(bignum *n);
 
 
@@ -34,7 +34,7 @@ bignum init_bignum_to_one();
 
 
 /// @brief An already initialized bignum is set to one with one chunk.
-/// @param n The already initialized bignum.
+/// @param n The address of the already initialized bignum.
 void set_existing_bignum_to_one(bignum *n);
 
 
@@ -49,7 +49,7 @@ void print_bignum(bignum n);
 
 
 /// @brief XOR two bignums and get the result.
-/// @param result The bignum where the result of XOR is saved.
+/// @param result The address of the bignum where the result of XOR is saved.
 /// @param already_malloc Is the bignum in result already initialized?
 /// @param a The bignum to be XORed.
 /// @param b The bignum to be XORed.
@@ -63,21 +63,21 @@ bool is_bignum_not_zero(bignum n);
 
 
 /// @brief Shift the bignum one to the left.
-/// @param result The bignum where the result of the left shift is saved.
+/// @param result The address of the bignum where the result of the left shift is saved.
 /// @param already_allocated Is the bignum in result already initialized?
 /// @param n The bignum to be shifted.
 void shift_left_by_one_bignum(bignum *result, bool already_allocated, bignum n);
 
 
 /// @brief Shift the bignum one to the right.
-/// @param result The bignum where the result of the right shift is saved.
+/// @param result The address of the bignum where the result of the right shift is saved.
 /// @param already_allocated Is the bignum in result already initialized?
 /// @param n The bignum to be shifted.
 void shift_right_by_one_bignum(bignum *result, bool already_allocated, bignum n);
 
 
 /// @brief Shift the bignum x times to the right.
-/// @param result The bignum where the result of the right shift is saved.
+/// @param result The address of the bignum where the result of the right shift is saved.
 /// @param already_allocated Is the bignum in result already initialized?
 /// @param n The bignum to be shifted.
 /// @param x The number of right shifts.
