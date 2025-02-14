@@ -28,11 +28,11 @@ void print_internal_state(uint32_t state[16]) {
 
 
 void convert_64_bit_into_two_32_bit(uint64_t a, uint32_t *left_part, uint32_t *right_part) {
-    uint32_t b_value = (a & 0xffffffff00000000) >> 32;
-    uint32_t c_value = a & 0xffffffff;
+    uint32_t left_value = (a & 0xffffffff00000000) >> 32;
+    uint32_t right_value = a & 0xffffffff;
 
-    (*left_part) = b_value;
-    (*right_part) = c_value;
+    (*left_part) = left_value;
+    (*right_part) = right_value;
 }
 
 

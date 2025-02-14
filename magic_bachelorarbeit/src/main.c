@@ -40,7 +40,7 @@ int main(int argc, char const *argv[]) {
     uint32_t plaintext[128] = {0x0};
     uint32_t ciphertext[128];
 
-    salsa20_encryption(key, nonce, 0, plaintext, ciphertext, 128);
+    salsa20_encryption(key, nonce, plaintext, ciphertext, 128);
     for (int i = 0; i < 128; i++) {
         if (i % 4 == 0) printf("\n");
         if (i % 16 == 0) printf("i:%i \n", i/16);

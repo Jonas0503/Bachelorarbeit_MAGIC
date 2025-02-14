@@ -61,8 +61,6 @@ void salsa20_hash(uint32_t state_in[16], uint32_t state_out[16]) {
         state[i] = state_in[i];
     }
 
-    print_internal_state(state);
-
     // 20 rounds
     for (int i = 0; i < 10; i++) {
         doubleround(state);
@@ -102,31 +100,33 @@ void salsa20_expansion(uint32_t state_in[16], uint32_t state_out[16], uint32_t k
 }
 
 
-void salsa20_encryption(uint32_t key[8], uint32_t nonce[2], uint64_t starting_position, uint32_t *message_in, uint32_t *message_out, uint64_t message_length) {
+void salsa20_encryption(uint32_t key[8], uint32_t nonce[2], uint32_t *message_in, uint32_t *message_out, uint64_t message_length) {
     uint32_t state_in[16], state_out[16];
 
     uint32_t nonce_with_position[4];
     nonce_with_position[0] = nonce[0];
     nonce_with_position[1] = nonce[1];
 
-    convert_64_bit_into_two_32_bit(starting_position, &nonce_with_position[3], &nonce_with_position[2]);
+    uint64_t position = 0;
+    convert_64_bit_into_two_32_bit(position, &nonce_with_position[3], &nonce_with_position[2]);
 
     for (int i = 0; i < message_length; i++) {
         if (i % 16 == 0) {
-            // TODO: schöner und besser machen; was ist wenn mehr als 32 bits gesetzt sind?
-            starting_position = convert_two_32_bit_into_64_bit(nonce_with_position[3], nonce_with_position[2]);
-            starting_position = (i / 16);
-            convert_64_bit_into_two_32_bit(starting_position, &nonce_with_position[3], &nonce_with_position[2]);
-
-            printf("%08x %08x\n", littleendian(nonce_with_position[2]), littleendian(nonce_with_position[3]));
-
-            nonce_with_position[2] = littleendian(nonce_with_position[2]);
-            nonce_with_position[3] = littleendian(nonce_with_position[3]);
-
-            printf("%08x %08x\n", nonce_with_position[2], nonce_with_position[3]);
-
+            position = update_position(position, nonce_with_position, i);
             salsa20_expansion(state_in, state_out, key, nonce_with_position);
         }
         message_out[i] = message_in[i] ^ state_out[i % 16];
     }
+}
+
+
+uint64_t update_position(uint64_t position, uint32_t nonce_with_position[4], int loop_index) {
+    position = convert_two_32_bit_into_64_bit(nonce_with_position[3], nonce_with_position[2]);
+    position = (loop_index / 16);
+    convert_64_bit_into_two_32_bit(position, &nonce_with_position[3], &nonce_with_position[2]);
+
+    nonce_with_position[2] = littleendian(nonce_with_position[2]);
+    nonce_with_position[3] = littleendian(nonce_with_position[3]);
+
+    return position;
 }
