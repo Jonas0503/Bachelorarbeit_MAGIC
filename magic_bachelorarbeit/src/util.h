@@ -12,8 +12,8 @@ uint32_t *allocate_memory_for_chunks(bool already_allocated, bignum *n, int size
 
 /// @brief Convert a 64-bit value into two 32-bit values.
 /// @param a The 64-bit value.
-/// @param left_part The left side of the number a and the input value is not relevant.
-/// @param right_part The right side of the number a and the input value is not relevant.
+/// @param left_part The address for the result of left side of number a.
+/// @param right_part The address for the result of right side of number a.
 void convert_64_bit_into_two_32_bit(uint64_t a, uint32_t *left_part, uint32_t *right_part);
 
 /// @brief Convert two 32-bit values into a 64-bit value.

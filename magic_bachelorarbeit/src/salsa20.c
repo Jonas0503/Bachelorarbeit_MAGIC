@@ -1,6 +1,8 @@
 #include "salsa20.h"
 #include "util.h"
 
+#include "stdio.h"
+
 
 // implementation based upon the official specification: https://cr.yp.to/snuffle/spec.pdf
 
