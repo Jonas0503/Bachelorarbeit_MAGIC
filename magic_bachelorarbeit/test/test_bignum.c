@@ -7,8 +7,8 @@ void test_init_bignum(void) {
     bignum a = init_bignum(ahex, 4);
 
     TEST_CHECK(a.number_of_chunks == 4);
-    for (int i = 0; i < 4; i++) {
-        TEST_CHECK(a.chunks[i] == ahex[3-i]);
+    for (int i = 0; i < a.number_of_chunks; i++) {
+        TEST_CHECK(a.chunks[i] == ahex[i]);
     }
 
     destroy_bignum(a);
@@ -76,8 +76,30 @@ void test_xor_bignum_different_numbers(void) {
     xor_bignum(&result, false, a, b);
 
     TEST_CHECK(result.number_of_chunks == 4);
-    for (int i = 0; i < 4; i++) {
-        TEST_CHECK(result.chunks[i] == expected[3-i]);
+    for (int i = 0; i < result.number_of_chunks; i++) {
+        TEST_CHECK(result.chunks[i] == expected[i]);
+    }
+
+    destroy_bignum(a);
+    destroy_bignum(b);
+    destroy_bignum(result);
+}
+
+
+void test_xor_bignum_different_number_sizes(void) {
+    uint32_t ahex[] = {0xc1a9cc12, 0x47fabf8a, 0x6cd61520, 0x55c88500};
+    uint32_t bhex[] = {0x0, 0x83539824, 0x8ff57f14, 0xd9ac2a40, 0xab910a87};
+    uint32_t expected[] = {0x0, 0x42fa5436, 0xc80fc09e, 0xb57a3f60, 0xfe598f87};
+
+    bignum a = init_bignum(ahex, 4);
+    bignum b = init_bignum(bhex, 5);
+    bignum result;
+
+    xor_bignum(&result, false, a, b);
+
+    TEST_CHECK(result.number_of_chunks == 5);
+    for (int i = 0; i < result.number_of_chunks; i++) {
+        TEST_CHECK(result.chunks[i] == expected[i]);
     }
 
     destroy_bignum(a);
@@ -94,7 +116,7 @@ void test_xor_same_numbers_and_overwrite_the_number(void) {
     xor_bignum(&a, true, a, a);
 
     TEST_CHECK(a.number_of_chunks == 4);
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < a.number_of_chunks; i++) {
         TEST_CHECK(a.chunks[i] == 0x0);
     }
 
@@ -130,8 +152,8 @@ void test_shift_left_by_one_bignum_no_new_block(void) {
     shift_left_by_one_bignum(&result, false, a);
 
     TEST_CHECK(result.number_of_chunks == 4);
-    for (int i = 0; i < 4; i++) {
-        TEST_CHECK(result.chunks[i] == expected[3-i]);
+    for (int i = 0; i < result.number_of_chunks; i++) {
+        TEST_CHECK(result.chunks[i] == expected[i]);
     }
 
     destroy_bignum(a);
@@ -150,8 +172,8 @@ void test_shift_left_by_one_bignum_new_block_and_overwrite_variable(void) {
     shift_left_by_one_bignum(&a, true, a);
 
     TEST_CHECK(a.number_of_chunks == 5);
-    for (int i = 0; i < 5; i++) {
-        TEST_CHECK(a.chunks[i] == expected[4-i]);
+    for (int i = 0; i < a.number_of_chunks; i++) {
+        TEST_CHECK(a.chunks[i] == expected[i]);
     }
 
     destroy_bignum(a);
@@ -170,8 +192,8 @@ void test_shift_right_by_one(void) {
     shift_right_by_one_bignum(&result, false, a);
 
     TEST_CHECK(result.number_of_chunks == 4);
-    for (int i = 0; i < 4; i++) {
-        TEST_CHECK(result.chunks[i] == expected[3-i]);
+    for (int i = 0; i < result.number_of_chunks; i++) {
+        TEST_CHECK(result.chunks[i] == expected[i]);
     }
 
     destroy_bignum(a);
@@ -190,8 +212,8 @@ void test_shift_right_by_one_overwrite_variable(void) {
     shift_right_by_one_bignum(&a, true, a);
 
     TEST_CHECK(a.number_of_chunks == 4);
-    for (int i = 0; i < 4; i++) {
-        TEST_CHECK(a.chunks[i] == expected[3-i]);
+    for (int i = 0; i < a.number_of_chunks; i++) {
+        TEST_CHECK(a.chunks[i] == expected[i]);
     }
 
     destroy_bignum(a);
@@ -202,7 +224,7 @@ void test_shift_right_by_x(void) {
     // 112796474524809765425598623508679786908
     uint32_t ahex[] = {0x54dbcf8f, 0xfd761f7c, 0x2c239ae3, 0x2732819c};
     // 25646948989744888746281190
-    uint32_t expected[] = {0x1536f3, 0xe3ff5d87, 0xdf0b08e6};
+    uint32_t expected[] = {0x0, 0x1536f3, 0xe3ff5d87, 0xdf0b08e6};
 
     bignum a = init_bignum(ahex, 4);
     bignum result;
@@ -210,10 +232,9 @@ void test_shift_right_by_x(void) {
     shift_right_by_x_bignum(&result, false, a, 42);
 
     TEST_CHECK(result.number_of_chunks == 4);
-    for (int i = 0; i < 3; i++) {
-        TEST_CHECK(result.chunks[i] == expected[2-i]);
+    for (int i = 0; i < result.number_of_chunks; i++) {
+        TEST_CHECK(result.chunks[i] == expected[i]);
     }
-    TEST_CHECK(result.chunks[3] == 0);
 
     destroy_bignum(a);
     destroy_bignum(result);
@@ -224,17 +245,16 @@ void test_shift_right_by_x_overwriting_variable(void) {
     // 112796474524809765425598623508679786908
     uint32_t ahex[] = {0x54dbcf8f, 0xfd761f7c, 0x2c239ae3, 0x2732819c};
     // 25646948989744888746281190
-    uint32_t expected[] = {0x1536f3, 0xe3ff5d87, 0xdf0b08e6};
+    uint32_t expected[] = {0x0, 0x1536f3, 0xe3ff5d87, 0xdf0b08e6};
 
     bignum a = init_bignum(ahex, 4);
 
     shift_right_by_x_bignum(&a, true, a, 42);
 
     TEST_CHECK(a.number_of_chunks == 4);
-    for (int i = 0; i < 3; i++) {
-        TEST_CHECK(a.chunks[i] == expected[2-i]);
+    for (int i = 0; i < a.number_of_chunks; i++) {
+        TEST_CHECK(a.chunks[i] == expected[i]);
     }
-    TEST_CHECK(a.chunks[3] == 0);
 
     destroy_bignum(a);
 }
@@ -321,6 +341,7 @@ TEST_LIST = {
     {"init_bignum_to_one", test_init_bignum_to_one},
     {"set_existing_bignum_to_one", test_set_existing_bignum_to_one},
     {"xor_bignum_different_numbers", test_xor_bignum_different_numbers},
+    {"xor_bignum_different_number_sizes", test_xor_bignum_different_number_sizes},
     {"xor_same_numbers_and_overwrite_the_number", test_xor_same_numbers_and_overwrite_the_number},
     {"is_bignum_not_zero_true", test_is_bignum_not_zero_true},
     {"is_bignum_not_zero_false", test_is_bignum_not_zero_false},

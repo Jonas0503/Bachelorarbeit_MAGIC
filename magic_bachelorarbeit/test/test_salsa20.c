@@ -298,6 +298,13 @@ void test_salsa20_encryption_decryption_1(void) {
 
     TEST_CHECK(are_messages_equal(ciphertext, expected_1, 16, 0));
     TEST_CHECK(are_messages_equal(ciphertext, expected_2, 16, 64));
+
+    // Decryption
+    uint32_t result_decryption[128];
+    uint32_t result_decryption_expected[128] = {0x0};
+
+    salsa20_encryption_decryption(key, nonce, ciphertext, result_decryption, 128);
+    TEST_CHECK(are_messages_equal(result_decryption, result_decryption_expected, 128, 0));
 }
 
 
@@ -327,10 +334,17 @@ void test_salsa20_encryption_decryption_2(void) {
         0x02779A45, 0x09BE5832, 0x708CA283, 0x6C1693A5
     };
 
+    // Encryption
     salsa20_encryption_decryption(key, nonce, plaintext, ciphertext, 128);
-
     TEST_CHECK(are_messages_equal(ciphertext, expected_1, 16, 48));
     TEST_CHECK(are_messages_equal(ciphertext, expected_2, 16, 112));
+
+    // Decryption
+    uint32_t result_decryption[128];
+    uint32_t result_decryption_expected[128] = {0x0};
+
+    salsa20_encryption_decryption(key, nonce, ciphertext, result_decryption, 128);
+    TEST_CHECK(are_messages_equal(result_decryption, result_decryption_expected, 128, 0));
 }
 
 

@@ -10,7 +10,7 @@
 // The irreducible polynomial and its degree
 // x**128 + x**7 + x**2 + x + 1
 const int DEGREE = 128;
-uint32_t chunks[5] = {0x00000087, 0x00000000, 0x00000000, 0x00000000, 0x1};
+uint32_t chunks[5] = {0x1, 0x00000000, 0x00000000, 0x00000000, 0x00000087};
 const bignum IRREDUCIBLE_POLYNOMIAL_128 = {.number_of_chunks = 5, .chunks = chunks};
 
 

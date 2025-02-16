@@ -13,9 +13,9 @@ bignum init_bignum(uint32_t *hex, int size) {
     n.number_of_chunks = size;
     n.chunks = malloc(size * sizeof(uint32_t));
 
-    // least significant bytes are in chunks[0] and most significant bytes are in chunks[size-1]
+    // most significant bytes (MSB) are in chunks[0] and least significant bytes (LSB) are in chunks[size-1]
     for (int i = 0; i < size; i++) {
-        n.chunks[i] = hex[size-1-i];
+        n.chunks[i] = hex[i];
     }
 
     return n;
@@ -65,24 +65,25 @@ void destroy_bignum(bignum n) {
 
 void print_bignum(bignum n) {
     bool chunk_before_is_zero = false;
+    int size = n.number_of_chunks;
 
     printf("0x");
 
     if (n.number_of_chunks == 0) printf("0");
 
-    // Starting with the most significant chunk in the end of the array and ignore all leading zeros
-    for (int i = n.number_of_chunks-1; i >= 0; i--) {
-        if (i == n.number_of_chunks-1 && n.chunks[i] == 0){
+    // Starting with the most significant chunk at the beginning of the array and ignore all leading zeros
+    for (int i = 0; i < size; i++) {
+        if (i == 0 && n.chunks[i] == 0){
             chunk_before_is_zero = true;
             continue;
         }
-        else if (chunk_before_is_zero && i == 0) {
+        else if (chunk_before_is_zero && i == size-1) {
             printf("0");
         }
         else if (chunk_before_is_zero && n.chunks[i] == 0) {
             continue;
         }
-        else if (i == n.number_of_chunks-1) {
+        else if (i == 0) {
             chunk_before_is_zero = false;
             printf("%x", n.chunks[i]);
         }
@@ -100,23 +101,25 @@ void xor_bignum(bignum *result, bool already_allocated, bignum a, bignum b) {
     // Copies the bignums because wrong results occur when the parameters result, a, b are all the same input variable (all pointing to same memory?!)
     bignum tmp_a = copy_bignum(a);
     bignum tmp_b = copy_bignum(b);
+    int size_a = tmp_a.number_of_chunks;
+    int size_b = tmp_b.number_of_chunks;
 
-    int resulting_size = tmp_a.number_of_chunks;
-    if (tmp_a.number_of_chunks < tmp_b.number_of_chunks) resulting_size = tmp_b.number_of_chunks;
+    int resulting_size = size_a;
+    if (size_a < size_b) resulting_size = size_b;
 
     result->number_of_chunks = resulting_size;
     result->chunks = allocate_memory_for_chunks(already_allocated, result, sizeof(uint32_t) * resulting_size);
 
-    // One XOR per chunk
-    for (int i = 0; i < resulting_size; i++) {
-        if (i >= tmp_a.number_of_chunks) {
-            result->chunks[i] = tmp_b.chunks[i];
+    // One XOR per chunk starting at the LSB on the right for each number
+    for (int k = 0, i_a = size_a-1, i_b = size_b-1; i_a >= 0 || i_b >= 0; i_a--, i_b--, k++) {
+        if (k >= size_a) {
+            result->chunks[resulting_size-1-k] = tmp_b.chunks[i_b];
         }
-        else if (i >= tmp_b.number_of_chunks) {
-            result->chunks[i] = tmp_a.chunks[i];
+        else if (k >= size_b) {
+            result->chunks[resulting_size-1-k] = tmp_a.chunks[i_a];
         }
         else {
-            result->chunks[i] = tmp_a.chunks[i] ^ tmp_b.chunks[i];
+            result->chunks[resulting_size-1-k] = tmp_a.chunks[i_a] ^ tmp_b.chunks[i_b];
         }
     }
 
@@ -141,8 +144,24 @@ void shift_left_by_one_bignum(bignum *result, bool already_allocated, bignum n) 
     bignum tmp_n = copy_bignum(n);
 
     // Checks if the most significant bit is a 1 or 0. When its a 1 one more chunk is needed.
-    if (n.chunks[n.number_of_chunks - 1] & (1 << 31)) {
+    if (n.chunks[0] & (1 << 31)) {
         result->number_of_chunks = tmp_n.number_of_chunks + 1;
+
+        uint32_t *hex = malloc(sizeof(uint32_t) * result->number_of_chunks);
+
+        // A 0x0 chunk gets added at the beginning; otherwise the sizes of the two numbers differ (problems in for-loop for the actual shifting)
+        for (int i = 0; i < result->number_of_chunks; i++) {
+            if (i == 0) {
+                hex[i] = 0x0;
+            }
+            else {
+                hex[i] = tmp_n.chunks[i-1];
+            }
+        }
+
+        destroy_bignum(tmp_n);
+        tmp_n = init_bignum(hex, result->number_of_chunks);
+        free(hex);
     }
     else {
         result->number_of_chunks = tmp_n.number_of_chunks;
@@ -152,12 +171,12 @@ void shift_left_by_one_bignum(bignum *result, bool already_allocated, bignum n) 
 
     // Left shift per chunk
     for (int i = 0; i < result->number_of_chunks; i++) {
-        if (i == 0) {
+        if (i == result->number_of_chunks-1) {
             result->chunks[i] = tmp_n.chunks[i] << 1;
         }
         else {
             // Bitwise OR to determine wether a 1 of the block before is shifted left to the current block
-            result->chunks[i] = (tmp_n.chunks[i] << 1) | (tmp_n.chunks[i-1] >> 31);
+            result->chunks[i] = (tmp_n.chunks[i] << 1) | (tmp_n.chunks[i+1] >> 31);
         }
     }
 
@@ -174,12 +193,12 @@ void shift_right_by_one_bignum(bignum *result, bool already_allocated, bignum n)
 
     // Right shift per chunk
     for (int i = 0; i < tmp_n.number_of_chunks; i++) {
-        if (i == tmp_n.number_of_chunks - 1) {
+        if (i == 0) {
             result->chunks[i] = tmp_n.chunks[i] >> 1;
         }
         else {
             // Bitwise OR to determine wether a 1 of the block after is shifted right to the current block
-            result->chunks[i] = (tmp_n.chunks[i] >> 1) | (tmp_n.chunks[i+1] << 31);
+            result->chunks[i] = (tmp_n.chunks[i] >> 1) | (tmp_n.chunks[i-1] << 31);
         }
     }
 
@@ -203,7 +222,7 @@ void shift_right_by_x_bignum(bignum *result, bool already_allocated, bignum n, i
 
 
 bool is_bignum_odd(bignum n) {
-    return n.chunks[0] & 0x1;
+    return n.chunks[n.number_of_chunks-1] & 0x1;
 }
 
 

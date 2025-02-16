@@ -2,7 +2,7 @@
 
 CC = gcc
 CFLAGS = -g -Wall -lc
-OBJS = ./obj/galois.o ./obj/bignum.o ./obj/util.o ./obj/salsa20.o
+OBJS = ./obj/galois.o ./obj/bignum.o ./obj/util.o ./obj/salsa20.o ./obj/magic_mode.o
 OBJ_MAIN_FILE = ./obj/main.o
 BIN_TEST_GALOIS = ./bin/test_galois
 BIN_TEST_BIGNUM = ./bin/test_bignum
