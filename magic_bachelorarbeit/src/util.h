@@ -22,4 +22,5 @@ void convert_64_bit_into_two_32_bit(uint64_t a, uint32_t *left_part, uint32_t *r
 /// @return The 64-bit number as the concatenation of left_part and right_part.
 uint64_t convert_two_32_bit_into_64_bit(uint32_t left_part, uint32_t right_part);
 
-bignum plaintext_to_bignum(char *plaintext);
+bignum string_to_bignum(char *plaintext);
+unsigned char *bignum_blocks_to_string(bignum blocks[]);

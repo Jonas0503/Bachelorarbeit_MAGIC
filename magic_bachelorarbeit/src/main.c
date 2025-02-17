@@ -7,6 +7,7 @@
 #include "stdint.h"
 #include "stdio.h"
 #include "stdlib.h"
+#include "string.h"
 
 
 int main(int argc, char const *argv[]) {
@@ -18,12 +19,18 @@ int main(int argc, char const *argv[]) {
     };
     uint32_t nonce[2] = {0x0};
 
-    res = plaintext_to_bignum("Hallo Welt! Ich heisse Jonas Gilbert.");
+    res = string_to_bignum("Hallo Welt! Ich heisse Jonas Gilbert.");
     print_bignum(res);
 
-    plaintext_to_ciphertext_blocks("Hallo Welt! Ich heisse Jonas Gilbert.", "abc", key, nonce);
+    bignum *n = plaintext_to_ciphertext_blocks("Hallo Welt! Ich heisse Jonas Gilbert.", key, nonce);
 
+    for (int i = 0; n[i].number_of_chunks == 4; i++) {
+        print_bignum(n[i]);
+    }
 
+    unsigned char *s = bignum_blocks_to_string(n);
+
+    printf("%s\n", s);
 
     destroy_bignum(res);
 

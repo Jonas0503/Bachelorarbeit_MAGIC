@@ -3,4 +3,5 @@
 
 
 bignum pad(bignum n);
-void plaintext_to_ciphertext_blocks(char *plaintext, char *ciphertext, uint32_t key[8], uint32_t nonce[2]);
+bignum unpad(bignum n);
+bignum *plaintext_to_ciphertext_blocks(char *plaintext, uint32_t key[8], uint32_t nonce[2]);

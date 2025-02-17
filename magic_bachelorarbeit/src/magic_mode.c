@@ -9,11 +9,8 @@
 const int BLOCKSIZE = 4;
 
 
+// based on RFC 5652 section 6.3
 bignum pad(bignum n) {
-    if (n.number_of_chunks % 4 == 0) {
-        return n;
-    }
-
     int size_new = n.number_of_chunks + (((n.number_of_chunks % BLOCKSIZE) - BLOCKSIZE) * -1);
     uint32_t *hex = malloc(sizeof(uint32_t) * size_new);
 
@@ -22,7 +19,7 @@ bignum pad(bignum n) {
             hex[i] = n.chunks[i];
         }
         else {
-            hex[i] = 0x0;
+            hex[i] = size_new - n.number_of_chunks;
         }
     }
 
@@ -35,22 +32,54 @@ bignum pad(bignum n) {
 }
 
 
-void plaintext_to_ciphertext_blocks(char *plaintext, char *ciphertext, uint32_t key[8], uint32_t nonce[2]) {
-    bignum plaintext_as_bignum = plaintext_to_bignum(plaintext);
+// based on RFC 5652 section 6.3
+bignum unpad(bignum n) {
+    int size;
+    for (size = 0; size < n.number_of_chunks; size++) {
+        if (n.chunks[size] == 0x4 || n.chunks[size] == 0x3 || n.chunks[size] == 0x2 || n.chunks[size] == 0x1) break;
+    }
+
+    uint32_t *hex = malloc(sizeof(uint32_t) * size);
+    for (int i = 0; i < size; i++) {
+        hex[i] = n.chunks[i];
+    }
+
+    destroy_bignum(n);
+
+    bignum r = init_bignum(hex, size);
+    free(hex);
+
+    return r;
+}
+
+
+bignum *plaintext_to_ciphertext_blocks(char *plaintext, uint32_t key[8], uint32_t nonce[2]) {
+    // padding to get full blocks
+    bignum plaintext_as_bignum = string_to_bignum(plaintext);
     plaintext_as_bignum = pad(plaintext_as_bignum);
 
+    // encryption
     uint32_t *ciphertext_hex = malloc(plaintext_as_bignum.number_of_chunks * sizeof(uint32_t));
-    uint32_t *dec = malloc(plaintext_as_bignum.number_of_chunks * sizeof(uint32_t));
-
     salsa20_encryption_decryption(key, nonce, plaintext_as_bignum.chunks, ciphertext_hex, plaintext_as_bignum.number_of_chunks);
-    for (int i = 0; i < plaintext_as_bignum.number_of_chunks; i++) {
-        printf("%x ", ciphertext_hex[i]);
-    }
-    printf("\n");
 
-    salsa20_encryption_decryption(key, nonce, ciphertext_hex, dec, plaintext_as_bignum.number_of_chunks);
-    for (int i = 0; i < plaintext_as_bignum.number_of_chunks; i++) {
-        printf("%x ", dec[i]);
+    int number_of_blocks = plaintext_as_bignum.number_of_chunks / BLOCKSIZE;
+    bignum *ciphertext_blocks = malloc((number_of_blocks + 1) * sizeof(uint32_t));  // number_of_blocks + zero bignum at the end
+    uint32_t *one_block = malloc(sizeof(uint32_t) * BLOCKSIZE);
+
+    // ciphertext array to an array of bignums which represents the several blocks for MAGIC
+    for (int i = 0, k = 0; i < plaintext_as_bignum.number_of_chunks; i++, k++) {
+        one_block[i%4] = ciphertext_hex[i];
+
+        // every 128 bits add the bignum to the array with block[0] until block[3]
+        if (k == 3) {
+            bignum bignum_block = init_bignum(one_block, BLOCKSIZE);
+            ciphertext_blocks[((i+1)/BLOCKSIZE)-1] = bignum_block;
+            k = -1;  // start again at k = 0
+        }
     }
-    printf("\n");
+
+    // add a zero bignum at the end -> possible to loop over the ciphertext blocks by checking the number_of_chunks == BLOCKSIZE
+    ciphertext_blocks[number_of_blocks] = init_bignum_to_zero();
+
+    return ciphertext_blocks;
 }
