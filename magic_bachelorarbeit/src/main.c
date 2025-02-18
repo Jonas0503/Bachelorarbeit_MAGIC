@@ -28,11 +28,21 @@ int main(int argc, char const *argv[]) {
         print_bignum(n[i]);
     }
 
-    unsigned char *s = bignum_blocks_to_string(n);
+    /* bignum abc = ciphertext_bignum_blocks_to_one_bignum(n);
+    print_bignum(abc); */
 
-    printf("%s\n", s);
+    unsigned char *pt = ciphertext_blocks_to_plaintext_as_str(n, key, nonce);
+    printf("Plaintext: %s\n", pt);
 
+    free(pt);
     destroy_bignum(res);
+    // destroy_bignum(abc);
+    int i = 0;
+    for (; n[i].number_of_chunks == 4; i++) {
+        destroy_bignum(n[i]);
+    }
+    destroy_bignum(n[i]);
+    free(n);
 
     return 1;
 }

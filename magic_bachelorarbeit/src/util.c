@@ -5,6 +5,10 @@
 #include "stdio.h"
 
 
+// defined in magic_mode.c
+extern const int BLOCKSIZE;
+
+
 uint32_t *allocate_memory_for_chunks(bool already_allocated, bignum *n, int size_in_bytes) {
     if (already_allocated) {
         n->chunks = realloc(n->chunks, size_in_bytes);
@@ -64,38 +68,59 @@ bignum string_to_bignum(char *plaintext) {
 }
 
 
-unsigned char *bignum_blocks_to_string(bignum blocks[]) {
-    int number_of_blocks;
-    for (number_of_blocks = 0; blocks[number_of_blocks].number_of_chunks == 4; number_of_blocks++) {}
+unsigned char *bignum_to_string(bignum n) {
+    int number_of_chars = n.number_of_chunks * BLOCKSIZE;
 
-    int number_of_chars = 0;
-    for (int i = 0; i < number_of_blocks; i++) {
-        for (int k = 0; k < blocks[k].number_of_chunks-1; k++) {
-            number_of_chars += 4;
-        }
+    for (int i = 0; i < n.number_of_chunks; i++) {
+        if ((n.chunks[i] >> 24) != 0) break;
+        if ((n.chunks[i] >> 24) == 0) number_of_chars--;
+        if (((n.chunks[i] >> 16) & 0xff) != 0) break;;
+        if (((n.chunks[i] >> 16) & 0xff) == 0) number_of_chars--;
+        if (((n.chunks[i] >> 8) & 0xff) != 0) break;
+        if (((n.chunks[i] >> 8) & 0xff) == 0) number_of_chars--;
+        if ((n.chunks[i] & 0xff) != 0) break;
+        if ((n.chunks[i] & 0xff) == 0) number_of_chars--;
     }
 
-    unsigned char *string = malloc(sizeof(char) * number_of_chars + 1);
+    unsigned char *string = malloc(sizeof(unsigned char) * (number_of_chars + 1));
 
-    int pos = 0;
-    for (int i = 0; i < number_of_blocks; i++) {
-        for (int k = 0; k < blocks[i].number_of_chunks; k++) {
-            string[pos] = blocks[i].chunks[k] >> 24;
-            printf("%x ", string[pos]);
-            pos++;
-            string[pos] = (blocks[i].chunks[k] >> 16) & 0xff;
-            printf("%x ", string[pos]);
-            pos++;
-            string[pos] = (blocks[i].chunks[k] >> 8) & 0xff;
-            printf("%x ", string[pos]);
-            pos++;
-            string[pos] = blocks[i].chunks[k] & 0xff;
-            printf("%x ", string[pos]);
-            pos++;
+    int shifts = 0;
+    int chunk_index = n.number_of_chunks-1;
+    for (int i = number_of_chars-1; i >= 0; i--) {
+        string[i] = ((n.chunks[chunk_index] >> shifts) & 0xff);
+        shifts += 8;
+
+        if (shifts >= 32) {
+            shifts = 0;
+            chunk_index--;
         }
     }
 
     string[number_of_chars] = '\0';
 
     return string;
+}
+
+
+int determine_number_of_ciphertext_blocks(bignum blocks[]) {
+    int number_of_blocks;
+    for (number_of_blocks = 0; blocks[number_of_blocks].number_of_chunks == 4; number_of_blocks++) {}
+
+    return number_of_blocks;
+}
+
+
+bignum ciphertext_bignum_blocks_to_one_bignum(bignum ciphertext_blocks[]) {
+    int number_of_blocks = determine_number_of_ciphertext_blocks(ciphertext_blocks);
+
+    uint32_t *array = malloc(sizeof(uint32_t) * (number_of_blocks * BLOCKSIZE));
+
+    for (int i = 0, k = 0; i < number_of_blocks; i++, k += BLOCKSIZE) {
+        memcpy(array + k, ciphertext_blocks[i].chunks, sizeof(uint32_t) * BLOCKSIZE);
+    }
+
+    bignum res = init_bignum(array, number_of_blocks * BLOCKSIZE);
+    free(array);
+
+    return res;
 }

@@ -23,4 +23,6 @@ void convert_64_bit_into_two_32_bit(uint64_t a, uint32_t *left_part, uint32_t *r
 uint64_t convert_two_32_bit_into_64_bit(uint32_t left_part, uint32_t right_part);
 
 bignum string_to_bignum(char *plaintext);
-unsigned char *bignum_blocks_to_string(bignum blocks[]);
+unsigned char *bignum_to_string(bignum n);
+int determine_number_of_ciphertext_blocks(bignum blocks[]);
+bignum ciphertext_bignum_blocks_to_one_bignum(bignum ciphertext_blocks[]);
