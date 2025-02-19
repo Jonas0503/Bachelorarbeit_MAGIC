@@ -246,3 +246,49 @@ bignum copy_bignum(bignum n) {
 
     return tmp_n;
 }
+
+
+void remove_chunks_with_leading_zeros(bignum *result, bool already_allocated, bignum n) {
+    // Copies the bignums because wrong results occur when the parameters result and n are the same input variable (all pointing to same memory?!)
+    bignum tmp_n = copy_bignum(n);
+
+    int number_of_chunks_no_leading_zero_chunks = tmp_n.number_of_chunks;
+
+    // counts the chunks until a chunk in the front does not equal zero
+    for (int i = 0; i < tmp_n.number_of_chunks; i++) {
+        if (tmp_n.chunks[i] != 0x0) {
+            break;
+        }
+        else if (i == tmp_n.number_of_chunks-1) {
+            // if the bignum is zero
+            break;
+        }
+        else {
+            number_of_chunks_no_leading_zero_chunks--;
+        }
+    }
+
+    result->number_of_chunks = number_of_chunks_no_leading_zero_chunks;
+    result->chunks = allocate_memory_for_chunks(already_allocated, result, sizeof(uint32_t) * result->number_of_chunks);
+
+    for (int i = number_of_chunks_no_leading_zero_chunks-1, k = 0; i >= 0; i--, k++) {
+        result->chunks[i] = tmp_n.chunks[n.number_of_chunks-1-k];
+    }
+
+    destroy_bignum(tmp_n);
+}
+
+
+bool are_bignums_equal(bignum a, bignum b) {
+    if (a.number_of_chunks != b.number_of_chunks) {
+        return false;
+    }
+
+    for (int i = 0; i < a.number_of_chunks; i++) {
+        if (a.chunks[i] != b.chunks[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}

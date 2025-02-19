@@ -26,3 +26,6 @@ bignum string_to_bignum(char *plaintext);
 unsigned char *bignum_to_string(bignum n);
 int determine_number_of_ciphertext_blocks(bignum blocks[]);
 bignum ciphertext_bignum_blocks_to_one_bignum(bignum ciphertext_blocks[]);
+bignum pad(bignum n);
+bignum unpad(bignum n);
+int hamming_weight(bignum n);

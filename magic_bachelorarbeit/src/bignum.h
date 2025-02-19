@@ -102,4 +102,12 @@ bool is_bignum_inside_galois_field(bignum n, int degree);
 /// @return The copied bignum.
 bignum copy_bignum(bignum n);
 
+/// @brief Removes all leading zero chunks at the start of the number.
+/// @param result The resulting bignum with leading zero chunks removed.
+/// @param already_allocated Is the bignum in result already initialized?
+/// @param n The number to be modified.
+void remove_chunks_with_leading_zeros(bignum *result, bool already_allocated, bignum n);
+
+bool are_bignums_equal(bignum a, bignum b);
+
 #endif

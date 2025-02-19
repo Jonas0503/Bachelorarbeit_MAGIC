@@ -23,6 +23,8 @@ void add(bignum *result, bool already_allocated, bignum a, bignum b) {
 
     destroy_bignum(tmp_a);
     destroy_bignum(tmp_b);
+
+    remove_chunks_with_leading_zeros(result, true, *result);
 }
 
 
@@ -64,6 +66,8 @@ void mult(bignum *result, bool already_allocated, bignum a, bignum b) {
 
     destroy_bignum(tmp_a);
     destroy_bignum(tmp_b);
+
+    remove_chunks_with_leading_zeros(result, true, *result);
 }
 
 
@@ -97,4 +101,6 @@ void mult_inverse(bignum *result, bool already_allocated, bignum n) {
 
     destroy_bignum(base);
     destroy_bignum(exponent);
+
+    remove_chunks_with_leading_zeros(result, true, *result);
 }

@@ -9,6 +9,19 @@
 extern const int BLOCKSIZE;
 
 
+bignum polynom_to_bignum(int bit_indices[], int size) {
+    // TODO: !!! Als Binärstring speichern; Diesen String an jedem vierten char splitten und dann daraus jeweils uint32_t Werte bilden
+    // https://stackoverflow.com/questions/11493609/how-to-split-a-string-every-4-chars-and-then-memorize-the-fragments
+    // TODO: Mit bignums einfach rechnen, wie ich es in Python gemacht habe
+
+    /* bignum n = init_bignum_to_zero();
+
+    for (int i = 0; i < size; i++) {
+        if (bit_indices[i] == 0)
+    } */
+}
+
+
 uint32_t *allocate_memory_for_chunks(bool already_allocated, bignum *n, int size_in_bytes) {
     if (already_allocated) {
         n->chunks = realloc(n->chunks, size_in_bytes);
@@ -123,4 +136,72 @@ bignum ciphertext_bignum_blocks_to_one_bignum(bignum ciphertext_blocks[]) {
     free(array);
 
     return res;
+}
+
+
+// based on RFC 5652 section 6.3
+bignum pad(bignum n) {
+    int size_new = n.number_of_chunks + (((n.number_of_chunks % BLOCKSIZE) - BLOCKSIZE) * -1);
+    uint32_t *hex = malloc(sizeof(uint32_t) * size_new);
+
+    for (int i = 0; i < size_new; i++) {
+        if (i < n.number_of_chunks) {
+            hex[i] = n.chunks[i];
+        }
+        else {
+            hex[i] = size_new - n.number_of_chunks;
+        }
+    }
+
+    bignum r = init_bignum(hex, size_new);
+    free(hex);
+
+    return r;
+}
+
+
+// based on RFC 5652 section 6.3
+bignum unpad(bignum n) {
+    int size;
+    for (size = 0; size < n.number_of_chunks; size++) {
+        if (n.chunks[size] == 0x4 || n.chunks[size] == 0x3 || n.chunks[size] == 0x2 || n.chunks[size] == 0x1) break;
+    }
+
+    uint32_t *hex = malloc(sizeof(uint32_t) * size);
+    for (int i = 0; i < size; i++) {
+        hex[i] = n.chunks[i];
+    }
+
+    bignum r = init_bignum(hex, size);
+    free(hex);
+
+    return r;
+}
+
+
+int hamming_weight(bignum n) {
+    bignum tmp_n = copy_bignum(n);
+    int number_of_ones = 0;
+
+    while (is_bignum_not_zero(tmp_n)) {
+        if (is_bignum_odd(tmp_n)) {
+            number_of_ones++;
+        }
+
+        shift_right_by_one_bignum(&tmp_n, true, tmp_n);
+    }
+
+    destroy_bignum(tmp_n);
+
+    return number_of_ones;
+}
+
+
+void generate_error_vectors(int threshold) {
+    int possible_indices_with_one[128];
+    for (int i = 0; i < 128; i++) {
+        possible_indices_with_one[i] = i;
+    }
+
+    // TODO: polynom to bignum
 }

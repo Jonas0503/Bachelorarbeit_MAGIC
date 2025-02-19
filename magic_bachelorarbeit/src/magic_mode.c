@@ -1,52 +1,13 @@
 #include "magic_mode.h"
 #include "util.h"
 #include "salsa20.h"
+#include "galois.h"
 
 #include "stdlib.h"
 #include "stdio.h"
 
 
 const int BLOCKSIZE = 4;
-
-
-// based on RFC 5652 section 6.3
-bignum pad(bignum n) {
-    int size_new = n.number_of_chunks + (((n.number_of_chunks % BLOCKSIZE) - BLOCKSIZE) * -1);
-    uint32_t *hex = malloc(sizeof(uint32_t) * size_new);
-
-    for (int i = 0; i < size_new; i++) {
-        if (i < n.number_of_chunks) {
-            hex[i] = n.chunks[i];
-        }
-        else {
-            hex[i] = size_new - n.number_of_chunks;
-        }
-    }
-
-    bignum r = init_bignum(hex, size_new);
-    free(hex);
-
-    return r;
-}
-
-
-// based on RFC 5652 section 6.3
-bignum unpad(bignum n) {
-    int size;
-    for (size = 0; size < n.number_of_chunks; size++) {
-        if (n.chunks[size] == 0x4 || n.chunks[size] == 0x3 || n.chunks[size] == 0x2 || n.chunks[size] == 0x1) break;
-    }
-
-    uint32_t *hex = malloc(sizeof(uint32_t) * size);
-    for (int i = 0; i < size; i++) {
-        hex[i] = n.chunks[i];
-    }
-
-    bignum r = init_bignum(hex, size);
-    free(hex);
-
-    return r;
-}
 
 
 bignum *plaintext_to_ciphertext_blocks(char *plaintext, uint32_t key[8], uint32_t nonce[2]) {
@@ -92,13 +53,14 @@ unsigned char *ciphertext_blocks_to_plaintext_as_str(bignum ciphertext_blocks[],
     uint32_t *plaintext = malloc(sizeof(uint32_t) * (number_of_blocks * BLOCKSIZE));
     bignum ciphertext = ciphertext_bignum_blocks_to_one_bignum(ciphertext_blocks);
 
+    // decryption
     salsa20_encryption_decryption(key, nonce, ciphertext.chunks, plaintext, ciphertext.number_of_chunks);
 
+    // convert to bignum and remove padding
     bignum plaintext_as_bignum = init_bignum(plaintext, ciphertext.number_of_chunks);
     bignum plaintext_unpadded = unpad(plaintext_as_bignum);
 
-    print_bignum(plaintext_unpadded);
-
+    // convert to string
     unsigned char *text = bignum_to_string(plaintext_unpadded);
 
     destroy_bignum(plaintext_as_bignum);
@@ -108,3 +70,218 @@ unsigned char *ciphertext_blocks_to_plaintext_as_str(bignum ciphertext_blocks[],
 
     return text;
 }
+
+
+bignum find_hash_key_value(int threshold, int number_of_blocks) {
+    // TODO: random hash_key
+    // 221385673651417484972498539470727584786
+    uint32_t hex_for_hash_key[] = {0xa68d546e, 0xb6c431b9, 0x78f700db, 0xca6a9c12};
+
+    bignum hash_key = init_bignum(hex_for_hash_key, 4);
+    bignum original_hash_key = copy_bignum(hash_key);
+
+    // bignum hash_key_inverse;
+    // mult_inverse(&hash_key_inverse, false, hash_key);
+    // bignum original_hash_key_inverse = copy_bignum(hash_key_inverse);
+
+
+    return original_hash_key;
+}
+
+
+bignum determine_input_for_blinding_cipher(bignum ciphertext_blocks[], bignum hash_key, bignum authorized_data) {
+    bignum original_hash_key = copy_bignum(hash_key);
+    bignum intermediate_value = init_bignum_to_zero();
+    bignum mult_result = init_bignum_to_zero();
+
+    // determine the intermediate_value: intermediate_value = block_1 * hash_key^1 + ... + block_n * hash_key^n
+    int number_of_blocks = determine_number_of_ciphertext_blocks(ciphertext_blocks);
+    for (int i = 0; i < number_of_blocks; i++) {
+        mult(&mult_result, true, ciphertext_blocks[i], hash_key);
+        add(&intermediate_value, true, intermediate_value, mult_result);
+        mult(&hash_key, true, hash_key, original_hash_key);
+    }
+
+    // input with authorized data
+    bignum blinding_cipher_input;
+    add(&blinding_cipher_input, false, intermediate_value, authorized_data);
+
+    destroy_bignum(original_hash_key);
+    destroy_bignum(intermediate_value);
+    destroy_bignum(mult_result);
+
+    return blinding_cipher_input;
+}
+
+
+bignum ciphertext_blocks_to_tag(bignum ciphertext_blocks[], bignum hash_key, bignum authorized_data, uint32_t blinding_key[8], uint32_t blinding_nonce[2]) {
+    bignum blinding_cipher_input = determine_input_for_blinding_cipher(ciphertext_blocks, hash_key, authorized_data);
+
+    // encrypt input with the blinding cipher
+    uint32_t *tag_hex = malloc(sizeof(uint32_t) * BLOCKSIZE);
+    salsa20_encryption_decryption(blinding_key, blinding_nonce, blinding_cipher_input.chunks, tag_hex, BLOCKSIZE);
+
+    bignum tag = init_bignum(tag_hex, BLOCKSIZE);
+
+    destroy_bignum(blinding_cipher_input);
+    free(tag_hex);
+
+    return tag;
+}
+
+
+bignum decrypt_tag(bignum tag, uint32_t blinding_key[8], uint32_t blinding_nonce[2]) {
+    uint32_t *intermediate_value = malloc(sizeof(uint32_t) * BLOCKSIZE);
+    salsa20_encryption_decryption(blinding_key, blinding_nonce, tag.chunks, intermediate_value, BLOCKSIZE);
+
+    bignum result = init_bignum(intermediate_value, BLOCKSIZE);
+    free(intermediate_value);
+
+    return result;
+}
+
+
+bignum calculate_syndrome(bignum authorized_data, bignum ciphertext_blocks[], bignum hash_key, bignum tag, uint32_t blinding_key[8], uint32_t blinding_nonce[2]) {
+    bignum input = determine_input_for_blinding_cipher(ciphertext_blocks, hash_key, authorized_data);
+    bignum decrypted_tag = decrypt_tag(tag, blinding_key, blinding_nonce);
+
+    // syndrome = authorized_data + block_1 * hash_key^1 + ... + block_n * hash_key^n + decrypted_tag
+    bignum syndrome;
+    add(&syndrome, false, input, decrypted_tag);
+
+    destroy_bignum(input);
+    destroy_bignum(decrypted_tag);
+
+    return syndrome;
+}
+
+
+int locate_error(bignum syndrome_values[], int number_of_blocks, int threshold) {
+    int number_of_errors = 0;
+    int error_index = -1;
+
+    // is only one block corrupted?
+    for (int i = 0; i < number_of_blocks; i++) {
+        if (hamming_weight(syndrome_values[i]) <= threshold) {
+            number_of_errors++;
+            error_index = i;
+        }
+        // at least two blocks are corrupted
+        if (number_of_errors > 1) {
+            return -1;
+        }
+    }
+
+    // no block is corrupted
+    if (number_of_errors == 0) {
+        return -1;
+    }
+
+    // one block is corrupted
+    return error_index;
+}
+
+
+bool can_correct_parity(bignum corrupted_tag, bignum new_tag, int threshold) {
+    // result equals the error_vector if new_tag is correct
+    bignum result;
+    add(&result, false, corrupted_tag, new_tag);
+
+    // error vector must fulfill this condition
+    if (hamming_weight(result) <= threshold) {
+        destroy_bignum(result);
+        return true;
+    }
+    else {
+        destroy_bignum(result);
+        return false;
+    }
+}
+
+
+verify_result verify(bignum authorized_data, bignum ciphertext_blocks[], bignum tag, int threshold, bignum hash_key, uint32_t blinding_key[8], uint32_t blinding_nonce[2]) {
+    verify_result result;
+    bignum new_tag = ciphertext_blocks_to_tag(ciphertext_blocks, hash_key, authorized_data, blinding_key, blinding_nonce);
+
+    // no block is corrupted
+    if (are_bignums_equal(new_tag, tag)) {
+        result.correction_successful =  true;
+        result.ciphertext = "";
+        result.tag = "";
+
+        destroy_bignum(new_tag);
+
+        return result;
+    }
+    else {
+        bignum hash_key_inverse;
+        mult_inverse(&hash_key_inverse, false, hash_key);
+        bignum original_hash_key_inverse = copy_bignum(hash_key_inverse);
+
+        // calculate syndrome
+        int number_of_blocks = determine_number_of_ciphertext_blocks(ciphertext_blocks);
+        bignum syndrome = calculate_syndrome(authorized_data, ciphertext_blocks, hash_key, tag, blinding_key, blinding_nonce);
+        bignum *syndrome_values = malloc(sizeof(bignum) * number_of_blocks);
+
+        // calculate error location indicators (S_i)
+        // S_i = error_vector -> if i == i_err
+        int number_of_blocks = determine_number_of_ciphertext_blocks(ciphertext_blocks);
+        for (int i = 0; i < number_of_blocks; i++) {
+            mult(&syndrome_values[i], false, syndrome, hash_key_inverse);
+            mult(&hash_key, true, hash_key_inverse, original_hash_key_inverse);
+        }
+
+        destroy_bignum(syndrome);
+        destroy_bignum(hash_key_inverse);
+        destroy_bignum(original_hash_key_inverse);
+
+        // correct one corrupted ciphertext block
+        int error_index = locate_error(syndrome_values, number_of_blocks, threshold);
+        if (error_index != -1) {
+            add(&ciphertext_blocks[error_index], true, ciphertext_blocks[error_index], syndrome_values[error_index]);
+            bignum ciphertext = ciphertext_bignum_blocks_to_one_bignum(ciphertext_blocks);
+
+            result.correction_successful = true;
+            result.ciphertext = bignum_to_string(ciphertext);
+            result.tag = bignum_to_string(tag);
+
+            destroy_bignum(ciphertext);
+            for (int i = 0; i < number_of_blocks; i++) {
+                destroy_bignum(syndrome_values[i]);
+            }
+            free(syndrome_values);
+
+            return result;
+        }
+        else {
+            for (int i = 0; i < number_of_blocks; i++) {
+                destroy_bignum(syndrome_values[i]);
+            }
+            free(syndrome_values);
+
+            // correct error in the tag
+            if (can_correct_parity(tag, new_tag, threshold)) {
+                result.correction_successful = true;
+                result.ciphertext = bignum_to_string(ciphertext_bignum_blocks_to_one_bignum(ciphertext_blocks));
+                result.tag = bignum_to_string(new_tag);
+
+                destroy_bignum(new_tag);
+
+                return result;
+            }
+            // uncorrectable error (more than one ciphertext is corrupted)
+            else {
+                result.correction_successful = false;
+                result.ciphertext = "";
+                result.tag = "";
+
+                destroy_bignum(new_tag);
+
+                return result;
+            }
+        }
+    }
+}
+
+
+// TODO: Tests für neue util Funktionen, bignum Funktionen und erste Funktionen von hier + dokumentieren (in header files)
