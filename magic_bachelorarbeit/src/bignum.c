@@ -69,7 +69,10 @@ void print_bignum(bignum n) {
 
     printf("0x");
 
-    if (n.number_of_chunks == 0) printf("0");
+    if (n.number_of_chunks == 0 || (n.number_of_chunks == 1 && n.chunks[0] == 0x0)){
+        printf("0");
+        return;
+    }
 
     // Starting with the most significant chunk at the beginning of the array and ignore all leading zeros
     for (int i = 0; i < size; i++) {

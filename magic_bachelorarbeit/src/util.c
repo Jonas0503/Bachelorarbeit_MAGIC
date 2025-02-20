@@ -9,19 +9,6 @@
 extern const int BLOCKSIZE;
 
 
-bignum polynom_to_bignum(int bit_indices[], int size) {
-    // TODO: !!! Als Binärstring speichern; Diesen String an jedem vierten char splitten und dann daraus jeweils uint32_t Werte bilden
-    // https://stackoverflow.com/questions/11493609/how-to-split-a-string-every-4-chars-and-then-memorize-the-fragments
-    // TODO: Mit bignums einfach rechnen, wie ich es in Python gemacht habe
-
-    /* bignum n = init_bignum_to_zero();
-
-    for (int i = 0; i < size; i++) {
-        if (bit_indices[i] == 0)
-    } */
-}
-
-
 uint32_t *allocate_memory_for_chunks(bool already_allocated, bignum *n, int size_in_bytes) {
     if (already_allocated) {
         n->chunks = realloc(n->chunks, size_in_bytes);
@@ -48,33 +35,37 @@ uint64_t convert_two_32_bit_into_64_bit(uint32_t left_part, uint32_t right_part)
 }
 
 
-bignum string_to_bignum(char *plaintext) {
-    int plaintext_size = strlen(plaintext);
+bignum string_to_bignum(char *text) {
+    int plaintext_size = strlen(text);
 
     if (plaintext_size == 0) {
         return init_bignum_to_zero();
     }
 
-    int size = ((plaintext_size - 1) / 4) + 1;
-    uint32_t *hex = malloc(sizeof(uint32_t) * size);
+    // the number of chunks for the created bignum
+    int number_of_chunks = ((plaintext_size - 1) / 4) + 1;
+    uint32_t *hex = malloc(sizeof(uint32_t) * number_of_chunks);
 
-    for (int i = 0; i < size; i++) {
+    // default all chunks to zero
+    for (int i = 0; i < number_of_chunks; i++) {
         hex[i] = 0x0;
     }
 
+    // fill up the chunks starting from the back
     int shifts = 0;
-    int k = size-1;
-
+    int k = number_of_chunks-1;
     for (int i = 0; i < plaintext_size; i++) {
-        hex[k] = hex[k] | (plaintext[plaintext_size-1-i] << shifts);
+        // one char equals 8 bit
+        hex[k] = hex[k] | (text[plaintext_size-1-i] << shifts);
         shifts += 8;
+        // every 32 bit a new chunk
         if (shifts >= 32) {
             shifts = 0;
             k--;
         }
     }
 
-    bignum r = init_bignum(hex, size);
+    bignum r = init_bignum(hex, number_of_chunks);
     free(hex);
 
     return r;
@@ -84,6 +75,8 @@ bignum string_to_bignum(char *plaintext) {
 unsigned char *bignum_to_string(bignum n) {
     int number_of_chars = n.number_of_chunks * BLOCKSIZE;
 
+    // one char -> two hex digits
+    // counts the number of resulting chars without the leading zeros
     for (int i = 0; i < n.number_of_chunks; i++) {
         if ((n.chunks[i] >> 24) != 0) break;
         if ((n.chunks[i] >> 24) == 0) number_of_chars--;
@@ -97,12 +90,13 @@ unsigned char *bignum_to_string(bignum n) {
 
     unsigned char *string = malloc(sizeof(unsigned char) * (number_of_chars + 1));
 
+    // fill up the char array starting from the back until the leading zeros
     int shifts = 0;
     int chunk_index = n.number_of_chunks-1;
     for (int i = number_of_chars-1; i >= 0; i--) {
         string[i] = ((n.chunks[chunk_index] >> shifts) & 0xff);
         shifts += 8;
-
+        // every 32 bits a new chunk
         if (shifts >= 32) {
             shifts = 0;
             chunk_index--;
@@ -115,19 +109,22 @@ unsigned char *bignum_to_string(bignum n) {
 }
 
 
-int determine_number_of_ciphertext_blocks(bignum blocks[]) {
+int calculate_number_of_ciphertext_blocks(bignum ciphertext_blocks[]) {
+    // counts the blocks until the zero block at the end (see function "plaintext_to_ciphertext_blocks()" in "magic_mode.c")
+    // ciphertext blocks are always 128-bit (4 chunks)
     int number_of_blocks;
-    for (number_of_blocks = 0; blocks[number_of_blocks].number_of_chunks == 4; number_of_blocks++) {}
+    for (number_of_blocks = 0; ciphertext_blocks[number_of_blocks].number_of_chunks == 4; number_of_blocks++) {}
 
     return number_of_blocks;
 }
 
 
 bignum ciphertext_bignum_blocks_to_one_bignum(bignum ciphertext_blocks[]) {
-    int number_of_blocks = determine_number_of_ciphertext_blocks(ciphertext_blocks);
-
+    int number_of_blocks = calculate_number_of_ciphertext_blocks(ciphertext_blocks);
     uint32_t *array = malloc(sizeof(uint32_t) * (number_of_blocks * BLOCKSIZE));
 
+    // every 128-bit a new chunk gets copied into the array of the resulting bignum
+    // ciphertext blocks are always 128-bit (4 chunks)
     for (int i = 0, k = 0; i < number_of_blocks; i++, k += BLOCKSIZE) {
         memcpy(array + k, ciphertext_blocks[i].chunks, sizeof(uint32_t) * BLOCKSIZE);
     }
@@ -139,43 +136,42 @@ bignum ciphertext_bignum_blocks_to_one_bignum(bignum ciphertext_blocks[]) {
 }
 
 
-// based on RFC 5652 section 6.3
-bignum pad(bignum n) {
-    int size_new = n.number_of_chunks + (((n.number_of_chunks % BLOCKSIZE) - BLOCKSIZE) * -1);
-    uint32_t *hex = malloc(sizeof(uint32_t) * size_new);
+void pad(bignum *result, bool already_allocated, bignum n) {
+    bignum tmp_n = copy_bignum(n);
 
+    int size_new = tmp_n.number_of_chunks + (((tmp_n.number_of_chunks % BLOCKSIZE) - BLOCKSIZE) * -1);
+    result->number_of_chunks = size_new;
+    result->chunks = allocate_memory_for_chunks(already_allocated, result, sizeof(uint32_t) * size_new);
+
+    // padding per chunk and the padding is always existing
     for (int i = 0; i < size_new; i++) {
-        if (i < n.number_of_chunks) {
-            hex[i] = n.chunks[i];
+        if (i < tmp_n.number_of_chunks) {
+            result->chunks[i] = tmp_n.chunks[i];
         }
         else {
-            hex[i] = size_new - n.number_of_chunks;
+            result->chunks[i] = size_new - tmp_n.number_of_chunks;
         }
     }
 
-    bignum r = init_bignum(hex, size_new);
-    free(hex);
-
-    return r;
+    destroy_bignum(tmp_n);
 }
 
 
-// based on RFC 5652 section 6.3
-bignum unpad(bignum n) {
-    int size;
-    for (size = 0; size < n.number_of_chunks; size++) {
-        if (n.chunks[size] == 0x4 || n.chunks[size] == 0x3 || n.chunks[size] == 0x2 || n.chunks[size] == 0x1) break;
+void unpad(bignum *result, bool already_allocated, bignum n) {
+    bignum tmp_n = copy_bignum(n);
+
+    // determine number of chunks without the padding
+    uint32_t value_in_last_chunk = tmp_n.chunks[tmp_n.number_of_chunks-1];
+    int number_of_chunks = tmp_n.number_of_chunks - value_in_last_chunk;
+    result->number_of_chunks = number_of_chunks;
+    result->chunks = allocate_memory_for_chunks(already_allocated, result, sizeof(uint32_t) * number_of_chunks);
+
+    // copy the values until the padding
+    for (int i = 0; i < number_of_chunks; i++) {
+        result->chunks[i] = tmp_n.chunks[i];
     }
 
-    uint32_t *hex = malloc(sizeof(uint32_t) * size);
-    for (int i = 0; i < size; i++) {
-        hex[i] = n.chunks[i];
-    }
-
-    bignum r = init_bignum(hex, size);
-    free(hex);
-
-    return r;
+    destroy_bignum(tmp_n);
 }
 
 
@@ -183,17 +179,33 @@ int hamming_weight(bignum n) {
     bignum tmp_n = copy_bignum(n);
     int number_of_ones = 0;
 
+    // looks always at the last bit and increment the counter if its a one
     while (is_bignum_not_zero(tmp_n)) {
+        // if a one is the last bit
         if (is_bignum_odd(tmp_n)) {
             number_of_ones++;
         }
 
+        // look at the next bit
         shift_right_by_one_bignum(&tmp_n, true, tmp_n);
     }
 
     destroy_bignum(tmp_n);
 
     return number_of_ones;
+}
+
+
+bignum polynom_to_bignum(int bit_indices[], int size) {
+    // TODO: !!! Als Binärstring speichern; Diesen String an jedem vierten char splitten und dann daraus jeweils uint32_t Werte bilden
+    // https://stackoverflow.com/questions/11493609/how-to-split-a-string-every-4-chars-and-then-memorize-the-fragments
+    // TODO: Mit bignums einfach rechnen, wie ich es in Python gemacht habe
+
+    /* bignum n = init_bignum_to_zero();
+
+    for (int i = 0; i < size; i++) {
+        if (bit_indices[i] == 0)
+    } */
 }
 
 

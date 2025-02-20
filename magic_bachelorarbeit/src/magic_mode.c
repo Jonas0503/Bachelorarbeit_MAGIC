@@ -13,18 +13,18 @@ const int BLOCKSIZE = 4;
 bignum *plaintext_to_ciphertext_blocks(char *plaintext, uint32_t key[8], uint32_t nonce[2]) {
     // padding to get full blocks
     bignum plaintext_as_bignum = string_to_bignum(plaintext);
-    bignum plaintext_as_bignum_padded = pad(plaintext_as_bignum);
+    pad(&plaintext_as_bignum, true, plaintext_as_bignum);
 
     // encryption
-    uint32_t *ciphertext_hex = malloc(plaintext_as_bignum_padded.number_of_chunks * sizeof(uint32_t));
-    salsa20_encryption_decryption(key, nonce, plaintext_as_bignum_padded.chunks, ciphertext_hex, plaintext_as_bignum_padded.number_of_chunks);
+    uint32_t *ciphertext_hex = malloc(plaintext_as_bignum.number_of_chunks * sizeof(uint32_t));
+    salsa20_encryption_decryption(key, nonce, plaintext_as_bignum.chunks, ciphertext_hex, plaintext_as_bignum.number_of_chunks);
 
-    int number_of_blocks = plaintext_as_bignum_padded.number_of_chunks / BLOCKSIZE;
+    int number_of_blocks = plaintext_as_bignum.number_of_chunks / BLOCKSIZE;
     bignum *ciphertext_blocks = malloc(sizeof(bignum) * (number_of_blocks + 1));  // number_of_blocks + zero bignum at the end
     uint32_t *one_block = malloc(sizeof(uint32_t) * BLOCKSIZE);
 
     // ciphertext array to an array of bignums which represents the several blocks for MAGIC
-    for (int i = 0, k = 0; i < plaintext_as_bignum_padded.number_of_chunks; i++, k++) {
+    for (int i = 0, k = 0; i < plaintext_as_bignum.number_of_chunks; i++, k++) {
         one_block[i%4] = ciphertext_hex[i];
 
         // every 128 bits add the bignum to the array with block[0] until block[3]
@@ -39,7 +39,6 @@ bignum *plaintext_to_ciphertext_blocks(char *plaintext, uint32_t key[8], uint32_
     ciphertext_blocks[number_of_blocks] = init_bignum_to_zero();
 
     destroy_bignum(plaintext_as_bignum);
-    destroy_bignum(plaintext_as_bignum_padded);
     free(ciphertext_hex);
     free(one_block);
 
@@ -48,7 +47,7 @@ bignum *plaintext_to_ciphertext_blocks(char *plaintext, uint32_t key[8], uint32_
 
 
 unsigned char *ciphertext_blocks_to_plaintext_as_str(bignum ciphertext_blocks[], uint32_t key[8], uint32_t nonce[2]) {
-    int number_of_blocks = determine_number_of_ciphertext_blocks(ciphertext_blocks);
+    int number_of_blocks = calculate_number_of_ciphertext_blocks(ciphertext_blocks);
 
     uint32_t *plaintext = malloc(sizeof(uint32_t) * (number_of_blocks * BLOCKSIZE));
     bignum ciphertext = ciphertext_bignum_blocks_to_one_bignum(ciphertext_blocks);
@@ -58,13 +57,12 @@ unsigned char *ciphertext_blocks_to_plaintext_as_str(bignum ciphertext_blocks[],
 
     // convert to bignum and remove padding
     bignum plaintext_as_bignum = init_bignum(plaintext, ciphertext.number_of_chunks);
-    bignum plaintext_unpadded = unpad(plaintext_as_bignum);
+    unpad(&plaintext_as_bignum, true, plaintext_as_bignum);
 
     // convert to string
-    unsigned char *text = bignum_to_string(plaintext_unpadded);
+    unsigned char *text = bignum_to_string(plaintext_as_bignum);
 
     destroy_bignum(plaintext_as_bignum);
-    destroy_bignum(plaintext_unpadded);
     destroy_bignum(ciphertext);
     free(plaintext);
 
@@ -95,7 +93,7 @@ bignum determine_input_for_blinding_cipher(bignum ciphertext_blocks[], bignum ha
     bignum mult_result = init_bignum_to_zero();
 
     // determine the intermediate_value: intermediate_value = block_1 * hash_key^1 + ... + block_n * hash_key^n
-    int number_of_blocks = determine_number_of_ciphertext_blocks(ciphertext_blocks);
+    int number_of_blocks = calculate_number_of_ciphertext_blocks(ciphertext_blocks);
     for (int i = 0; i < number_of_blocks; i++) {
         mult(&mult_result, true, ciphertext_blocks[i], hash_key);
         add(&intermediate_value, true, intermediate_value, mult_result);
@@ -219,13 +217,12 @@ verify_result verify(bignum authorized_data, bignum ciphertext_blocks[], bignum 
         bignum original_hash_key_inverse = copy_bignum(hash_key_inverse);
 
         // calculate syndrome
-        int number_of_blocks = determine_number_of_ciphertext_blocks(ciphertext_blocks);
+        int number_of_blocks = calculate_number_of_ciphertext_blocks(ciphertext_blocks);
         bignum syndrome = calculate_syndrome(authorized_data, ciphertext_blocks, hash_key, tag, blinding_key, blinding_nonce);
         bignum *syndrome_values = malloc(sizeof(bignum) * number_of_blocks);
 
         // calculate error location indicators (S_i)
         // S_i = error_vector -> if i == i_err
-        int number_of_blocks = determine_number_of_ciphertext_blocks(ciphertext_blocks);
         for (int i = 0; i < number_of_blocks; i++) {
             mult(&syndrome_values[i], false, syndrome, hash_key_inverse);
             mult(&hash_key, true, hash_key_inverse, original_hash_key_inverse);
@@ -242,8 +239,8 @@ verify_result verify(bignum authorized_data, bignum ciphertext_blocks[], bignum 
             bignum ciphertext = ciphertext_bignum_blocks_to_one_bignum(ciphertext_blocks);
 
             result.correction_successful = true;
-            result.ciphertext = bignum_to_string(ciphertext);
-            result.tag = bignum_to_string(tag);
+            result.ciphertext = (char *)bignum_to_string(ciphertext);
+            result.tag = (char *)bignum_to_string(tag);
 
             destroy_bignum(ciphertext);
             for (int i = 0; i < number_of_blocks; i++) {
@@ -262,8 +259,8 @@ verify_result verify(bignum authorized_data, bignum ciphertext_blocks[], bignum 
             // correct error in the tag
             if (can_correct_parity(tag, new_tag, threshold)) {
                 result.correction_successful = true;
-                result.ciphertext = bignum_to_string(ciphertext_bignum_blocks_to_one_bignum(ciphertext_blocks));
-                result.tag = bignum_to_string(new_tag);
+                result.ciphertext = (char *)bignum_to_string(ciphertext_bignum_blocks_to_one_bignum(ciphertext_blocks));
+                result.tag = (char *)bignum_to_string(new_tag);
 
                 destroy_bignum(new_tag);
 
@@ -282,6 +279,3 @@ verify_result verify(bignum authorized_data, bignum ciphertext_blocks[], bignum 
         }
     }
 }
-
-
-// TODO: Tests für neue util Funktionen, bignum Funktionen und erste Funktionen von hier + dokumentieren (in header files)
