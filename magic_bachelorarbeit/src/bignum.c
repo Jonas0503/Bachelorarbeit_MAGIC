@@ -283,10 +283,12 @@ void remove_chunks_with_leading_zeros(bignum *result, bool already_allocated, bi
 
 
 bool are_bignums_equal(bignum a, bignum b) {
+    // same size?
     if (a.number_of_chunks != b.number_of_chunks) {
         return false;
     }
 
+    // same content?
     for (int i = 0; i < a.number_of_chunks; i++) {
         if (a.chunks[i] != b.chunks[i]) {
             return false;

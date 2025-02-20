@@ -334,6 +334,93 @@ void test_copy_bignum(void) {
 }
 
 
+void test_remove_chunks_with_leading_zeros(void) {
+    uint32_t ahex[] = {0x0, 0x0, 0x54dbcf8f, 0xfd761f7c, 0x2c239ae3, 0x2732819c};
+    bignum a = init_bignum(ahex, 6);
+    uint32_t expected[] = {0x54dbcf8f, 0xfd761f7c, 0x2c239ae3, 0x2732819c};
+
+    bignum result;
+    remove_chunks_with_leading_zeros(&result, false, a);
+
+    TEST_CHECK(result.number_of_chunks == 4);
+    for (int i = 0; i < result.number_of_chunks; i++) {
+        TEST_CHECK(result.chunks[i] == expected[i]);
+    }
+
+    destroy_bignum(result);
+    destroy_bignum(a);
+}
+
+
+void test_remove_chunks_with_leading_zeros_no_leading_zeros(void) {
+    uint32_t ahex[] = {0x54dbcf8f, 0xfd761f7c, 0x0, 0x0};
+    bignum a = init_bignum(ahex, 4);
+    uint32_t expected[] = {0x54dbcf8f, 0xfd761f7c, 0x0, 0x0};
+
+    remove_chunks_with_leading_zeros(&a, true, a);
+
+    TEST_CHECK(a.number_of_chunks == 4);
+    for (int i = 0; i < a.number_of_chunks; i++) {
+        TEST_CHECK(a.chunks[i] == expected[i]);
+    }
+
+    destroy_bignum(a);
+}
+
+
+void test_remove_chunks_with_leading_zeros_bignum_is_zero(void) {
+    uint32_t ahex[] = {0x0, 0x0, 0x0};
+    bignum a = init_bignum(ahex, 3);
+
+    bignum result;
+    remove_chunks_with_leading_zeros(&result, false, a);
+
+    TEST_CHECK(result.number_of_chunks == 1);
+    TEST_CHECK(result.chunks[0] == 0x0);
+
+    destroy_bignum(result);
+}
+
+
+void test_are_bignums_equal_true(void) {
+    uint32_t ahex[] = {0x54dbcf8f, 0xfd761f7c, 0x0, 0x0};
+    bignum a = init_bignum(ahex, 4);
+    uint32_t bhex[] = {0x54dbcf8f, 0xfd761f7c, 0x0, 0x0};
+    bignum b = init_bignum(bhex, 4);
+
+    TEST_CHECK(are_bignums_equal(a, b));
+
+    destroy_bignum(a);
+    destroy_bignum(b);
+}
+
+
+void test_are_bignums_equal_false(void) {
+    uint32_t ahex[] = {0x54dbcf8f, 0xfd761f7c, 0x0, 0x0};
+    bignum a = init_bignum(ahex, 4);
+    uint32_t bhex[] = {0x0, 0xfd761f7c, 0x0, 0x1};
+    bignum b = init_bignum(bhex, 4);
+
+    TEST_CHECK(!are_bignums_equal(a, b));
+
+    destroy_bignum(a);
+    destroy_bignum(b);
+}
+
+
+void test_are_bignums_equal_false_different_sizes(void) {
+    uint32_t ahex[] = {0x54dbcf8f, 0xfd761f7c, 0x0, 0x0};
+    bignum a = init_bignum(ahex, 4);
+    uint32_t bhex[] = {0xfd761f7c, 0x0, 0x1};
+    bignum b = init_bignum(bhex, 3);
+
+    TEST_CHECK(!are_bignums_equal(a, b));
+
+    destroy_bignum(a);
+    destroy_bignum(b);
+}
+
+
 TEST_LIST = {
     {"test_init_bignum", test_init_bignum},
     {"init_bignum_to_zero", test_init_bignum_to_zero},
@@ -356,5 +443,11 @@ TEST_LIST = {
     {"is_bignum_inside_galois_field_true", test_is_bignum_inside_galois_field_true},
     {"is_bignum_inside_galois_field_false", test_is_bignum_inside_galois_field_false},
     {"copy_bignum", test_copy_bignum},
+    {"remove_chunks_with_leading_zeros", test_remove_chunks_with_leading_zeros},
+    {"remove_chunks_with_leading_zeros_no_leading_zeros", test_remove_chunks_with_leading_zeros_no_leading_zeros},
+    {"remove_chunks_with_leading_zeros_bignum_is_zero", test_remove_chunks_with_leading_zeros_bignum_is_zero},
+    {"are_bignums_equal_true", test_are_bignums_equal_true},
+    {"are_bignums_equal_false", test_are_bignums_equal_false},
+    {"are_bignums_equal_false_different_sizes", test_are_bignums_equal_false_different_sizes},
     {NULL, NULL}
 };

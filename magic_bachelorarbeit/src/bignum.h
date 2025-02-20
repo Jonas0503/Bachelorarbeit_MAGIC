@@ -108,6 +108,10 @@ bignum copy_bignum(bignum n);
 /// @param n The number to be modified.
 void remove_chunks_with_leading_zeros(bignum *result, bool already_allocated, bignum n);
 
+/// @brief Checks if bignum a and b are equal by comparing the chunk sizes and the content in the chunks.
+/// @param a Bignum to compare.
+/// @param b Bignum to compare
+/// @return True if both have the same chunk size and the same content; false otherwise.
 bool are_bignums_equal(bignum a, bignum b);
 
 #endif

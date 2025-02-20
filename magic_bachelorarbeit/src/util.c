@@ -196,6 +196,14 @@ int hamming_weight(bignum n) {
 }
 
 
+void destroy_bignum_array(bignum ciphertext_blocks[], int number_of_blocks) {
+    for (int i = 0; i < number_of_blocks; i++) {
+        destroy_bignum(ciphertext_blocks[i]);
+    }
+    free(ciphertext_blocks);
+}
+
+
 bignum polynom_to_bignum(int bit_indices[], int size) {
     // TODO: !!! Als Binärstring speichern; Diesen String an jedem vierten char splitten und dann daraus jeweils uint32_t Werte bilden
     // https://stackoverflow.com/questions/11493609/how-to-split-a-string-every-4-chars-and-then-memorize-the-fragments

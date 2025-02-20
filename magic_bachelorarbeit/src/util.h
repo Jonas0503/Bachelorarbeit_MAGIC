@@ -58,3 +58,8 @@ void unpad(bignum *result, bool already_allocated, bignum n);
 /// @param n The bignum at which the hamming weight should be calculated.
 /// @return The hamming weight of bignum n
 int hamming_weight(bignum n);
+
+/// @brief Frees all the memory allocated by blocks
+/// @param ciphertext_blocks The array from which to free the memory.
+/// @param number_of_blocks The size of the array blocks.
+void destroy_bignum_array(bignum blocks[], int number_of_blocks);

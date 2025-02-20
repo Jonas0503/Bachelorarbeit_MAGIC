@@ -71,7 +71,7 @@ unsigned char *ciphertext_blocks_to_plaintext_as_str(bignum ciphertext_blocks[],
 
 
 bignum find_hash_key_value(int threshold, int number_of_blocks) {
-    // TODO: random hash_key
+    // TODO
     // 221385673651417484972498539470727584786
     uint32_t hex_for_hash_key[] = {0xa68d546e, 0xb6c431b9, 0x78f700db, 0xca6a9c12};
 
@@ -87,7 +87,8 @@ bignum find_hash_key_value(int threshold, int number_of_blocks) {
 }
 
 
-bignum determine_input_for_blinding_cipher(bignum ciphertext_blocks[], bignum hash_key, bignum authorized_data) {
+bignum calculate_input_for_blinding_cipher(bignum ciphertext_blocks[], bignum hash_key, bignum authorized_data) {
+    bignum hash_key_tmp = copy_bignum(hash_key);
     bignum original_hash_key = copy_bignum(hash_key);
     bignum intermediate_value = init_bignum_to_zero();
     bignum mult_result = init_bignum_to_zero();
@@ -95,15 +96,16 @@ bignum determine_input_for_blinding_cipher(bignum ciphertext_blocks[], bignum ha
     // determine the intermediate_value: intermediate_value = block_1 * hash_key^1 + ... + block_n * hash_key^n
     int number_of_blocks = calculate_number_of_ciphertext_blocks(ciphertext_blocks);
     for (int i = 0; i < number_of_blocks; i++) {
-        mult(&mult_result, true, ciphertext_blocks[i], hash_key);
+        mult(&mult_result, true, ciphertext_blocks[i], hash_key_tmp);
         add(&intermediate_value, true, intermediate_value, mult_result);
-        mult(&hash_key, true, hash_key, original_hash_key);
+        mult(&hash_key_tmp, true, hash_key_tmp, original_hash_key);
     }
 
     // input with authorized data
     bignum blinding_cipher_input;
     add(&blinding_cipher_input, false, intermediate_value, authorized_data);
 
+    destroy_bignum(hash_key_tmp);
     destroy_bignum(original_hash_key);
     destroy_bignum(intermediate_value);
     destroy_bignum(mult_result);
@@ -113,7 +115,7 @@ bignum determine_input_for_blinding_cipher(bignum ciphertext_blocks[], bignum ha
 
 
 bignum ciphertext_blocks_to_tag(bignum ciphertext_blocks[], bignum hash_key, bignum authorized_data, uint32_t blinding_key[8], uint32_t blinding_nonce[2]) {
-    bignum blinding_cipher_input = determine_input_for_blinding_cipher(ciphertext_blocks, hash_key, authorized_data);
+    bignum blinding_cipher_input = calculate_input_for_blinding_cipher(ciphertext_blocks, hash_key, authorized_data);
 
     // encrypt input with the blinding cipher
     uint32_t *tag_hex = malloc(sizeof(uint32_t) * BLOCKSIZE);
@@ -140,7 +142,7 @@ bignum decrypt_tag(bignum tag, uint32_t blinding_key[8], uint32_t blinding_nonce
 
 
 bignum calculate_syndrome(bignum authorized_data, bignum ciphertext_blocks[], bignum hash_key, bignum tag, uint32_t blinding_key[8], uint32_t blinding_nonce[2]) {
-    bignum input = determine_input_for_blinding_cipher(ciphertext_blocks, hash_key, authorized_data);
+    bignum input = calculate_input_for_blinding_cipher(ciphertext_blocks, hash_key, authorized_data);
     bignum decrypted_tag = decrypt_tag(tag, blinding_key, blinding_nonce);
 
     // syndrome = authorized_data + block_1 * hash_key^1 + ... + block_n * hash_key^n + decrypted_tag
@@ -243,18 +245,12 @@ verify_result verify(bignum authorized_data, bignum ciphertext_blocks[], bignum 
             result.tag = (char *)bignum_to_string(tag);
 
             destroy_bignum(ciphertext);
-            for (int i = 0; i < number_of_blocks; i++) {
-                destroy_bignum(syndrome_values[i]);
-            }
-            free(syndrome_values);
+            destroy_bignum_array(syndrome_values, number_of_blocks);
 
             return result;
         }
         else {
-            for (int i = 0; i < number_of_blocks; i++) {
-                destroy_bignum(syndrome_values[i]);
-            }
-            free(syndrome_values);
+            destroy_bignum_array(syndrome_values, number_of_blocks);
 
             // correct error in the tag
             if (can_correct_parity(tag, new_tag, threshold)) {
