@@ -11,49 +11,24 @@
 
 
 int main(int argc, char const *argv[]) {
-    bignum res;
-
-    uint32_t key[8] = {
-        0x80000000, 0x0, 0x0, 0x0,
-        0x0, 0x0, 0x0, 0x0
-    };
-    uint32_t nonce[2] = {0x0};
-
-    uint32_t blinding_key[8] = {
-        0xa0000000, 0x0, 0x0, 0x0,
-        0x0, 0x0, 0x0, 0x0
-    };
-    uint32_t blinding_nonce[2] = {0x80000000, 0x0};
-
-    res = string_to_bignum("Hallo Welt! Ich heisse Jonas Gilbert.");
-    print_bignum(res);
-
-    bignum *n = plaintext_to_ciphertext_blocks("Hallo Welt! Ich heisse Jonas Gilbert.", key, nonce);
-
-    for (int i = 0; n[i].number_of_chunks == 4; i++) {
-        print_bignum(n[i]);
+    char *text = "Hallo WeltHallo WeltHallo WeltHallo WeltHallo WeltHallo WeltHallo Welt";
+    const int number_of_bignums = calculate_number_of_bignums_from_string(text);
+    bignum array_of_bignums[number_of_bignums];
+    for (int i = 0; i < number_of_bignums; i++) {
+        array_of_bignums[i] = init_bignum_to_zero();
     }
 
-    bignum hash_key = find_hash_key_value(1, 0);
-    uint32_t hex_data[] = {0x12ab34cd, 0x0, 0x0, 0x0};
-    bignum data = init_bignum(hex_data, 4);
-    bignum tag = ciphertext_blocks_to_tag(n, hash_key, data, blinding_key, blinding_nonce);
-    printf("tag: ");
-    printf("%i ", tag.number_of_chunks);
-    print_bignum(tag);
-
-    unsigned char *pt = ciphertext_blocks_to_plaintext_as_str(n, key, nonce);
-    printf("Plaintext: %s\n", pt);
-
-    free(pt);
-    destroy_bignum(res);
-    // destroy_bignum(abc);
-    int i = 0;
-    for (; n[i].number_of_chunks == 4; i++) {
-        destroy_bignum(n[i]);
+    string_to_bignum_array(array_of_bignums, text);
+    printf("-------------------------------------------------------------\n");
+    for (int i = 0; i < number_of_bignums; i++) {
+        print_bignum(array_of_bignums[i]);
     }
-    destroy_bignum(n[i]);
-    free(n);
+
+    const int noc = calculate_number_of_chars_from_bignum_array(array_of_bignums, number_of_bignums);
+    unsigned char res[noc];
+
+    bignum_array_to_string(res, array_of_bignums, number_of_bignums);
+    printf("%s\n", res);
 
     return 1;
 }
