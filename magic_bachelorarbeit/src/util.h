@@ -47,3 +47,13 @@ void ciphertext_bignum_blocks_to_one_array(uint32_t *array, bignum *ciphertext_b
 /// @param n The bignum at which the hamming weight should be calculated.
 /// @return The hamming weight of bignum n
 int hamming_weight(bignum n);
+
+/// @brief Generates a pseudo random bignum by using the Salsa20 cipher.
+/// @return A pseudo random bignum.
+bignum random_bignum();
+
+/// @brief Converts the polynom to a bignum by using the Galois arithmetic.
+/// @param bit_indices The polynom as representation of indices where the bit one is set. Max. value for an index is 127.
+/// @param size The number of indices.
+/// @return The bignum representation of the polynomial.
+bignum polynom_to_bignum(int bit_indices[], int size);

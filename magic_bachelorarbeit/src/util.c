@@ -1,8 +1,11 @@
 #include "util.h"
+#include "salsa20.h"
+#include "galois.h"
 
 #include "stdlib.h"
 #include "string.h"
 #include "stdio.h"
+#include "time.h"
 
 
 // defined in magic_mode.c
@@ -146,14 +149,47 @@ int hamming_weight(bignum n) {
 }
 
 
-/* bignum polynom_to_bignum(int bit_indices[], int size) {
-    // TODO: !!! Als Binärstring speichern; Diesen String an jedem vierten char splitten und dann daraus jeweils uint32_t Werte bilden
-    // https://stackoverflow.com/questions/11493609/how-to-split-a-string-every-4-chars-and-then-memorize-the-fragments
-    // TODO: Mit bignums einfach rechnen, wie ich es in Python gemacht habe
+bignum random_bignum() {
+    uint32_t key[8];
+    uint32_t nonce[2];
+    uint32_t message_in[BLOCKSIZE];
+
+    // clock returns "always" different values
+    for(int i = 0; i < 8; i++) {
+        key[i] = clock();
+    }
+    for(int i = 0; i < 2; i++) {
+        nonce[i] = clock();
+    }
+    for (int i = 0; i < BLOCKSIZE; i++) {
+        message_in[i] = clock();
+    }
+
+    // random number generation
+    uint32_t message_out[BLOCKSIZE];
+    salsa20_encryption_decryption(key, nonce, message_in, message_out, BLOCKSIZE);
+
+    return init_bignum(message_out);
 }
 
 
-void generate_error_vectors(int threshold) {
+bignum polynom_to_bignum(int bit_indices[], int size) {
+    bignum result = init_bignum_to_zero();
+    uint32_t hex[4] = {0x0, 0x0, 0x0, 0x0};
+
+    uint32_t hex_2[4] = {0x0, 0x0, 0x0, 0x2};
+    bignum base = init_bignum(hex_2);
+
+    for (int i = 0; i < size; i++) {
+        hex[3] = bit_indices[i];
+        result = add(result, power(base, init_bignum(hex)));
+    }
+
+    return result;
+}
+
+
+/* void generate_error_vectors(int threshold) {
     int possible_indices_with_one[128];
     for (int i = 0; i < 128; i++) {
         possible_indices_with_one[i] = i;

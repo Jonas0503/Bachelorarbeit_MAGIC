@@ -55,28 +55,34 @@ bignum mult(bignum a, bignum b) {
 }
 
 
-bignum mult_inverse(bignum n) {
+bignum power(bignum base, bignum exponent) {
     // copies the bignum because wrong results could occur when the parameter n and the return variable are the same
-    bignum base = copy_bignum(n);
-
-    // n**((2**128)-2) = n**(-1) -> fermat's little theorem to get the inverse
-    uint32_t hex[] = {0xffffffff, 0xffffffff, 0xffffffff, 0xfffffffe};
-    bignum exponent = init_bignum(hex);
+    bignum base_tmp = copy_bignum(base);
+    bignum exponent_tmp = copy_bignum(exponent);
 
     bignum result = init_bignum_to_one();
 
     // example: base^45 = base^32 * base^8 * base^4 * base^1
-    while (is_bignum_not_zero(exponent)) {
+    while (is_bignum_not_zero(exponent_tmp)) {
         // when the last bit is a one, multiply by the squared base
-        if (is_bignum_odd(exponent)) {
-            result = mult(result, base);
+        if (is_bignum_odd(exponent_tmp)) {
+            result = mult(result, base_tmp);
         }
         // square the base -> (base^1, base^2, base^4, base^8, ...)
-        base = mult(base, base);
+        base_tmp = mult(base_tmp, base_tmp);
 
         // get the next bit
-        exponent = shift_right_by_one_bignum(exponent);
+        exponent_tmp = shift_right_by_one_bignum(exponent_tmp);
     }
 
     return result;
+}
+
+
+bignum mult_inverse(bignum n) {
+    // n**((2**128)-2) = n**(-1) -> fermat's little theorem to get the inverse
+    uint32_t hex[] = {0xffffffff, 0xffffffff, 0xffffffff, 0xfffffffe};
+    bignum exponent = init_bignum(hex);
+
+    return power(n, exponent);
 }

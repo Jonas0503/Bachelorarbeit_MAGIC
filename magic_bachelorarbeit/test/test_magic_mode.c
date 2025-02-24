@@ -42,7 +42,10 @@ void test_tag_encryption_decryption(void) {
         0x0, 0x0, 0x0, 0x0
     };
     uint32_t blinding_nonce[2] = {0x1};
-    bignum hash_key = find_hash_key_value(-1, -1);  // TODO
+    
+    // 221385673651417484972498539470727584786
+    uint32_t hex_for_hash_key[4] = {0xa68d546e, 0xb6c431b9, 0x78f700db, 0xca6a9c12};
+    bignum hash_key = init_bignum(hex_for_hash_key);
     bignum authorized_data = init_bignum_to_zero();
 
     bignum input_blinding_cipher = calculate_input_for_blinding_cipher(ciphertext_blocks, number_of_blocks, hash_key, authorized_data);

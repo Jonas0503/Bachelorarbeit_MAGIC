@@ -62,21 +62,11 @@ void ciphertext_blocks_to_plaintext_as_str(unsigned char *plaintext, bignum ciph
 
 
 bignum find_hash_key_value(int threshold, int number_of_blocks) {
-    // TODO: random hash key + über alle Fehler iterieren
-    // 221385673651417484972498539470727584786
-    // {0xa68d546e, 0xb6c431b9, 0x78f700db, 0xca6a9c12}
-    uint32_t hex_for_hash_key[BLOCKSIZE];
-    hex_for_hash_key[0] = 0xa68d546e;
-    hex_for_hash_key[1] = 0xb6c431b9;
-    hex_for_hash_key[2] = 0x78f700db;
-    hex_for_hash_key[3] = 0xca6a9c12;
-
-    bignum hash_key = init_bignum(hex_for_hash_key);
+    bignum hash_key = random_bignum();
     bignum original_hash_key = copy_bignum(hash_key);
 
-    // bignum hash_key_inverse;
-    // mult_inverse(&hash_key_inverse, false, hash_key);
-    // bignum original_hash_key_inverse = copy_bignum(hash_key_inverse);
+    bignum hash_key_inverse = mult_inverse(hash_key);
+    bignum original_hash_key_inverse = copy_bignum(hash_key_inverse);
 
 
     return original_hash_key;

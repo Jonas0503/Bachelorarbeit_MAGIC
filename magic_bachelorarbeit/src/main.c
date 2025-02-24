@@ -11,24 +11,8 @@
 
 
 int main(int argc, char const *argv[]) {
-    char *text = "Hallo WeltHallo WeltHallo WeltHallo WeltHallo WeltHallo WeltHallo Welt";
-    const int number_of_bignums = calculate_number_of_bignums_from_string(text);
-    bignum array_of_bignums[number_of_bignums];
-    for (int i = 0; i < number_of_bignums; i++) {
-        array_of_bignums[i] = init_bignum_to_zero();
-    }
-
-    string_to_bignum_array(array_of_bignums, text);
-    printf("-------------------------------------------------------------\n");
-    for (int i = 0; i < number_of_bignums; i++) {
-        print_bignum(array_of_bignums[i]);
-    }
-
-    const int noc = calculate_number_of_chars_from_bignum_array(array_of_bignums, number_of_bignums);
-    unsigned char res[noc];
-
-    bignum_array_to_string(res, array_of_bignums, number_of_bignums);
-    printf("%s\n", res);
+    int bit_indices[3] = {127, 126, 42};
+    polynom_to_bignum(bit_indices, 3);
 
     return 1;
 }
