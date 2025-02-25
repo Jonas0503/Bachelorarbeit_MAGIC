@@ -57,3 +57,13 @@ bignum random_bignum();
 /// @param size The number of indices.
 /// @return The bignum representation of the polynomial.
 bignum polynom_to_bignum(int bit_indices[], int size);
+
+/// @brief Tests the given hash-key for MAGIC by using all error_vector combinations. Calculate all combinations inspired by: https://hmkcode.com/calculate-find-all-possible-combinations-of-an-array-using-java/
+/// @param threshold The max. number of one-bits in an error vector.
+/// @param number_of_blocks The number of blocks which got encrypted.
+/// @param hash_key The hash key to check.
+/// @param hash_key_copy A copy of the hash key which does not get changed.
+/// @param hash_key_inverse The inverted hash key.
+/// @param hash_key_inverse_copy A copy of the inverted hash key which does not get changed.
+/// @return True if the given hash-key passes all tests; false otherwise.
+bool test_hash_key(const int threshold, int number_of_blocks, bignum hash_key, bignum hash_key_copy, bignum hash_key_inverse, bignum hash_key_inverse_copy);

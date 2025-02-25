@@ -189,11 +189,57 @@ bignum polynom_to_bignum(int bit_indices[], int size) {
 }
 
 
-/* void generate_error_vectors(int threshold) {
-    int possible_indices_with_one[128];
-    for (int i = 0; i < 128; i++) {
-        possible_indices_with_one[i] = i;
+bool test_hash_key(const int threshold, int number_of_blocks, bignum hash_key, bignum hash_key_copy, bignum hash_key_inverse, bignum hash_key_inverse_copy) {
+    // array for the current combination
+    int combination[threshold];
+    for (int i = 0; i < threshold; i++) {
+        combination[i] = 0;
     }
 
-    // TODO: polynom to bignum
-} */
+    int index_combinations = 0;
+    int index_bit_indices = 0;
+
+    while (index_combinations >= 0) {
+
+        // forward step as long as both indices does not exceed array lengths
+        if (index_bit_indices < 128 && index_combinations < threshold) {
+
+            // set value in the combination array
+            combination[index_combinations] = index_bit_indices;
+
+            // if combination array is full do the calculations
+            if (index_combinations == threshold-1) {
+                bignum error_vector = polynom_to_bignum(combination, threshold);
+
+                // check hash-key
+                for (int i = 0; i < number_of_blocks; i++) {
+                    if (hamming_weight(mult(error_vector, hash_key_inverse)) <= threshold || hamming_weight(mult(error_vector, hash_key)) <= threshold) {
+                        return false;
+                    }
+
+                    hash_key = mult(hash_key, hash_key_copy);
+                    hash_key_inverse = mult(hash_key_inverse, hash_key_inverse_copy);
+                }
+
+                // move forward in the bit indices
+                index_bit_indices++;
+            }
+
+            // select next bit index
+            else {
+                index_bit_indices = combination[index_combinations]+1;
+                index_combinations++;
+            }
+        }
+        // backward step
+        else {
+            // gets negative when the last combination was found -> all elements in combination array become 127
+            index_combinations--;
+            if (index_combinations >= 0) {
+                index_bit_indices = combination[index_combinations]+1;
+            }
+        }
+    }
+
+    return true;
+}

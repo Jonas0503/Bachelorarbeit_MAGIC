@@ -30,7 +30,12 @@ void plaintext_to_ciphertext_blocks(bignum *ciphertext_blocks, const char *plain
 /// @param nonce The nonce for the decryption. The same nonce as for the encryption is necessary.
 void ciphertext_blocks_to_plaintext_as_str(unsigned char *plaintext, bignum ciphertext_blocks[], int number_of_blocks, uint32_t key[8], uint32_t nonce[2]);
 
-bignum find_hash_key_value(int threshold, int number_of_blocks);
+/// @brief Finds a given hash key by using a random hash key and then checking if it passes the tests.
+/// @param threshold The max. number of one-bits in an error_vector.
+/// @param number_of_blocks The number of blocks which got encrypted.
+/// @param max_number_of_tries The max number of tries to check a random hash-key with the given values.
+/// @return The correct hash key if it was successful; otherwise zero.
+bignum find_hash_key_value(int threshold, int number_of_blocks, int max_number_of_tries);
 
 /// @brief Determines the input for the blinding cipher.
 /// @param ciphertext_blocks The ciphertext blocks with 4 chunks (128-bit) each and with a zero block at the end to calculate the number of blocks.
