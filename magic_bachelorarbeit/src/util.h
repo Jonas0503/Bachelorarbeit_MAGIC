@@ -48,9 +48,11 @@ void ciphertext_bignum_blocks_to_one_array(uint32_t *array, bignum *ciphertext_b
 /// @return The hamming weight of bignum n
 int hamming_weight(bignum n);
 
-/// @brief Generates a pseudo random bignum by using the Salsa20 cipher.
+/// @brief Generates a pseudo random bignum, key and nonce by using the Salsa20 cipher and the clock() function from "time.h".
+/// @param key_res The resulting pseudo random key. Input array gets overwritten.
+/// @param nonce_res The resulting pseudo random nonce. Input array gets overwritten.
 /// @return A pseudo random bignum.
-bignum random_bignum();
+bignum random_bignum_key_nonce(uint32_t key_res[8], uint32_t nonce_res[2]);
 
 /// @brief Converts the polynom to a bignum by using the Galois arithmetic.
 /// @param bit_indices The polynom as representation of indices where the bit one is set. Max. value for an index is 127.
@@ -58,12 +60,18 @@ bignum random_bignum();
 /// @return The bignum representation of the polynomial.
 bignum polynom_to_bignum(int bit_indices[], int size);
 
-/// @brief Tests the given hash-key for MAGIC by using all error_vector combinations. Calculate all combinations inspired by: https://hmkcode.com/calculate-find-all-possible-combinations-of-an-array-using-java/
+/// @brief Checks the given hash-key for MAGIC by using all error_vector combinations. Calculate all combinations inspired by: https://hmkcode.com/calculate-find-all-possible-combinations-of-an-array-using-java/
 /// @param threshold The max. number of one-bits in an error vector.
 /// @param number_of_blocks The number of blocks which got encrypted.
 /// @param hash_key The hash key to check.
 /// @param hash_key_copy A copy of the hash key which does not get changed.
 /// @param hash_key_inverse The inverted hash key.
 /// @param hash_key_inverse_copy A copy of the inverted hash key which does not get changed.
-/// @return True if the given hash-key passes all tests; false otherwise.
-bool test_hash_key(const int threshold, int number_of_blocks, bignum hash_key, bignum hash_key_copy, bignum hash_key_inverse, bignum hash_key_inverse_copy);
+/// @return True if the given hash-key passes all checks; false otherwise.
+bool check_hash_key(const int threshold, int number_of_blocks, bignum hash_key, bignum hash_key_copy, bignum hash_key_inverse, bignum hash_key_inverse_copy);
+
+/// @brief Toggle a bit at a specific position.
+/// @param n The bignum which is used for the modification.
+/// @param bit_position The position of the bit change starting from zero.
+/// @return The modified bignum.
+bignum one_bit_modification(bignum n, int bit_position);

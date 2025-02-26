@@ -67,16 +67,17 @@ bignum find_hash_key_value(int threshold, int number_of_blocks, int max_number_o
         printf("No hash key found. Use different values.\n");
         return init_bignum_to_zero();
     }
-    
-    // bignum hash_key = random_bignum();
-    bignum hash_key = init_bignum_to_zero();
+
+    uint32_t key[8];
+    uint32_t nonce[2];
+    bignum hash_key = random_bignum_key_nonce(key, nonce);
     bignum original_hash_key = copy_bignum(hash_key);
 
     bignum hash_key_inverse = mult_inverse(hash_key);
     bignum original_hash_key_inverse = copy_bignum(hash_key_inverse);
 
     for (int threshold_value = 1; threshold_value <= threshold; threshold_value++) {
-        bool result = test_hash_key(threshold_value, number_of_blocks, hash_key, original_hash_key, hash_key_inverse, original_hash_key_inverse);
+        bool result = check_hash_key(threshold_value, number_of_blocks, hash_key, original_hash_key, hash_key_inverse, original_hash_key_inverse);
 
         if (!result) {
             return find_hash_key_value(threshold, number_of_blocks, --max_number_of_tries);
@@ -172,9 +173,13 @@ verify_result verify(bignum authorized_data, bignum ciphertext_blocks[], const i
 
     // no block is corrupted
     if (are_bignums_equal(new_tag, tag)) {
+        bignum bignum_array[1];
+        bignum zero = init_bignum_to_zero();
+        bignum_array[0] = zero;
+
         result.correction_successful =  true;
-        result.ciphertext = "";
-        result.tag = "";
+        result.ciphertext_blocks = bignum_array;
+        result.tag = init_bignum_to_zero();
 
         return result;
     }
@@ -198,48 +203,30 @@ verify_result verify(bignum authorized_data, bignum ciphertext_blocks[], const i
         if (error_index != -1) {
             ciphertext_blocks[error_index] = add(ciphertext_blocks[error_index], syndrome_values[error_index]);
 
-            // convert bignum array to string
-            const int number_of_chars_ciphertext = calculate_number_of_chars_from_bignum_array(ciphertext_blocks, number_of_blocks);
-            unsigned char ciphertext_string[number_of_chars_ciphertext];
-            bignum_array_to_string(ciphertext_string, ciphertext_blocks, number_of_blocks);
-
-            // convert tag to string
-            bignum tag_array[1] = {tag};
-            const int number_of_chars_tag = calculate_number_of_chars_from_bignum_array(tag_array, 1);
-            unsigned char tag_string[number_of_chars_tag];
-            bignum_array_to_string(tag_string, tag_array, 1);
-
             result.correction_successful = true;
-            result.ciphertext = (char *)ciphertext_string;
-            result.tag = (char *)tag_string;
+            result.ciphertext_blocks = ciphertext_blocks;
+            result.tag = tag;
 
             return result;
         }
         else {
             // correct error in the tag
             if (can_correct_parity(tag, new_tag, threshold)) {
-                // convert bignum array to string
-                const int number_of_chars_ciphertext = calculate_number_of_chars_from_bignum_array(ciphertext_blocks, number_of_blocks);
-                unsigned char ciphertext_string[number_of_chars_ciphertext];
-                bignum_array_to_string(ciphertext_string, ciphertext_blocks, number_of_blocks);
-
-                // convert tag to string
-                bignum tag_array[1] = {tag};
-                const int number_of_chars_tag = calculate_number_of_chars_from_bignum_array(tag_array, 1);
-                unsigned char tag_string[number_of_chars_tag];
-                bignum_array_to_string(tag_string, tag_array, 1);
-
                 result.correction_successful = true;
-                result.ciphertext = (char *)ciphertext_string;
-                result.tag = (char *)tag_string;
+                result.ciphertext_blocks = ciphertext_blocks;
+                result.tag = new_tag;
 
                 return result;
             }
             // uncorrectable error (more than one ciphertext is corrupted)
             else {
+                bignum bignum_array[1];
+                bignum zero = init_bignum_to_zero();
+                bignum_array[0] = zero;
+
                 result.correction_successful = false;
-                result.ciphertext = "";
-                result.tag = "";
+                result.ciphertext_blocks = bignum_array;
+                result.tag = init_bignum_to_zero();
 
                 return result;
             }

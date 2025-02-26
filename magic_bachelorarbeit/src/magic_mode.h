@@ -10,8 +10,8 @@
 /// @brief The return type for the verify function.
 typedef struct {
     bool correction_successful;
-    char *ciphertext;
-    char *tag;
+    bignum *ciphertext_blocks;
+    bignum tag;
 } verify_result;
 
 

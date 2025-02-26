@@ -149,17 +149,15 @@ int hamming_weight(bignum n) {
 }
 
 
-bignum random_bignum() {
-    uint32_t key[8];
-    uint32_t nonce[2];
+bignum random_bignum_key_nonce(uint32_t key_res[8], uint32_t nonce_res[2]) {
     uint32_t message_in[BLOCKSIZE];
 
     // clock returns "always" different values
     for(int i = 0; i < 8; i++) {
-        key[i] = clock();
+        key_res[i] = clock();
     }
     for(int i = 0; i < 2; i++) {
-        nonce[i] = clock();
+        nonce_res[i] = clock();
     }
     for (int i = 0; i < BLOCKSIZE; i++) {
         message_in[i] = clock();
@@ -167,7 +165,7 @@ bignum random_bignum() {
 
     // random number generation
     uint32_t message_out[BLOCKSIZE];
-    salsa20_encryption_decryption(key, nonce, message_in, message_out, BLOCKSIZE);
+    salsa20_encryption_decryption(key_res, nonce_res, message_in, message_out, BLOCKSIZE);
 
     return init_bignum(message_out);
 }
@@ -180,6 +178,7 @@ bignum polynom_to_bignum(int bit_indices[], int size) {
     uint32_t hex_2[4] = {0x0, 0x0, 0x0, 0x2};
     bignum base = init_bignum(hex_2);
 
+    // 2**bit_indices[0] + ... + 2**bit_indices[size-1]
     for (int i = 0; i < size; i++) {
         hex[3] = bit_indices[i];
         result = add(result, power(base, init_bignum(hex)));
@@ -189,7 +188,7 @@ bignum polynom_to_bignum(int bit_indices[], int size) {
 }
 
 
-bool test_hash_key(const int threshold, int number_of_blocks, bignum hash_key, bignum hash_key_copy, bignum hash_key_inverse, bignum hash_key_inverse_copy) {
+bool check_hash_key(const int threshold, int number_of_blocks, bignum hash_key, bignum hash_key_copy, bignum hash_key_inverse, bignum hash_key_inverse_copy) {
     // array for the current combination
     int combination[threshold];
     for (int i = 0; i < threshold; i++) {
@@ -242,4 +241,27 @@ bool test_hash_key(const int threshold, int number_of_blocks, bignum hash_key, b
     }
 
     return true;
+}
+
+
+bignum one_bit_modification(bignum n, int bit_position) {
+    bignum result = copy_bignum(n);
+
+    int chunk_position;
+    if (bit_position < 32) {
+        chunk_position = 3;
+    }
+    else if (bit_position < 64) {
+        chunk_position = 2;
+    }
+    else if (bit_position < 96) {
+        chunk_position = 1;
+    }
+    else {
+        chunk_position = 0;
+    }
+
+    result.chunks[chunk_position] ^= (1 << bit_position);
+
+    return result;
 }

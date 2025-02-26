@@ -39,6 +39,11 @@ bignum init_bignum_to_one();
 /// @param n The bignum to be printed.
 void print_bignum(bignum n);
 
+/// @brief Prints all bignums from the array.
+/// @param array The array of bignums to be printed.
+/// @param size The number of bignums in the array.
+void print_bignum_array(bignum *array, int size);
+
 /// @brief XOR two bignums and get the result.
 /// @param a The bignum to be XORed.
 /// @param b The bignum to be XORed.

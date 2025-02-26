@@ -75,6 +75,13 @@ void print_bignum(bignum n) {
 }
 
 
+void print_bignum_array(bignum *array, int size) {
+    for (int i = 0; i < size; i++) {
+        print_bignum(array[i]);
+    }
+}
+
+
 bignum xor_bignum(bignum a, bignum b) {
     // copies the bignums because wrong results could occur when the parameters a, b and the return variable are the same
     bignum tmp_a = copy_bignum(a);

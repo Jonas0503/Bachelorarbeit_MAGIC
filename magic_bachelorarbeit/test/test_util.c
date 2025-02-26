@@ -1,5 +1,6 @@
 #include "acutest.h"
 #include "util.h"
+#include "galois.h"
 
 #include "string.h"
 
@@ -144,6 +145,78 @@ void test_hamming_weight(void) {
 }
 
 
+void test_polynom_to_bignum(void) {
+    int indices[] = {127, 100, 42, 5, 0};
+    int size = 5;
+    uint32_t expected[] = {0x80000010, 0x00000000, 0x00000400, 0x00000021};
+
+    bignum n = polynom_to_bignum(indices, size);
+
+    for (int i = 0; i < 4; i++) {
+        TEST_CHECK(n.chunks[i] == expected[i]);
+    }
+}
+
+
+void test_check_hash_key_false(void) {
+    int threshold = 2;
+    int number_of_blocks = 2;
+
+    bignum hash_key = init_bignum_to_zero();
+    bignum hash_key_copy = copy_bignum(hash_key);
+
+    bignum hash_key_inverse = mult_inverse(hash_key);
+    bignum hash_key_inverse_copy = copy_bignum(hash_key_inverse);
+
+    bool result = check_hash_key(threshold, number_of_blocks, hash_key, hash_key_copy, hash_key_inverse, hash_key_inverse_copy);
+
+    TEST_CHECK(!result);
+}
+
+
+void test_check_hash_key_true(void) {
+    int threshold = 2;
+    int number_of_blocks = 2;
+
+    uint32_t hex[] = {0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff};
+    bignum hash_key = init_bignum(hex);
+    bignum hash_key_copy = copy_bignum(hash_key);
+
+    bignum hash_key_inverse = mult_inverse(hash_key);
+    bignum hash_key_inverse_copy = copy_bignum(hash_key_inverse);
+
+    bool result = check_hash_key(threshold, number_of_blocks, hash_key, hash_key_copy, hash_key_inverse, hash_key_inverse_copy);
+
+    TEST_CHECK(result);
+}
+
+
+void test_one_bit_modification_last_block_one_to_zero(void) {
+    uint32_t hex[] = {0x12300000, 0x00000000, 0x00000000, 0x00000042};
+    bignum n = init_bignum(hex);
+    uint32_t expected[] = {0x12300000, 0x00000000, 0x00000000, 0x00000040};
+
+    bignum result = one_bit_modification(n, 1);
+
+    for (int i = 0; i < 4; i++) {
+        TEST_CHECK(result.chunks[i] == expected[i]);
+    }
+}
+
+
+void test_one_bit_modification_first_block_zero_to_one(void) {
+    uint32_t hex[] = {0x12300000, 0x00000000, 0x00000000, 0x00000042};
+    bignum n = init_bignum(hex);
+    uint32_t expected[] = {0x52300000, 0x00000000, 0x00000000, 0x00000042};
+
+    bignum result = one_bit_modification(n, 126);
+
+    for (int i = 0; i < 4; i++) {
+        TEST_CHECK(result.chunks[i] == expected[i]);
+    }
+}
+
+
 TEST_LIST = {
     {"convert_64_bit_into_two_32_bit_a_is_less_than_32_bits", test_convert_64_bit_into_two_32_bit_a_is_less_than_32_bits},
     {"convert_64_bit_into_two_32_bit_a_is_more_than_32_bits", test_convert_64_bit_into_two_32_bit_a_is_more_than_32_bits},
@@ -156,5 +229,10 @@ TEST_LIST = {
     {"bignum_array_to_string", test_bignum_to_string},
     {"ciphertext_bignum_blocks_to_one_bignum", test_ciphertext_bignum_blocks_to_one_bignum},
     {"hamming_weight", test_hamming_weight},
+    {"polynom_to_bignum", test_polynom_to_bignum},
+    {"check_hash_key_false", test_check_hash_key_false},
+    {"check_hash_key_true", test_check_hash_key_true},
+    {"one_bit_modification_last_block_one_to_zero", test_one_bit_modification_last_block_one_to_zero},
+    {"one_bit_modification_first_block_zero_to_one", test_one_bit_modification_first_block_zero_to_one},
     {NULL, NULL}
 };
