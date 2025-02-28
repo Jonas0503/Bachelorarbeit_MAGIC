@@ -10,7 +10,7 @@
 const int BLOCKSIZE = 4;
 
 
-void plaintext_to_ciphertext_blocks(bignum *ciphertext_blocks, const char *plaintext, uint32_t key[8], uint32_t nonce[2]) {
+void plaintext_to_ciphertext_blocks(bignum *ciphertext_blocks, char *plaintext, uint32_t key[8], uint32_t nonce[2]) {
     const int number_of_bignums = calculate_number_of_bignums_from_string(plaintext);
 
     // string to bignum array
@@ -20,7 +20,7 @@ void plaintext_to_ciphertext_blocks(bignum *ciphertext_blocks, const char *plain
     // bignum array to one uint32_t array
     const int number_of_chunks = number_of_bignums * BLOCKSIZE;
     uint32_t plaintext_hex[number_of_chunks];
-    ciphertext_bignum_blocks_to_one_array(plaintext_hex, bignum_array_plaintext, number_of_bignums);
+    bignum_blocks_to_one_array(plaintext_hex, bignum_array_plaintext, number_of_bignums);
 
     // encryption
     uint32_t ciphertext_hex[number_of_chunks];
@@ -46,7 +46,7 @@ void ciphertext_blocks_to_plaintext_as_str(unsigned char *plaintext, bignum ciph
 
     // bignum array to one uint32_t array
     uint32_t ciphertext_hex[number_of_chunks];
-    ciphertext_bignum_blocks_to_one_array(ciphertext_hex, ciphertext_blocks, number_of_blocks);
+    bignum_blocks_to_one_array(ciphertext_hex, ciphertext_blocks, number_of_blocks);
 
     // decryption
     uint32_t plaintext_hex[number_of_chunks];
@@ -89,7 +89,7 @@ bignum find_hash_key_value(int threshold, int number_of_blocks, int max_number_o
 }
 
 
-bignum calculate_input_for_blinding_cipher(bignum ciphertext_blocks[], const int number_of_blocks, bignum hash_key, bignum authorized_data) {
+bignum calculate_input_for_blinding_cipher(bignum ciphertext_blocks[], int number_of_blocks, bignum hash_key, bignum authorized_data) {
     bignum hash_key_tmp = copy_bignum(hash_key);
     bignum original_hash_key = copy_bignum(hash_key);
     bignum intermediate_value = init_bignum_to_zero();
@@ -106,7 +106,7 @@ bignum calculate_input_for_blinding_cipher(bignum ciphertext_blocks[], const int
 }
 
 
-bignum ciphertext_blocks_to_tag(bignum ciphertext_blocks[], const int number_of_blocks, bignum hash_key, bignum authorized_data, uint32_t blinding_key[8], uint32_t blinding_nonce[2]) {
+bignum ciphertext_blocks_to_tag(bignum ciphertext_blocks[], int number_of_blocks, bignum hash_key, bignum authorized_data, uint32_t blinding_key[8], uint32_t blinding_nonce[2]) {
     bignum blinding_cipher_input = calculate_input_for_blinding_cipher(ciphertext_blocks, number_of_blocks, hash_key, authorized_data);
 
     // encrypt input with the blinding cipher
@@ -125,7 +125,7 @@ bignum decrypt_tag(bignum tag, uint32_t blinding_key[8], uint32_t blinding_nonce
 }
 
 
-bignum calculate_syndrome(bignum authorized_data, bignum ciphertext_blocks[], const int number_of_blocks, bignum hash_key, bignum tag, uint32_t blinding_key[8], uint32_t blinding_nonce[2]) {
+bignum calculate_syndrome(bignum authorized_data, bignum ciphertext_blocks[], int number_of_blocks, bignum hash_key, bignum tag, uint32_t blinding_key[8], uint32_t blinding_nonce[2]) {
     bignum input = calculate_input_for_blinding_cipher(ciphertext_blocks, number_of_blocks, hash_key, authorized_data);
     bignum decrypted_tag = decrypt_tag(tag, blinding_key, blinding_nonce);
 
@@ -167,7 +167,7 @@ bool can_correct_parity(bignum corrupted_tag, bignum new_tag, int threshold) {
 }
 
 
-verify_result verify(bignum authorized_data, bignum ciphertext_blocks[], const int number_of_blocks, bignum tag, int threshold, bignum hash_key, uint32_t blinding_key[8], uint32_t blinding_nonce[2]) {
+verify_result verify(bignum authorized_data, bignum ciphertext_blocks[], int number_of_blocks, bignum tag, int threshold, bignum hash_key, uint32_t blinding_key[8], uint32_t blinding_nonce[2]) {
     verify_result result;
     bignum new_tag = ciphertext_blocks_to_tag(ciphertext_blocks, number_of_blocks, hash_key, authorized_data, blinding_key, blinding_nonce);
 

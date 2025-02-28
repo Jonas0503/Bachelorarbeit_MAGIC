@@ -1,8 +1,8 @@
 # inspired by these videos: https://www.youtube.com/watch?v=LfIPVIsH4ZU https://www.youtube.com/watch?v=CRlqU9XzVr4
 
 CC = gcc
-CFLAGS = -g -Wall -lc
-OBJS = ./obj/galois.o ./obj/bignum.o ./obj/util.o ./obj/salsa20.o ./obj/magic_mode.o
+CFLAGS = -g -Wall -Wextra
+OBJS = ./obj/galois.o ./obj/bignum.o ./obj/util.o ./obj/salsa20.o ./obj/magic_mode.o ./obj/hamming_code.o
 OBJ_MAIN_FILE = ./obj/main.o
 BIN_TEST_GALOIS = ./bin/test_galois
 BIN_TEST_BIGNUM = ./bin/test_bignum
@@ -17,7 +17,7 @@ all: $(BIN_MAIN)
 
 # linking for the actual program
 $(BIN_MAIN): $(OBJS) $(OBJ_MAIN_FILE)
-	$(CC) $(CFLAGS) $(OBJS) $(OBJ_MAIN_FILE) -o $@
+	$(CC) $(CFLAGS) $(OBJS) $(OBJ_MAIN_FILE) -o $@ -lm
 
 # compilation in machine code for the actual program
 ./obj/%.o: ./src/%.c

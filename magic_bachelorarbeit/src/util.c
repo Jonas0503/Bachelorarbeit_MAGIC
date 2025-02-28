@@ -26,18 +26,18 @@ uint64_t convert_two_32_bit_into_64_bit(uint32_t left_part, uint32_t right_part)
 }
 
 
-const int calculate_number_of_bignums_from_string(const char *text) {
-    const int plaintext_size = strlen(text);
-    const int number_of_filled_chunks = ((plaintext_size - 1) / BLOCKSIZE) + 1;
-    const int number_of_bignums = (number_of_filled_chunks + (BLOCKSIZE-1)) / BLOCKSIZE;
+int calculate_number_of_bignums_from_string(char *text) {
+    int plaintext_size = strlen(text);
+    int number_of_filled_chunks = ((plaintext_size - 1) / BLOCKSIZE) + 1;
+    int number_of_bignums = (number_of_filled_chunks + (BLOCKSIZE-1)) / BLOCKSIZE;
 
     return number_of_bignums;
 }
 
 
-void string_to_bignum_array(bignum *array_of_bignums, const char *text) {
-    const int plaintext_size = strlen(text);
-    const int number_of_bignums = calculate_number_of_bignums_from_string(text);
+void string_to_bignum_array(bignum *array_of_bignums, char *text) {
+    int plaintext_size = strlen(text);
+    int number_of_bignums = calculate_number_of_bignums_from_string(text);
 
     // leading zeros and easier calculations
     for (int i = 0; i < number_of_bignums; i++) {
@@ -69,7 +69,7 @@ void string_to_bignum_array(bignum *array_of_bignums, const char *text) {
 }
 
 
-const int calculate_number_of_chars_from_bignum_array(bignum *array_of_bignums, int array_size) {
+int calculate_number_of_chars_from_bignum_array(bignum *array_of_bignums, int array_size) {
     int number_of_chunks = array_size * BLOCKSIZE;
     int number_of_chars = number_of_chunks * 4;
 
@@ -92,7 +92,7 @@ const int calculate_number_of_chars_from_bignum_array(bignum *array_of_bignums, 
 }
 
 
-void bignum_array_to_string(unsigned char *string, bignum *array_of_bignums, const int array_size) {
+void bignum_array_to_string(unsigned char *string, bignum *array_of_bignums, int array_size) {
     int shifts = 0;
     int chunk_index = 3;
     int counter = 0;
@@ -121,7 +121,7 @@ void bignum_array_to_string(unsigned char *string, bignum *array_of_bignums, con
 }
 
 
-void ciphertext_bignum_blocks_to_one_array(uint32_t *array, bignum *ciphertext_blocks, const int number_of_blocks) {
+void bignum_blocks_to_one_array(uint32_t *array, bignum *ciphertext_blocks, int number_of_blocks) {
     // every 128-bit a new chunk gets copied into the array of the resulting bignum
     // ciphertext blocks are always 128-bit (4 chunks)
     for (int i = 0, k = 0; i < number_of_blocks; i++, k += BLOCKSIZE) {
@@ -188,7 +188,7 @@ bignum polynom_to_bignum(int bit_indices[], int size) {
 }
 
 
-bool check_hash_key(const int threshold, int number_of_blocks, bignum hash_key, bignum hash_key_copy, bignum hash_key_inverse, bignum hash_key_inverse_copy) {
+bool check_hash_key(int threshold, int number_of_blocks, bignum hash_key, bignum hash_key_copy, bignum hash_key_inverse, bignum hash_key_inverse_copy) {
     // array for the current combination
     int combination[threshold];
     for (int i = 0; i < threshold; i++) {

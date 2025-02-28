@@ -127,7 +127,7 @@ void test_ciphertext_bignum_blocks_to_one_bignum(void) {
     };
     uint32_t result[8];
 
-    ciphertext_bignum_blocks_to_one_array(result, blocks, 2);
+    bignum_blocks_to_one_array(result, blocks, 2);
 
     for (int i = 0; i < 8; i++) {
         TEST_CHECK(result[i] == expected[i]);

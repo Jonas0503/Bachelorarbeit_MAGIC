@@ -3,6 +3,7 @@
 #include "bignum.h"
 #include "salsa20.h"
 #include "magic_mode.h"
+#include "hamming_code.h"
 
 #include "stdint.h"
 #include "stdio.h"
@@ -10,7 +11,7 @@
 #include "string.h"
 
 
-int main(int argc, char const *argv[]) {
+void example_magic_mode() {
     // example
     char *plaintext = "Hallo Welt! Ich bin der Jonas.";
     int threshold = 2;
@@ -40,6 +41,34 @@ int main(int argc, char const *argv[]) {
 
     verify_result res = verify(authorized_data, ciphertext_blocks, nob, tag, threshold, hash_key, blinding_key, blinding_nonce);
     print_bignum_array(res.ciphertext_blocks, nob);
+}
+
+
+int main() {
+    char *s = "AAAAAAAAAAAAAAAA";
+    const int number_of_bignums = calculate_number_of_bignums_from_string(s);
+
+    uint32_t key[8] = {
+        0xEAEBECED, 0xEEEFF0F1, 0xF2F3F4F5, 0xF6F7F8F9,
+        0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
+    };
+
+    uint32_t nonce[2] = {0x0, 0x1};
+
+    bignum ciphertext_blocks[number_of_bignums];
+    plaintext_to_ciphertext_blocks(ciphertext_blocks, s, key, nonce);
+
+    const int number_of_bignums_with_parity = calculate_number_of_bignums_with_parity_from_string(s);
+    bignum parity[number_of_bignums_with_parity];
+    add_parity_to_bignum_array(parity, ciphertext_blocks, number_of_bignums, number_of_bignums_with_parity);
+
+    verify_result res = verify_hamming_code(parity, number_of_bignums_with_parity, init_bignum_to_zero());
+    printf("%i\n", res.correction_successful);
+
+    /* print_bignum_array(ciphertext_blocks, number_of_bignums);
+    const int number_of_bignums_with_parity = calculate_number_of_bignums_with_parity_from_string(s);
+    bool bit_arrays[number_of_bignums_with_parity][128];
+    bignum_array_to_bit_arrays_with_space_for_parity_bits(bit_arrays, ciphertext_blocks, number_of_bignums, number_of_bignums_with_parity); */
 
     return 1;
 }

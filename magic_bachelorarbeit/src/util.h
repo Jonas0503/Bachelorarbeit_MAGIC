@@ -18,18 +18,18 @@ uint64_t convert_two_32_bit_into_64_bit(uint32_t left_part, uint32_t right_part)
 /// @brief Calculates the min. number of bignums to represent a string.
 /// @param text The string for the calculation.
 /// @return The min. number of bignums
-const int calculate_number_of_bignums_from_string(const char *text);
+int calculate_number_of_bignums_from_string(char *text);
 
 /// @brief Converts a string to a bignum array.
 /// @param array_of_bignums The resulting bignum array.
 /// @param text The string to be converted.
-void string_to_bignum_array(bignum *array_of_bignums, const char *text);
+void string_to_bignum_array(bignum *array_of_bignums, char *text);
 
 /// @brief Calculates the number of chars needed to represent the array_of_bignums.
 /// @param array_of_bignums The array of bignums for the calculation.
 /// @param array_size The array size.
 /// @return The number of chars needed to represent the array_of_bignums.
-const int calculate_number_of_chars_from_bignum_array(bignum *array_of_bignums, int array_size);
+int calculate_number_of_chars_from_bignum_array(bignum *array_of_bignums, int array_size);
 
 /// @brief Converts a bignum array into one string.
 /// @param string The resulting string.
@@ -41,7 +41,7 @@ void bignum_array_to_string(unsigned char *string, bignum *array_of_bignums, con
 /// @param array The resulting array.
 /// @param ciphertext_blocks All blocks/bignums in the array. One bignum represents 128-bit (4 chunks).
 /// @param number_of_blocks The size of the array.
-void ciphertext_bignum_blocks_to_one_array(uint32_t *array, bignum *ciphertext_blocks, const int number_of_blocks);
+void bignum_blocks_to_one_array(uint32_t *array, bignum *ciphertext_blocks, const int number_of_blocks);
 
 /// @brief Determines the hamming weight of a bignum (number of bits with a 1)
 /// @param n The bignum at which the hamming weight should be calculated.
