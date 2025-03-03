@@ -21,7 +21,7 @@ bool are_states_equal(uint32_t state1[16], uint32_t state2[16]) {
 
 
 bool are_messages_equal(uint32_t *ciphertext, u_int32_t *expected, uint64_t message_length, int stream_start) {
-    for (int i = 0; i < message_length; i++) {
+    for (uint64_t i = 0; i < message_length; i++) {
         if (ciphertext[i+stream_start] != expected[i]) return false;
     }
 
