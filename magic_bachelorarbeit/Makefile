@@ -33,23 +33,23 @@ test: $(BIN_TESTS)
 
 # linking for galois tests
 $(BIN_TEST_GALOIS): ./obj/test_galois.o $(OBJS)
-	$(CC) $(CFLAGS) $< $(OBJS) -o $@
+	$(CC) $(CFLAGS) $< $(OBJS) -o $@ -lm
 
 # linking for bignum tests
 $(BIN_TEST_BIGNUM): ./obj/test_bignum.o $(OBJS)
-	$(CC) $(CFLAGS) $< $(OBJS) -o $@
+	$(CC) $(CFLAGS) $< $(OBJS) -o $@ -lm
 
 # linking for salsa20 tests
 $(BIN_TEST_SALSA20): ./obj/test_salsa20.o $(OBJS)
-	$(CC) $(CFLAGS) $< $(OBJS) -o $@
+	$(CC) $(CFLAGS) $< $(OBJS) -o $@ -lm
 
 # linking for util tests
 $(BIN_TEST_UTIL): ./obj/test_util.o $(OBJS)
-	$(CC) $(CFLAGS) $< $(OBJS) -o $@
+	$(CC) $(CFLAGS) $< $(OBJS) -o $@ -lm
 
 # linking for magic_mode tests
 $(BIN_TEST_MAGIC): ./obj/test_magic_mode.o $(OBJS)
-	$(CC) $(CFLAGS) $< $(OBJS) -o $@
+	$(CC) $(CFLAGS) $< $(OBJS) -o $@ -lm
 
 # compilation in machine code for tests and include header files from ./src
 ./obj/%.o: ./test/%.c
