@@ -45,7 +45,7 @@ void example_magic_mode() {
 
 
 int main() {
-    char *s = "asdfghjklqwertzuzzz";
+    char *s = "asdfghjklqwertzuzzzasdfghjklqwertzuzzzasdfghjklqwertzuzzzasdfghjklqwertzuzzzasdfghjklqwertzuzzzasdfghjklqwertzuzzzasdfghjklqwertzuzzz";
     int number_of_bignums = calculate_number_of_bignums_from_string(s);
     int number_of_bignums_parity = calculate_number_of_bignums_with_parity_from_string(s);
 
@@ -68,13 +68,14 @@ int main() {
     print_bignum_array(blocks_parity, number_of_bignums_parity);
     printf("\n");
 
-    hc_result res = verify_hamming_code(blocks_parity, number_of_bignums_parity, init_bignum_to_zero());
+    hc_result res = verify_hamming_code(blocks_parity, number_of_bignums_parity);
     printf("%i\n", res.correction_successful);
     print_bignum(res.ciphertext_blocks_with_parity[0]);
     printf("\n");
 
     bignum blocks_no_parity[number_of_bignums];
     remove_parity_from_ciphertext_blocks(blocks_no_parity, blocks_parity, number_of_bignums_parity, number_of_bignums);
+    print_bignum_array(blocks_no_parity, number_of_bignums);
 
     return 0;
 }
