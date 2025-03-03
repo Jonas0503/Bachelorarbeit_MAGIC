@@ -45,8 +45,9 @@ void example_magic_mode() {
 
 
 int main() {
-    char *s = "AAAAAAAAAAAAAAAA";
-    const int number_of_bignums = calculate_number_of_bignums_from_string(s);
+    char *s = "asdfghjklqwertzuzzz";
+    int number_of_bignums = calculate_number_of_bignums_from_string(s);
+    int number_of_bignums_parity = calculate_number_of_bignums_with_parity_from_string(s);
 
     uint32_t key[8] = {
         0xEAEBECED, 0xEEEFF0F1, 0xF2F3F4F5, 0xF6F7F8F9,
@@ -58,17 +59,22 @@ int main() {
     bignum ciphertext_blocks[number_of_bignums];
     plaintext_to_ciphertext_blocks(ciphertext_blocks, s, key, nonce);
 
-    const int number_of_bignums_with_parity = calculate_number_of_bignums_with_parity_from_string(s);
-    bignum parity[number_of_bignums_with_parity];
-    add_parity_to_bignum_array(parity, ciphertext_blocks, number_of_bignums, number_of_bignums_with_parity);
+    print_bignum_array(ciphertext_blocks, number_of_bignums);
+    printf("\n");
 
-    verify_result res = verify_hamming_code(parity, number_of_bignums_with_parity, init_bignum_to_zero());
+    bignum blocks_parity[number_of_bignums_parity];
+    add_parity_to_bignum_array(blocks_parity, ciphertext_blocks, number_of_bignums, number_of_bignums_parity);
+
+    print_bignum_array(blocks_parity, number_of_bignums_parity);
+    printf("\n");
+
+    hc_result res = verify_hamming_code(blocks_parity, number_of_bignums_parity, init_bignum_to_zero());
     printf("%i\n", res.correction_successful);
+    print_bignum(res.ciphertext_blocks_with_parity[0]);
+    printf("\n");
 
-    /* print_bignum_array(ciphertext_blocks, number_of_bignums);
-    const int number_of_bignums_with_parity = calculate_number_of_bignums_with_parity_from_string(s);
-    bool bit_arrays[number_of_bignums_with_parity][128];
-    bignum_array_to_bit_arrays_with_space_for_parity_bits(bit_arrays, ciphertext_blocks, number_of_bignums, number_of_bignums_with_parity); */
+    bignum blocks_no_parity[number_of_bignums];
+    remove_parity_from_ciphertext_blocks(blocks_no_parity, blocks_parity, number_of_bignums_parity, number_of_bignums);
 
-    return 1;
+    return 0;
 }
