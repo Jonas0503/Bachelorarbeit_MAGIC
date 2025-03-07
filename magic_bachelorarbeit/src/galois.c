@@ -1,6 +1,6 @@
 #include "galois.h"
 #include "bignum.h"
-#include "util.h"
+#include "util_functions.h"
 
 #include "stdint.h"
 #include "stdlib.h"

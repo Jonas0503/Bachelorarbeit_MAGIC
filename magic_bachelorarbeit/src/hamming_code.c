@@ -1,5 +1,5 @@
 #include "hamming_code.h"
-#include "util.h"
+#include "util_functions.h"
 
 #include "string.h"
 #include "stdio.h"

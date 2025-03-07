@@ -1,4 +1,4 @@
-#include "util.h"
+#include "util_functions.h"
 #include "salsa20.h"
 #include "galois.h"
 

@@ -1,5 +1,5 @@
 #include "acutest.h"
-#include "util.h"
+#include "util_functions.h"
 #include "galois.h"
 
 #include "string.h"

@@ -1,5 +1,5 @@
 #include "galois.h"
-#include "util.h"
+#include "util_functions.h"
 #include "bignum.h"
 #include "salsa20.h"
 #include "magic_mode.h"

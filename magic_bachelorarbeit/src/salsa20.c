@@ -1,5 +1,5 @@
 #include "salsa20.h"
-#include "util.h"
+#include "util_functions.h"
 
 #include "stdio.h"
 

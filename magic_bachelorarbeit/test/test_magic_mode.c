@@ -1,6 +1,6 @@
 #include "acutest.h"
 #include "magic_mode.h"
-#include "util.h"
+#include "util_functions.h"
 
 #include "string.h"
 
