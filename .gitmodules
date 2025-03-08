@@ -1,4 +1,3 @@
-
 [submodule "microcontroller/cw521/naeusb"]
 	path = microcontroller/cw521/naeusb
 	url = https://github.com/newaetech/naeusb

@@ -1,3 +1,6 @@
-magic_bachelorarbeit/obj/*
-magic_bachelorarbeit/bin/*
 .vscode
+
+microcontroller/cw521/magic_bachelorarbeit/obj/*
+microcontroller/cw521/magic_bachelorarbeit/bin/*
+
+microcontroller/cw521/.dep
