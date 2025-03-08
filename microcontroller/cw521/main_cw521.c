@@ -167,6 +167,11 @@ int main(void)
   // because the USB management is done by interrupt
 	naeusb_register_handlers();
   ballistic_register_handlers();
+
+  int a = 3;
+  int b = 10;
+  int c = a + b;
+
   while (true) {
     // sleepmgr_enter_sleep();
   }

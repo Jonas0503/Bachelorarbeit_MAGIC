@@ -17,7 +17,7 @@
 # make program = Download the hex file to the device, using avrdude.
 #                Please customize the avrdude settings below first!
 #
-# make debug = Start either simulavr or avarice as specified for debugging, 
+# make debug = Start either simulavr or avarice as specified for debugging,
 #              with avr-gdb or avr-insight as the front end for debugging.
 #
 # make filename.s = Just compile filename.c into the assembler code only.
@@ -34,6 +34,9 @@ TARGET = cw521
 
 # List C source files here.
 # Header files (.h) are automatically pulled in.
+MAGIC = ./magic_bachelorarbeit/src
+MAGIC_FILES = $(MAGIC)/galois.c $(MAGIC)/bignum.c $(MAGIC)/util_functions.c $(MAGIC)/salsa20.c $(MAGIC)/magic_mode.c $(MAGIC)/hamming_code.c
+
 SRC += main_cw521.c naeusb_ballistic.c naeusb/naeusb.c naeusb/naeusb_default.c
 SRC += naeusb/udc.c  naeusb/usb_xmem.c ui.c init.c
 

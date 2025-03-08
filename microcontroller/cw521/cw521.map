@@ -10469,69 +10469,69 @@ LOAD linker stubs
  .comment       0x00000045       0x46 obj/naeusb/sam3u_hal/write.o
  .comment       0x00000045       0x46 obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
 
-.debug_info     0x00000000    0x159d9
- .debug_info    0x00000000     0x1c6f obj/main_cw521.o
- .debug_info    0x00001c6f      0xadc obj/naeusb_ballistic.o
- .debug_info    0x0000274b      0x541 obj/naeusb/naeusb.o
- .debug_info    0x00002c8c      0x716 obj/naeusb/naeusb_default.o
- .debug_info    0x000033a2     0x162d obj/naeusb/udc.o
- .debug_info    0x000049cf     0x1075 obj/naeusb/usb_xmem.o
- .debug_info    0x00005a44      0x27d obj/ui.o
- .debug_info    0x00005cc1      0x6bd obj/init.o
- .debug_info    0x0000637e      0x71f obj/naeusb/sam3u_hal/efc.o
- .debug_info    0x00006a9d       0xe1 obj/naeusb/sam3u_hal/exceptions.o
- .debug_info    0x00006b7e     0x19f8 obj/naeusb/sam3u_hal/flash_efc.o
- .debug_info    0x00008576      0x1bf obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
- .debug_info    0x00008735      0x1f5 obj/naeusb/sam3u_hal/led.o
- .debug_info    0x0000892a      0xe57 obj/naeusb/sam3u_hal/pio_handler.o
- .debug_info    0x00009781     0x16dc obj/naeusb/sam3u_hal/pio.o
- .debug_info    0x0000ae5d      0xe65 obj/naeusb/sam3u_hal/pmc.o
- .debug_info    0x0000bcc2      0x183 obj/naeusb/sam3u_hal/read.o
- .debug_info    0x0000be45      0x9b4 obj/naeusb/sam3u_hal/sleep.o
- .debug_info    0x0000c7f9      0x155 obj/naeusb/sam3u_hal/sleepmgr.o
- .debug_info    0x0000c94e      0x8f0 obj/naeusb/sam3u_hal/smc.o
- .debug_info    0x0000d23e      0x494 obj/naeusb/sam3u_hal/startup_sam3u.o
- .debug_info    0x0000d6d2      0x4c8 obj/naeusb/sam3u_hal/syscalls.o
- .debug_info    0x0000db9a      0x9eb obj/naeusb/sam3u_hal/sysclk.o
- .debug_info    0x0000e585      0x3c8 obj/naeusb/sam3u_hal/system_sam3u.o
- .debug_info    0x0000e94d      0x7d8 obj/naeusb/sam3u_hal/uart.o
- .debug_info    0x0000f125      0x553 obj/naeusb/sam3u_hal/udi_vendor.o
- .debug_info    0x0000f678     0x39ce obj/naeusb/sam3u_hal/udphs_device.o
- .debug_info    0x00013046     0x2132 obj/naeusb/sam3u_hal/usart.o
- .debug_info    0x00015178      0x184 obj/naeusb/sam3u_hal/write.o
- .debug_info    0x000152fc      0x6dd obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
+.debug_info     0x00000000    0x159f4
+ .debug_info    0x00000000     0x1c8a obj/main_cw521.o
+ .debug_info    0x00001c8a      0xadc obj/naeusb_ballistic.o
+ .debug_info    0x00002766      0x541 obj/naeusb/naeusb.o
+ .debug_info    0x00002ca7      0x716 obj/naeusb/naeusb_default.o
+ .debug_info    0x000033bd     0x162d obj/naeusb/udc.o
+ .debug_info    0x000049ea     0x1075 obj/naeusb/usb_xmem.o
+ .debug_info    0x00005a5f      0x27d obj/ui.o
+ .debug_info    0x00005cdc      0x6bd obj/init.o
+ .debug_info    0x00006399      0x71f obj/naeusb/sam3u_hal/efc.o
+ .debug_info    0x00006ab8       0xe1 obj/naeusb/sam3u_hal/exceptions.o
+ .debug_info    0x00006b99     0x19f8 obj/naeusb/sam3u_hal/flash_efc.o
+ .debug_info    0x00008591      0x1bf obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
+ .debug_info    0x00008750      0x1f5 obj/naeusb/sam3u_hal/led.o
+ .debug_info    0x00008945      0xe57 obj/naeusb/sam3u_hal/pio_handler.o
+ .debug_info    0x0000979c     0x16dc obj/naeusb/sam3u_hal/pio.o
+ .debug_info    0x0000ae78      0xe65 obj/naeusb/sam3u_hal/pmc.o
+ .debug_info    0x0000bcdd      0x183 obj/naeusb/sam3u_hal/read.o
+ .debug_info    0x0000be60      0x9b4 obj/naeusb/sam3u_hal/sleep.o
+ .debug_info    0x0000c814      0x155 obj/naeusb/sam3u_hal/sleepmgr.o
+ .debug_info    0x0000c969      0x8f0 obj/naeusb/sam3u_hal/smc.o
+ .debug_info    0x0000d259      0x494 obj/naeusb/sam3u_hal/startup_sam3u.o
+ .debug_info    0x0000d6ed      0x4c8 obj/naeusb/sam3u_hal/syscalls.o
+ .debug_info    0x0000dbb5      0x9eb obj/naeusb/sam3u_hal/sysclk.o
+ .debug_info    0x0000e5a0      0x3c8 obj/naeusb/sam3u_hal/system_sam3u.o
+ .debug_info    0x0000e968      0x7d8 obj/naeusb/sam3u_hal/uart.o
+ .debug_info    0x0000f140      0x553 obj/naeusb/sam3u_hal/udi_vendor.o
+ .debug_info    0x0000f693     0x39ce obj/naeusb/sam3u_hal/udphs_device.o
+ .debug_info    0x00013061     0x2132 obj/naeusb/sam3u_hal/usart.o
+ .debug_info    0x00015193      0x184 obj/naeusb/sam3u_hal/write.o
+ .debug_info    0x00015317      0x6dd obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
 
-.debug_abbrev   0x00000000     0x493e
- .debug_abbrev  0x00000000      0x4c4 obj/main_cw521.o
- .debug_abbrev  0x000004c4      0x410 obj/naeusb_ballistic.o
- .debug_abbrev  0x000008d4      0x2c8 obj/naeusb/naeusb.o
- .debug_abbrev  0x00000b9c      0x317 obj/naeusb/naeusb_default.o
- .debug_abbrev  0x00000eb3      0x503 obj/naeusb/udc.o
- .debug_abbrev  0x000013b6      0x36b obj/naeusb/usb_xmem.o
- .debug_abbrev  0x00001721       0xdc obj/ui.o
- .debug_abbrev  0x000017fd      0x207 obj/init.o
- .debug_abbrev  0x00001a04      0x2d4 obj/naeusb/sam3u_hal/efc.o
- .debug_abbrev  0x00001cd8       0x6e obj/naeusb/sam3u_hal/exceptions.o
- .debug_abbrev  0x00001d46      0x327 obj/naeusb/sam3u_hal/flash_efc.o
- .debug_abbrev  0x0000206d      0x11a obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
- .debug_abbrev  0x00002187      0x128 obj/naeusb/sam3u_hal/led.o
- .debug_abbrev  0x000022af      0x34f obj/naeusb/sam3u_hal/pio_handler.o
- .debug_abbrev  0x000025fe      0x309 obj/naeusb/sam3u_hal/pio.o
- .debug_abbrev  0x00002907      0x287 obj/naeusb/sam3u_hal/pmc.o
- .debug_abbrev  0x00002b8e      0x102 obj/naeusb/sam3u_hal/read.o
- .debug_abbrev  0x00002c90      0x28d obj/naeusb/sam3u_hal/sleep.o
- .debug_abbrev  0x00002f1d       0xaa obj/naeusb/sam3u_hal/sleepmgr.o
- .debug_abbrev  0x00002fc7      0x1bf obj/naeusb/sam3u_hal/smc.o
- .debug_abbrev  0x00003186      0x16f obj/naeusb/sam3u_hal/startup_sam3u.o
- .debug_abbrev  0x000032f5      0x1c8 obj/naeusb/sam3u_hal/syscalls.o
- .debug_abbrev  0x000034bd      0x2df obj/naeusb/sam3u_hal/sysclk.o
- .debug_abbrev  0x0000379c      0x10a obj/naeusb/sam3u_hal/system_sam3u.o
- .debug_abbrev  0x000038a6      0x21b obj/naeusb/sam3u_hal/uart.o
- .debug_abbrev  0x00003ac1      0x229 obj/naeusb/sam3u_hal/udi_vendor.o
- .debug_abbrev  0x00003cea      0x699 obj/naeusb/sam3u_hal/udphs_device.o
- .debug_abbrev  0x00004383      0x37e obj/naeusb/sam3u_hal/usart.o
- .debug_abbrev  0x00004701       0xe9 obj/naeusb/sam3u_hal/write.o
- .debug_abbrev  0x000047ea      0x154 obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
+.debug_abbrev   0x00000000     0x4951
+ .debug_abbrev  0x00000000      0x4d7 obj/main_cw521.o
+ .debug_abbrev  0x000004d7      0x410 obj/naeusb_ballistic.o
+ .debug_abbrev  0x000008e7      0x2c8 obj/naeusb/naeusb.o
+ .debug_abbrev  0x00000baf      0x317 obj/naeusb/naeusb_default.o
+ .debug_abbrev  0x00000ec6      0x503 obj/naeusb/udc.o
+ .debug_abbrev  0x000013c9      0x36b obj/naeusb/usb_xmem.o
+ .debug_abbrev  0x00001734       0xdc obj/ui.o
+ .debug_abbrev  0x00001810      0x207 obj/init.o
+ .debug_abbrev  0x00001a17      0x2d4 obj/naeusb/sam3u_hal/efc.o
+ .debug_abbrev  0x00001ceb       0x6e obj/naeusb/sam3u_hal/exceptions.o
+ .debug_abbrev  0x00001d59      0x327 obj/naeusb/sam3u_hal/flash_efc.o
+ .debug_abbrev  0x00002080      0x11a obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
+ .debug_abbrev  0x0000219a      0x128 obj/naeusb/sam3u_hal/led.o
+ .debug_abbrev  0x000022c2      0x34f obj/naeusb/sam3u_hal/pio_handler.o
+ .debug_abbrev  0x00002611      0x309 obj/naeusb/sam3u_hal/pio.o
+ .debug_abbrev  0x0000291a      0x287 obj/naeusb/sam3u_hal/pmc.o
+ .debug_abbrev  0x00002ba1      0x102 obj/naeusb/sam3u_hal/read.o
+ .debug_abbrev  0x00002ca3      0x28d obj/naeusb/sam3u_hal/sleep.o
+ .debug_abbrev  0x00002f30       0xaa obj/naeusb/sam3u_hal/sleepmgr.o
+ .debug_abbrev  0x00002fda      0x1bf obj/naeusb/sam3u_hal/smc.o
+ .debug_abbrev  0x00003199      0x16f obj/naeusb/sam3u_hal/startup_sam3u.o
+ .debug_abbrev  0x00003308      0x1c8 obj/naeusb/sam3u_hal/syscalls.o
+ .debug_abbrev  0x000034d0      0x2df obj/naeusb/sam3u_hal/sysclk.o
+ .debug_abbrev  0x000037af      0x10a obj/naeusb/sam3u_hal/system_sam3u.o
+ .debug_abbrev  0x000038b9      0x21b obj/naeusb/sam3u_hal/uart.o
+ .debug_abbrev  0x00003ad4      0x229 obj/naeusb/sam3u_hal/udi_vendor.o
+ .debug_abbrev  0x00003cfd      0x699 obj/naeusb/sam3u_hal/udphs_device.o
+ .debug_abbrev  0x00004396      0x37e obj/naeusb/sam3u_hal/usart.o
+ .debug_abbrev  0x00004714       0xe9 obj/naeusb/sam3u_hal/write.o
+ .debug_abbrev  0x000047fd      0x154 obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
 
 .debug_loclists
                 0x00000000     0x6f9e
@@ -10917,37 +10917,37 @@ LOAD linker stubs
  .debug_macro   0x00019939      0x46a obj/naeusb/sam3u_hal/write.o
  .debug_macro   0x00019da3      0x50d obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
 
-.debug_line     0x00000000    0x1cc3a
- .debug_line    0x00000000     0x10f2 obj/main_cw521.o
- .debug_line    0x000010f2     0x12fc obj/naeusb_ballistic.o
- .debug_line    0x000023ee      0xdfe obj/naeusb/naeusb.o
- .debug_line    0x000031ec      0xf70 obj/naeusb/naeusb_default.o
- .debug_line    0x0000415c     0x14ca obj/naeusb/udc.o
- .debug_line    0x00005626     0x10b2 obj/naeusb/usb_xmem.o
- .debug_line    0x000066d8      0xca2 obj/ui.o
- .debug_line    0x0000737a      0xac5 obj/init.o
- .debug_line    0x00007e3f      0xc47 obj/naeusb/sam3u_hal/efc.o
- .debug_line    0x00008a86      0x910 obj/naeusb/sam3u_hal/exceptions.o
- .debug_line    0x00009396     0x1428 obj/naeusb/sam3u_hal/flash_efc.o
- .debug_line    0x0000a7be      0xa23 obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
- .debug_line    0x0000b1e1      0xa1e obj/naeusb/sam3u_hal/led.o
- .debug_line    0x0000bbff      0xbe4 obj/naeusb/sam3u_hal/pio_handler.o
- .debug_line    0x0000c7e3     0x16e0 obj/naeusb/sam3u_hal/pio.o
- .debug_line    0x0000dec3     0x182e obj/naeusb/sam3u_hal/pmc.o
- .debug_line    0x0000f6f1      0x936 obj/naeusb/sam3u_hal/read.o
- .debug_line    0x00010027      0xef7 obj/naeusb/sam3u_hal/sleep.o
- .debug_line    0x00010f1e      0x93a obj/naeusb/sam3u_hal/sleepmgr.o
- .debug_line    0x00011858      0xd59 obj/naeusb/sam3u_hal/smc.o
- .debug_line    0x000125b1      0x97a obj/naeusb/sam3u_hal/startup_sam3u.o
- .debug_line    0x00012f2b      0x4f4 obj/naeusb/sam3u_hal/syscalls.o
- .debug_line    0x0001341f      0xc60 obj/naeusb/sam3u_hal/sysclk.o
- .debug_line    0x0001407f      0xba8 obj/naeusb/sam3u_hal/system_sam3u.o
- .debug_line    0x00014c27      0xc58 obj/naeusb/sam3u_hal/uart.o
- .debug_line    0x0001587f      0xadb obj/naeusb/sam3u_hal/udi_vendor.o
- .debug_line    0x0001635a     0x36a8 obj/naeusb/sam3u_hal/udphs_device.o
- .debug_line    0x00019a02     0x1f46 obj/naeusb/sam3u_hal/usart.o
- .debug_line    0x0001b948      0x95a obj/naeusb/sam3u_hal/write.o
- .debug_line    0x0001c2a2      0x998 obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
+.debug_line     0x00000000    0x1cc3d
+ .debug_line    0x00000000     0x10f5 obj/main_cw521.o
+ .debug_line    0x000010f5     0x12fc obj/naeusb_ballistic.o
+ .debug_line    0x000023f1      0xdfe obj/naeusb/naeusb.o
+ .debug_line    0x000031ef      0xf70 obj/naeusb/naeusb_default.o
+ .debug_line    0x0000415f     0x14ca obj/naeusb/udc.o
+ .debug_line    0x00005629     0x10b2 obj/naeusb/usb_xmem.o
+ .debug_line    0x000066db      0xca2 obj/ui.o
+ .debug_line    0x0000737d      0xac5 obj/init.o
+ .debug_line    0x00007e42      0xc47 obj/naeusb/sam3u_hal/efc.o
+ .debug_line    0x00008a89      0x910 obj/naeusb/sam3u_hal/exceptions.o
+ .debug_line    0x00009399     0x1428 obj/naeusb/sam3u_hal/flash_efc.o
+ .debug_line    0x0000a7c1      0xa23 obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
+ .debug_line    0x0000b1e4      0xa1e obj/naeusb/sam3u_hal/led.o
+ .debug_line    0x0000bc02      0xbe4 obj/naeusb/sam3u_hal/pio_handler.o
+ .debug_line    0x0000c7e6     0x16e0 obj/naeusb/sam3u_hal/pio.o
+ .debug_line    0x0000dec6     0x182e obj/naeusb/sam3u_hal/pmc.o
+ .debug_line    0x0000f6f4      0x936 obj/naeusb/sam3u_hal/read.o
+ .debug_line    0x0001002a      0xef7 obj/naeusb/sam3u_hal/sleep.o
+ .debug_line    0x00010f21      0x93a obj/naeusb/sam3u_hal/sleepmgr.o
+ .debug_line    0x0001185b      0xd59 obj/naeusb/sam3u_hal/smc.o
+ .debug_line    0x000125b4      0x97a obj/naeusb/sam3u_hal/startup_sam3u.o
+ .debug_line    0x00012f2e      0x4f4 obj/naeusb/sam3u_hal/syscalls.o
+ .debug_line    0x00013422      0xc60 obj/naeusb/sam3u_hal/sysclk.o
+ .debug_line    0x00014082      0xba8 obj/naeusb/sam3u_hal/system_sam3u.o
+ .debug_line    0x00014c2a      0xc58 obj/naeusb/sam3u_hal/uart.o
+ .debug_line    0x00015882      0xadb obj/naeusb/sam3u_hal/udi_vendor.o
+ .debug_line    0x0001635d     0x36a8 obj/naeusb/sam3u_hal/udphs_device.o
+ .debug_line    0x00019a05     0x1f46 obj/naeusb/sam3u_hal/usart.o
+ .debug_line    0x0001b94b      0x95a obj/naeusb/sam3u_hal/write.o
+ .debug_line    0x0001c2a5      0x998 obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
 
 .debug_str      0x00000000    0x5d394
  .debug_str     0x00000000    0x5d394 obj/main_cw521.o

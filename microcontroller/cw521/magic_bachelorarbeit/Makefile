@@ -4,13 +4,13 @@ CC = gcc
 CFLAGS = -g -Wall -Wextra
 OBJS = ./obj/galois.o ./obj/bignum.o ./obj/util_functions.o ./obj/salsa20.o ./obj/magic_mode.o ./obj/hamming_code.o
 OBJ_MAIN_FILE = ./obj/main.o
-BIN_TEST_GALOIS = ./bin/test_galois
-BIN_TEST_BIGNUM = ./bin/test_bignum
-BIN_TEST_SALSA20 = ./bin/test_salsa20
-BIN_TEST_UTIL = ./bin/test_util_functions
-BIN_TEST_MAGIC = ./bin/test_magic_mode
+BIN_TEST_GALOIS = ./bin/test_galois.bin
+BIN_TEST_BIGNUM = ./bin/test_bignum.bin
+BIN_TEST_SALSA20 = ./bin/test_salsa20.bin
+BIN_TEST_UTIL = ./bin/test_util_functions.bin
+BIN_TEST_MAGIC = ./bin/test_magic_mode.bin
 BIN_TESTS = $(BIN_TEST_BIGNUM) $(BIN_TEST_GALOIS) $(BIN_TEST_SALSA20) $(BIN_TEST_UTIL) $(BIN_TEST_MAGIC)
-BIN_MAIN = ./bin/main
+BIN_MAIN = ./bin/main.bin
 
 # run the program without tests
 all: $(BIN_MAIN)
@@ -56,4 +56,4 @@ $(BIN_TEST_MAGIC): ./obj/test_magic_mode.o $(OBJS)
 	$(CC) $(CFLAGS) -I./src -c $< -o $@
 
 clean:
-	rm -f ./bin/* ./obj/*
+	rm -f ./bin/*.bin ./obj/*.o
