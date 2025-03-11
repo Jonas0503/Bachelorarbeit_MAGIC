@@ -34,8 +34,9 @@ void ciphertext_blocks_to_plaintext_as_str(unsigned char *plaintext, bignum ciph
 /// @param threshold The max. number of one-bits in an error_vector.
 /// @param number_of_blocks The number of blocks which got encrypted.
 /// @param max_number_of_tries The max number of tries to check a random hash-key with the given values.
+/// @param seed A seed value to find a random hash key.
 /// @return The correct hash key if it was successful; otherwise zero.
-bignum find_hash_key_value(int threshold, int number_of_blocks, int max_number_of_tries);
+bignum find_hash_key_value(int threshold, int number_of_blocks, int max_number_of_tries, uint32_t seed);
 
 /// @brief Determines the input for the blinding cipher.
 /// @param ciphertext_blocks The ciphertext blocks with 4 chunks (128-bit) each and with a zero block at the end to calculate the number of blocks.

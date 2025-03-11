@@ -5,7 +5,6 @@
 #include "stdlib.h"
 #include "string.h"
 #include "stdio.h"
-#include "time.h"
 
 
 // defined in magic_mode.c
@@ -149,25 +148,35 @@ int hamming_weight(bignum n) {
 }
 
 
-bignum random_bignum_key_nonce(uint32_t key_res[8], uint32_t nonce_res[2]) {
+bignum random_bignum_key_nonce(uint32_t key_res[8], uint32_t nonce_res[2], uint32_t seed) {
     uint32_t message_in[BLOCKSIZE];
+    uint32_t key[8];
+    uint32_t nonce[2];
 
-    // clock returns "always" different values
     for(int i = 0; i < 8; i++) {
-        key_res[i] = clock();
+        key[i] = seed+i;
     }
     for(int i = 0; i < 2; i++) {
-        nonce_res[i] = clock();
+        nonce[i] = seed+i;
     }
     for (int i = 0; i < BLOCKSIZE; i++) {
-        message_in[i] = clock();
+        message_in[i] = seed+i;
     }
 
     // random number generation
-    uint32_t message_out[BLOCKSIZE];
-    salsa20_encryption_decryption(key_res, nonce_res, message_in, message_out, BLOCKSIZE);
+    uint32_t message_out_bignum[BLOCKSIZE];
+    salsa20_encryption_decryption(key, nonce, message_in, message_out_bignum, BLOCKSIZE);
+    bignum random_bignum = init_bignum(message_out_bignum);
 
-    return init_bignum(message_out);
+    // random key generation
+    nonce[0] = nonce[0]+1;
+    salsa20_encryption_decryption(key, nonce, key, key_res, 8);
+
+    // random nonce generation
+    nonce[1] = nonce[1]+1;
+    salsa20_encryption_decryption(key, nonce, nonce, nonce_res, 2);
+
+    return random_bignum;
 }
 
 
@@ -253,12 +262,15 @@ bignum one_bit_modification(bignum n, int bit_position) {
     }
     else if (bit_position < 64) {
         chunk_position = 2;
+        bit_position = bit_position - 32;
     }
     else if (bit_position < 96) {
         chunk_position = 1;
+        bit_position = bit_position - 64;
     }
     else {
         chunk_position = 0;
+        bit_position = bit_position - 96;
     }
 
     result.chunks[chunk_position] ^= (1 << bit_position);

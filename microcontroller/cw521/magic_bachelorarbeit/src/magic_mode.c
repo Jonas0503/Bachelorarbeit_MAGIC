@@ -61,7 +61,7 @@ void ciphertext_blocks_to_plaintext_as_str(unsigned char *plaintext, bignum ciph
 }
 
 
-bignum find_hash_key_value(int threshold, int number_of_blocks, int max_number_of_tries) {
+bignum find_hash_key_value(int threshold, int number_of_blocks, int max_number_of_tries, uint32_t seed) {
     printf("Tries left: %d\n", max_number_of_tries);
     if (max_number_of_tries == 0) {
         printf("No hash key found. Use different values.\n");
@@ -70,7 +70,7 @@ bignum find_hash_key_value(int threshold, int number_of_blocks, int max_number_o
 
     uint32_t key[8];
     uint32_t nonce[2];
-    bignum hash_key = random_bignum_key_nonce(key, nonce);
+    bignum hash_key = random_bignum_key_nonce(key, nonce, seed);
     bignum original_hash_key = copy_bignum(hash_key);
 
     bignum hash_key_inverse = mult_inverse(hash_key);
@@ -80,7 +80,7 @@ bignum find_hash_key_value(int threshold, int number_of_blocks, int max_number_o
         bool result = check_hash_key(threshold_value, number_of_blocks, hash_key, original_hash_key, hash_key_inverse, original_hash_key_inverse);
 
         if (!result) {
-            return find_hash_key_value(threshold, number_of_blocks, --max_number_of_tries);
+            return find_hash_key_value(threshold, number_of_blocks, --max_number_of_tries, seed+42);
         }
     }
 

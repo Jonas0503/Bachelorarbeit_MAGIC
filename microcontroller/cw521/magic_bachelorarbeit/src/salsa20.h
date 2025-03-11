@@ -49,7 +49,7 @@ void salsa20_expansion(uint32_t state_in[16], uint32_t state_out[16], uint32_t k
 /// @param message_in The message (plaintext/ciphertext) to be XORed with the state.
 /// @param message_out The encrypted/decrypted message.
 /// @param message_length The size of the input message array.
-void salsa20_encryption_decryption(uint32_t key[8], uint32_t nonce[2], uint32_t *message_in, uint32_t *message_out, uint64_t message_length);
+void salsa20_encryption_decryption(uint32_t key[8], uint32_t nonce[2], uint32_t *message_in, uint32_t *message_out, int message_length);
 
 /// @brief Determines the position in the stream of states.
 /// @param position The old position.

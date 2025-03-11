@@ -33,6 +33,52 @@
 #include "naeusb/usb_xmem.h"
 #include <string.h>
 
+// ------------------------------------- my code start --------------------------------------------------------------------
+
+#include "magic_bachelorarbeit/src/galois.h"
+#include "magic_bachelorarbeit/src/util_functions.h"
+#include "magic_bachelorarbeit/src/bignum.h"
+#include "magic_bachelorarbeit/src/salsa20.h"
+#include "magic_bachelorarbeit/src/magic_mode.h"
+#include "magic_bachelorarbeit/src/hamming_code.h"
+
+#include "stdint.h"
+#include "stdio.h"
+#include "stdlib.h"
+#include "string.h"
+
+
+// the register names for counting cycles
+volatile uint32_t *DWT_CYCCNT;
+volatile uint32_t *DWT_CONTROL;
+volatile uint32_t *SCB_DEMCR;
+
+
+void reset_timer() {
+    DWT_CYCCNT   = (uint32_t *)0xE0001004; // address of the register
+    DWT_CONTROL  = (uint32_t *)0xE0001000; // address of the register
+    SCB_DEMCR    = (uint32_t *)0xE000EDFC; // address of the register
+    *SCB_DEMCR   = *SCB_DEMCR | 0x01000000;
+    *DWT_CONTROL = 0;
+    *DWT_CYCCNT  = 0; // reset the counter
+}
+
+
+void start_timer() {
+    *DWT_CONTROL = *DWT_CONTROL | 1 ; // enable the counter
+}
+
+
+void stop_timer() {
+    *DWT_CONTROL = *DWT_CONTROL | 0 ; // disable the counter
+}
+
+
+uint32_t get_cycles() {
+  return *DWT_CYCCNT;
+}
+
+// ------------------------------------------- my code end -----------------------------------------------------------------
 
 //Serial Number - will be read by device ID
 char usb_serial_number[33] = "000000000000DEADBEEF";
@@ -168,9 +214,52 @@ int main(void)
 	naeusb_register_handlers();
   ballistic_register_handlers();
 
-  int a = 3;
-  int b = 10;
-  int c = a + b;
+  // ------------------------------------- my code start ---------------------------------------------------------------------
+
+  reset_timer();
+  volatile uint32_t res_sleep1 = get_cycles();
+  volatile int x = 3;
+  volatile int y = 10;
+  volatile int z = x + y;
+  volatile uint32_t res_sleep2 = get_cycles();
+  start_timer();
+
+  volatile int a = 3;
+  volatile int b = 10;
+  volatile int c = a + b;
+  c--;
+
+  volatile uint32_t res1 = get_cycles();
+
+  // example MAGIC-mode
+  char *plaintext = "Hallo Welt! Ich bin der Jonas.";
+  int threshold = 1;
+
+  uint32_t key[8];
+  uint32_t nonce[2];
+  random_bignum_key_nonce(key, nonce, 0);
+
+  uint32_t blinding_key[8];
+  uint32_t blinding_nonce[2];
+  bignum authorized_data = init_bignum_to_zero();
+  random_bignum_key_nonce(blinding_key, blinding_nonce, 1);
+
+  const int nob = calculate_number_of_bignums_from_string(plaintext);
+  bignum ciphertext_blocks[nob];
+  plaintext_to_ciphertext_blocks(ciphertext_blocks, plaintext, key, nonce);
+  print_bignum_array(ciphertext_blocks, nob);
+
+  bignum hash_key = find_hash_key_value(threshold, nob, 3, 0);
+  bignum tag = ciphertext_blocks_to_tag(ciphertext_blocks, nob, hash_key, authorized_data, blinding_key, blinding_nonce);
+
+  ciphertext_blocks[0] = one_bit_modification(ciphertext_blocks[0], 42);
+  // ciphertext_blocks[0] = one_bit_modification(ciphertext_blocks[0], 100);
+
+  volatile verify_result res = verify(authorized_data, ciphertext_blocks, nob, tag, threshold, hash_key, blinding_key, blinding_nonce);
+
+  stop_timer();
+
+  // --------------------------------------- my code end -------------------------------------------------------------------------------------------
 
   while (true) {
     // sleepmgr_enter_sleep();

@@ -51,8 +51,9 @@ int hamming_weight(bignum n);
 /// @brief Generates a pseudo random bignum, key and nonce by using the Salsa20 cipher and the clock() function from "time.h".
 /// @param key_res The resulting pseudo random key. Input array gets overwritten.
 /// @param nonce_res The resulting pseudo random nonce. Input array gets overwritten.
+/// @param seed Seed value to generate random values
 /// @return A pseudo random bignum.
-bignum random_bignum_key_nonce(uint32_t key_res[8], uint32_t nonce_res[2]);
+bignum random_bignum_key_nonce(uint32_t key_res[8], uint32_t nonce_res[2], uint32_t seed);
 
 /// @brief Converts the polynom to a bignum by using the Galois arithmetic.
 /// @param bit_indices The polynom as representation of indices where the bit one is set. Max. value for an index is 127.

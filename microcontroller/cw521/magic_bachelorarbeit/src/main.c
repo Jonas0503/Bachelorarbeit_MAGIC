@@ -9,42 +9,46 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
+#include "time.h"
 
 
 void example_magic_mode() {
     // example
     char *plaintext = "Hallo Welt! Ich bin der Jonas.";
-    int threshold = 2;
+    int threshold = 1;
 
     uint32_t key[8];
     uint32_t nonce[2];
-    random_bignum_key_nonce(key, nonce);
+    random_bignum_key_nonce(key, nonce, 0);
 
     uint32_t blinding_key[8];
     uint32_t blinding_nonce[2];
     bignum authorized_data = init_bignum_to_zero();
-    random_bignum_key_nonce(blinding_key, blinding_nonce);
+    random_bignum_key_nonce(blinding_key, blinding_nonce, 1);
 
     const int nob = calculate_number_of_bignums_from_string(plaintext);
     bignum ciphertext_blocks[nob];
     plaintext_to_ciphertext_blocks(ciphertext_blocks, plaintext, key, nonce);
 
-    bignum hash_key = find_hash_key_value(threshold, nob, 3);
+    bignum hash_key = find_hash_key_value(threshold, nob, 3, 0);
     bignum tag = ciphertext_blocks_to_tag(ciphertext_blocks, nob, hash_key, authorized_data, blinding_key, blinding_nonce);
 
     print_bignum_array(ciphertext_blocks, nob);
     printf("\n");
     ciphertext_blocks[0] = one_bit_modification(ciphertext_blocks[0], 42);
-    ciphertext_blocks[0] = one_bit_modification(ciphertext_blocks[0], 100);
+    // ciphertext_blocks[0] = one_bit_modification(ciphertext_blocks[0], 100);
     print_bignum_array(ciphertext_blocks, nob);
     printf("\n");
 
     verify_result res = verify(authorized_data, ciphertext_blocks, nob, tag, threshold, hash_key, blinding_key, blinding_nonce);
     print_bignum_array(res.ciphertext_blocks, nob);
+    printf("\n");
+    print_bignum(res.tag);
+    printf("\n");
 }
 
 
-int main() {
+void example_hamming_code_per_block() {
     char *s = "asdfghjklqwertzuzzzasdfghjklqwertzuzzzasdfghjklqwertzuzzzasdfghjklqwertzuzzzasdfghjklqwertzuzzzasdfghjklqwertzuzzzasdfghjklqwertzuzzz";
     int number_of_bignums = calculate_number_of_bignums_from_string(s);
     int number_of_bignums_parity = calculate_number_of_bignums_with_parity_from_string(s);
@@ -76,6 +80,11 @@ int main() {
     bignum blocks_no_parity[number_of_bignums];
     remove_parity_from_ciphertext_blocks(blocks_no_parity, blocks_parity, number_of_bignums_parity, number_of_bignums);
     print_bignum_array(blocks_no_parity, number_of_bignums);
+}
+
+
+int main() {
+    example_magic_mode();
 
     return 0;
 }
