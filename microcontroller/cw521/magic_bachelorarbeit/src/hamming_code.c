@@ -6,37 +6,37 @@
 #include "math.h"
 
 
-int calculate_number_of_bignums_with_parity_from_string(char *text) {
+int calculate_number_of_ciphertext_blocks_with_parity_from_string(char *text) {
     int plaintext_size = strlen(text);
 
     // number of bignums without parity
     int number_of_filled_chunks = (((plaintext_size - 1) / BLOCKSIZE) + 1);
-    int number_of_bignums = (number_of_filled_chunks + (BLOCKSIZE-1)) / BLOCKSIZE;
+    int number_of_ciphertext_blocks = (number_of_filled_chunks + (BLOCKSIZE-1)) / BLOCKSIZE;
 
     // number of bignums to add when parity is used in each block
-    int parity_bits_to_add = 8 * number_of_bignums;
-    int bignums_to_add = (parity_bits_to_add / 129) + 1;
+    int parity_bits_to_add = 8 * number_of_ciphertext_blocks;
+    int ciphertext_blocks_to_add = (parity_bits_to_add / 129) + 1;
 
     // number of bignums with parity
-    return number_of_bignums + bignums_to_add;
+    return number_of_ciphertext_blocks + ciphertext_blocks_to_add;
 }
 
 
-void bignum_array_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128], bignum *bignum_blocks, int number_of_bignums, int number_of_bignums_with_parity) {
+void ciphertext_blocks_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128], bignum *ciphertext_blocks, int number_of_blocks, int number_of_blocks_with_parity) {
     // all fields should be zero at the start
-    for (int i = 0; i < number_of_bignums_with_parity; i++) {
+    for (int i = 0; i < number_of_blocks_with_parity; i++) {
         for (int k = 0; k < 128; k++) {
             bit_arrays[i][k] = false;
         }
     }
 
-    int number_of_chunks = number_of_bignums * 4;
+    int number_of_chunks = number_of_blocks * 4;
     int bit_index = 127;
-    int array_index_bits = number_of_bignums_with_parity - 1;
-    int array_index_bignum_array = number_of_bignums - 1;
+    int array_index_bits = number_of_blocks_with_parity - 1;
+    int array_index_bignum_array = number_of_blocks - 1;
     bool next_block = false;
 
-    // iterate over all bignum chunks in the bignum_blocks array
+    // iterate over all ciphertext chunks in the ciphertext_blocks array
     // starting with the last chunk
     for (int i = number_of_chunks-1; i >= 0; i--) {
         // iterate over all bits of one chunk
@@ -46,7 +46,7 @@ void bignum_array_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128
                 // the rest of the current chunk gets to a new bit array and skip position 0, 1 and 2
                 bit_index = 127;
                 for(; k < 32; k++) {
-                    bool bit = (bignum_blocks[array_index_bignum_array].chunks[i % 4] >> k) & 1;
+                    bool bit = (ciphertext_blocks[array_index_bignum_array].chunks[i % 4] >> k) & 1;
                     bit_arrays[array_index_bits-1][bit_index] = bit;
                     bit_index--;
                 }
@@ -61,7 +61,7 @@ void bignum_array_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128
             }
 
             // set bits in the bit array
-            bool bit = (bignum_blocks[array_index_bignum_array].chunks[i % 4] >> k) & 1;
+            bool bit = (ciphertext_blocks[array_index_bignum_array].chunks[i % 4] >> k) & 1;
             bit_arrays[array_index_bits][bit_index] = bit;
             bit_index--;
         }
@@ -71,7 +71,7 @@ void bignum_array_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128
             next_block = false;
             array_index_bits--;
         }
-        // go to the "previous" bignum if all chunks were iterated
+        // go to the "previous" ciphertext block if all chunks were iterated
         if (i % 4 == 0) {
             array_index_bignum_array--;
         }
@@ -79,12 +79,12 @@ void bignum_array_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128
 }
 
 
-void set_parity_bits(bool bit_arrays[][128], int number_of_bignums_with_parity) {
+void set_parity_bits(bool bit_arrays[][128], int number_of_blocks_with_parity) {
     int result_xor_all_set_bits = 0;
     int number_of_set_bits = 0;
 
     // iterate over all bits starting from the last (least significant) bit
-    for (int i = 0; i < number_of_bignums_with_parity; i++) {
+    for (int i = 0; i < number_of_blocks_with_parity; i++) {
         for (int k = 0; k < 128; k++) {
             // XOR all set bits in one bignum/block together and count them
             if (bit_arrays[i][k]) {
@@ -141,7 +141,7 @@ void add_parity_to_bignum_array(bignum *bignums_with_parity, bignum *bignum_bloc
     // contains the bit representation of bignum_blocks with space for the parity bits
     bool bit_arrays[number_of_bignums_with_parity][128];
 
-    bignum_array_to_bit_arrays_with_space_for_parity_bits(bit_arrays, bignum_blocks, number_of_bignums, number_of_bignums_with_parity);
+    ciphertext_blocks_to_bit_arrays_with_space_for_parity_bits(bit_arrays, bignum_blocks, number_of_bignums, number_of_bignums_with_parity);
     set_parity_bits(bit_arrays, number_of_bignums_with_parity);
     bit_arrays_to_bignum_array(bignums_with_parity, number_of_bignums_with_parity, bit_arrays);
 }
@@ -197,14 +197,14 @@ hc_result verify_hamming_code(bignum *ciphertext_blocks, int number_of_bignums) 
 
         // two bit error was detected
         if ((result_xor_all_set_bits != 0) && ((number_of_set_bits % 2) == 0)) {
-            bignum bignum_array[1];
+            bignum bignum_array_zero[1];
             bignum zero = init_bignum_to_zero();
-            bignum_array[0] = zero;
+            bignum_array_zero[0] = zero;
 
             result.correction_successful = false;
             result.one_bit_error = false;
             result.two_bit_error = true;
-            result.ciphertext_blocks_with_parity = bignum_array;
+            result.ciphertext_blocks_with_parity = bignum_array_zero;
             result.tag_with_parity = init_bignum_to_zero();
 
             return result;
@@ -235,14 +235,14 @@ hc_result verify_hamming_code(bignum *ciphertext_blocks, int number_of_bignums) 
     }
 
     // no error -> result_xor_all_set_bits is zero in each block
-    bignum bignum_array[1];
+    bignum bignum_array_zero[1];
     bignum zero = init_bignum_to_zero();
-    bignum_array[0] = zero;
+    bignum_array_zero[0] = zero;
 
     result.correction_successful =  true;
     result.one_bit_error = false;
     result.two_bit_error = false;
-    result.ciphertext_blocks_with_parity = bignum_array;
+    result.ciphertext_blocks_with_parity = bignum_array_zero;
     result.tag_with_parity = init_bignum_to_zero();
 
     return result;

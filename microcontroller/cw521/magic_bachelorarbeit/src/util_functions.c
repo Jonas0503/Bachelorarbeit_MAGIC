@@ -27,7 +27,7 @@ uint64_t convert_two_32_bit_into_64_bit(uint32_t left_part, uint32_t right_part)
 
 int calculate_number_of_bignums_from_string(char *text) {
     int plaintext_size = strlen(text);
-    int number_of_filled_chunks = ((plaintext_size - 1) / BLOCKSIZE) + 1;
+    int number_of_filled_chunks = ((plaintext_size - 1) / 4) + 1;
     int number_of_bignums = (number_of_filled_chunks + (BLOCKSIZE-1)) / BLOCKSIZE;
 
     return number_of_bignums;

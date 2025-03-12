@@ -49,9 +49,9 @@ void example_magic_mode() {
 
 
 void example_hamming_code_per_block() {
-    char *s = "asdfghjklqwertzuzzzasdfghjklqwertzuzzzasdfghjklqwertzuzzzasdfghjklqwertzuzzzasdfghjklqwertzuzzzasdfghjklqwertzuzzzasdfghjklqwertzuzzz";
+    char *s = "Hallo Welt";
     int number_of_bignums = calculate_number_of_bignums_from_string(s);
-    int number_of_bignums_parity = calculate_number_of_bignums_with_parity_from_string(s);
+    int number_of_bignums_parity = calculate_number_of_ciphertext_blocks_with_parity_from_string(s);
 
     uint32_t key[8] = {
         0xEAEBECED, 0xEEEFF0F1, 0xF2F3F4F5, 0xF6F7F8F9,
@@ -84,7 +84,8 @@ void example_hamming_code_per_block() {
 
 
 int main() {
-    example_magic_mode();
+    // example_magic_mode();
+    example_hamming_code_per_block();
 
     return 0;
 }

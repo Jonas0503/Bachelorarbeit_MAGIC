@@ -14,17 +14,17 @@ typedef struct {
 } hc_result;
 
 
-/// @brief Calculates the number of bignums with parity values from the string which gets encrypted.
-/// @param text The string for the calculation.
-/// @return The number of bignums with parity values in each bignum block.
-int calculate_number_of_bignums_with_parity_from_string(char *text);
+/// @brief Calculates the number of ciphertext blocks with parity values from the string which gets encrypted.
+/// @param text The string with ASCII for the calculation.
+/// @return The number of ciphertext blocks with parity values in each ciphertext block.
+int calculate_number_of_ciphertext_blocks_with_parity_from_string(char *text);
 
 /// @brief Converts the bignum to an array of bits with space for the parity bits at powers of two.
 /// @param bit_arrays The bignum array represented as an array with array of bits. Has space for parity bits in each array. This array contains the result.
 /// @param bignum_blocks The bignum array to be converted.
 /// @param number_of_bignums The number of bignum blocks without parity.
 /// @param number_of_bignums_with_parity The number of bignum blocks with parity.
-void bignum_array_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128], bignum *bignum_blocks, int number_of_bignums, int number_of_bignums_with_parity);
+void ciphertext_blocks_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128], bignum *bignum_blocks, int number_of_bignums, int number_of_bignums_with_parity);
 
 /// @brief Sets the parity bits in each bit array to detect two bit errors and correct a one bit error (even parity).
 /// @param bit_arrays The bits arrays with space for the parity bits.
@@ -51,7 +51,7 @@ void add_parity_to_bignum_array(bignum *bignums_with_parity, bignum *bignum_bloc
 void bignum_array_to_bit_arrays(bool bit_arrays[][128], bignum *bignum_blocks, int number_of_bignums);
 
 /// @brief Checks the bignum blocks with hamming code in each block.
-/// @param ciphertext_blocks The blocks which gets verified.
+/// @param ciphertext_blocks The blocks which gets verified and corrected if possible.
 /// @param number_of_bignums The size of ciphertext_blocks.
 /// @return The result of the hamming code check in form of a struct.
 hc_result verify_hamming_code(bignum *ciphertext_blocks, int number_of_bignums);
