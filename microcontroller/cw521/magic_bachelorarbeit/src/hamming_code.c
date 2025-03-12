@@ -6,7 +6,7 @@
 #include "math.h"
 
 
-int calculate_number_of_ciphertext_blocks_with_parity_from_string(char *text) {
+int number_of_encrypted_ciphertext_blocks_with_parity_from_string(char *text) {
     int plaintext_size = strlen(text);
 
     // number of bignums without parity
@@ -22,21 +22,21 @@ int calculate_number_of_ciphertext_blocks_with_parity_from_string(char *text) {
 }
 
 
-void ciphertext_blocks_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128], bignum *ciphertext_blocks, int number_of_blocks, int number_of_blocks_with_parity) {
+void bignums_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128], bignum *bignum_blocks, int number_of_bignums, int number_of_bignums_with_parity) {
     // all fields should be zero at the start
-    for (int i = 0; i < number_of_blocks_with_parity; i++) {
+    for (int i = 0; i < number_of_bignums_with_parity; i++) {
         for (int k = 0; k < 128; k++) {
             bit_arrays[i][k] = false;
         }
     }
 
-    int number_of_chunks = number_of_blocks * 4;
+    int number_of_chunks = number_of_bignums * 4;
     int bit_index = 127;
-    int array_index_bits = number_of_blocks_with_parity - 1;
-    int array_index_bignum_array = number_of_blocks - 1;
+    int array_index_bits = number_of_bignums_with_parity - 1;
+    int array_index_bignum_array = number_of_bignums - 1;
     bool next_block = false;
 
-    // iterate over all ciphertext chunks in the ciphertext_blocks array
+    // iterate over all ciphertext chunks in the bignums array
     // starting with the last chunk
     for (int i = number_of_chunks-1; i >= 0; i--) {
         // iterate over all bits of one chunk
@@ -46,7 +46,7 @@ void ciphertext_blocks_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[
                 // the rest of the current chunk gets to a new bit array and skip position 0, 1 and 2
                 bit_index = 127;
                 for(; k < 32; k++) {
-                    bool bit = (ciphertext_blocks[array_index_bignum_array].chunks[i % 4] >> k) & 1;
+                    bool bit = (bignum_blocks[array_index_bignum_array].chunks[i % 4] >> k) & 1;
                     bit_arrays[array_index_bits-1][bit_index] = bit;
                     bit_index--;
                 }
@@ -61,7 +61,7 @@ void ciphertext_blocks_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[
             }
 
             // set bits in the bit array
-            bool bit = (ciphertext_blocks[array_index_bignum_array].chunks[i % 4] >> k) & 1;
+            bool bit = (bignum_blocks[array_index_bignum_array].chunks[i % 4] >> k) & 1;
             bit_arrays[array_index_bits][bit_index] = bit;
             bit_index--;
         }
@@ -79,12 +79,12 @@ void ciphertext_blocks_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[
 }
 
 
-void set_parity_bits(bool bit_arrays[][128], int number_of_blocks_with_parity) {
+void set_parity_bits(bool bit_arrays[][128], int number_of_bignums_with_parity) {
     int result_xor_all_set_bits = 0;
     int number_of_set_bits = 0;
 
     // iterate over all bits starting from the last (least significant) bit
-    for (int i = 0; i < number_of_blocks_with_parity; i++) {
+    for (int i = 0; i < number_of_bignums_with_parity; i++) {
         for (int k = 0; k < 128; k++) {
             // XOR all set bits in one bignum/block together and count them
             if (bit_arrays[i][k]) {
@@ -141,7 +141,7 @@ void add_parity_to_bignum_array(bignum *bignums_with_parity, bignum *bignum_bloc
     // contains the bit representation of bignum_blocks with space for the parity bits
     bool bit_arrays[number_of_bignums_with_parity][128];
 
-    ciphertext_blocks_to_bit_arrays_with_space_for_parity_bits(bit_arrays, bignum_blocks, number_of_bignums, number_of_bignums_with_parity);
+    bignums_to_bit_arrays_with_space_for_parity_bits(bit_arrays, bignum_blocks, number_of_bignums, number_of_bignums_with_parity);
     set_parity_bits(bit_arrays, number_of_bignums_with_parity);
     bit_arrays_to_bignum_array(bignums_with_parity, number_of_bignums_with_parity, bit_arrays);
 }
@@ -249,7 +249,7 @@ hc_result verify_hamming_code(bignum *ciphertext_blocks, int number_of_bignums) 
 }
 
 
-void remove_parity_from_ciphertext_blocks(bignum *blocks_no_parity, bignum *ciphertext_blocks_with_parity, int number_of_blocks_with_parity, int number_of_blocks) {
+void remove_parity_from_encrypted_ciphertext_blocks(bignum *blocks_no_parity, bignum *ciphertext_blocks_with_parity, int number_of_blocks_with_parity, int number_of_blocks) {
     bool bit_arrays_parity[number_of_blocks_with_parity][128];
     bignum_array_to_bit_arrays(bit_arrays_parity, ciphertext_blocks_with_parity, number_of_blocks_with_parity);
 

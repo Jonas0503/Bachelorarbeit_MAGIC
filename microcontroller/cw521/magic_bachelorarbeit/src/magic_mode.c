@@ -10,57 +10,6 @@
 const int BLOCKSIZE = 4;
 
 
-void plaintext_to_ciphertext_blocks(bignum *ciphertext_blocks, char *plaintext, uint32_t key[8], uint32_t nonce[2]) {
-    const int number_of_bignums = calculate_number_of_bignums_from_string(plaintext);
-
-    // string to bignum array
-    bignum bignum_array_plaintext[number_of_bignums];
-    string_to_bignum_array(bignum_array_plaintext, plaintext);
-
-    // bignum array to one uint32_t array
-    const int number_of_chunks = number_of_bignums * BLOCKSIZE;
-    uint32_t plaintext_hex[number_of_chunks];
-    bignum_blocks_to_one_array(plaintext_hex, bignum_array_plaintext, number_of_bignums);
-
-    // encryption
-    uint32_t ciphertext_hex[number_of_chunks];
-    salsa20_encryption_decryption(key, nonce, plaintext_hex, ciphertext_hex, number_of_chunks);
-
-    uint32_t one_block[BLOCKSIZE];
-
-    // ciphertext array to an array of bignums which represents the several blocks for MAGIC
-    for (int i = 0, k = 0; i < number_of_chunks; i++, k++) {
-        one_block[i%4] = ciphertext_hex[i];
-
-        // every 128 bits add the bignum to the array with block[0] until block[3]
-        if (k == 3) {
-            ciphertext_blocks[((i+1)/BLOCKSIZE)-1] = init_bignum(one_block);
-            k = -1;  // start again at k = 0
-        }
-    }
-}
-
-
-void ciphertext_blocks_to_plaintext_as_str(unsigned char *plaintext, bignum ciphertext_blocks[], int number_of_blocks, uint32_t key[8], uint32_t nonce[2]) {
-    const int number_of_chunks = number_of_blocks * BLOCKSIZE;
-
-    // bignum array to one uint32_t array
-    uint32_t ciphertext_hex[number_of_chunks];
-    bignum_blocks_to_one_array(ciphertext_hex, ciphertext_blocks, number_of_blocks);
-
-    // decryption
-    uint32_t plaintext_hex[number_of_chunks];
-    salsa20_encryption_decryption(key, nonce, ciphertext_hex, plaintext_hex, number_of_chunks);
-
-    // convert to bignum array and ignore leading zeros
-    bignum bignum_array_plaintext[number_of_blocks];
-    init_bignum_array(bignum_array_plaintext, number_of_blocks, plaintext_hex, number_of_chunks);
-
-    // convert to string
-    bignum_array_to_string(plaintext, bignum_array_plaintext, number_of_blocks);
-}
-
-
 bignum find_hash_key_value(int threshold, int number_of_blocks, int max_number_of_tries, uint32_t seed) {
     printf("Tries left: %d\n", max_number_of_tries);
     if (max_number_of_tries == 0) {

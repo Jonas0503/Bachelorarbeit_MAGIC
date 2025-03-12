@@ -1,5 +1,6 @@
 #include "acutest.h"
 #include "salsa20.h"
+#include "bignum.h"
 
 #include "stdbool.h"
 
@@ -348,6 +349,26 @@ void test_salsa20_encryption_decryption_2(void) {
 }
 
 
+void test_plaintext_to_blocks_and_back_to_plaintext(void) {
+    char *text = "Hallo Welt!Hallo Welt!Hallo Welt!Hallo Welt!Hallo Welt!";
+    uint32_t key[8] = {
+        0x80000000, 0x0, 0x0, 0x0,
+        0x0, 0x0, 0x0, 0x0
+    };
+    uint32_t nonce[2] = {0x0};
+
+    const int number_of_blocks = calculate_number_of_bignums_from_string(text);
+    bignum ciphertext_blocks[number_of_blocks];
+    plaintext_to_ciphertext_blocks(ciphertext_blocks, text, key, nonce);
+
+    const int number_of_chars = calculate_number_of_chars_from_bignum_array(ciphertext_blocks, number_of_blocks);
+    unsigned char plaintext[number_of_chars];
+    ciphertext_blocks_to_plaintext_as_str(plaintext, ciphertext_blocks, number_of_blocks, key, nonce);
+
+    TEST_CHECK(strcmp(text, (char *)plaintext) == 0);
+}
+
+
 TEST_LIST = {
     {"shift_left_and_rotate", test_shift_left_and_rotate},
     {"quarterround_1", test_quarterround_1},
@@ -364,5 +385,6 @@ TEST_LIST = {
     {"salsa20_expansion", test_salsa20_expansion},
     {"salsa20_encryption_decryption_1", test_salsa20_encryption_decryption_1},
     {"salsa20_encryption_decryption_2", test_salsa20_encryption_decryption_2},
+    {"plaintext_to_blocks_and_back_to_plaintext", test_plaintext_to_blocks_and_back_to_plaintext},
     {NULL, NULL}
 };

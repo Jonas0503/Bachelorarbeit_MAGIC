@@ -1,28 +1,9 @@
 #include "acutest.h"
 #include "magic_mode.h"
 #include "util_functions.h"
+#include "salsa20.h"
 
 #include "string.h"
-
-
-void test_plaintext_to_blocks_and_back_to_plaintext(void) {
-    char *text = "Hallo Welt!Hallo Welt!Hallo Welt!Hallo Welt!Hallo Welt!";
-    uint32_t key[8] = {
-        0x80000000, 0x0, 0x0, 0x0,
-        0x0, 0x0, 0x0, 0x0
-    };
-    uint32_t nonce[2] = {0x0};
-
-    const int number_of_blocks = calculate_number_of_bignums_from_string(text);
-    bignum ciphertext_blocks[number_of_blocks];
-    plaintext_to_ciphertext_blocks(ciphertext_blocks, text, key, nonce);
-
-    const int number_of_chars = calculate_number_of_chars_from_bignum_array(ciphertext_blocks, number_of_blocks);
-    unsigned char plaintext[number_of_chars];
-    ciphertext_blocks_to_plaintext_as_str(plaintext, ciphertext_blocks, number_of_blocks, key, nonce);
-
-    TEST_CHECK(strcmp(text, (char *)plaintext) == 0);
-}
 
 
 void test_tag_encryption_decryption(void) {
@@ -285,7 +266,6 @@ void test_verify_two_bit_error_and_threshold_is_one(void) {
 
 
 TEST_LIST = {
-    {"plaintext_to_blocks_and_back_to_plaintext", test_plaintext_to_blocks_and_back_to_plaintext},
     {"tag_encryption_decryption", test_tag_encryption_decryption},
     {"verify_one_bit_error_in_ciphertext", test_verify_one_bit_error_in_ciphertext},
     {"verify_two_bit_error_in_ciphertext", test_verify_two_bit_error_in_ciphertext},

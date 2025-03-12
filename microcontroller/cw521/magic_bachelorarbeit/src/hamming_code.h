@@ -14,17 +14,17 @@ typedef struct {
 } hc_result;
 
 
-/// @brief Calculates the number of ciphertext blocks with parity values from the string which gets encrypted.
-/// @param text The string with ASCII for the calculation.
+/// @brief Calculates the number of ciphertext blocks with parity values from a ASCII string which gets encrypted.
+/// @param text The ASCII string for the calculation.
 /// @return The number of ciphertext blocks with parity values in each ciphertext block.
-int calculate_number_of_ciphertext_blocks_with_parity_from_string(char *text);
+int number_of_encrypted_ciphertext_blocks_with_parity_from_string(char *text);
 
 /// @brief Converts the bignum to an array of bits with space for the parity bits at powers of two.
 /// @param bit_arrays The bignum array represented as an array with array of bits. Has space for parity bits in each array. This array contains the result.
 /// @param bignum_blocks The bignum array to be converted.
 /// @param number_of_bignums The number of bignum blocks without parity.
 /// @param number_of_bignums_with_parity The number of bignum blocks with parity.
-void ciphertext_blocks_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128], bignum *bignum_blocks, int number_of_bignums, int number_of_bignums_with_parity);
+void bignums_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128], bignum *bignum_blocks, int number_of_bignums, int number_of_bignums_with_parity);
 
 /// @brief Sets the parity bits in each bit array to detect two bit errors and correct a one bit error (even parity).
 /// @param bit_arrays The bits arrays with space for the parity bits.
@@ -61,7 +61,7 @@ hc_result verify_hamming_code(bignum *ciphertext_blocks, int number_of_bignums);
 /// @param ciphertext_blocks_with_parity The current bignum array with parity values in each block.
 /// @param number_of_blocks_with_parity The number of blocks with parity values in each block.
 /// @param number_of_blocks The number of blocks of the resulting bignum array.
-void remove_parity_from_ciphertext_blocks(bignum *blocks_no_parity, bignum *ciphertext_blocks_with_parity, int number_of_blocks_with_parity, int number_of_blocks);
+void remove_parity_from_encrypted_ciphertext_blocks(bignum *blocks_no_parity, bignum *ciphertext_blocks_with_parity, int number_of_blocks_with_parity, int number_of_blocks);
 
 /// @brief Prints each 128-bit block to a new line.
 /// @param bit_arrays The bit arrays to be printed.

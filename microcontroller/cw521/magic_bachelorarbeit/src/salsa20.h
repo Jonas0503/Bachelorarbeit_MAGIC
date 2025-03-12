@@ -1,5 +1,7 @@
 #include "stdint.h"
 
+#include "bignum.h"
+
 
 /// @brief Shift the number to the left x bits and add them back on the right.
 /// @param value The number to be shifted and rotated.
@@ -61,3 +63,18 @@ uint64_t update_position(uint64_t position, uint32_t nonce_with_position[4], int
 /// @brief Prints the state of Salsa.
 /// @param state The state to be printed.
 void print_internal_state_of_salsa(uint32_t state[16]);
+
+/// @brief Encrypts the plaintext and returns bignums with 4 chunks (128-bit) each.
+/// @param ciphertext_blocks The resulting bignum array which represents the encrypted blocks.
+/// @param plaintext The plaintext to be encrypted.
+/// @param key The key for the plaintext encryption.
+/// @param nonce The nonce for the plaintext encryption.
+void plaintext_to_ciphertext_blocks(bignum *ciphertext_blocks, char *plaintext, uint32_t key[8], uint32_t nonce[2]);
+
+/// @brief Decrypts the ciphertext blocks and returns the decrypted text.
+/// @param plaintext The resulting plaintext as unsigned char which represents the decrypted blocks.
+/// @param ciphertext_blocks The ciphertext blocks with 4 chunks (128-bit) each to be decrypted with a zero block at the end to calculate the number of blocks.
+/// @param number_of_blocks The size of the ciphertext array.
+/// @param key The key for the decryption. The same key as for the encryption is necessary.
+/// @param nonce The nonce for the decryption. The same nonce as for the encryption is necessary.
+void ciphertext_blocks_to_plaintext_as_str(unsigned char *plaintext, bignum ciphertext_blocks[], int number_of_blocks, uint32_t key[8], uint32_t nonce[2]);
