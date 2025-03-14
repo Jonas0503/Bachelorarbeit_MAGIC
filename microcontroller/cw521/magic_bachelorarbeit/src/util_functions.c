@@ -5,6 +5,7 @@
 #include "stdlib.h"
 #include "string.h"
 #include "stdio.h"
+#include "math.h"
 
 
 // defined in magic_mode.c
@@ -276,4 +277,27 @@ bignum one_bit_modification(bignum n, int bit_position) {
     result.chunks[chunk_position] ^= (1 << bit_position);
 
     return result;
+}
+
+// TODO: testen
+float average(uint32_t *results, int number_of_results) {
+    float avg = 0;
+
+    for (int i = 0; i < number_of_results; i++) {
+        avg += (float)results[i];
+    }
+
+    return avg / (float)number_of_results;
+}
+
+
+float standard_deviation(uint32_t *results, int number_of_results, float avg) {
+    float var = 0;
+
+    for (int i = 0; i < number_of_results; i++) {
+        float tmp = (float)results[i] - avg;
+        var += (tmp * tmp);
+    }
+
+    return sqrt(var / (float)number_of_results);
 }

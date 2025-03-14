@@ -78,6 +78,48 @@ uint32_t get_cycles() {
   return *DWT_CYCCNT;
 }
 
+
+void encryption_changing_blocks(int start, int end, int interval, int number_of_measurements) {
+  uint32_t key[8] = {
+    0xEAEBECED, 0xEEEFF0F1, 0xF2F3F4F5, 0xF6F7F8F9,
+    0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
+  };
+  uint32_t nonce[2] = {0x0, 0x0};
+
+  char *one_block_text = "1234ABCD5678EFGH";
+
+  for (int i = start; i <= end; i += interval) {
+    volatile uint32_t results[number_of_measurements];
+    for (int f = 0; f < number_of_measurements; f++) {
+      bignum blocks[i];
+      int space_for_text = i * 16;
+      char text[space_for_text];
+
+      for (int k = 0; k < i; k++) {
+        if (k == 0) {
+          strcpy(text, one_block_text);
+        }
+        else {
+          strcat(text, one_block_text);
+        }
+      }
+
+      reset_timer();
+      start_timer();
+      plaintext_to_ciphertext_blocks(blocks, text, key, nonce);
+      volatile uint32_t number_of_cycles = get_cycles();
+      stop_timer();
+      volatile int x = 42;
+      results[f] = number_of_cycles;
+    }
+
+    volatile float avg = average(results, number_of_measurements);
+    volatile float vari = standard_deviation(results, number_of_measurements, avg);
+
+    volatile int y = 42;
+  }
+}
+
 // ------------------------------------------- my code end -----------------------------------------------------------------
 
 //Serial Number - will be read by device ID
@@ -216,48 +258,7 @@ int main(void)
 
   // ------------------------------------- my code start ---------------------------------------------------------------------
 
-  reset_timer();
-  volatile uint32_t res_sleep1 = get_cycles();
-  volatile int x = 3;
-  volatile int y = 10;
-  volatile int z = x + y;
-  volatile uint32_t res_sleep2 = get_cycles();
-  start_timer();
-
-  volatile int a = 3;
-  volatile int b = 10;
-  volatile int c = a + b;
-  c--;
-
-  volatile uint32_t res1 = get_cycles();
-
-  // example MAGIC-mode
-  char *plaintext = "Hallo Welt! Ich bin der Jonas.";
-  int threshold = 1;
-
-  uint32_t key[8];
-  uint32_t nonce[2];
-  random_bignum_key_nonce(key, nonce, 0);
-
-  uint32_t blinding_key[8];
-  uint32_t blinding_nonce[2];
-  bignum authorized_data = init_bignum_to_zero();
-  random_bignum_key_nonce(blinding_key, blinding_nonce, 1);
-
-  const int nob = calculate_number_of_bignums_from_string(plaintext);
-  bignum ciphertext_blocks[nob];
-  plaintext_to_ciphertext_blocks(ciphertext_blocks, plaintext, key, nonce);
-  print_bignum_array(ciphertext_blocks, nob);
-
-  bignum hash_key = find_hash_key_value(threshold, nob, 3, 0);
-  bignum tag = ciphertext_blocks_to_tag(ciphertext_blocks, nob, hash_key, authorized_data, blinding_key, blinding_nonce);
-
-  ciphertext_blocks[0] = one_bit_modification(ciphertext_blocks[0], 42);
-  // ciphertext_blocks[0] = one_bit_modification(ciphertext_blocks[0], 100);
-
-  volatile verify_result res = verify(authorized_data, ciphertext_blocks, nob, tag, threshold, hash_key, blinding_key, blinding_nonce);
-
-  stop_timer();
+  encryption_changing_blocks(1, 10, 1, 30);
 
   // --------------------------------------- my code end -------------------------------------------------------------------------------------------
 

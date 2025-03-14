@@ -48,7 +48,7 @@ void bignum_blocks_to_one_array(uint32_t *array, bignum *ciphertext_blocks, cons
 /// @return The hamming weight of bignum n
 int hamming_weight(bignum n);
 
-/// @brief Generates a pseudo random bignum, key and nonce by using the Salsa20 cipher and the clock() function from "time.h".
+/// @brief Generates a pseudo random bignum, key and nonce by using the Salsa20 cipher.
 /// @param key_res The resulting pseudo random key. Input array gets overwritten.
 /// @param nonce_res The resulting pseudo random nonce. Input array gets overwritten.
 /// @param seed Seed value to generate random values
@@ -76,3 +76,16 @@ bool check_hash_key(const int threshold, int number_of_blocks, bignum hash_key, 
 /// @param bit_position The position of the bit change starting from zero.
 /// @return The modified bignum.
 bignum one_bit_modification(bignum n, int bit_position);
+
+/// @brief Calculates the average in an array with int values.
+/// @param results The array of int values.
+/// @param number_of_results The size of the array.
+/// @return The average in the array.
+float average(uint32_t *results, int number_of_results);
+
+/// @brief Calculates the standard deviation in an array of int values.
+/// @param results The array of int values.
+/// @param number_of_results The size of the array.
+/// @param avg The average of the array.
+/// @return The standard deviation in the array.
+float standard_deviation(uint32_t *results, int number_of_results, float avg);
