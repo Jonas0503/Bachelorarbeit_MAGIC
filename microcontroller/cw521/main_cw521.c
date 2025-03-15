@@ -126,6 +126,47 @@ void encryption_changing_blocks(int start, int end, int interval, int number_of_
   }
 }
 
+
+void decryption_changing_blocks(int start, int end, int interval, int number_of_measurements) {
+  uint32_t key[8] = {
+    0xEAEBECED, 0xEEEFF0F1, 0xF2F3F4F5, 0xF6F7F8F9,
+    0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
+  };
+  uint32_t nonce[2] = {0x0, 0x0};
+
+  uint32_t one_block[4] = {0x12345678, 0xabcdef90, 0x87654321, 0x09fedcba};
+
+  for (int i = start; i <= end; i += interval) {
+    volatile uint32_t results[number_of_measurements];
+    for (int f = 0; f < number_of_measurements; f++) {
+      bignum blocks[i];
+      for (int k = 0; k < i; k++) {
+        blocks[k] = init_bignum(one_block);
+      }
+
+      int number_of_chars = calculate_number_of_chars_from_bignum_array(blocks, i);
+      char text[number_of_chars];
+
+      reset_timer();
+      start_timer();
+
+      ciphertext_blocks_to_plaintext_as_str(text, blocks, i, key, nonce);
+
+      volatile uint32_t number_of_cycles = get_cycles();
+      stop_timer();
+
+      results[f] = number_of_cycles;
+
+      volatile int PRINT_VALUES = 42;
+    }
+
+    volatile float avg = average(results, number_of_measurements);
+    volatile float sd = standard_deviation(results, number_of_measurements, avg);
+
+    volatile int PRINT_VALUES = 42;
+  }
+}
+
 // ------------------------------------------- my code end -----------------------------------------------------------------
 
 //Serial Number - will be read by device ID
@@ -264,7 +305,7 @@ int main(void)
 
   // ------------------------------------- my code start ---------------------------------------------------------------------
 
-  encryption_changing_blocks(50, 250, 25, 30);
+  decryption_changing_blocks(50, 250, 25, 30);
 
   // --------------------------------------- my code end -------------------------------------------------------------------------------------------
 
