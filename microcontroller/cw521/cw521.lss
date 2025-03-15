@@ -17,25 +17,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   6 .comment      00000045  00000000  00000000  0000eaa9  2**0
                   CONTENTS, READONLY
-  7 .debug_info   00019a41  00000000  00000000  0000eaee  2**0
+  7 .debug_info   00019a47  00000000  00000000  0000eaee  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  8 .debug_abbrev 000056dd  00000000  00000000  0002852f  2**0
+  8 .debug_abbrev 000056dd  00000000  00000000  00028535  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  9 .debug_loclists 000093e4  00000000  00000000  0002dc0c  2**0
+  9 .debug_loclists 000093e4  00000000  00000000  0002dc12  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 10 .debug_aranges 000010b0  00000000  00000000  00036ff0  2**0
+ 10 .debug_aranges 000010b0  00000000  00000000  00036ff6  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 11 .debug_rnglists 00001c77  00000000  00000000  000380a0  2**0
+ 11 .debug_rnglists 00001c77  00000000  00000000  000380a6  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 12 .debug_macro  0001aa6e  00000000  00000000  00039d17  2**0
+ 12 .debug_macro  0001aa6e  00000000  00000000  00039d1d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_line   0001fe31  00000000  00000000  00054785  2**0
+ 13 .debug_line   0001fe33  00000000  00000000  0005478b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_str    0005e530  00000000  00000000  000745b6  2**0
+ 14 .debug_str    0005e538  00000000  00000000  000745be  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_frame  00004398  00000000  00000000  000d2ae8  2**2
+ 15 .debug_frame  00004398  00000000  00000000  000d2af8  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_line_str 000001a8  00000000  00000000  000d6e80  2**0
+ 16 .debug_line_str 000001a8  00000000  00000000  000d6e90  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -365,6 +365,7 @@ void encryption_changing_blocks(int start, int end, int interval, int number_of_
    8029a:	c40f      	stmia	r4!, {r0, r1, r2, r3}
    8029c:	e895 000f 	ldmia.w	r5, {r0, r1, r2, r3}
 
+  // 16 chars
   char *one_block_text = "1234ABCD5678EFGH";
 
   for (int i = start; i <= end; i += interval) {
@@ -451,11 +452,11 @@ void encryption_changing_blocks(int start, int end, int interval, int number_of_
    8033e:	6a7c      	ldr	r4, [r7, #36]	@ 0x24
     *SCB_DEMCR   = *SCB_DEMCR | 0x01000000;
    80340:	f04f 2ce0 	mov.w	ip, #3758153728	@ 0xe000e000
-        }
-      }
 
       reset_timer();
       start_timer();
+
+      // encryption
       plaintext_to_ciphertext_blocks(blocks, text, key, nonce);
    80344:	4631      	mov	r1, r6
     *DWT_CONTROL = 0;
@@ -501,7 +502,10 @@ void encryption_changing_blocks(int start, int end, int interval, int number_of_
    8038a:	47a8      	blx	r5
       volatile uint32_t number_of_cycles = get_cycles();
       stop_timer();
-      volatile int x = 42;
+
+      results[f] = number_of_cycles;
+
+      volatile int PRINT_VALUES = 42;
    8038c:	222a      	movs	r2, #42	@ 0x2a
   return *DWT_CYCCNT;
    8038e:	f8d9 3000 	ldr.w	r3, [r9]
@@ -512,12 +516,12 @@ void encryption_changing_blocks(int start, int end, int interval, int number_of_
    80396:	f8da 3000 	ldr.w	r3, [sl]
    8039a:	6819      	ldr	r1, [r3, #0]
    8039c:	6019      	str	r1, [r3, #0]
-      volatile int x = 42;
-   8039e:	633a      	str	r2, [r7, #48]	@ 0x30
       results[f] = number_of_cycles;
-   803a0:	6afb      	ldr	r3, [r7, #44]	@ 0x2c
-   803a2:	697a      	ldr	r2, [r7, #20]
-   803a4:	f842 3024 	str.w	r3, [r2, r4, lsl #2]
+   8039e:	6afb      	ldr	r3, [r7, #44]	@ 0x2c
+   803a0:	6979      	ldr	r1, [r7, #20]
+   803a2:	f841 3024 	str.w	r3, [r1, r4, lsl #2]
+      volatile int PRINT_VALUES = 42;
+   803a6:	633a      	str	r2, [r7, #48]	@ 0x30
     for (int f = 0; f < number_of_measurements; f++) {
    803a8:	69bb      	ldr	r3, [r7, #24]
    803aa:	3401      	adds	r4, #1
@@ -536,20 +540,20 @@ void encryption_changing_blocks(int start, int end, int interval, int number_of_
    803c0:	4798      	blx	r3
    803c2:	4603      	mov	r3, r0
    803c4:	637b      	str	r3, [r7, #52]	@ 0x34
-    volatile float vari = standard_deviation(results, number_of_measurements, avg);
+    volatile float sd = standard_deviation(results, number_of_measurements, avg);
    803c6:	6b7a      	ldr	r2, [r7, #52]	@ 0x34
    803c8:	4b13      	ldr	r3, [pc, #76]	@ (80418 <encryption_changing_blocks+0x1a0>)
    803ca:	4628      	mov	r0, r5
    803cc:	4631      	mov	r1, r6
    803ce:	4798      	blx	r3
 
-    volatile int y = 42;
+    volatile int PRINT_VALUES = 42;
    803d0:	232a      	movs	r3, #42	@ 0x2a
   for (int i = start; i <= end; i += interval) {
    803d2:	68ba      	ldr	r2, [r7, #8]
-    volatile float vari = standard_deviation(results, number_of_measurements, avg);
+    volatile float sd = standard_deviation(results, number_of_measurements, avg);
    803d4:	63b8      	str	r0, [r7, #56]	@ 0x38
-    volatile int y = 42;
+    volatile int PRINT_VALUES = 42;
    803d6:	63fb      	str	r3, [r7, #60]	@ 0x3c
   for (int i = start; i <= end; i += interval) {
    803d8:	687b      	ldr	r3, [r7, #4]
@@ -962,12 +966,12 @@ __attribute__( ( always_inline ) ) __STATIC_INLINE void __enable_irq(void)
 
   // ------------------------------------- my code start ---------------------------------------------------------------------
 
-  encryption_changing_blocks(1, 10, 1, 30);
-   805f8:	2201      	movs	r2, #1
+  encryption_changing_blocks(50, 250, 25, 30);
+   805f8:	4c23      	ldr	r4, [pc, #140]	@ (80688 <main+0x26c>)
    805fa:	231e      	movs	r3, #30
-   805fc:	210a      	movs	r1, #10
-   805fe:	4610      	mov	r0, r2
-   80600:	4c21      	ldr	r4, [pc, #132]	@ (80688 <main+0x26c>)
+   805fc:	2219      	movs	r2, #25
+   805fe:	21fa      	movs	r1, #250	@ 0xfa
+   80600:	2032      	movs	r0, #50	@ 0x32
    80602:	47a0      	blx	r4
 
   // --------------------------------------- my code end -------------------------------------------------------------------------------------------
@@ -22194,10 +22198,10 @@ _write (int file, const char *ptr, int len)
    8be2c:	06070809 	.word	0x06070809
 
 0008be30 <BUILD_TIME>:
-   8be30:	323a3731 31353a36 00000000              17:26:51....
+   8be30:	303a3131 35343a30 00000000              11:00:45....
 
 0008be3c <BUILD_DATE>:
-   8be3c:	2072614d 32203431 00353230              Mar 14 2025.
+   8be3c:	2072614d 32203531 00353230              Mar 15 2025.
 
 0008be48 <BLOCKSIZE>:
    8be48:	00000004                                ....

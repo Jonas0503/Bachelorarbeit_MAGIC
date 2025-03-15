@@ -279,7 +279,7 @@ bignum one_bit_modification(bignum n, int bit_position) {
     return result;
 }
 
-// TODO: testen
+
 float average(uint32_t *results, int number_of_results) {
     float avg = 0;
 

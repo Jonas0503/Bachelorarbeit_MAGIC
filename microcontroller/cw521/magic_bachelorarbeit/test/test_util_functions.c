@@ -217,6 +217,28 @@ void test_one_bit_modification_first_block_zero_to_one(void) {
 }
 
 
+void test_average(void) {
+    uint32_t values[10] = {3, 56, 324, 213, 2, 87, 123, 7, 786, 1};
+    float expected = 160.2;
+
+    float res = average(values, 10);
+
+    TEST_CHECK(expected == res);
+}
+
+
+void test_standard_deviation(void) {
+    uint32_t values[10] = {3, 56, 324, 213, 2, 87, 123, 7, 786, 1};
+    float expected = 231.818375;
+    float avg = average(values, 10);
+
+    float res = standard_deviation(values, 10, avg);
+    printf("%f\n", res);
+
+    TEST_CHECK(expected == res);
+}
+
+
 TEST_LIST = {
     {"convert_64_bit_into_two_32_bit_a_is_less_than_32_bits", test_convert_64_bit_into_two_32_bit_a_is_less_than_32_bits},
     {"convert_64_bit_into_two_32_bit_a_is_more_than_32_bits", test_convert_64_bit_into_two_32_bit_a_is_more_than_32_bits},
@@ -234,5 +256,7 @@ TEST_LIST = {
     {"check_hash_key_true", test_check_hash_key_true},
     {"one_bit_modification_last_block_one_to_zero", test_one_bit_modification_last_block_one_to_zero},
     {"one_bit_modification_first_block_zero_to_one", test_one_bit_modification_first_block_zero_to_one},
+    {"average", test_average},
+    {"standard_deviation", test_standard_deviation},
     {NULL, NULL}
 };

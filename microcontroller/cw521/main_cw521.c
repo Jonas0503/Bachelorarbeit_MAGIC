@@ -86,6 +86,7 @@ void encryption_changing_blocks(int start, int end, int interval, int number_of_
   };
   uint32_t nonce[2] = {0x0, 0x0};
 
+  // 16 chars
   char *one_block_text = "1234ABCD5678EFGH";
 
   for (int i = start; i <= end; i += interval) {
@@ -106,17 +107,22 @@ void encryption_changing_blocks(int start, int end, int interval, int number_of_
 
       reset_timer();
       start_timer();
+
+      // encryption
       plaintext_to_ciphertext_blocks(blocks, text, key, nonce);
+
       volatile uint32_t number_of_cycles = get_cycles();
       stop_timer();
-      volatile int x = 42;
+
       results[f] = number_of_cycles;
+
+      volatile int PRINT_VALUES = 42;
     }
 
     volatile float avg = average(results, number_of_measurements);
-    volatile float vari = standard_deviation(results, number_of_measurements, avg);
+    volatile float sd = standard_deviation(results, number_of_measurements, avg);
 
-    volatile int y = 42;
+    volatile int PRINT_VALUES = 42;
   }
 }
 
@@ -258,7 +264,7 @@ int main(void)
 
   // ------------------------------------- my code start ---------------------------------------------------------------------
 
-  encryption_changing_blocks(1, 10, 1, 30);
+  encryption_changing_blocks(50, 250, 25, 30);
 
   // --------------------------------------- my code end -------------------------------------------------------------------------------------------
 
