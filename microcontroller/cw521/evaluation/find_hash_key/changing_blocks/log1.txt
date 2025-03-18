@@ -1,0 +1,349 @@
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf
+Start: 1; End: 10; Interval: 1; Threshold: 1; Measurements per block: 30
+
+Number of blocks: 1
+Number of cycles: 123079914; hash_key found?: 1
+Number of cycles: 123079241; hash_key found?: 1
+Number of cycles: 123078289; hash_key found?: 1
+Number of cycles: 123078508; hash_key found?: 1
+Number of cycles: 123078952; hash_key found?: 1
+Number of cycles: 123078905; hash_key found?: 1
+Number of cycles: 123079712; hash_key found?: 1
+Number of cycles: 123079717; hash_key found?: 1
+Number of cycles: 123079127; hash_key found?: 1
+Number of cycles: 123078444; hash_key found?: 1
+Number of cycles: 123079200; hash_key found?: 1
+Number of cycles: 123078771; hash_key found?: 1
+Number of cycles: 123079682; hash_key found?: 1
+Number of cycles: 123078333; hash_key found?: 1
+Number of cycles: 123078825; hash_key found?: 1
+Number of cycles: 123078450; hash_key found?: 1
+Number of cycles: 123079471; hash_key found?: 1
+Number of cycles: 123079375; hash_key found?: 1
+Number of cycles: 123077544; hash_key found?: 1
+Number of cycles: 123079456; hash_key found?: 1
+Number of cycles: 123078397; hash_key found?: 1
+Number of cycles: 123078492; hash_key found?: 1
+Number of cycles: 123079832; hash_key found?: 1
+Number of cycles: 123079505; hash_key found?: 1
+Number of cycles: 123079446; hash_key found?: 1
+Number of cycles: 123078517; hash_key found?: 1
+Number of cycles: 123078344; hash_key found?: 1
+Number of cycles: 123079479; hash_key found?: 1
+Number of cycles: 123079378; hash_key found?: 1
+Number of cycles: 123079264; hash_key found?: 1
+Average: 123079008.000000
+Standard deviation: 573.671204
+
+Number of blocks: 2
+Number of cycles: 192316955; hash_key found?: 1
+Number of cycles: 192315858; hash_key found?: 1
+Number of cycles: 192316031; hash_key found?: 1
+Number of cycles: 192316955; hash_key found?: 1
+Number of cycles: 192316112; hash_key found?: 1
+Number of cycles: 192316908; hash_key found?: 1
+Number of cycles: 192315797; hash_key found?: 1
+Number of cycles: 192317167; hash_key found?: 1
+Number of cycles: 192315216; hash_key found?: 1
+Number of cycles: 192316348; hash_key found?: 1
+Number of cycles: 192316705; hash_key found?: 1
+Number of cycles: 192316391; hash_key found?: 1
+Number of cycles: 192316228; hash_key found?: 1
+Number of cycles: 192316245; hash_key found?: 1
+Number of cycles: 192315808; hash_key found?: 1
+Number of cycles: 192316525; hash_key found?: 1
+Number of cycles: 192316843; hash_key found?: 1
+Number of cycles: 192315876; hash_key found?: 1
+Number of cycles: 192316802; hash_key found?: 1
+Number of cycles: 192316590; hash_key found?: 1
+Number of cycles: 192316186; hash_key found?: 1
+Number of cycles: 192316394; hash_key found?: 1
+Number of cycles: 192315609; hash_key found?: 1
+Number of cycles: 192315854; hash_key found?: 1
+Number of cycles: 192315805; hash_key found?: 1
+Number of cycles: 192315961; hash_key found?: 1
+Number of cycles: 192316344; hash_key found?: 1
+Number of cycles: 192317189; hash_key found?: 1
+Number of cycles: 192316086; hash_key found?: 1
+Number of cycles: 192316012; hash_key found?: 1
+Average: 192316272.000000
+Standard deviation: 482.977448
+
+Number of blocks: 3
+Number of cycles: 261422466; hash_key found?: 1
+Number of cycles: 261424088; hash_key found?: 1
+Number of cycles: 261423558; hash_key found?: 1
+Number of cycles: 261423476; hash_key found?: 1
+Number of cycles: 261423483; hash_key found?: 1
+Number of cycles: 261423311; hash_key found?: 1
+Number of cycles: 261423033; hash_key found?: 1
+Number of cycles: 261423458; hash_key found?: 1
+Number of cycles: 261423246; hash_key found?: 1
+Number of cycles: 261423364; hash_key found?: 1
+Number of cycles: 261423361; hash_key found?: 1
+Number of cycles: 261424084; hash_key found?: 1
+Number of cycles: 261422917; hash_key found?: 1
+Number of cycles: 261424034; hash_key found?: 1
+Number of cycles: 261424142; hash_key found?: 1
+Number of cycles: 261424407; hash_key found?: 1
+Number of cycles: 261421905; hash_key found?: 1
+Number of cycles: 261423180; hash_key found?: 1
+Number of cycles: 261423793; hash_key found?: 1
+Number of cycles: 261423623; hash_key found?: 1
+Number of cycles: 261424692; hash_key found?: 1
+Number of cycles: 261423573; hash_key found?: 1
+Number of cycles: 261422697; hash_key found?: 1
+Number of cycles: 261423688; hash_key found?: 1
+Number of cycles: 261424893; hash_key found?: 1
+Number of cycles: 261423337; hash_key found?: 1
+Number of cycles: 261423671; hash_key found?: 1
+Number of cycles: 261423712; hash_key found?: 1
+Number of cycles: 261423359; hash_key found?: 1
+Number of cycles: 261425498; hash_key found?: 1
+Average: 261423568.000000
+Standard deviation: 697.815247
+
+Number of blocks: 4
+Number of cycles: 330551889; hash_key found?: 1
+Number of cycles: 330551745; hash_key found?: 1
+Number of cycles: 330551792; hash_key found?: 1
+Number of cycles: 330551873; hash_key found?: 1
+Number of cycles: 330552291; hash_key found?: 1
+Number of cycles: 330551921; hash_key found?: 1
+Number of cycles: 330553349; hash_key found?: 1
+Number of cycles: 330552889; hash_key found?: 1
+Number of cycles: 330552550; hash_key found?: 1
+Number of cycles: 330552137; hash_key found?: 1
+Number of cycles: 330551745; hash_key found?: 1
+Number of cycles: 330552252; hash_key found?: 1
+Number of cycles: 330550964; hash_key found?: 1
+Number of cycles: 330551021; hash_key found?: 1
+Number of cycles: 330552211; hash_key found?: 1
+Number of cycles: 330552549; hash_key found?: 1
+Number of cycles: 330553028; hash_key found?: 1
+Number of cycles: 330552258; hash_key found?: 1
+Number of cycles: 330551774; hash_key found?: 1
+Number of cycles: 330553278; hash_key found?: 1
+Number of cycles: 330553676; hash_key found?: 1
+Number of cycles: 330551693; hash_key found?: 1
+Number of cycles: 330552516; hash_key found?: 1
+Number of cycles: 330552115; hash_key found?: 1
+Number of cycles: 330551579; hash_key found?: 1
+Number of cycles: 330551650; hash_key found?: 1
+Number of cycles: 330553110; hash_key found?: 1
+Number of cycles: 330551831; hash_key found?: 1
+Number of cycles: 330550928; hash_key found?: 1
+Number of cycles: 330553194; hash_key found?: 1
+Average: 330552224.000000
+Standard deviation: 698.988220
+
+Number of blocks: 5
+Number of cycles: 399693863; hash_key found?: 1
+Number of cycles: 399694445; hash_key found?: 1
+Number of cycles: 399696339; hash_key found?: 1
+Number of cycles: 399695075; hash_key found?: 1
+Number of cycles: 399694407; hash_key found?: 1
+Number of cycles: 399694106; hash_key found?: 1
+Number of cycles: 399694195; hash_key found?: 1
+Number of cycles: 399695183; hash_key found?: 1
+Number of cycles: 399693912; hash_key found?: 1
+Number of cycles: 399694225; hash_key found?: 1
+Number of cycles: 399694580; hash_key found?: 1
+Number of cycles: 399695879; hash_key found?: 1
+Number of cycles: 399694272; hash_key found?: 1
+Number of cycles: 399695857; hash_key found?: 1
+Number of cycles: 399695320; hash_key found?: 1
+Number of cycles: 399694330; hash_key found?: 1
+Number of cycles: 399695407; hash_key found?: 1
+Number of cycles: 399694090; hash_key found?: 1
+Number of cycles: 399694500; hash_key found?: 1
+Number of cycles: 399694027; hash_key found?: 1
+Number of cycles: 399694557; hash_key found?: 1
+Number of cycles: 399695023; hash_key found?: 1
+Number of cycles: 399694912; hash_key found?: 1
+Number of cycles: 399696345; hash_key found?: 1
+Number of cycles: 399695093; hash_key found?: 1
+Number of cycles: 399694052; hash_key found?: 1
+Number of cycles: 399694546; hash_key found?: 1
+Number of cycles: 399694843; hash_key found?: 1
+Number of cycles: 399694421; hash_key found?: 1
+Number of cycles: 399694406; hash_key found?: 1
+Average: 399694720.000000
+Standard deviation: 679.526123
+
+Number of blocks: 6
+Number of cycles: 468874393; hash_key found?: 1
+Number of cycles: 468875157; hash_key found?: 1
+Number of cycles: 468874943; hash_key found?: 1
+Number of cycles: 468874795; hash_key found?: 1
+Number of cycles: 468874811; hash_key found?: 1
+Number of cycles: 468875270; hash_key found?: 1
+Number of cycles: 468876092; hash_key found?: 1
+Number of cycles: 468875563; hash_key found?: 1
+Number of cycles: 468875790; hash_key found?: 1
+Number of cycles: 468875225; hash_key found?: 1
+Number of cycles: 468874287; hash_key found?: 1
+Number of cycles: 468875515; hash_key found?: 1
+Number of cycles: 468875855; hash_key found?: 1
+Number of cycles: 468873749; hash_key found?: 1
+Number of cycles: 468874015; hash_key found?: 1
+Number of cycles: 468875273; hash_key found?: 1
+Number of cycles: 468875201; hash_key found?: 1
+Number of cycles: 468875246; hash_key found?: 1
+Number of cycles: 468876016; hash_key found?: 1
+Number of cycles: 468874159; hash_key found?: 1
+Number of cycles: 468874952; hash_key found?: 1
+Number of cycles: 468875085; hash_key found?: 1
+Number of cycles: 468876225; hash_key found?: 1
+Number of cycles: 468875653; hash_key found?: 1
+Number of cycles: 468875452; hash_key found?: 1
+Number of cycles: 468875776; hash_key found?: 1
+Number of cycles: 468874370; hash_key found?: 1
+Number of cycles: 468874688; hash_key found?: 1
+Number of cycles: 468876605; hash_key found?: 1
+Number of cycles: 468875949; hash_key found?: 1
+Average: 468875200.000000
+Standard deviation: 686.994629
+
+Number of blocks: 7
+Number of cycles: 538002565; hash_key found?: 1
+Number of cycles: 538002390; hash_key found?: 1
+Number of cycles: 538001991; hash_key found?: 1
+Number of cycles: 538001873; hash_key found?: 1
+Number of cycles: 538003300; hash_key found?: 1
+Number of cycles: 538000859; hash_key found?: 1
+Number of cycles: 538002520; hash_key found?: 1
+Number of cycles: 538000276; hash_key found?: 1
+Number of cycles: 538001112; hash_key found?: 1
+Number of cycles: 538001186; hash_key found?: 1
+Number of cycles: 538000815; hash_key found?: 1
+Number of cycles: 538001230; hash_key found?: 1
+Number of cycles: 538001804; hash_key found?: 1
+Number of cycles: 538000364; hash_key found?: 1
+Number of cycles: 538002077; hash_key found?: 1
+Number of cycles: 538001648; hash_key found?: 1
+Number of cycles: 538001010; hash_key found?: 1
+Number of cycles: 538001375; hash_key found?: 1
+Number of cycles: 538000652; hash_key found?: 1
+Number of cycles: 538002247; hash_key found?: 1
+Number of cycles: 538001222; hash_key found?: 1
+Number of cycles: 538001292; hash_key found?: 1
+Number of cycles: 537999708; hash_key found?: 1
+Number of cycles: 538001164; hash_key found?: 1
+Number of cycles: 538001155; hash_key found?: 1
+Number of cycles: 538001018; hash_key found?: 1
+Number of cycles: 538001759; hash_key found?: 1
+Number of cycles: 538001004; hash_key found?: 1
+Number of cycles: 538001197; hash_key found?: 1
+Number of cycles: 538002336; hash_key found?: 1
+Average: 538001536.000000
+Standard deviation: 766.843567
+
+Number of blocks: 8
+Number of cycles: 607106822; hash_key found?: 1
+Number of cycles: 607107733; hash_key found?: 1
+Number of cycles: 607106421; hash_key found?: 1
+Number of cycles: 607107291; hash_key found?: 1
+Number of cycles: 607107179; hash_key found?: 1
+Number of cycles: 607106240; hash_key found?: 1
+Number of cycles: 607109027; hash_key found?: 1
+Number of cycles: 607107248; hash_key found?: 1
+Number of cycles: 607108411; hash_key found?: 1
+Number of cycles: 607108252; hash_key found?: 1
+Number of cycles: 607108309; hash_key found?: 1
+Number of cycles: 607106991; hash_key found?: 1
+Number of cycles: 607107453; hash_key found?: 1
+Number of cycles: 607108568; hash_key found?: 1
+Number of cycles: 607107491; hash_key found?: 1
+Number of cycles: 607108023; hash_key found?: 1
+Number of cycles: 607106018; hash_key found?: 1
+Number of cycles: 607107438; hash_key found?: 1
+Number of cycles: 607106847; hash_key found?: 1
+Number of cycles: 607106741; hash_key found?: 1
+Number of cycles: 607108591; hash_key found?: 1
+Number of cycles: 607108055; hash_key found?: 1
+Number of cycles: 607107095; hash_key found?: 1
+Number of cycles: 607107853; hash_key found?: 1
+Number of cycles: 607107284; hash_key found?: 1
+Number of cycles: 607107564; hash_key found?: 1
+Number of cycles: 607107578; hash_key found?: 1
+Number of cycles: 607107636; hash_key found?: 1
+Number of cycles: 607108773; hash_key found?: 1
+Number of cycles: 607106998; hash_key found?: 1
+Average: 607107456.000000
+Standard deviation: 743.429199
+
+Number of blocks: 9
+Number of cycles: 676146697; hash_key found?: 1
+Number of cycles: 676146964; hash_key found?: 1
+Number of cycles: 676147905; hash_key found?: 1
+Number of cycles: 676147125; hash_key found?: 1
+Number of cycles: 676147511; hash_key found?: 1
+Number of cycles: 676146163; hash_key found?: 1
+Number of cycles: 676147670; hash_key found?: 1
+Number of cycles: 676146902; hash_key found?: 1
+Number of cycles: 676146625; hash_key found?: 1
+Number of cycles: 676145378; hash_key found?: 1
+Number of cycles: 676148483; hash_key found?: 1
+Number of cycles: 676145631; hash_key found?: 1
+Number of cycles: 676147390; hash_key found?: 1
+Number of cycles: 676148140; hash_key found?: 1
+Number of cycles: 676146599; hash_key found?: 1
+Number of cycles: 676147804; hash_key found?: 1
+Number of cycles: 676146040; hash_key found?: 1
+Number of cycles: 676146541; hash_key found?: 1
+Number of cycles: 676148130; hash_key found?: 1
+Number of cycles: 676148257; hash_key found?: 1
+Number of cycles: 676147725; hash_key found?: 1
+Number of cycles: 676147356; hash_key found?: 1
+Number of cycles: 676146676; hash_key found?: 1
+Number of cycles: 676147936; hash_key found?: 1
+Number of cycles: 676147491; hash_key found?: 1
+Number of cycles: 676146199; hash_key found?: 1
+Number of cycles: 676146984; hash_key found?: 1
+Number of cycles: 676147634; hash_key found?: 1
+Number of cycles: 676147796; hash_key found?: 1
+Number of cycles: 676147235; hash_key found?: 1
+Average: 676147136.000000
+Standard deviation: 782.092896
+
+Number of blocks: 10
+Number of cycles: 745441244; hash_key found?: 1
+Number of cycles: 745442022; hash_key found?: 1
+Number of cycles: 745441489; hash_key found?: 1
+Number of cycles: 745441685; hash_key found?: 1
+Number of cycles: 745443508; hash_key found?: 1
+Number of cycles: 745439963; hash_key found?: 1
+Number of cycles: 745441411; hash_key found?: 1
+Number of cycles: 745439642; hash_key found?: 1
+Number of cycles: 745440626; hash_key found?: 1
+Number of cycles: 745440507; hash_key found?: 1
+Number of cycles: 745441168; hash_key found?: 1
+Number of cycles: 745442995; hash_key found?: 1
+Number of cycles: 745438735; hash_key found?: 1
+Number of cycles: 745441979; hash_key found?: 1
+Number of cycles: 745440236; hash_key found?: 1
+Number of cycles: 745440543; hash_key found?: 1
+Number of cycles: 745439731; hash_key found?: 1
+Number of cycles: 745440483; hash_key found?: 1
+Number of cycles: 745442468; hash_key found?: 1
+Number of cycles: 745440690; hash_key found?: 1
+Number of cycles: 745440653; hash_key found?: 1
+Number of cycles: 745442190; hash_key found?: 1
+Number of cycles: 745441502; hash_key found?: 1
+Number of cycles: 745440086; hash_key found?: 1
+Number of cycles: 745440783; hash_key found?: 1
+Number of cycles: 745439742; hash_key found?: 1
+Number of cycles: 745440868; hash_key found?: 1
+Number of cycles: 745442292; hash_key found?: 1
+Number of cycles: 745441483; hash_key found?: 1
+Number of cycles: 745442026; hash_key found?: 1
+Average: 745441152.000000
+Standard deviation: 1065.236328
+
+
+Program received signal SIGINT, Interrupt.
+main () at main_cw521.c:381
+381	  while (true) {
+warning: Error detected on fd 0
+error detected on stdin

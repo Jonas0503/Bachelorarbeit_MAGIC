@@ -205,6 +205,68 @@ void tag_generation_given_blocks_changing_blocks(int start, int end, int interva
   }
 }
 
+
+void find_hash_key_changing_blocks(int start, int end, int interval, int number_of_measurements, int threshold) {
+  volatile int PRINT_VALUES = 42;
+  for (int i = start; i <= end; i += interval) {
+    volatile uint32_t results[number_of_measurements];
+    for (int f = 0; f < number_of_measurements; f++) {
+      reset_timer();
+      start_timer();
+
+      volatile bignum hash_key = find_hash_key_value(threshold, i, 1, 42);
+
+      volatile uint32_t number_of_cycles = get_cycles();
+      stop_timer();
+
+      volatile bool hash_key_found = true;
+      if (!is_bignum_not_zero(hash_key)) {
+        hash_key_found = false;
+      }
+
+      results[f] = number_of_cycles;
+
+      volatile int PRINT_VALUES = 42;
+    }
+
+    volatile float avg = average(results, number_of_measurements);
+    volatile float sd = standard_deviation(results, number_of_measurements, avg);
+
+    volatile int PRINT_VALUES = avg;
+  }
+}
+
+
+void find_hash_key_changing_threshold(int start, int end, int interval, int number_of_measurements, int number_of_blocks) {
+  volatile int PRINT_VALUES = 42;
+  for (int i = start; i <= end; i += interval) {
+    volatile uint32_t results[number_of_measurements];
+    for (int f = 0; f < number_of_measurements; f++) {
+      reset_timer();
+      start_timer();
+
+      volatile bignum hash_key = find_hash_key_value(i, number_of_blocks, 1, 42);
+
+      volatile uint32_t number_of_cycles = get_cycles();
+      stop_timer();
+
+      volatile bool hash_key_found = true;
+      if (!is_bignum_not_zero(hash_key)) {
+        hash_key_found = false;
+      }
+
+      results[f] = number_of_cycles;
+
+      volatile int PRINT_VALUES = 42;
+    }
+
+    volatile float avg = average(results, number_of_measurements);
+    volatile float sd = standard_deviation(results, number_of_measurements, avg);
+
+    volatile int PRINT_VALUES = avg;
+  }
+}
+
 // ------------------------------------------- my code end -----------------------------------------------------------------
 
 //Serial Number - will be read by device ID
@@ -343,7 +405,7 @@ int main(void)
 
   // ------------------------------------- my code start ---------------------------------------------------------------------
 
-  tag_generation_given_blocks_changing_blocks(50, 250, 25, 30);
+  find_hash_key_changing_threshold(1, 4, 1, 5, 1);
 
   // --------------------------------------- my code end -------------------------------------------------------------------------------------------
 

@@ -1,0 +1,29 @@
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf
+Start: 1; End: 4; Interval: 1; Number of blocks: 1; Measurements per threshold: 5
+
+Threshold: 1
+Number of cycles: 123078487; hash_key found?: 1
+Number of cycles: 123079748; hash_key found?: 1
+Number of cycles: 123079297; hash_key found?: 1
+Number of cycles: 123079848; hash_key found?: 1
+Number of cycles: 123079180; hash_key found?: 1
+Average: 123079312.000000
+Standard deviation: 483.639526
+
+Threshold: 2
+Number of cycles: 2467418679; hash_key found?: 1
+Number of cycles: 2467412385; hash_key found?: 1
+Number of cycles: 2467418266; hash_key found?: 1
+Number of cycles: 2467411658; hash_key found?: 1
+Number of cycles: 2467418156; hash_key found?: 1
+Average: 2467415808.000000
+Standard deviation: 3086.897217
+
+Threshold: 3
+
+Program received signal SIGINT, Interrupt.
+0x000810c6 in is_bignum_not_zero (n=...) at magic_bachelorarbeit/src/bignum.c:101
+101	    for (int i = 0; i < BLOCKSIZE; i++) {
+
+
+// Threshold 3: ca. eine Stunde laufen gelassen

@@ -1,0 +1,27 @@
+Already logging to evaluation/find_hash_key/changing_blocks/threshold_2/log1.txt.
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 1; End: 4; Interval: 1; Threshold: 2; Measurements per block: 5
+
+Number of blocks: 1
+Number of cycles: 2467418272; hash_key found?: 1
+Number of cycles: 2467420408; hash_key found?: 1
+Number of cycles: 2467414867; hash_key found?: 1
+Number of cycles: 2467417951; hash_key found?: 1
+Number of cycles: 2467419279; hash_key found?: 1
+Average: 2467418112.000000
+Standard deviation: 1905.438110
+
+Number of blocks: 2
+Number of cycles: 2987956900; hash_key found?: 1
+Number of cycles: 2987952334; hash_key found?: 1
+Number of cycles: 2987949078; hash_key found?: 1
+Number of cycles: 2987953009; hash_key found?: 1
+Number of cycles: 2987946228; hash_key found?: 1
+Average: 2987951616.000000
+Standard deviation: 3649.234863
+
+Number of blocks: 3
+
+Program received signal SIGINT, Interrupt.
+0x000810c8 in is_bignum_not_zero (n=...) at magic_bachelorarbeit/src/bignum.c:101
+101	    for (int i = 0; i < BLOCKSIZE; i++) {
