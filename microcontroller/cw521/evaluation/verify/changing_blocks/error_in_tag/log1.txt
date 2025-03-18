@@ -1,0 +1,695 @@
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 1; End: 10; Interval: 1; Threshold: 1; Measurements per block: 30
+
+Number of blocks: 1
+Number of cycles: 40658729; error? 1
+Number of cycles: 40659177; error? 1
+Number of cycles: 40658822; error? 1
+Number of cycles: 40658945; error? 1
+Number of cycles: 40659139; error? 1
+Number of cycles: 40659533; error? 1
+Number of cycles: 40659065; error? 1
+Number of cycles: 40659205; error? 1
+Number of cycles: 40659286; error? 1
+Number of cycles: 40659009; error? 1
+Number of cycles: 40658547; error? 1
+Number of cycles: 40659168; error? 1
+Number of cycles: 40658937; error? 1
+Number of cycles: 40658830; error? 1
+Number of cycles: 40658858; error? 1
+Number of cycles: 40659085; error? 1
+Number of cycles: 40658948; error? 1
+Number of cycles: 40658581; error? 1
+Number of cycles: 40659003; error? 1
+Number of cycles: 40659224; error? 1
+Number of cycles: 40658979; error? 1
+Number of cycles: 40658586; error? 1
+Number of cycles: 40658790; error? 1
+Number of cycles: 40658976; error? 1
+Number of cycles: 40658919; error? 1
+Number of cycles: 40659273; error? 1
+Number of cycles: 40658364; error? 1
+Number of cycles: 40659435; error? 1
+Number of cycles: 40659321; error? 1
+Number of cycles: 40659701; error? 1
+Average: 40659016.000000
+Standard deviation: 292.738800
+
+Number of blocks: 2
+Number of cycles: 41532962; error? 1
+Number of cycles: 41532739; error? 1
+Number of cycles: 41532620; error? 1
+Number of cycles: 41532974; error? 1
+Number of cycles: 41532756; error? 1
+Number of cycles: 41532838; error? 1
+Number of cycles: 41532588; error? 1
+Number of cycles: 41532714; error? 1
+Number of cycles: 41533008; error? 1
+Number of cycles: 41532404; error? 1
+Number of cycles: 41533064; error? 1
+Number of cycles: 41533214; error? 1
+Number of cycles: 41532974; error? 1
+Number of cycles: 41532668; error? 1
+Number of cycles: 41533536; error? 1
+Number of cycles: 41532897; error? 1
+Number of cycles: 41532947; error? 1
+Number of cycles: 41533098; error? 1
+Number of cycles: 41533224; error? 1
+Number of cycles: 41532837; error? 1
+Number of cycles: 41533593; error? 1
+Number of cycles: 41532648; error? 1
+Number of cycles: 41533231; error? 1
+Number of cycles: 41532765; error? 1
+Number of cycles: 41532888; error? 1
+Number of cycles: 41532819; error? 1
+Number of cycles: 41533122; error? 1
+Number of cycles: 41532738; error? 1
+Number of cycles: 41533164; error? 1
+Number of cycles: 41532737; error? 1
+Average: 41532920.000000
+Standard deviation: 264.555969
+
+Number of blocks: 3
+Number of cycles: 42407378; error? 1
+Number of cycles: 42408025; error? 1
+Number of cycles: 42407983; error? 1
+Number of cycles: 42407374; error? 1
+Number of cycles: 42408000; error? 1
+Number of cycles: 42408402; error? 1
+Number of cycles: 42407964; error? 1
+Number of cycles: 42408322; error? 1
+Number of cycles: 42407927; error? 1
+Number of cycles: 42407115; error? 1
+Number of cycles: 42407686; error? 1
+Number of cycles: 42407854; error? 1
+Number of cycles: 42407685; error? 1
+Number of cycles: 42407791; error? 1
+Number of cycles: 42407668; error? 1
+Number of cycles: 42407811; error? 1
+Number of cycles: 42407258; error? 1
+Number of cycles: 42408188; error? 1
+Number of cycles: 42407926; error? 1
+Number of cycles: 42407477; error? 1
+Number of cycles: 42407690; error? 1
+Number of cycles: 42407825; error? 1
+Number of cycles: 42407317; error? 1
+Number of cycles: 42408130; error? 1
+Number of cycles: 42408116; error? 1
+Number of cycles: 42408523; error? 1
+Number of cycles: 42407910; error? 1
+Number of cycles: 42408116; error? 1
+Number of cycles: 42407446; error? 1
+Number of cycles: 42407942; error? 1
+Average: 42407824.000000
+Standard deviation: 339.221863
+
+Number of blocks: 4
+Number of cycles: 43352992; error? 1
+Number of cycles: 43352815; error? 1
+Number of cycles: 43352867; error? 1
+Number of cycles: 43352872; error? 1
+Number of cycles: 43352587; error? 1
+Number of cycles: 43352466; error? 1
+Number of cycles: 43352531; error? 1
+Number of cycles: 43352448; error? 1
+Number of cycles: 43352438; error? 1
+Number of cycles: 43352568; error? 1
+Number of cycles: 43352757; error? 1
+Number of cycles: 43353186; error? 1
+Number of cycles: 43353111; error? 1
+Number of cycles: 43352749; error? 1
+Number of cycles: 43352940; error? 1
+Number of cycles: 43352631; error? 1
+Number of cycles: 43352968; error? 1
+Number of cycles: 43352670; error? 1
+Number of cycles: 43352027; error? 1
+Number of cycles: 43352632; error? 1
+Number of cycles: 43353037; error? 1
+Number of cycles: 43352801; error? 1
+Number of cycles: 43351886; error? 1
+Number of cycles: 43352487; error? 1
+Number of cycles: 43352979; error? 1
+Number of cycles: 43352621; error? 1
+Number of cycles: 43352732; error? 1
+Number of cycles: 43352996; error? 1
+Number of cycles: 43353005; error? 1
+Number of cycles: 43352842; error? 1
+Average: 43352716.000000
+Standard deviation: 288.773956
+
+Number of blocks: 5
+Number of cycles: 44219381; error? 1
+Number of cycles: 44219753; error? 1
+Number of cycles: 44219855; error? 1
+Number of cycles: 44219567; error? 1
+Number of cycles: 44219734; error? 1
+Number of cycles: 44219963; error? 1
+Number of cycles: 44219142; error? 1
+Number of cycles: 44219664; error? 1
+Number of cycles: 44219668; error? 1
+Number of cycles: 44219706; error? 1
+Number of cycles: 44219325; error? 1
+Number of cycles: 44219005; error? 1
+Number of cycles: 44220029; error? 1
+Number of cycles: 44219337; error? 1
+Number of cycles: 44219628; error? 1
+Number of cycles: 44219906; error? 1
+Number of cycles: 44219821; error? 1
+Number of cycles: 44219436; error? 1
+Number of cycles: 44219602; error? 1
+Number of cycles: 44219612; error? 1
+Number of cycles: 44219687; error? 1
+Number of cycles: 44219521; error? 1
+Number of cycles: 44219470; error? 1
+Number of cycles: 44219893; error? 1
+Number of cycles: 44219884; error? 1
+Number of cycles: 44219928; error? 1
+Number of cycles: 44219279; error? 1
+Number of cycles: 44219732; error? 1
+Number of cycles: 44219627; error? 1
+Number of cycles: 44219684; error? 1
+Average: 44219628.000000
+Standard deviation: 243.436508
+
+Number of blocks: 6
+Number of cycles: 45097395; error? 1
+Number of cycles: 45097935; error? 1
+Number of cycles: 45097620; error? 1
+Number of cycles: 45097539; error? 1
+Number of cycles: 45097195; error? 1
+Number of cycles: 45097680; error? 1
+Number of cycles: 45097286; error? 1
+Number of cycles: 45097260; error? 1
+Number of cycles: 45097880; error? 1
+Number of cycles: 45097524; error? 1
+Number of cycles: 45096712; error? 1
+Number of cycles: 45097070; error? 1
+Number of cycles: 45097063; error? 1
+Number of cycles: 45097340; error? 1
+Number of cycles: 45096907; error? 1
+Number of cycles: 45097397; error? 1
+Number of cycles: 45097477; error? 1
+Number of cycles: 45097128; error? 1
+Number of cycles: 45097034; error? 1
+Number of cycles: 45096967; error? 1
+Number of cycles: 45098236; error? 1
+Number of cycles: 45097568; error? 1
+Number of cycles: 45097933; error? 1
+Number of cycles: 45097680; error? 1
+Number of cycles: 45097709; error? 1
+Number of cycles: 45096983; error? 1
+Number of cycles: 45097268; error? 1
+Number of cycles: 45097545; error? 1
+Number of cycles: 45097242; error? 1
+Number of cycles: 45097291; error? 1
+Average: 45097396.000000
+Standard deviation: 342.825134
+
+Number of blocks: 7
+Number of cycles: 46022975; error? 1
+Number of cycles: 46022554; error? 1
+Number of cycles: 46022900; error? 1
+Number of cycles: 46022724; error? 1
+Number of cycles: 46022807; error? 1
+Number of cycles: 46022945; error? 1
+Number of cycles: 46023253; error? 1
+Number of cycles: 46022839; error? 1
+Number of cycles: 46022651; error? 1
+Number of cycles: 46022914; error? 1
+Number of cycles: 46022982; error? 1
+Number of cycles: 46023034; error? 1
+Number of cycles: 46023136; error? 1
+Number of cycles: 46022961; error? 1
+Number of cycles: 46023049; error? 1
+Number of cycles: 46023156; error? 1
+Number of cycles: 46023128; error? 1
+Number of cycles: 46022709; error? 1
+Number of cycles: 46022900; error? 1
+Number of cycles: 46022978; error? 1
+Number of cycles: 46023711; error? 1
+Number of cycles: 46022485; error? 1
+Number of cycles: 46022714; error? 1
+Number of cycles: 46023343; error? 1
+Number of cycles: 46023437; error? 1
+Number of cycles: 46022796; error? 1
+Number of cycles: 46022671; error? 1
+Number of cycles: 46023130; error? 1
+Number of cycles: 46022760; error? 1
+Number of cycles: 46023099; error? 1
+Average: 46022956.000000
+Standard deviation: 261.400330
+
+Number of blocks: 8
+Number of cycles: 46924418; error? 1
+Number of cycles: 46924507; error? 1
+Number of cycles: 46924706; error? 1
+Number of cycles: 46924647; error? 1
+Number of cycles: 46924322; error? 1
+Number of cycles: 46924413; error? 1
+Number of cycles: 46924632; error? 1
+Number of cycles: 46924539; error? 1
+Number of cycles: 46924824; error? 1
+Number of cycles: 46924706; error? 1
+Number of cycles: 46924189; error? 1
+Number of cycles: 46924056; error? 1
+Number of cycles: 46924173; error? 1
+Number of cycles: 46924427; error? 1
+Number of cycles: 46924797; error? 1
+Number of cycles: 46924254; error? 1
+Number of cycles: 46923877; error? 1
+Number of cycles: 46924463; error? 1
+Number of cycles: 46924496; error? 1
+Number of cycles: 46924647; error? 1
+Number of cycles: 46924696; error? 1
+Number of cycles: 46924044; error? 1
+Number of cycles: 46924792; error? 1
+Number of cycles: 46924047; error? 1
+Number of cycles: 46924471; error? 1
+Number of cycles: 46924293; error? 1
+Number of cycles: 46924374; error? 1
+Number of cycles: 46924517; error? 1
+Number of cycles: 46924012; error? 1
+Number of cycles: 46924450; error? 1
+Average: 46924424.000000
+Standard deviation: 252.737549
+
+Number of blocks: 9
+Number of cycles: 47782230; error? 1
+Number of cycles: 47782170; error? 1
+Number of cycles: 47782261; error? 1
+Number of cycles: 47782491; error? 1
+Number of cycles: 47782244; error? 1
+Number of cycles: 47782812; error? 1
+Number of cycles: 47782389; error? 1
+Number of cycles: 47782465; error? 1
+Number of cycles: 47782934; error? 1
+Number of cycles: 47782638; error? 1
+Number of cycles: 47782366; error? 1
+Number of cycles: 47782340; error? 1
+Number of cycles: 47782040; error? 1
+Number of cycles: 47782298; error? 1
+Number of cycles: 47782527; error? 1
+Number of cycles: 47782518; error? 1
+Number of cycles: 47782479; error? 1
+Number of cycles: 47782064; error? 1
+Number of cycles: 47782514; error? 1
+Number of cycles: 47782543; error? 1
+Number of cycles: 47782299; error? 1
+Number of cycles: 47781998; error? 1
+Number of cycles: 47782432; error? 1
+Number of cycles: 47782496; error? 1
+Number of cycles: 47782285; error? 1
+Number of cycles: 47782564; error? 1
+Number of cycles: 47782555; error? 1
+Number of cycles: 47782518; error? 1
+Number of cycles: 47781996; error? 1
+Number of cycles: 47782372; error? 1
+Average: 47782396.000000
+Standard deviation: 216.357727
+
+Number of blocks: 10
+Number of cycles: 48683849; error? 1
+Number of cycles: 48684175; error? 1
+Number of cycles: 48683976; error? 1
+Number of cycles: 48683359; error? 1
+Number of cycles: 48684012; error? 1
+Number of cycles: 48683741; error? 1
+Number of cycles: 48683516; error? 1
+Number of cycles: 48684131; error? 1
+Number of cycles: 48683515; error? 1
+Number of cycles: 48684137; error? 1
+Number of cycles: 48684486; error? 1
+Number of cycles: 48683970; error? 1
+Number of cycles: 48684241; error? 1
+Number of cycles: 48683804; error? 1
+Number of cycles: 48683708; error? 1
+Number of cycles: 48683654; error? 1
+Number of cycles: 48683814; error? 1
+Number of cycles: 48684355; error? 1
+Number of cycles: 48683491; error? 1
+Number of cycles: 48684022; error? 1
+Number of cycles: 48683890; error? 1
+Number of cycles: 48683454; error? 1
+Number of cycles: 48683903; error? 1
+Number of cycles: 48683751; error? 1
+Number of cycles: 48684090; error? 1
+Number of cycles: 48684253; error? 1
+Number of cycles: 48684019; error? 1
+Number of cycles: 48683933; error? 1
+Number of cycles: 48683772; error? 1
+Number of cycles: 48683948; error? 1
+Average: 48683896.000000
+Standard deviation: 270.807190
+
+
+Program received signal SIGINT, Interrupt.
+main () at main_cw521.c:471
+471	  while (true) {
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 1; End: 10; Interval: 1; Threshold: 1; Measurements per block: 30
+
+Number of blocks: 1
+Number of cycles: 40659447; error? 1
+Number of cycles: 40658753; error? 1
+Number of cycles: 40659319; error? 1
+Number of cycles: 40659467; error? 1
+Number of cycles: 40659411; error? 1
+Number of cycles: 40658433; error? 1
+Number of cycles: 40659320; error? 1
+Number of cycles: 40659081; error? 1
+Number of cycles: 40659047; error? 1
+Number of cycles: 40659300; error? 1
+Number of cycles: 40658838; error? 1
+Number of cycles: 40658958; error? 1
+Number of cycles: 40658499; error? 1
+Number of cycles: 40659146; error? 1
+Number of cycles: 40659380; error? 1
+Number of cycles: 40659253; error? 1
+Number of cycles: 40659243; error? 1
+Number of cycles: 40659313; error? 1
+Number of cycles: 40658610; error? 1
+Number of cycles: 40658878; error? 1
+Number of cycles: 40659478; error? 1
+Number of cycles: 40659627; error? 1
+Number of cycles: 40659126; error? 1
+Number of cycles: 40659717; error? 1
+Number of cycles: 40659590; error? 1
+Number of cycles: 40659170; error? 1
+Number of cycles: 40659083; error? 1
+Number of cycles: 40658784; error? 1
+Number of cycles: 40658576; error? 1
+Number of cycles: 40659153; error? 1
+Average: 40659136.000000
+Standard deviation: 334.748474
+
+Number of blocks: 2
+Number of cycles: 41533265; error? 1
+Number of cycles: 41532400; error? 1
+Number of cycles: 41532660; error? 1
+Number of cycles: 41533474; error? 1
+Number of cycles: 41532866; error? 1
+Number of cycles: 41532272; error? 1
+Number of cycles: 41532885; error? 1
+Number of cycles: 41532902; error? 1
+Number of cycles: 41532388; error? 1
+Number of cycles: 41532711; error? 1
+Number of cycles: 41532634; error? 1
+Number of cycles: 41533145; error? 1
+Number of cycles: 41532891; error? 1
+Number of cycles: 41533098; error? 1
+Number of cycles: 41532627; error? 1
+Number of cycles: 41532922; error? 1
+Number of cycles: 41533187; error? 1
+Number of cycles: 41533146; error? 1
+Number of cycles: 41532930; error? 1
+Number of cycles: 41533305; error? 1
+Number of cycles: 41532464; error? 1
+Number of cycles: 41532866; error? 1
+Number of cycles: 41533451; error? 1
+Number of cycles: 41533272; error? 1
+Number of cycles: 41532649; error? 1
+Number of cycles: 41532606; error? 1
+Number of cycles: 41532558; error? 1
+Number of cycles: 41532914; error? 1
+Number of cycles: 41532873; error? 1
+Number of cycles: 41532839; error? 1
+Average: 41532872.000000
+Standard deviation: 310.529022
+
+Number of blocks: 3
+Number of cycles: 42407816; error? 1
+Number of cycles: 42407601; error? 1
+Number of cycles: 42407746; error? 1
+Number of cycles: 42408119; error? 1
+Number of cycles: 42407824; error? 1
+Number of cycles: 42407784; error? 1
+Number of cycles: 42407827; error? 1
+Number of cycles: 42407950; error? 1
+Number of cycles: 42408057; error? 1
+Number of cycles: 42407808; error? 1
+Number of cycles: 42407562; error? 1
+Number of cycles: 42407719; error? 1
+Number of cycles: 42407961; error? 1
+Number of cycles: 42407944; error? 1
+Number of cycles: 42407762; error? 1
+Number of cycles: 42407622; error? 1
+Number of cycles: 42407681; error? 1
+Number of cycles: 42407997; error? 1
+Number of cycles: 42407794; error? 1
+Number of cycles: 42407675; error? 1
+Number of cycles: 42407887; error? 1
+Number of cycles: 42407836; error? 1
+Number of cycles: 42407817; error? 1
+Number of cycles: 42407508; error? 1
+Number of cycles: 42407721; error? 1
+Number of cycles: 42408236; error? 1
+Number of cycles: 42407777; error? 1
+Number of cycles: 42408012; error? 1
+Number of cycles: 42407692; error? 1
+Number of cycles: 42407700; error? 1
+Average: 42407812.000000
+Standard deviation: 163.255219
+
+Number of blocks: 4
+Number of cycles: 43353030; error? 1
+Number of cycles: 43352745; error? 1
+Number of cycles: 43352771; error? 1
+Number of cycles: 43352804; error? 1
+Number of cycles: 43352365; error? 1
+Number of cycles: 43352460; error? 1
+Number of cycles: 43352881; error? 1
+Number of cycles: 43352399; error? 1
+Number of cycles: 43353095; error? 1
+Number of cycles: 43352422; error? 1
+Number of cycles: 43352615; error? 1
+Number of cycles: 43352698; error? 1
+Number of cycles: 43352939; error? 1
+Number of cycles: 43352907; error? 1
+Number of cycles: 43352568; error? 1
+Number of cycles: 43353026; error? 1
+Number of cycles: 43352836; error? 1
+Number of cycles: 43352232; error? 1
+Number of cycles: 43352765; error? 1
+Number of cycles: 43352899; error? 1
+Number of cycles: 43352808; error? 1
+Number of cycles: 43353076; error? 1
+Number of cycles: 43352860; error? 1
+Number of cycles: 43352530; error? 1
+Number of cycles: 43352861; error? 1
+Number of cycles: 43352348; error? 1
+Number of cycles: 43352558; error? 1
+Number of cycles: 43352776; error? 1
+Number of cycles: 43352903; error? 1
+Number of cycles: 43352712; error? 1
+Average: 43352732.000000
+Standard deviation: 228.363449
+
+Number of blocks: 5
+Number of cycles: 44220164; error? 1
+Number of cycles: 44219862; error? 1
+Number of cycles: 44220013; error? 1
+Number of cycles: 44219875; error? 1
+Number of cycles: 44219339; error? 1
+Number of cycles: 44219745; error? 1
+Number of cycles: 44219436; error? 1
+Number of cycles: 44219841; error? 1
+Number of cycles: 44219423; error? 1
+Number of cycles: 44219700; error? 1
+Number of cycles: 44218963; error? 1
+Number of cycles: 44219518; error? 1
+Number of cycles: 44219731; error? 1
+Number of cycles: 44219784; error? 1
+Number of cycles: 44219780; error? 1
+Number of cycles: 44219664; error? 1
+Number of cycles: 44219486; error? 1
+Number of cycles: 44219522; error? 1
+Number of cycles: 44219627; error? 1
+Number of cycles: 44220012; error? 1
+Number of cycles: 44219699; error? 1
+Number of cycles: 44219786; error? 1
+Number of cycles: 44220072; error? 1
+Number of cycles: 44219830; error? 1
+Number of cycles: 44219204; error? 1
+Number of cycles: 44219980; error? 1
+Number of cycles: 44219506; error? 1
+Number of cycles: 44219821; error? 1
+Number of cycles: 44219862; error? 1
+Number of cycles: 44219529; error? 1
+Average: 44219696.000000
+Standard deviation: 260.292145
+
+Number of blocks: 6
+Number of cycles: 45097400; error? 1
+Number of cycles: 45097175; error? 1
+Number of cycles: 45097285; error? 1
+Number of cycles: 45097465; error? 1
+Number of cycles: 45097282; error? 1
+Number of cycles: 45097120; error? 1
+Number of cycles: 45096995; error? 1
+Number of cycles: 45097163; error? 1
+Number of cycles: 45097508; error? 1
+Number of cycles: 45097275; error? 1
+Number of cycles: 45097299; error? 1
+Number of cycles: 45097532; error? 1
+Number of cycles: 45097608; error? 1
+Number of cycles: 45097500; error? 1
+Number of cycles: 45097063; error? 1
+Number of cycles: 45097371; error? 1
+Number of cycles: 45097154; error? 1
+Number of cycles: 45097265; error? 1
+Number of cycles: 45097446; error? 1
+Number of cycles: 45097492; error? 1
+Number of cycles: 45097710; error? 1
+Number of cycles: 45097233; error? 1
+Number of cycles: 45096771; error? 1
+Number of cycles: 45097273; error? 1
+Number of cycles: 45097450; error? 1
+Number of cycles: 45097796; error? 1
+Number of cycles: 45097583; error? 1
+Number of cycles: 45097582; error? 1
+Number of cycles: 45096728; error? 1
+Number of cycles: 45097435; error? 1
+Average: 45097336.000000
+Standard deviation: 242.894760
+
+Number of blocks: 7
+Number of cycles: 46023048; error? 1
+Number of cycles: 46022769; error? 1
+Number of cycles: 46023288; error? 1
+Number of cycles: 46022983; error? 1
+Number of cycles: 46022960; error? 1
+Number of cycles: 46022335; error? 1
+Number of cycles: 46023228; error? 1
+Number of cycles: 46022869; error? 1
+Number of cycles: 46023359; error? 1
+Number of cycles: 46022599; error? 1
+Number of cycles: 46023269; error? 1
+Number of cycles: 46022948; error? 1
+Number of cycles: 46023037; error? 1
+Number of cycles: 46023070; error? 1
+Number of cycles: 46023324; error? 1
+Number of cycles: 46022575; error? 1
+Number of cycles: 46023111; error? 1
+Number of cycles: 46022308; error? 1
+Number of cycles: 46022997; error? 1
+Number of cycles: 46023286; error? 1
+Number of cycles: 46022973; error? 1
+Number of cycles: 46022967; error? 1
+Number of cycles: 46023245; error? 1
+Number of cycles: 46023005; error? 1
+Number of cycles: 46023210; error? 1
+Number of cycles: 46023327; error? 1
+Number of cycles: 46023004; error? 1
+Number of cycles: 46022700; error? 1
+Number of cycles: 46023246; error? 1
+Number of cycles: 46022786; error? 1
+Average: 46022992.000000
+Standard deviation: 276.315765
+
+Number of blocks: 8
+Number of cycles: 46924174; error? 1
+Number of cycles: 46924248; error? 1
+Number of cycles: 46924718; error? 1
+Number of cycles: 46924274; error? 1
+Number of cycles: 46924342; error? 1
+Number of cycles: 46924247; error? 1
+Number of cycles: 46924373; error? 1
+Number of cycles: 46924695; error? 1
+Number of cycles: 46924399; error? 1
+Number of cycles: 46924323; error? 1
+Number of cycles: 46924301; error? 1
+Number of cycles: 46924509; error? 1
+Number of cycles: 46924688; error? 1
+Number of cycles: 46924762; error? 1
+Number of cycles: 46924409; error? 1
+Number of cycles: 46924907; error? 1
+Number of cycles: 46924589; error? 1
+Number of cycles: 46923752; error? 1
+Number of cycles: 46924366; error? 1
+Number of cycles: 46924912; error? 1
+Number of cycles: 46924226; error? 1
+Number of cycles: 46924370; error? 1
+Number of cycles: 46924472; error? 1
+Number of cycles: 46924250; error? 1
+Number of cycles: 46924232; error? 1
+Number of cycles: 46924514; error? 1
+Number of cycles: 46924014; error? 1
+Number of cycles: 46924112; error? 1
+Number of cycles: 46924644; error? 1
+Number of cycles: 46924253; error? 1
+Average: 46924412.000000
+Standard deviation: 254.212509
+
+Number of blocks: 9
+Number of cycles: 47782661; error? 1
+Number of cycles: 47782634; error? 1
+Number of cycles: 47782278; error? 1
+Number of cycles: 47782332; error? 1
+Number of cycles: 47782283; error? 1
+Number of cycles: 47782363; error? 1
+Number of cycles: 47782247; error? 1
+Number of cycles: 47782378; error? 1
+Number of cycles: 47782781; error? 1
+Number of cycles: 47782664; error? 1
+Number of cycles: 47782668; error? 1
+Number of cycles: 47782512; error? 1
+Number of cycles: 47782438; error? 1
+Number of cycles: 47782070; error? 1
+Number of cycles: 47782617; error? 1
+Number of cycles: 47782188; error? 1
+Number of cycles: 47782769; error? 1
+Number of cycles: 47781828; error? 1
+Number of cycles: 47783140; error? 1
+Number of cycles: 47782524; error? 1
+Number of cycles: 47782503; error? 1
+Number of cycles: 47782378; error? 1
+Number of cycles: 47782785; error? 1
+Number of cycles: 47782565; error? 1
+Number of cycles: 47782227; error? 1
+Number of cycles: 47782321; error? 1
+Number of cycles: 47781834; error? 1
+Number of cycles: 47782602; error? 1
+Number of cycles: 47782513; error? 1
+Number of cycles: 47782583; error? 1
+Average: 47782460.000000
+Standard deviation: 273.304718
+
+Number of blocks: 10
+Number of cycles: 48683489; error? 1
+Number of cycles: 48683891; error? 1
+Number of cycles: 48683579; error? 1
+Number of cycles: 48683976; error? 1
+Number of cycles: 48684066; error? 1
+Number of cycles: 48683978; error? 1
+Number of cycles: 48684050; error? 1
+Number of cycles: 48683286; error? 1
+Number of cycles: 48683924; error? 1
+Number of cycles: 48684448; error? 1
+Number of cycles: 48684040; error? 1
+Number of cycles: 48683878; error? 1
+Number of cycles: 48683509; error? 1
+Number of cycles: 48683577; error? 1
+Number of cycles: 48683990; error? 1
+Number of cycles: 48683710; error? 1
+Number of cycles: 48683960; error? 1
+Number of cycles: 48684245; error? 1
+Number of cycles: 48684077; error? 1
+Number of cycles: 48683766; error? 1
+Number of cycles: 48684160; error? 1
+Number of cycles: 48683675; error? 1
+Number of cycles: 48683230; error? 1
+Number of cycles: 48683915; error? 1
+Number of cycles: 48683969; error? 1
+Number of cycles: 48684252; error? 1
+Number of cycles: 48684191; error? 1
+Number of cycles: 48683799; error? 1
+Number of cycles: 48683690; error? 1
+Number of cycles: 48683668; error? 1
+Average: 48683864.000000
+Standard deviation: 280.112366
+
+
+Program received signal SIGINT, Interrupt.
+main () at main_cw521.c:471
+warning: Source file is more recent than executable.
+471	  while (true) {

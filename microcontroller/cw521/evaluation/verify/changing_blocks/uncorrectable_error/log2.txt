@@ -1,0 +1,179 @@
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 10; End: 50; Interval: 5; Threshold: 1; Measurements per block: 15
+
+Number of blocks: 10
+Number of cycles: 49917904; error? 1
+Number of cycles: 49918431; error? 1
+Number of cycles: 49918435; error? 1
+Number of cycles: 49917838; error? 1
+Number of cycles: 49918603; error? 1
+Number of cycles: 49918459; error? 1
+Number of cycles: 49918677; error? 1
+Number of cycles: 49917902; error? 1
+Number of cycles: 49917950; error? 1
+Number of cycles: 49918245; error? 1
+Number of cycles: 49918444; error? 1
+Number of cycles: 49918916; error? 1
+Number of cycles: 49917846; error? 1
+Number of cycles: 49918225; error? 1
+Number of cycles: 49918321; error? 1
+Average: 49918276.000000
+Standard deviation: 321.443420
+
+Number of blocks: 15
+Number of cycles: 55060317; error? 1
+Number of cycles: 55060005; error? 1
+Number of cycles: 55059854; error? 1
+Number of cycles: 55059533; error? 1
+Number of cycles: 55060126; error? 1
+Number of cycles: 55059346; error? 1
+Number of cycles: 55059632; error? 1
+Number of cycles: 55059829; error? 1
+Number of cycles: 55059688; error? 1
+Number of cycles: 55060075; error? 1
+Number of cycles: 55060010; error? 1
+Number of cycles: 55059245; error? 1
+Number of cycles: 55059592; error? 1
+Number of cycles: 55060383; error? 1
+Number of cycles: 55060146; error? 1
+Average: 55059852.000000
+Standard deviation: 329.746552
+
+Number of blocks: 20
+Number of cycles: 60108457; error? 1
+Number of cycles: 60107724; error? 1
+Number of cycles: 60107763; error? 1
+Number of cycles: 60109032; error? 1
+Number of cycles: 60108118; error? 1
+Number of cycles: 60108261; error? 1
+Number of cycles: 60108313; error? 1
+Number of cycles: 60107663; error? 1
+Number of cycles: 60108238; error? 1
+Number of cycles: 60108181; error? 1
+Number of cycles: 60108259; error? 1
+Number of cycles: 60108696; error? 1
+Number of cycles: 60108287; error? 1
+Number of cycles: 60108326; error? 1
+Number of cycles: 60108222; error? 1
+Average: 60108236.000000
+Standard deviation: 340.644104
+
+Number of blocks: 25
+Number of cycles: 65251213; error? 1
+Number of cycles: 65251336; error? 1
+Number of cycles: 65250771; error? 1
+Number of cycles: 65250499; error? 1
+Number of cycles: 65250984; error? 1
+Number of cycles: 65251375; error? 1
+Number of cycles: 65250428; error? 1
+Number of cycles: 65250715; error? 1
+Number of cycles: 65250601; error? 1
+Number of cycles: 65250822; error? 1
+Number of cycles: 65250813; error? 1
+Number of cycles: 65250391; error? 1
+Number of cycles: 65250891; error? 1
+Number of cycles: 65250564; error? 1
+Number of cycles: 65250178; error? 1
+Average: 65250768.000000
+Standard deviation: 337.476135
+
+Number of blocks: 30
+Number of cycles: 70396265; error? 1
+Number of cycles: 70396401; error? 1
+Number of cycles: 70396299; error? 1
+Number of cycles: 70396193; error? 1
+Number of cycles: 70396523; error? 1
+Number of cycles: 70396065; error? 1
+Number of cycles: 70395281; error? 1
+Number of cycles: 70395777; error? 1
+Number of cycles: 70395873; error? 1
+Number of cycles: 70395315; error? 1
+Number of cycles: 70395709; error? 1
+Number of cycles: 70395945; error? 1
+Number of cycles: 70395518; error? 1
+Number of cycles: 70395936; error? 1
+Number of cycles: 70396225; error? 1
+Average: 70395960.000000
+Standard deviation: 367.576569
+
+Number of blocks: 35
+Number of cycles: 75518766; error? 1
+Number of cycles: 75518472; error? 1
+Number of cycles: 75518832; error? 1
+Number of cycles: 75519072; error? 1
+Number of cycles: 75519127; error? 1
+Number of cycles: 75519915; error? 1
+Number of cycles: 75519872; error? 1
+Number of cycles: 75519040; error? 1
+Number of cycles: 75519561; error? 1
+Number of cycles: 75518358; error? 1
+Number of cycles: 75518765; error? 1
+Number of cycles: 75518670; error? 1
+Number of cycles: 75519088; error? 1
+Number of cycles: 75518793; error? 1
+Number of cycles: 75519084; error? 1
+Average: 75519024.000000
+Standard deviation: 440.285980
+
+Number of blocks: 40
+Number of cycles: 80647192; error? 1
+Number of cycles: 80647611; error? 1
+Number of cycles: 80647450; error? 1
+Number of cycles: 80647622; error? 1
+Number of cycles: 80647342; error? 1
+Number of cycles: 80647532; error? 1
+Number of cycles: 80647475; error? 1
+Number of cycles: 80647705; error? 1
+Number of cycles: 80646742; error? 1
+Number of cycles: 80648019; error? 1
+Number of cycles: 80647404; error? 1
+Number of cycles: 80648251; error? 1
+Number of cycles: 80647227; error? 1
+Number of cycles: 80647538; error? 1
+Number of cycles: 80647363; error? 1
+Average: 80647496.000000
+Standard deviation: 336.196777
+
+Number of blocks: 45
+Number of cycles: 85783292; error? 1
+Number of cycles: 85783606; error? 1
+Number of cycles: 85783695; error? 1
+Number of cycles: 85782249; error? 1
+Number of cycles: 85783173; error? 1
+Number of cycles: 85783342; error? 1
+Number of cycles: 85783108; error? 1
+Number of cycles: 85782919; error? 1
+Number of cycles: 85783473; error? 1
+Number of cycles: 85783461; error? 1
+Number of cycles: 85783111; error? 1
+Number of cycles: 85783655; error? 1
+Number of cycles: 85783195; error? 1
+Number of cycles: 85782884; error? 1
+Number of cycles: 85783760; error? 1
+Average: 85783272.000000
+Standard deviation: 379.163971
+
+Number of blocks: 50
+Number of cycles: 90927104; error? 1
+Number of cycles: 90926448; error? 1
+Number of cycles: 90926598; error? 1
+Number of cycles: 90927104; error? 1
+Number of cycles: 90925663; error? 1
+Number of cycles: 90927363; error? 1
+Number of cycles: 90926172; error? 1
+Number of cycles: 90926808; error? 1
+Number of cycles: 90926827; error? 1
+Number of cycles: 90926702; error? 1
+Number of cycles: 90926734; error? 1
+Number of cycles: 90926477; error? 1
+Number of cycles: 90926212; error? 1
+Number of cycles: 90926971; error? 1
+Number of cycles: 90926974; error? 1
+Average: 90926688.000000
+Standard deviation: 419.859009
+
+
+Program received signal SIGINT, Interrupt.
+main () at main_cw521.c:476
+warning: Source file is more recent than executable.
+476	  while (true) {

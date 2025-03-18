@@ -1,0 +1,133 @@
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 10; End: 50; Interval: 5; Threshold: 1; Measurements per block: 10
+
+Number of blocks: 10
+Number of cycles: 48683957; error? 1
+Number of cycles: 48684078; error? 1
+Number of cycles: 48683975; error? 1
+Number of cycles: 48683820; error? 1
+Number of cycles: 48684504; error? 1
+Number of cycles: 48683421; error? 1
+Number of cycles: 48683966; error? 1
+Number of cycles: 48683966; error? 1
+Number of cycles: 48684094; error? 1
+Number of cycles: 48683701; error? 1
+Average: 48683948.000000
+Standard deviation: 265.854095
+
+Number of blocks: 15
+Number of cycles: 53102857; error? 1
+Number of cycles: 53102403; error? 1
+Number of cycles: 53103417; error? 1
+Number of cycles: 53102955; error? 1
+Number of cycles: 53103020; error? 1
+Number of cycles: 53102735; error? 1
+Number of cycles: 53102960; error? 1
+Number of cycles: 53102704; error? 1
+Number of cycles: 53102681; error? 1
+Number of cycles: 53103311; error? 1
+Average: 53102912.000000
+Standard deviation: 286.213898
+
+Number of blocks: 20
+Number of cycles: 57427284; error? 1
+Number of cycles: 57426924; error? 1
+Number of cycles: 57426931; error? 1
+Number of cycles: 57426694; error? 1
+Number of cycles: 57426866; error? 1
+Number of cycles: 57426838; error? 1
+Number of cycles: 57426893; error? 1
+Number of cycles: 57427230; error? 1
+Number of cycles: 57426924; error? 1
+Number of cycles: 57426935; error? 1
+Average: 57426952.000000
+Standard deviation: 167.413254
+
+Number of blocks: 25
+Number of cycles: 61847317; error? 1
+Number of cycles: 61847368; error? 1
+Number of cycles: 61847258; error? 1
+Number of cycles: 61847174; error? 1
+Number of cycles: 61846830; error? 1
+Number of cycles: 61847590; error? 1
+Number of cycles: 61847385; error? 1
+Number of cycles: 61846641; error? 1
+Number of cycles: 61846548; error? 1
+Number of cycles: 61847892; error? 1
+Average: 61847200.000000
+Standard deviation: 398.234100
+
+Number of blocks: 30
+Number of cycles: 66258517; error? 1
+Number of cycles: 66258763; error? 1
+Number of cycles: 66259419; error? 1
+Number of cycles: 66258489; error? 1
+Number of cycles: 66258959; error? 1
+Number of cycles: 66258628; error? 1
+Number of cycles: 66258663; error? 1
+Number of cycles: 66258945; error? 1
+Number of cycles: 66258826; error? 1
+Number of cycles: 66259320; error? 1
+Average: 66258856.000000
+Standard deviation: 300.218597
+
+Number of blocks: 35
+Number of cycles: 70649526; error? 1
+Number of cycles: 70649439; error? 1
+Number of cycles: 70649466; error? 1
+Number of cycles: 70649424; error? 1
+Number of cycles: 70649432; error? 1
+Number of cycles: 70649560; error? 1
+Number of cycles: 70649771; error? 1
+Number of cycles: 70649385; error? 1
+Number of cycles: 70649521; error? 1
+Number of cycles: 70649150; error? 1
+Average: 70649472.000000
+Standard deviation: 146.947601
+
+Number of blocks: 40
+Number of cycles: 75052440; error? 1
+Number of cycles: 75051970; error? 1
+Number of cycles: 75051900; error? 1
+Number of cycles: 75051726; error? 1
+Number of cycles: 75052867; error? 1
+Number of cycles: 75053175; error? 1
+Number of cycles: 75052372; error? 1
+Number of cycles: 75052537; error? 1
+Number of cycles: 75052537; error? 1
+Number of cycles: 75052477; error? 1
+Average: 75052400.000000
+Standard deviation: 418.056458
+
+Number of blocks: 45
+Number of cycles: 79459549; error? 1
+Number of cycles: 79459261; error? 1
+Number of cycles: 79458786; error? 1
+Number of cycles: 79459150; error? 1
+Number of cycles: 79459043; error? 1
+Number of cycles: 79458683; error? 1
+Number of cycles: 79459060; error? 1
+Number of cycles: 79459139; error? 1
+Number of cycles: 79458718; error? 1
+Number of cycles: 79458452; error? 1
+Average: 79458984.000000
+Standard deviation: 308.233673
+
+Number of blocks: 50
+Number of cycles: 83874280; error? 1
+Number of cycles: 83873624; error? 1
+Number of cycles: 83873323; error? 1
+Number of cycles: 83873611; error? 1
+Number of cycles: 83873386; error? 1
+Number of cycles: 83874186; error? 1
+Number of cycles: 83873749; error? 1
+Number of cycles: 83872847; error? 1
+Number of cycles: 83873951; error? 1
+Number of cycles: 83873467; error? 1
+Average: 83873632.000000
+Standard deviation: 405.435059
+
+
+Program received signal SIGINT, Interrupt.
+main () at main_cw521.c:471
+471	  while (true) {

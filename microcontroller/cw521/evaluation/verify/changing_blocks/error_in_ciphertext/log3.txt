@@ -1,0 +1,52 @@
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 50; End: 250; Interval: 50; Threshold: 1; Measurements per block: 5
+
+Number of blocks: 50
+Number of cycles: 92809242; error? 1
+Number of cycles: 92808564; error? 1
+Number of cycles: 92808542; error? 1
+Number of cycles: 92808472; error? 1
+Number of cycles: 92808810; error? 1
+Average: 92808720.000000
+Standard deviation: 281.504517
+
+Number of blocks: 100
+Number of cycles: 145779687; error? 1
+Number of cycles: 145778800; error? 1
+Number of cycles: 145778842; error? 1
+Number of cycles: 145778460; error? 1
+Number of cycles: 145778924; error? 1
+Average: 145778944.000000
+Standard deviation: 400.575592
+
+Number of blocks: 150
+Number of cycles: 198229189; error? 1
+Number of cycles: 198229285; error? 1
+Number of cycles: 198229663; error? 1
+Number of cycles: 198228915; error? 1
+Number of cycles: 198230319; error? 1
+Average: 198229472.000000
+Standard deviation: 487.724518
+
+Number of blocks: 200
+Number of cycles: 251207042; error? 1
+Number of cycles: 251206491; error? 1
+Number of cycles: 251206624; error? 1
+Number of cycles: 251206873; error? 1
+Number of cycles: 251207067; error? 1
+Average: 251206816.000000
+Standard deviation: 227.627762
+
+Number of blocks: 250
+Number of cycles: 304206403; error? 1
+Number of cycles: 304207840; error? 1
+Number of cycles: 304209542; error? 1
+Number of cycles: 304208351; error? 1
+Number of cycles: 304208035; error? 1
+Average: 304208032.000000
+Standard deviation: 1006.449585
+
+
+Program received signal SIGINT, Interrupt.
+main () at main_cw521.c:471
+471	  while (true) {
