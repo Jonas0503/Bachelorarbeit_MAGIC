@@ -1,0 +1,348 @@
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 1; End: 10; Interval: 1; Number of blocks: 4; Measurements per threshold: 30
+
+Threshold: 1
+Number of cycles: 43352706; error_corrected? 1
+Number of cycles: 43352699; error_corrected? 1
+Number of cycles: 43353009; error_corrected? 1
+Number of cycles: 43352841; error_corrected? 1
+Number of cycles: 43352670; error_corrected? 1
+Number of cycles: 43352633; error_corrected? 1
+Number of cycles: 43352879; error_corrected? 1
+Number of cycles: 43352926; error_corrected? 1
+Number of cycles: 43352935; error_corrected? 1
+Number of cycles: 43352319; error_corrected? 1
+Number of cycles: 43352241; error_corrected? 1
+Number of cycles: 43353064; error_corrected? 1
+Number of cycles: 43352723; error_corrected? 1
+Number of cycles: 43352484; error_corrected? 1
+Number of cycles: 43352695; error_corrected? 1
+Number of cycles: 43353052; error_corrected? 1
+Number of cycles: 43352374; error_corrected? 1
+Number of cycles: 43352912; error_corrected? 1
+Number of cycles: 43352940; error_corrected? 1
+Number of cycles: 43352768; error_corrected? 1
+Number of cycles: 43352654; error_corrected? 1
+Number of cycles: 43352988; error_corrected? 1
+Number of cycles: 43352746; error_corrected? 1
+Number of cycles: 43352810; error_corrected? 1
+Number of cycles: 43352712; error_corrected? 1
+Number of cycles: 43352666; error_corrected? 1
+Number of cycles: 43352687; error_corrected? 1
+Number of cycles: 43352900; error_corrected? 1
+Number of cycles: 43352941; error_corrected? 1
+Number of cycles: 43352673; error_corrected? 1
+Average: 43352764.000000
+Standard deviation: 203.481689
+
+Threshold: 2
+Number of cycles: 43357468; error_corrected? 1
+Number of cycles: 43357551; error_corrected? 1
+Number of cycles: 43357306; error_corrected? 1
+Number of cycles: 43357408; error_corrected? 1
+Number of cycles: 43357340; error_corrected? 1
+Number of cycles: 43357404; error_corrected? 1
+Number of cycles: 43357200; error_corrected? 1
+Number of cycles: 43357080; error_corrected? 1
+Number of cycles: 43357183; error_corrected? 1
+Number of cycles: 43356735; error_corrected? 1
+Number of cycles: 43357693; error_corrected? 1
+Number of cycles: 43357269; error_corrected? 1
+Number of cycles: 43357879; error_corrected? 1
+Number of cycles: 43356941; error_corrected? 1
+Number of cycles: 43356940; error_corrected? 1
+Number of cycles: 43357718; error_corrected? 1
+Number of cycles: 43357484; error_corrected? 1
+Number of cycles: 43357312; error_corrected? 1
+Number of cycles: 43357515; error_corrected? 1
+Number of cycles: 43357084; error_corrected? 1
+Number of cycles: 43357316; error_corrected? 1
+Number of cycles: 43357713; error_corrected? 1
+Number of cycles: 43357318; error_corrected? 1
+Number of cycles: 43357015; error_corrected? 1
+Number of cycles: 43357299; error_corrected? 1
+Number of cycles: 43356962; error_corrected? 1
+Number of cycles: 43357525; error_corrected? 1
+Number of cycles: 43357266; error_corrected? 1
+Number of cycles: 43357586; error_corrected? 1
+Number of cycles: 43357340; error_corrected? 1
+Average: 43357324.000000
+Standard deviation: 260.559418
+
+Threshold: 3
+Number of cycles: 43366013; error_corrected? 1
+Number of cycles: 43365795; error_corrected? 1
+Number of cycles: 43365756; error_corrected? 1
+Number of cycles: 43365444; error_corrected? 1
+Number of cycles: 43365697; error_corrected? 1
+Number of cycles: 43365876; error_corrected? 1
+Number of cycles: 43366044; error_corrected? 1
+Number of cycles: 43366177; error_corrected? 1
+Number of cycles: 43366500; error_corrected? 1
+Number of cycles: 43365761; error_corrected? 1
+Number of cycles: 43365816; error_corrected? 1
+Number of cycles: 43365775; error_corrected? 1
+Number of cycles: 43365872; error_corrected? 1
+Number of cycles: 43365606; error_corrected? 1
+Number of cycles: 43365652; error_corrected? 1
+Number of cycles: 43365513; error_corrected? 1
+Number of cycles: 43366058; error_corrected? 1
+Number of cycles: 43365758; error_corrected? 1
+Number of cycles: 43366239; error_corrected? 1
+Number of cycles: 43365896; error_corrected? 1
+Number of cycles: 43366055; error_corrected? 1
+Number of cycles: 43365968; error_corrected? 1
+Number of cycles: 43365657; error_corrected? 1
+Number of cycles: 43365670; error_corrected? 1
+Number of cycles: 43365738; error_corrected? 1
+Number of cycles: 43366063; error_corrected? 1
+Number of cycles: 43365662; error_corrected? 1
+Number of cycles: 43365616; error_corrected? 1
+Number of cycles: 43365996; error_corrected? 1
+Number of cycles: 43365706; error_corrected? 1
+Average: 43365844.000000
+Standard deviation: 226.694504
+
+Threshold: 4
+Number of cycles: 43368034; error_corrected? 1
+Number of cycles: 43367962; error_corrected? 1
+Number of cycles: 43368397; error_corrected? 1
+Number of cycles: 43368027; error_corrected? 1
+Number of cycles: 43367735; error_corrected? 1
+Number of cycles: 43368618; error_corrected? 1
+Number of cycles: 43368193; error_corrected? 1
+Number of cycles: 43367551; error_corrected? 1
+Number of cycles: 43368166; error_corrected? 1
+Number of cycles: 43367759; error_corrected? 1
+Number of cycles: 43367939; error_corrected? 1
+Number of cycles: 43367967; error_corrected? 1
+Number of cycles: 43367844; error_corrected? 1
+Number of cycles: 43368050; error_corrected? 1
+Number of cycles: 43367992; error_corrected? 1
+Number of cycles: 43368236; error_corrected? 1
+Number of cycles: 43368062; error_corrected? 1
+Number of cycles: 43367700; error_corrected? 1
+Number of cycles: 43368120; error_corrected? 1
+Number of cycles: 43367924; error_corrected? 1
+Number of cycles: 43368117; error_corrected? 1
+Number of cycles: 43368284; error_corrected? 1
+Number of cycles: 43368078; error_corrected? 1
+Number of cycles: 43368527; error_corrected? 1
+Number of cycles: 43368145; error_corrected? 1
+Number of cycles: 43368319; error_corrected? 1
+Number of cycles: 43368308; error_corrected? 1
+Number of cycles: 43367889; error_corrected? 1
+Number of cycles: 43367954; error_corrected? 1
+Number of cycles: 43368366; error_corrected? 1
+Average: 43368076.000000
+Standard deviation: 238.801453
+
+Threshold: 5
+Number of cycles: 43378756; error_corrected? 1
+Number of cycles: 43379048; error_corrected? 1
+Number of cycles: 43378737; error_corrected? 1
+Number of cycles: 43379173; error_corrected? 1
+Number of cycles: 43378988; error_corrected? 1
+Number of cycles: 43378405; error_corrected? 1
+Number of cycles: 43379059; error_corrected? 1
+Number of cycles: 43378757; error_corrected? 1
+Number of cycles: 43379132; error_corrected? 1
+Number of cycles: 43379021; error_corrected? 1
+Number of cycles: 43378946; error_corrected? 1
+Number of cycles: 43378511; error_corrected? 1
+Number of cycles: 43379263; error_corrected? 1
+Number of cycles: 43378967; error_corrected? 1
+Number of cycles: 43378916; error_corrected? 1
+Number of cycles: 43379002; error_corrected? 1
+Number of cycles: 43378789; error_corrected? 1
+Number of cycles: 43378434; error_corrected? 1
+Number of cycles: 43379058; error_corrected? 1
+Number of cycles: 43378908; error_corrected? 1
+Number of cycles: 43379073; error_corrected? 1
+Number of cycles: 43378915; error_corrected? 1
+Number of cycles: 43379206; error_corrected? 1
+Number of cycles: 43378886; error_corrected? 1
+Number of cycles: 43379057; error_corrected? 1
+Number of cycles: 43378313; error_corrected? 1
+Number of cycles: 43379092; error_corrected? 1
+Number of cycles: 43378735; error_corrected? 1
+Number of cycles: 43379402; error_corrected? 1
+Number of cycles: 43378724; error_corrected? 1
+Average: 43378904.000000
+Standard deviation: 252.038086
+
+Threshold: 6
+Number of cycles: 43384252; error_corrected? 1
+Number of cycles: 43384645; error_corrected? 1
+Number of cycles: 43384869; error_corrected? 1
+Number of cycles: 43384876; error_corrected? 1
+Number of cycles: 43384894; error_corrected? 1
+Number of cycles: 43384604; error_corrected? 1
+Number of cycles: 43384834; error_corrected? 1
+Number of cycles: 43385325; error_corrected? 1
+Number of cycles: 43384846; error_corrected? 1
+Number of cycles: 43384489; error_corrected? 1
+Number of cycles: 43384857; error_corrected? 1
+Number of cycles: 43384334; error_corrected? 1
+Number of cycles: 43384979; error_corrected? 1
+Number of cycles: 43384476; error_corrected? 1
+Number of cycles: 43384519; error_corrected? 1
+Number of cycles: 43384553; error_corrected? 1
+Number of cycles: 43384919; error_corrected? 1
+Number of cycles: 43384835; error_corrected? 1
+Number of cycles: 43384745; error_corrected? 1
+Number of cycles: 43384660; error_corrected? 1
+Number of cycles: 43384873; error_corrected? 1
+Number of cycles: 43385017; error_corrected? 1
+Number of cycles: 43384616; error_corrected? 1
+Number of cycles: 43384766; error_corrected? 1
+Number of cycles: 43384285; error_corrected? 1
+Number of cycles: 43384859; error_corrected? 1
+Number of cycles: 43385114; error_corrected? 1
+Number of cycles: 43384906; error_corrected? 1
+Number of cycles: 43384520; error_corrected? 1
+Number of cycles: 43384941; error_corrected? 1
+Average: 43384752.000000
+Standard deviation: 242.947449
+
+Threshold: 7
+Number of cycles: 43390869; error_corrected? 1
+Number of cycles: 43390896; error_corrected? 1
+Number of cycles: 43390712; error_corrected? 1
+Number of cycles: 43390912; error_corrected? 1
+Number of cycles: 43391023; error_corrected? 1
+Number of cycles: 43391119; error_corrected? 1
+Number of cycles: 43390725; error_corrected? 1
+Number of cycles: 43391155; error_corrected? 1
+Number of cycles: 43391062; error_corrected? 1
+Number of cycles: 43390551; error_corrected? 1
+Number of cycles: 43390982; error_corrected? 1
+Number of cycles: 43391037; error_corrected? 1
+Number of cycles: 43390729; error_corrected? 1
+Number of cycles: 43391364; error_corrected? 1
+Number of cycles: 43390999; error_corrected? 1
+Number of cycles: 43390706; error_corrected? 1
+Number of cycles: 43390936; error_corrected? 1
+Number of cycles: 43391024; error_corrected? 1
+Number of cycles: 43391096; error_corrected? 1
+Number of cycles: 43390570; error_corrected? 1
+Number of cycles: 43391149; error_corrected? 1
+Number of cycles: 43391252; error_corrected? 1
+Number of cycles: 43391114; error_corrected? 1
+Number of cycles: 43390401; error_corrected? 1
+Number of cycles: 43390705; error_corrected? 1
+Number of cycles: 43391145; error_corrected? 1
+Number of cycles: 43390543; error_corrected? 1
+Number of cycles: 43390601; error_corrected? 1
+Number of cycles: 43391043; error_corrected? 1
+Number of cycles: 43390727; error_corrected? 1
+Average: 43390908.000000
+Standard deviation: 236.216843
+
+Threshold: 8
+Number of cycles: 43397942; error_corrected? 1
+Number of cycles: 43398404; error_corrected? 1
+Number of cycles: 43398607; error_corrected? 1
+Number of cycles: 43398601; error_corrected? 1
+Number of cycles: 43398673; error_corrected? 1
+Number of cycles: 43397738; error_corrected? 1
+Number of cycles: 43398729; error_corrected? 1
+Number of cycles: 43398246; error_corrected? 1
+Number of cycles: 43398106; error_corrected? 1
+Number of cycles: 43398313; error_corrected? 1
+Number of cycles: 43398005; error_corrected? 1
+Number of cycles: 43398275; error_corrected? 1
+Number of cycles: 43398461; error_corrected? 1
+Number of cycles: 43397922; error_corrected? 1
+Number of cycles: 43398564; error_corrected? 1
+Number of cycles: 43398679; error_corrected? 1
+Number of cycles: 43398436; error_corrected? 1
+Number of cycles: 43398044; error_corrected? 1
+Number of cycles: 43398311; error_corrected? 1
+Number of cycles: 43398259; error_corrected? 1
+Number of cycles: 43398389; error_corrected? 1
+Number of cycles: 43398472; error_corrected? 1
+Number of cycles: 43398072; error_corrected? 1
+Number of cycles: 43398567; error_corrected? 1
+Number of cycles: 43398005; error_corrected? 1
+Number of cycles: 43398403; error_corrected? 1
+Number of cycles: 43398282; error_corrected? 1
+Number of cycles: 43398220; error_corrected? 1
+Number of cycles: 43398357; error_corrected? 1
+Number of cycles: 43398397; error_corrected? 1
+Average: 43398324.000000
+Standard deviation: 247.302246
+
+Threshold: 9
+Number of cycles: 43404068; error_corrected? 1
+Number of cycles: 43404755; error_corrected? 1
+Number of cycles: 43404128; error_corrected? 1
+Number of cycles: 43404091; error_corrected? 1
+Number of cycles: 43404051; error_corrected? 1
+Number of cycles: 43404689; error_corrected? 1
+Number of cycles: 43404344; error_corrected? 1
+Number of cycles: 43404120; error_corrected? 1
+Number of cycles: 43404078; error_corrected? 1
+Number of cycles: 43404400; error_corrected? 1
+Number of cycles: 43404642; error_corrected? 1
+Number of cycles: 43404404; error_corrected? 1
+Number of cycles: 43404245; error_corrected? 1
+Number of cycles: 43404538; error_corrected? 1
+Number of cycles: 43404801; error_corrected? 1
+Number of cycles: 43404003; error_corrected? 1
+Number of cycles: 43404296; error_corrected? 1
+Number of cycles: 43404380; error_corrected? 1
+Number of cycles: 43404743; error_corrected? 1
+Number of cycles: 43404324; error_corrected? 1
+Number of cycles: 43404549; error_corrected? 1
+Number of cycles: 43404854; error_corrected? 1
+Number of cycles: 43404632; error_corrected? 1
+Number of cycles: 43404495; error_corrected? 1
+Number of cycles: 43404931; error_corrected? 1
+Number of cycles: 43404898; error_corrected? 1
+Number of cycles: 43404395; error_corrected? 1
+Number of cycles: 43404228; error_corrected? 1
+Number of cycles: 43403778; error_corrected? 1
+Number of cycles: 43404399; error_corrected? 1
+Average: 43404416.000000
+Standard deviation: 293.634705
+
+Threshold: 10
+Number of cycles: 43409432; error_corrected? 1
+Number of cycles: 43409958; error_corrected? 1
+Number of cycles: 43409336; error_corrected? 1
+Number of cycles: 43409945; error_corrected? 1
+Number of cycles: 43409644; error_corrected? 1
+Number of cycles: 43409872; error_corrected? 1
+Number of cycles: 43409378; error_corrected? 1
+Number of cycles: 43409534; error_corrected? 1
+Number of cycles: 43409885; error_corrected? 1
+Number of cycles: 43409576; error_corrected? 1
+Number of cycles: 43409574; error_corrected? 1
+Number of cycles: 43409536; error_corrected? 1
+Number of cycles: 43409880; error_corrected? 1
+Number of cycles: 43409329; error_corrected? 1
+Number of cycles: 43409849; error_corrected? 1
+Number of cycles: 43409376; error_corrected? 1
+Number of cycles: 43409690; error_corrected? 1
+Number of cycles: 43409185; error_corrected? 1
+Number of cycles: 43409514; error_corrected? 1
+Number of cycles: 43409323; error_corrected? 1
+Number of cycles: 43409636; error_corrected? 1
+Number of cycles: 43409684; error_corrected? 1
+Number of cycles: 43409590; error_corrected? 1
+Number of cycles: 43409657; error_corrected? 1
+Number of cycles: 43409028; error_corrected? 1
+Number of cycles: 43409943; error_corrected? 1
+Number of cycles: 43409553; error_corrected? 1
+Number of cycles: 43409755; error_corrected? 1
+Number of cycles: 43409683; error_corrected? 1
+Number of cycles: 43409361; error_corrected? 1
+Average: 43409592.000000
+Standard deviation: 233.544281
+
+
+Program received signal SIGINT, Interrupt.
+main () at main_cw521.c:538
+warning: Source file is more recent than executable.
+538	  while (true) {

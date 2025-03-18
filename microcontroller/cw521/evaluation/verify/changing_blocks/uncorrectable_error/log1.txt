@@ -311,3 +311,185 @@ Standard deviation: 316.722382
 Program received signal SIGINT, Interrupt.
 main () at main_cw521.c:476
 476	  while (true) {
+`/home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf' has changed; re-reading symbols.
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 1; End: 10; Interval: 1; Threshold: 1; Measurements per block: 50
+
+Number of blocks: 1
+Number of cycles: 40475107; error_corrected? 1
+Number of cycles: 40474997; error_corrected? 1
+Number of cycles: 40475100; error_corrected? 1
+Number of cycles: 40475216; error_corrected? 1
+Number of cycles: 40475850; error_corrected? 1
+Number of cycles: 40474624; error_corrected? 1
+Number of cycles: 40475573; error_corrected? 1
+Number of cycles: 40475767; error_corrected? 1
+Number of cycles: 40475844; error_corrected? 1
+Number of cycles: 40475406; error_corrected? 1
+Number of cycles: 40475333; error_corrected? 1
+Number of cycles: 40475056; error_corrected? 1
+Number of cycles: 40474879; error_corrected? 1
+Number of cycles: 40475131; error_corrected? 1
+Number of cycles: 40475604; error_corrected? 1
+Number of cycles: 40475607; error_corrected? 1
+Number of cycles: 40475131; error_corrected? 1
+Number of cycles: 40475422; error_corrected? 1
+Number of cycles: 40474343; error_corrected? 1
+Number of cycles: 40475047; error_corrected? 1
+Number of cycles: 40475475; error_corrected? 1
+
+Program received signal SIGINT, Interrupt.
+0x00080ff2 in mult (a=..., b=...) at magic_bachelorarbeit/src/galois.c:38
+38	            result = xor_bignum(result, tmp_b);
+Loading section .text, size 0xcc24 lma 0x80000
+Loading section .ARM.exidx, size 0x8 lma 0x8cc24
+Loading section .relocate, size 0xa80 lma 0x8cc2c
+Start address 0x00082d7c, load size 54956
+Transfer rate: 10 KB/sec, 9159 bytes/write.
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 1; End: 10; Interval: 1; Threshold: 1; Measurements per block: 10
+
+Number of blocks: 1
+Number of cycles: 40598557; error_corrected? 1
+Number of cycles: 40598606; error_corrected? 1
+Number of cycles: 40598867; error_corrected? 1
+Number of cycles: 40598956; error_corrected? 1
+Number of cycles: 40598629; error_corrected? 1
+Number of cycles: 40598672; error_corrected? 1
+Number of cycles: 40599010; error_corrected? 1
+Number of cycles: 40598634; error_corrected? 1
+Number of cycles: 40598853; error_corrected? 1
+Number of cycles: 40598156; error_corrected? 1
+Average: 40598692.000000
+Standard deviation: 233.895706
+
+Number of blocks: 2
+Number of cycles: 41707288; error_corrected? 0
+Number of cycles: 41708640; error_corrected? 0
+Number of cycles: 41706678; error_corrected? 0
+Number of cycles: 41707620; error_corrected? 0
+Number of cycles: 41707449; error_corrected? 0
+Number of cycles: 41707291; error_corrected? 0
+Number of cycles: 41707614; error_corrected? 0
+Number of cycles: 41706764; error_corrected? 0
+Number of cycles: 41707537; error_corrected? 0
+Number of cycles: 41707601; error_corrected? 0
+Average: 41707444.000000
+Standard deviation: 511.598267
+
+Number of blocks: 3
+Number of cycles: 42729382; error_corrected? 0
+Number of cycles: 42729995; error_corrected? 0
+Number of cycles: 42729899; error_corrected? 0
+Number of cycles: 42729796; error_corrected? 0
+Number of cycles: 42729657; error_corrected? 0
+Number of cycles: 42730285; error_corrected? 0
+Number of cycles: 42730061; error_corrected? 0
+Number of cycles: 42730917; error_corrected? 0
+Number of cycles: 42730425; error_corrected? 0
+Number of cycles: 42729898; error_corrected? 0
+Average: 42730032.000000
+Standard deviation: 406.644806
+
+Number of blocks: 4
+Number of cycles: 43814684; error_corrected? 0
+Number of cycles: 43814346; error_corrected? 0
+Number of cycles: 43814586; error_corrected? 0
+Number of cycles: 43814700; error_corrected? 0
+Number of cycles: 43814611; error_corrected? 0
+Number of cycles: 43814993; error_corrected? 0
+Number of cycles: 43814818; error_corrected? 0
+Number of cycles: 43814885; error_corrected? 0
+Number of cycles: 43814604; error_corrected? 0
+Number of cycles: 43814945; error_corrected? 0
+Average: 43814712.000000
+Standard deviation: 186.285797
+
+Number of blocks: 5
+Number of cycles: 44823663; error_corrected? 0
+Number of cycles: 44824412; error_corrected? 0
+Number of cycles: 44824131; error_corrected? 0
+Number of cycles: 44822420; error_corrected? 0
+Number of cycles: 44823808; error_corrected? 0
+Number of cycles: 44823819; error_corrected? 0
+Number of cycles: 44822888; error_corrected? 0
+Number of cycles: 44823307; error_corrected? 0
+Number of cycles: 44823353; error_corrected? 0
+Number of cycles: 44823117; error_corrected? 0
+Average: 44823488.000000
+Standard deviation: 565.863586
+
+Number of blocks: 6
+Number of cycles: 45845384; error_corrected? 0
+Number of cycles: 45845656; error_corrected? 0
+Number of cycles: 45845225; error_corrected? 0
+Number of cycles: 45845440; error_corrected? 0
+Number of cycles: 45846814; error_corrected? 0
+Number of cycles: 45845904; error_corrected? 0
+Number of cycles: 45845748; error_corrected? 0
+Number of cycles: 45845785; error_corrected? 0
+Number of cycles: 45846651; error_corrected? 0
+Number of cycles: 45845742; error_corrected? 0
+Average: 45845836.000000
+Standard deviation: 491.716980
+
+Number of blocks: 7
+Number of cycles: 46916279; error_corrected? 0
+Number of cycles: 46916529; error_corrected? 0
+Number of cycles: 46916360; error_corrected? 0
+Number of cycles: 46915617; error_corrected? 0
+Number of cycles: 46915353; error_corrected? 0
+Number of cycles: 46915542; error_corrected? 0
+Number of cycles: 46915062; error_corrected? 0
+Number of cycles: 46916164; error_corrected? 0
+Number of cycles: 46916647; error_corrected? 0
+Number of cycles: 46915723; error_corrected? 0
+Average: 46915928.000000
+Standard deviation: 510.814270
+
+Number of blocks: 8
+Number of cycles: 47962149; error_corrected? 0
+Number of cycles: 47962464; error_corrected? 0
+Number of cycles: 47962276; error_corrected? 0
+Number of cycles: 47961412; error_corrected? 0
+Number of cycles: 47962314; error_corrected? 0
+Number of cycles: 47962047; error_corrected? 0
+Number of cycles: 47961833; error_corrected? 0
+Number of cycles: 47961682; error_corrected? 0
+Number of cycles: 47962936; error_corrected? 0
+Number of cycles: 47962119; error_corrected? 0
+Average: 47962120.000000
+Standard deviation: 403.629517
+
+Number of blocks: 9
+Number of cycles: 48970884; error_corrected? 0
+Number of cycles: 48970125; error_corrected? 0
+Number of cycles: 48969500; error_corrected? 0
+Number of cycles: 48970452; error_corrected? 0
+Number of cycles: 48970236; error_corrected? 0
+Number of cycles: 48969215; error_corrected? 0
+Number of cycles: 48969680; error_corrected? 0
+Number of cycles: 48969309; error_corrected? 0
+Number of cycles: 48969386; error_corrected? 0
+Number of cycles: 48969585; error_corrected? 0
+Average: 48969836.000000
+Standard deviation: 528.103027
+
+Number of blocks: 10
+Number of cycles: 50013401; error_corrected? 0
+Number of cycles: 50013011; error_corrected? 0
+Number of cycles: 50013382; error_corrected? 0
+Number of cycles: 50013161; error_corrected? 0
+Number of cycles: 50013415; error_corrected? 0
+Number of cycles: 50013175; error_corrected? 0
+Number of cycles: 50013829; error_corrected? 0
+Number of cycles: 50013409; error_corrected? 0
+Number of cycles: 50012536; error_corrected? 0
+Number of cycles: 50013580; error_corrected? 0
+Average: 50013288.000000
+Standard deviation: 331.664886
+
+
+Program received signal SIGINT, Interrupt.
+main () at main_cw521.c:538
+538	  while (true) {
