@@ -86,16 +86,19 @@ void encryption_changing_blocks(int start, int end, int interval, int number_of_
   };
   uint32_t nonce[2] = {0x0, 0x0};
 
-  // 16 chars
+  // 16 chars (ASCII) -> one block
   char *one_block_text = "1234ABCD5678EFGH";
 
+  // iterate over blocks
   for (int i = start; i <= end; i += interval) {
-    volatile uint32_t results[number_of_measurements];
+    volatile uint32_t results[number_of_measurements]; // all cycle counts are saved here to calculate the avarage and standard deviation
+    // measure the cycle count [number_of_measurements] times
     for (int f = 0; f < number_of_measurements; f++) {
       bignum blocks[i];
       int space_for_text = i * 16;
       char text[space_for_text];
 
+      // fill the string
       for (int k = 0; k < i; k++) {
         if (k == 0) {
           strcpy(text, one_block_text);
@@ -115,14 +118,13 @@ void encryption_changing_blocks(int start, int end, int interval, int number_of_
       stop_timer();
 
       results[f] = number_of_cycles;
-
-      volatile int PRINT_VALUES = 42;
     }
 
     volatile float avg = average(results, number_of_measurements);
     volatile float sd = standard_deviation(results, number_of_measurements, avg);
 
-    volatile int PRINT_VALUES = 42;
+    // statement to set a breakpoint for printing
+    volatile int PRINT_VALUES = avg;
   }
 }
 
@@ -134,11 +136,15 @@ void decryption_changing_blocks(int start, int end, int interval, int number_of_
   };
   uint32_t nonce[2] = {0x0, 0x0};
 
+  // this respresents one ciphertext block
   uint32_t one_block[4] = {0x12345678, 0xabcdef90, 0x87654321, 0x09fedcba};
 
+  // iterate over blocks
   for (int i = start; i <= end; i += interval) {
-    volatile uint32_t results[number_of_measurements];
+    volatile uint32_t results[number_of_measurements]; // all cycle counts are saved here to calculate the avarage and standard deviation
+    // measure the cycle count [number_of_measurements] times
     for (int f = 0; f < number_of_measurements; f++) {
+      // fill the blocks
       bignum blocks[i];
       for (int k = 0; k < i; k++) {
         blocks[k] = init_bignum(one_block);
@@ -150,20 +156,20 @@ void decryption_changing_blocks(int start, int end, int interval, int number_of_
       reset_timer();
       start_timer();
 
+      // decryption
       ciphertext_blocks_to_plaintext_as_str(text, blocks, i, key, nonce);
 
       volatile uint32_t number_of_cycles = get_cycles();
       stop_timer();
 
       results[f] = number_of_cycles;
-
-      volatile int PRINT_VALUES = 42;
     }
 
     volatile float avg = average(results, number_of_measurements);
     volatile float sd = standard_deviation(results, number_of_measurements, avg);
 
-    volatile int PRINT_VALUES = 42;
+    // statement to set a breakpoint for printing
+    volatile int PRINT_VALUES = avg;
   }
 }
 
@@ -175,96 +181,111 @@ void tag_generation_given_blocks_changing_blocks(int start, int end, int interva
   };
   uint32_t nonce[2] = {0x0, 0x0};
 
+  // this respresents one ciphertext block
   uint32_t one_block[4] = {0x12345678, 0xabcdef90, 0x87654321, 0x09fedcba};
 
+  // iterate over blocks
   for (int i = start; i <= end; i += interval) {
-    volatile uint32_t results[number_of_measurements];
+    volatile uint32_t results[number_of_measurements]; // all cycle counts are saved here to calculate the avarage and standard deviation
+    // measure the cycle count [number_of_measurements] times
     for (int f = 0; f < number_of_measurements; f++) {
+      // fill the blocks
       bignum blocks[i];
       for (int k = 0; k < i; k++) {
         blocks[k] = init_bignum(one_block);
       }
 
+      // dummy hash_key
       bignum hash_key = init_bignum_to_one();
 
       reset_timer();
       start_timer();
 
+      // tag generation
       volatile bignum tag = ciphertext_blocks_to_tag(blocks, i, blocks[0], hash_key, key, nonce);
 
       volatile uint32_t number_of_cycles = get_cycles();
       stop_timer();
 
       results[f] = number_of_cycles;
-
-      volatile int PRINT_VALUES = 42;
     }
 
     volatile float avg = average(results, number_of_measurements);
     volatile float sd = standard_deviation(results, number_of_measurements, avg);
 
-    volatile int PRINT_VALUES = 42;
+    // statement to set a breakpoint for printing
+    volatile int PRINT_VALUES = avg;
   }
 }
 
 
 void find_hash_key_changing_blocks(int start, int end, int interval, int number_of_measurements, int threshold) {
+  // statement to set a breakpoint for printing
   volatile int PRINT_VALUES = 42;
+
+  // iterate over blocks
   for (int i = start; i <= end; i += interval) {
-    volatile uint32_t results[number_of_measurements];
+    volatile uint32_t results[number_of_measurements]; // all cycle counts are saved here to calculate the avarage and standard deviation
+    // measure the cycle count [number_of_measurements] times
     for (int f = 0; f < number_of_measurements; f++) {
       reset_timer();
       start_timer();
 
+      // calculate hash_key
       volatile bignum hash_key = find_hash_key_value(threshold, i, 1, 42);
 
       volatile uint32_t number_of_cycles = get_cycles();
       stop_timer();
 
+      // checks if a hash_key was found
       volatile bool hash_key_found = true;
       if (!is_bignum_not_zero(hash_key)) {
         hash_key_found = false;
       }
 
       results[f] = number_of_cycles;
-
-      volatile int PRINT_VALUES = 42;
     }
 
     volatile float avg = average(results, number_of_measurements);
     volatile float sd = standard_deviation(results, number_of_measurements, avg);
 
+    // statement to set a breakpoint for printing
     volatile int PRINT_VALUES = avg;
   }
 }
 
 
 void find_hash_key_changing_threshold(int start, int end, int interval, int number_of_measurements, int number_of_blocks) {
+  // statement to set a breakpoint for printing
   volatile int PRINT_VALUES = 42;
+
+  // iterate over thresholds
   for (int i = start; i <= end; i += interval) {
-    volatile uint32_t results[number_of_measurements];
+    volatile uint32_t results[number_of_measurements]; // all cycle counts are saved here to calculate the avarage and standard deviation
+    // measure the cycle count [number_of_measurements] times
     for (int f = 0; f < number_of_measurements; f++) {
       reset_timer();
       start_timer();
 
+      // calculate hash_key
       volatile bignum hash_key = find_hash_key_value(i, number_of_blocks, 1, 42);
 
       volatile uint32_t number_of_cycles = get_cycles();
       stop_timer();
 
+      // checks if a hash_key was found
       volatile bool hash_key_found = true;
       if (!is_bignum_not_zero(hash_key)) {
         hash_key_found = false;
       }
 
       results[f] = number_of_cycles;
-
-      volatile int PRINT_VALUES = 42;
     }
 
     volatile float avg = average(results, number_of_measurements);
     volatile float sd = standard_deviation(results, number_of_measurements, avg);
 
+    // statement to set a breakpoint for printing
     volatile int PRINT_VALUES = avg;
   }
 }
@@ -278,21 +299,29 @@ void verify_changing_blocks(int start, int end, int interval, int number_of_meas
   };
   uint32_t nonce[2] = {0x0, 0x0};
 
+  // this respresents one ciphertext block
   uint32_t one_block[4] = {0x12345678, 0xabcdef90, 0x87654321, 0x09fedcba};
+
+  // values for dummy hash_key
   uint32_t hash_hex[4] = {0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff};
 
+  // iterate over blocks
   for (int i = start; i <= end; i += interval) {
-    volatile uint32_t results[number_of_measurements];
+    volatile uint32_t results[number_of_measurements]; // all cycle counts are saved here to calculate the avarage and standard deviation
+    // measure the cycle count [number_of_measurements] times
     for (int f = 0; f < number_of_measurements; f++) {
+      // fill the blocks
       bignum blocks[i];
       for (int k = 0; k < i; k++) {
         blocks[k] = init_bignum(one_block);
       }
 
+      // calculate necessary parameters
       bignum authorized_data = init_bignum_to_zero();
-      bignum hash_key = init_bignum(hash_hex);
+      bignum hash_key = init_bignum(hash_hex); // dummy hash_key
       bignum tag = ciphertext_blocks_to_tag(blocks, i, hash_key, authorized_data, key, nonce);
 
+      // set errors in ciphertext blocks and tag
       for (int k = 0; k < threshold; k++) {
         if (error_in_ciphertext) {
           blocks[0] = one_bit_modification(blocks[0], k);
@@ -309,24 +338,19 @@ void verify_changing_blocks(int start, int end, int interval, int number_of_meas
       reset_timer();
       start_timer();
 
+      // verify ciphertext blocks
       volatile verify_result res = verify(authorized_data, blocks, i, tag, threshold, hash_key, key, nonce);
 
       volatile uint32_t number_of_cycles = get_cycles();
       stop_timer();
 
       results[f] = number_of_cycles;
-
-      volatile bool error_corrected = false;
-      if (res.correction_successful) {
-        error_corrected = true;
-      }
-
-      volatile int PRINT_VALUES = 42;
     }
 
     volatile float avg = average(results, number_of_measurements);
     volatile float sd = standard_deviation(results, number_of_measurements, avg);
 
+    // statement to set a breakpoint for printing
     volatile int PRINT_VALUES = avg;
   }
 }
@@ -340,21 +364,29 @@ void verify_changing_threshold(int start, int end, int interval, int number_of_m
   };
   uint32_t nonce[2] = {0x0, 0x0};
 
+  // this respresents one ciphertext block
   uint32_t one_block[4] = {0x12345678, 0xabcdef90, 0x87654321, 0x09fedcba};
+
+  // values for dummy hash_key
   uint32_t hash_hex[4] = {0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff};
 
+  // iterate over thresholds
   for (int i = start; i <= end; i += interval) {
-    volatile uint32_t results[number_of_measurements];
+    volatile uint32_t results[number_of_measurements]; // all cycle counts are saved here to calculate the avarage and standard deviation
+    // measure the cycle count [number_of_measurements] times
     for (int f = 0; f < number_of_measurements; f++) {
+      // fill the blocks
       bignum blocks[number_of_blocks];
       for (int k = 0; k < number_of_blocks; k++) {
         blocks[k] = init_bignum(one_block);
       }
 
+      // calculate necessary parameters
       bignum authorized_data = init_bignum_to_zero();
-      bignum hash_key = init_bignum(hash_hex);
+      bignum hash_key = init_bignum(hash_hex); // dummy hash_key
       bignum tag = ciphertext_blocks_to_tag(blocks, number_of_blocks, hash_key, authorized_data, key, nonce);
 
+      // set errors in ciphertext blocks and tag
       for (int k = 0; k < i; k++) {
         if (error_in_ciphertext) {
           blocks[0] = one_bit_modification(blocks[0], k);
@@ -371,24 +403,19 @@ void verify_changing_threshold(int start, int end, int interval, int number_of_m
       reset_timer();
       start_timer();
 
+      // verify ciphertext blocks
       volatile verify_result res = verify(authorized_data, blocks, number_of_blocks, tag, i, hash_key, key, nonce);
 
       volatile uint32_t number_of_cycles = get_cycles();
       stop_timer();
 
       results[f] = number_of_cycles;
-
-      volatile bool error_corrected = false;
-      if (res.correction_successful) {
-        error_corrected = true;
-      }
-
-      volatile int PRINT_VALUES = 42;
     }
 
     volatile float avg = average(results, number_of_measurements);
     volatile float sd = standard_deviation(results, number_of_measurements, avg);
 
+    // statement to set a breakpoint for printing
     volatile int PRINT_VALUES = avg;
   }
 }
@@ -401,21 +428,29 @@ void verify_changing_faulty_block(int start_block_index, int end_block_index, in
   };
   uint32_t nonce[2] = {0x0, 0x0};
 
+  // this respresents one ciphertext block
   uint32_t one_block[4] = {0x12345678, 0xabcdef90, 0x87654321, 0x09fedcba};
+
+  // values for dummy hash_key
   uint32_t hash_hex[4] = {0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff};
 
+  // iterate over block indices
   for (int i = start_block_index; i <= end_block_index; i += interval) {
-    volatile uint32_t results[number_of_measurements];
+    volatile uint32_t results[number_of_measurements]; // all cycle counts are saved here to calculate the avarage and standard deviation
+    // measure the cycle count [number_of_measurements] times
     for (int f = 0; f < number_of_measurements; f++) {
+      // fill the blocks
       bignum blocks[number_of_blocks];
       for (int k = 0; k < number_of_blocks; k++) {
         blocks[k] = init_bignum(one_block);
       }
 
+      // calculate necessary parameters
       bignum authorized_data = init_bignum_to_zero();
-      bignum hash_key = init_bignum(hash_hex);
+      bignum hash_key = init_bignum(hash_hex); // dummy hash_key
       bignum tag = ciphertext_blocks_to_tag(blocks, number_of_blocks, hash_key, authorized_data, key, nonce);
 
+      // error(s) in ciphertext block(s)
       blocks[i] = one_bit_modification(blocks[i], 42);
       if (uncorrectable_error) {
         blocks[0] = one_bit_modification(blocks[0], 33);
@@ -424,6 +459,7 @@ void verify_changing_faulty_block(int start_block_index, int end_block_index, in
       reset_timer();
       start_timer();
 
+      // verify ciphertext blocks
       volatile verify_result res = verify(authorized_data, blocks, number_of_blocks, tag, threshold, hash_key, key, nonce);
 
       volatile uint32_t number_of_cycles = get_cycles();
@@ -435,6 +471,7 @@ void verify_changing_faulty_block(int start_block_index, int end_block_index, in
     volatile float avg = average(results, number_of_measurements);
     volatile float sd = standard_deviation(results, number_of_measurements, avg);
 
+    // statement to set a breakpoint for printing
     volatile int PRINT_VALUES = avg;
   }
 }
@@ -577,7 +614,14 @@ int main(void)
 
   // ------------------------------------- my code start ---------------------------------------------------------------------
 
-  verify_changing_faulty_block(0, 100, 10, 10, 101, 2, true);
+  // encryption_changing_blocks(1, 10, 1, 10);
+  // decryption_changing_blocks(1, 10, 1, 10);
+  // tag_generation_given_blocks_changing_blocks(1, 10, 1, 10);
+  // find_hash_key_changing_blocks(1, 3, 1, 10, 1);
+  // find_hash_key_changing_threshold(1, 2, 1, 5, 2);
+  // verify_changing_blocks(1, 5, 1, 5, 1, false, false, false);
+  // verify_changing_threshold(1, 5, 1, 5, 1, false, false, false);
+  verify_changing_faulty_block(0, 2, 1, 5, 3, 1, false);
 
   // --------------------------------------- my code end -------------------------------------------------------------------------------------------
 
