@@ -1,0 +1,21 @@
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start index: 99; End index: 99; Interval: 1; Number of blocks: 100; Threshold: 1; Measurements per faulty block: 10
+
+Faulty block index: 99
+Number of cycles: 141904015; error_corrected? 1
+Number of cycles: 141904731; error_corrected? 1
+Number of cycles: 141903679; error_corrected? 1
+Number of cycles: 141903939; error_corrected? 1
+Number of cycles: 141903955; error_corrected? 1
+Number of cycles: 141905996; error_corrected? 1
+Number of cycles: 141904845; error_corrected? 1
+Number of cycles: 141905866; error_corrected? 1
+Number of cycles: 141905200; error_corrected? 1
+Number of cycles: 141903543; error_corrected? 1
+Average: 141904560.000000
+Standard deviation: 848.316956
+
+
+Program received signal SIGINT, Interrupt.
+main () at main_cw521.c:581
+581	  while (true) {

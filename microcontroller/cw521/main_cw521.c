@@ -393,6 +393,52 @@ void verify_changing_threshold(int start, int end, int interval, int number_of_m
   }
 }
 
+
+void verify_changing_faulty_block(int start_block_index, int end_block_index, int interval, int number_of_measurements, int number_of_blocks, int threshold, bool uncorrectable_error) {
+  uint32_t key[8] = {
+    0xEAEBECED, 0xEEEFF0F1, 0xF2F3F4F5, 0xF6F7F8F9,
+    0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
+  };
+  uint32_t nonce[2] = {0x0, 0x0};
+
+  uint32_t one_block[4] = {0x12345678, 0xabcdef90, 0x87654321, 0x09fedcba};
+  uint32_t hash_hex[4] = {0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff};
+
+  for (int i = start_block_index; i <= end_block_index; i += interval) {
+    volatile uint32_t results[number_of_measurements];
+    for (int f = 0; f < number_of_measurements; f++) {
+      bignum blocks[number_of_blocks];
+      for (int k = 0; k < number_of_blocks; k++) {
+        blocks[k] = init_bignum(one_block);
+      }
+
+      bignum authorized_data = init_bignum_to_zero();
+      bignum hash_key = init_bignum(hash_hex);
+      bignum tag = ciphertext_blocks_to_tag(blocks, number_of_blocks, hash_key, authorized_data, key, nonce);
+
+      blocks[i] = one_bit_modification(blocks[i], 42);
+      if (uncorrectable_error) {
+        blocks[0] = one_bit_modification(blocks[0], 33);
+      }
+
+      reset_timer();
+      start_timer();
+
+      volatile verify_result res = verify(authorized_data, blocks, number_of_blocks, tag, threshold, hash_key, key, nonce);
+
+      volatile uint32_t number_of_cycles = get_cycles();
+      stop_timer();
+
+      results[f] = number_of_cycles;
+    }
+
+    volatile float avg = average(results, number_of_measurements);
+    volatile float sd = standard_deviation(results, number_of_measurements, avg);
+
+    volatile int PRINT_VALUES = avg;
+  }
+}
+
 // ------------------------------------------- my code end -----------------------------------------------------------------
 
 //Serial Number - will be read by device ID
@@ -531,7 +577,7 @@ int main(void)
 
   // ------------------------------------- my code start ---------------------------------------------------------------------
 
-  verify_changing_blocks(1, 10, 1, 10, 1, true, false, true);
+  verify_changing_faulty_block(0, 100, 10, 10, 101, 2, true);
 
   // --------------------------------------- my code end -------------------------------------------------------------------------------------------
 
