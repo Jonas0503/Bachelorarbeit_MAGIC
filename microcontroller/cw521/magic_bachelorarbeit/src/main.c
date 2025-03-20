@@ -85,7 +85,50 @@ void example_hamming_code_per_block() {
 
 int main() {
     // example_magic_mode();
-    example_hamming_code_per_block();
+    // example_hamming_code_per_block();
+    int start = 50;
+    int end = 250;
+    int interval = 25;
+    int number_of_measurements = 1;
+
+    // this respresents one ciphertext block
+    uint32_t one_block[4] = {0x12345678, 0xabcdef90, 0x87654321, 0x09fedcba};
+
+    // 16 chars (ASCII) -> one block
+    char *one_block_text = "1234ABCD5678EFGH";
+
+    // iterate over blocks
+    for (volatile int i = start; i <= end; i += interval) {
+        volatile uint32_t results[number_of_measurements]; // all cycle counts are saved here to calculate the avarage and standard deviation
+        // measure the cycle count [number_of_measurements] times
+        for (int f = 0; f < number_of_measurements; f++) {
+            bignum blocks[i];
+            int space_for_text = i * 16;
+            char text[space_for_text];
+
+            // fill the blocks and text
+            for (int k = 0; k < i; k++) {
+                blocks[k] = init_bignum(one_block);
+                if (k == 0) {
+                    strcpy(text, one_block_text);
+                }
+                else {
+                    strcat(text, one_block_text);
+                }
+            }
+
+            int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_from_string(text);
+
+            volatile bignum blocks_parity[number_of_bignums_parity];
+            add_parity_to_bignum_array(blocks_parity, blocks, i, number_of_bignums_parity);
+        }
+
+        volatile float avg = average(results, number_of_measurements);
+        volatile float sd = standard_deviation(results, number_of_measurements, avg);
+
+        // statement to set a breakpoint for printing
+        volatile int PRINT_VALUES = avg;
+    }
 
     return 0;
 }

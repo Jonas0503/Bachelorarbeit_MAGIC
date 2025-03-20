@@ -15,7 +15,21 @@ int number_of_encrypted_ciphertext_blocks_with_parity_from_string(char *text) {
 
     // number of bignums to add when parity is used in each block
     int parity_bits_to_add = 8 * number_of_ciphertext_blocks;
-    int ciphertext_blocks_to_add = (parity_bits_to_add / 129) + 1;
+    int ciphertext_blocks_to_add;
+    if (parity_bits_to_add % 128 == 0) {
+        ciphertext_blocks_to_add = (parity_bits_to_add / 128);
+    }
+    else {
+        ciphertext_blocks_to_add = (parity_bits_to_add / 128) + 1;
+    }
+
+    int parity_bits_added_blocks = 8 * ciphertext_blocks_to_add;
+    if ((parity_bits_added_blocks + parity_bits_to_add) % 128 == 0) {
+        ciphertext_blocks_to_add = ((parity_bits_added_blocks + parity_bits_to_add) / 128);
+    }
+    else {
+        ciphertext_blocks_to_add = ((parity_bits_added_blocks + parity_bits_to_add) / 128) + 1;
+    }
 
     // number of bignums with parity
     return number_of_ciphertext_blocks + ciphertext_blocks_to_add;
@@ -30,50 +44,27 @@ void bignums_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128], bi
         }
     }
 
-    int number_of_chunks = number_of_bignums * 4;
-    int bit_index = 127;
-    int array_index_bits = number_of_bignums_with_parity - 1;
-    int array_index_bignum_array = number_of_bignums - 1;
-    bool next_block = false;
+    bool bit_arrays_no_parity[number_of_bignums][128];
+    bignum_array_to_bit_arrays(bit_arrays_no_parity, bignum_blocks, number_of_bignums);
 
-    // iterate over all ciphertext chunks in the bignums array
-    // starting with the last chunk
-    for (int i = number_of_chunks-1; i >= 0; i--) {
-        // iterate over all bits of one chunk
-        for(int k = 0; k < 32; k++) {
-            // parity bits at positions 0, 1 and 2 (positions with power of 2)
-            if (bit_index == 2) {
-                // the rest of the current chunk gets to a new bit array and skip position 0, 1 and 2
-                bit_index = 127;
-                for(; k < 32; k++) {
-                    bool bit = (bignum_blocks[array_index_bignum_array].chunks[i % 4] >> k) & 1;
-                    bit_arrays[array_index_bits-1][bit_index] = bit;
-                    bit_index--;
-                }
+    int index_bit_arrays_parity = number_of_bignums_with_parity-1;
+    int bit_index_parity_array = 127;
 
-                // continue with next chunk
-                next_block = true;
-                break;
+    for (int i = number_of_bignums-1; i >= 0; i--) {
+        for (int k = 127; k >= 0; k--) {
+            if ((bit_index_parity_array & (bit_index_parity_array-1)) == 0) {
+                k++;
             }
-            // parity bits at positions with power of 2 -> skip this index for a parity bit
-            if ((bit_index & (bit_index-1)) == 0) {
-                bit_index--;
+            else {
+                bit_arrays[index_bit_arrays_parity][bit_index_parity_array] = bit_arrays_no_parity[i][k];
             }
 
-            // set bits in the bit array
-            bool bit = (bignum_blocks[array_index_bignum_array].chunks[i % 4] >> k) & 1;
-            bit_arrays[array_index_bits][bit_index] = bit;
-            bit_index--;
-        }
+            bit_index_parity_array--;
 
-        // go to the "previous" bit array
-        if (next_block) {
-            next_block = false;
-            array_index_bits--;
-        }
-        // go to the "previous" ciphertext block if all chunks were iterated
-        if (i % 4 == 0) {
-            array_index_bignum_array--;
+            if (bit_index_parity_array == -1) {
+                index_bit_arrays_parity--;
+                bit_index_parity_array = 127;
+            }
         }
     }
 }

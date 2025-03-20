@@ -476,6 +476,56 @@ void verify_changing_faulty_block(int start_block_index, int end_block_index, in
   }
 }
 
+
+void hc_add_parity_per_block(int start, int end, int interval, int number_of_measurements) {
+  // this respresents one ciphertext block
+  uint32_t one_block[4] = {0x12345678, 0xabcdef90, 0x87654321, 0x09fedcba};
+
+  // 16 chars (ASCII) -> one block
+  char *one_block_text = "1234ABCD5678EFGH";
+
+  // iterate over blocks
+  for (volatile int i = start; i <= end; i += interval) {
+    volatile uint32_t results[number_of_measurements]; // all cycle counts are saved here to calculate the avarage and standard deviation
+    // measure the cycle count [number_of_measurements] times
+    for (int f = 0; f < number_of_measurements; f++) {
+      bignum blocks[i];
+      int space_for_text = i * 16;
+      char text[space_for_text];
+
+      // fill the blocks and text
+      for (int k = 0; k < i; k++) {
+        blocks[k] = init_bignum(one_block);
+        if (k == 0) {
+          strcpy(text, one_block_text);
+        }
+        else {
+          strcat(text, one_block_text);
+        }
+      }
+
+      int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_from_string(text);
+
+      reset_timer();
+      start_timer();
+
+      volatile bignum blocks_parity[number_of_bignums_parity];
+      add_parity_to_bignum_array(blocks_parity, blocks, i, number_of_bignums_parity);
+
+      volatile uint32_t number_of_cycles = get_cycles();
+      stop_timer();
+
+      results[f] = number_of_cycles;
+    }
+
+    volatile float avg = average(results, number_of_measurements);
+    volatile float sd = standard_deviation(results, number_of_measurements, avg);
+
+    // statement to set a breakpoint for printing
+    volatile int PRINT_VALUES = avg;
+  }
+}
+
 // ------------------------------------------- my code end -----------------------------------------------------------------
 
 //Serial Number - will be read by device ID
@@ -621,7 +671,9 @@ int main(void)
   // find_hash_key_changing_threshold(1, 2, 1, 5, 2);
   // verify_changing_blocks(1, 5, 1, 5, 1, false, false, false);
   // verify_changing_threshold(1, 5, 1, 5, 1, false, false, false);
-  verify_changing_faulty_block(0, 2, 1, 5, 3, 1, false);
+  // verify_changing_faulty_block(0, 2, 1, 5, 3, 1, false);
+
+  hc_add_parity_per_block(50, 250, 25, 30);
 
   // --------------------------------------- my code end -------------------------------------------------------------------------------------------
 
