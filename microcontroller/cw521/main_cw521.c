@@ -55,9 +55,9 @@ volatile uint32_t *SCB_DEMCR;
 
 
 void reset_timer() {
-    DWT_CYCCNT   = (uint32_t *)0xE0001004; // address of the register
-    DWT_CONTROL  = (uint32_t *)0xE0001000; // address of the register
-    SCB_DEMCR    = (uint32_t *)0xE000EDFC; // address of the register
+    DWT_CYCCNT   = (volatile uint32_t *)0xE0001004; // address of the register
+    DWT_CONTROL  = (volatile uint32_t *)0xE0001000; // address of the register
+    SCB_DEMCR    = (volatile uint32_t *)0xE000EDFC; // address of the register
     *SCB_DEMCR   = *SCB_DEMCR | 0x01000000;
     *DWT_CONTROL = 0;
     *DWT_CYCCNT  = 0; // reset the counter
@@ -664,7 +664,7 @@ int main(void)
 
   // ------------------------------------- my code start ---------------------------------------------------------------------
 
-  // encryption_changing_blocks(1, 10, 1, 10);
+  // encryption_changing_blocks(50, 250, 25, 1);
   // decryption_changing_blocks(1, 10, 1, 10);
   // tag_generation_given_blocks_changing_blocks(1, 10, 1, 10);
   // find_hash_key_changing_blocks(1, 3, 1, 10, 1);
@@ -673,7 +673,7 @@ int main(void)
   // verify_changing_threshold(1, 5, 1, 5, 1, false, false, false);
   // verify_changing_faulty_block(0, 2, 1, 5, 3, 1, false);
 
-  hc_add_parity_per_block(50, 250, 25, 30);
+  hc_add_parity_per_block(150, 250, 25, 1);
 
   // --------------------------------------- my code end -------------------------------------------------------------------------------------------
 

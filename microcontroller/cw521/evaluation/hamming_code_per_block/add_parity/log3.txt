@@ -1,0 +1,145 @@
+Starting program: /home/jonas/Studium/Bachelorarbeit/repo_bachelorarbeit/magic_bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 50; End: 250; Interval: 25; Measurements per block: 30
+
+Number of blocks: 50
+Number of cycles: 1435647
+Number of cycles: 1435329
+Number of cycles: 1435698
+Number of cycles: 1435878
+Number of cycles: 1435347
+Number of cycles: 1436299
+Number of cycles: 1435622
+Number of cycles: 1435611
+Number of cycles: 1435609
+Number of cycles: 1435875
+Number of cycles: 1435957
+Number of cycles: 1435583
+Number of cycles: 1436168
+Number of cycles: 1436408
+Number of cycles: 1435417
+Number of cycles: 1436050
+Number of cycles: 1435825
+Number of cycles: 1436344
+Number of cycles: 1435894
+Number of cycles: 1436152
+Number of cycles: 1435544
+Number of cycles: 1435804
+Number of cycles: 1436316
+Number of cycles: 1435671
+Number of cycles: 1436154
+Number of cycles: 1436081
+Number of cycles: 1435936
+Number of cycles: 1436395
+Number of cycles: 1436072
+Number of cycles: 1435515
+Average: 1435873.375000
+Standard deviation: 314.099335
+
+Number of blocks: 75
+Number of cycles: 2114165
+Number of cycles: 2114974
+Number of cycles: 2113952
+Number of cycles: 2113774
+Number of cycles: 2114075
+Number of cycles: 2114301
+Number of cycles: 2114161
+Number of cycles: 2114206
+Number of cycles: 2114713
+Number of cycles: 2113521
+Number of cycles: 2114494
+Number of cycles: 2113810
+Number of cycles: 2114242
+Number of cycles: 2114469
+Number of cycles: 2114527
+Number of cycles: 2114480
+Number of cycles: 2114086
+Number of cycles: 2113665
+Number of cycles: 2113809
+Number of cycles: 2113961
+Number of cycles: 2114128
+Number of cycles: 2113807
+Number of cycles: 2113889
+Number of cycles: 2114140
+Number of cycles: 2113701
+Number of cycles: 2113820
+Number of cycles: 2114653
+Number of cycles: 2114331
+Number of cycles: 2114160
+Number of cycles: 2113938
+Average: 2114131.750000
+Standard deviation: 337.058075
+
+Number of blocks: 100
+Number of cycles: 2824584
+Number of cycles: 2823870
+Number of cycles: 2824941
+Number of cycles: 2823161
+Number of cycles: 2822809
+Number of cycles: 2822976
+Number of cycles: 2822752
+Number of cycles: 2823326
+Number of cycles: 2822865
+Number of cycles: 2823092
+Number of cycles: 2823214
+Number of cycles: 2823405
+Number of cycles: 2823162
+Number of cycles: 2822956
+Number of cycles: 2822859
+Number of cycles: 2823107
+Number of cycles: 2823051
+Number of cycles: 2822677
+Number of cycles: 2822885
+Number of cycles: 2823408
+Number of cycles: 2822579
+Number of cycles: 2823377
+Number of cycles: 2824624
+Number of cycles: 2824325
+Number of cycles: 2823085
+Number of cycles: 2823384
+Number of cycles: 2822832
+Number of cycles: 2822791
+Number of cycles: 2823985
+Number of cycles: 2823846
+Average: 2823331.250000
+Standard deviation: 610.634338
+
+Number of blocks: 125
+Number of cycles: 3542309
+Number of cycles: 3541977
+Number of cycles: 3542253
+Number of cycles: 3542189
+Number of cycles: 3541374
+Number of cycles: 3542333
+Number of cycles: 3542374
+Number of cycles: 3542149
+Number of cycles: 3542114
+Number of cycles: 3541855
+Number of cycles: 3542379
+Number of cycles: 3542024
+Number of cycles: 3542116
+Number of cycles: 3542907
+Number of cycles: 3541616
+Number of cycles: 3542545
+Number of cycles: 3541678
+Number of cycles: 3542750
+Number of cycles: 3542296
+Number of cycles: 3542872
+Number of cycles: 3542238
+Number of cycles: 3542823
+Number of cycles: 3542569
+Number of cycles: 3543504
+Number of cycles: 3542314
+Number of cycles: 3542456
+Number of cycles: 3542038
+Number of cycles: 3542396
+Number of cycles: 3541859
+Number of cycles: 3542800
+Average: 3542303.500000
+Standard deviation: 428.696869
+
+Number of blocks: 150
+
+Program received signal SIGINT, Interrupt.
+Dummy_Handler () at naeusb/sam3u_hal/exceptions.c:169
+169		while (1) {
+$65 = (volatile uint32_t *) 0x1010000

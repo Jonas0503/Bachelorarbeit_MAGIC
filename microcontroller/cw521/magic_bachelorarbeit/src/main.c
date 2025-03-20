@@ -99,6 +99,7 @@ int main() {
 
     // iterate over blocks
     for (volatile int i = start; i <= end; i += interval) {
+        printf("%i\n", i);
         volatile uint32_t results[number_of_measurements]; // all cycle counts are saved here to calculate the avarage and standard deviation
         // measure the cycle count [number_of_measurements] times
         for (int f = 0; f < number_of_measurements; f++) {

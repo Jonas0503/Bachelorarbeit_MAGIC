@@ -1,0 +1,13 @@
+Starting program: /home/jonas/Studium/Bachelorarbeit/repo_bachelorarbeit/magic_bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 150; End: 250; Interval: 25; Measurements per block: 1
+
+Number of blocks: 150
+
+Breakpoint 25, hc_add_parity_per_block (start=start@entry=150, end=end@entry=250, interval=interval@entry=25, number_of_measurements=number_of_measurements@entry=1) at main_cw521.c:513
+513	      add_parity_to_bignum_array(blocks_parity, blocks, i, number_of_bignums_parity);
+$66 = (volatile uint32_t *) 0xe0001004
+515	      volatile uint32_t number_of_cycles = get_cycles();
+$67 = (volatile uint32_t *) 0x1000001
+Dummy_Handler () at naeusb/sam3u_hal/exceptions.c:169
+169		while (1) {
+Quit

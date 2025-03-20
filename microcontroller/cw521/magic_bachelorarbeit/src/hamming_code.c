@@ -23,6 +23,7 @@ int number_of_encrypted_ciphertext_blocks_with_parity_from_string(char *text) {
         ciphertext_blocks_to_add = (parity_bits_to_add / 128) + 1;
     }
 
+    // determine number_of_blocks with added blocks for parity
     int parity_bits_added_blocks = 8 * ciphertext_blocks_to_add;
     if ((parity_bits_added_blocks + parity_bits_to_add) % 128 == 0) {
         ciphertext_blocks_to_add = ((parity_bits_added_blocks + parity_bits_to_add) / 128);
@@ -44,14 +45,18 @@ void bignums_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128], bi
         }
     }
 
+    // makes everything easier
     bool bit_arrays_no_parity[number_of_bignums][128];
     bignum_array_to_bit_arrays(bit_arrays_no_parity, bignum_blocks, number_of_bignums);
 
-    int index_bit_arrays_parity = number_of_bignums_with_parity-1;
+    volatile int index_bit_arrays_parity = number_of_bignums_with_parity-1;
     int bit_index_parity_array = 127;
 
+    // iterate over all bit arrays starting from the back
     for (int i = number_of_bignums-1; i >= 0; i--) {
+        // iterate over all bits
         for (int k = 127; k >= 0; k--) {
+            // checks if bit index is used for parity and skip this position then
             if ((bit_index_parity_array & (bit_index_parity_array-1)) == 0) {
                 k++;
             }
@@ -61,6 +66,7 @@ void bignums_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128], bi
 
             bit_index_parity_array--;
 
+            // bit array with parity bits is full -> go to the next one
             if (bit_index_parity_array == -1) {
                 index_bit_arrays_parity--;
                 bit_index_parity_array = 127;
