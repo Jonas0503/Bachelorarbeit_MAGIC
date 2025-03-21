@@ -1,0 +1,347 @@
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 0; End: 9; Interval: 1; Number of blocks: 10; Number of affected blocks: 1; Measurements per faulty block: 30
+
+Faulty block index: 0
+Number of cycles: 19529; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19538; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19340; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19343; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19569; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19531; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19536; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19569; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19577; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19534; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19384; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19529; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19534; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19344; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19527; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19342; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19344; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19342; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19387; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19337; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19380; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19527; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19576; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19343; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19842; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19533; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19574; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19340; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19529; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 19528; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Average: 19476.933594
+Standard deviation: 116.313354
+
+Faulty block index: 1
+Number of cycles: 20709; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20948; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20894; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20900; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20898; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 21118; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20900; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20715; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 21041; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20944; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20713; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20708; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20711; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20903; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20905; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20944; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20904; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20938; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20941; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20899; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20753; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20714; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20908; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20713; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20901; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20900; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20944; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20907; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20716; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 20935; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Average: 20867.466797
+Standard deviation: 108.260399
+
+Faulty block index: 2
+Number of cycles: 22269; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22268; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22270; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22481; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22276; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22275; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22282; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22274; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22275; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22273; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22270; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22273; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22270; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22565; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22316; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22271; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22269; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22269; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22311; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22277; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22275; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22502; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22271; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22313; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22273; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22274; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22275; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22267; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22084; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 22279; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Average: 22294.900391
+Standard deviation: 83.166245
+
+Faulty block index: 3
+Number of cycles: 23636; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23637; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23637; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23638; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23446; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23634; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23626; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23634; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23636; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23633; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23627; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23634; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23638; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23631; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23632; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23948; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23851; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23677; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23444; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23677; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23638; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23638; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23632; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23441; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23633; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23677; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23634; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23874; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23679; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 23636; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Average: 23646.599609
+Standard deviation: 102.471657
+
+Faulty block index: 4
+Number of cycles: 25297; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25177; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25046; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25002; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25002; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25001; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25210; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25322; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25007; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25217; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25204; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25000; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25045; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25166; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25043; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25234; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25039; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25195; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25185; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25007; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25003; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25002; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25274; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25005; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 24997; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 24997; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25001; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25043; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25150; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 25043; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Average: 25097.132812
+Standard deviation: 105.907433
+
+Faulty block index: 5
+Number of cycles: 26630; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26373; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26416; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26415; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26575; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26371; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26412; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26465; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26375; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26571; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26414; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26410; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26371; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26416; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26373; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26602; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26412; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26372; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26606; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26371; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26378; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26374; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26476; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26421; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26586; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26412; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26416; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26376; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26569; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 26375; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Average: 26444.433594
+Standard deviation: 85.605179
+
+Faulty block index: 6
+Number of cycles: 27753; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27750; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27808; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27946; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27751; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27965; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27808; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27745; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27788; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27791; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27980; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27977; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27951; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27794; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27788; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27937; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27979; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27940; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27747; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27904; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27941; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27744; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27980; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27937; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27749; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 28137; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27743; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27750; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27935; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 27744; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Average: 27858.732422
+Standard deviation: 107.043900
+
+Faulty block index: 7
+Number of cycles: 29155; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29296; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29107; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29303; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29296; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29296; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29114; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29303; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29112; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29113; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29151; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29298; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29298; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29116; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29107; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29297; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29509; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29301; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29552; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29155; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29336; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29340; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29302; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29306; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29343; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29297; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29296; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29109; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29108; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 29366; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Average: 29256.066406
+Standard deviation: 116.817505
+
+Faulty block index: 8
+Number of cycles: 30718; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30525; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30667; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30759; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30485; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30477; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30479; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30507; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30478; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30727; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30677; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30482; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30676; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30866; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30897; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30667; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30483; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30670; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30853; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30808; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30678; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30670; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30670; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30951; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30483; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30846; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30973; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30709; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30666; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 30673; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Average: 30674.000000
+Standard deviation: 147.944351
+
+Faulty block index: 9
+Number of cycles: 31849; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32083; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32087; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32138; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 31894; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32084; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32198; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32051; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32194; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 31850; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32065; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32152; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 31858; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32086; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32313; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 31853; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32285; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32072; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32085; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 31853; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32178; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 31858; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32207; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32040; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32076; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32184; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32051; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 31896; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 32042; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Average: 32053.966797
+Standard deviation: 133.085556
+
+
+Program received signal SIGINT, Interrupt.
+main () at main_cw521.c:878
+878	  while (true) {

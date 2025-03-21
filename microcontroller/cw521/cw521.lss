@@ -17,25 +17,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   6 .comment      00000045  00000000  00000000  0000eaa9  2**0
                   CONTENTS, READONLY
-  7 .debug_info   0001a94c  00000000  00000000  0000eaee  2**0
+  7 .debug_info   0001b5ec  00000000  00000000  0000eaee  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  8 .debug_abbrev 0000571c  00000000  00000000  0002943a  2**0
+  8 .debug_abbrev 0000571e  00000000  00000000  0002a0da  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  9 .debug_loclists 00009a1a  00000000  00000000  0002eb56  2**0
+  9 .debug_loclists 0000a2bf  00000000  00000000  0002f7f8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 10 .debug_aranges 000010d0  00000000  00000000  00038570  2**0
+ 10 .debug_aranges 000010e8  00000000  00000000  00039ab7  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 11 .debug_rnglists 00002057  00000000  00000000  00039640  2**0
+ 11 .debug_rnglists 0000224e  00000000  00000000  0003ab9f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 12 .debug_macro  0001aab6  00000000  00000000  0003b697  2**0
+ 12 .debug_macro  0001aab6  00000000  00000000  0003cded  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_line   00020f71  00000000  00000000  0005614d  2**0
+ 13 .debug_line   000219de  00000000  00000000  000578a3  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_str    0005e881  00000000  00000000  000770be  2**0
+ 14 .debug_str    0005e8c3  00000000  00000000  00079281  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_frame  00004764  00000000  00000000  000d5940  2**2
+ 15 .debug_frame  0000480c  00000000  00000000  000d7b44  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_line_str 000001a8  00000000  00000000  000da0a4  2**0
+ 16 .debug_line_str 000001a8  00000000  00000000  000dc350  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1014,13 +1014,15 @@ __attribute__( ( always_inline ) ) __STATIC_INLINE void __enable_irq(void)
   // verify_changing_threshold(1, 5, 1, 5, 1, false, false, false);
   // verify_changing_faulty_block(0, 2, 1, 5, 3, 1, false);
 
-  hc_add_parity_per_block(150, 250, 25, 1);
-   8062c:	4c23      	ldr	r4, [pc, #140]	@ (806bc <main+0x26c>)
-   8062e:	2301      	movs	r3, #1
-   80630:	2219      	movs	r2, #25
-   80632:	21fa      	movs	r1, #250	@ 0xfa
-   80634:	2096      	movs	r0, #150	@ 0x96
+  hc_add_parity_per_block(1, 10, 1, 30);
+   8062c:	2201      	movs	r2, #1
+   8062e:	231e      	movs	r3, #30
+   80630:	210a      	movs	r1, #10
+   80632:	4610      	mov	r0, r2
+   80634:	4c21      	ldr	r4, [pc, #132]	@ (806bc <main+0x26c>)
    80636:	47a0      	blx	r4
+  // hc_verify_changing_number_of_affected_blocks(1, 10, 1, 30, 10, true, false);
+  // hc_verify_changing_faulty_block(10, 100, 10, 30, 1, 101, false, true);
 
   // --------------------------------------- my code end -------------------------------------------------------------------------------------------
 
@@ -2489,6 +2491,7 @@ int number_of_encrypted_ciphertext_blocks_with_parity_from_string(char *text) {
    80efa:	3101      	addne	r1, #1
     }
 
+    // determine number_of_blocks with added blocks for parity
     int parity_bits_added_blocks = 8 * ciphertext_blocks_to_add;
     if ((parity_bits_added_blocks + parity_bits_to_add) % 128 == 0) {
    80efc:	eb02 02c1 	add.w	r2, r2, r1, lsl #3
@@ -23216,10 +23219,10 @@ _write (int file, const char *ptr, int len)
    8caac:	ffffffff 	.word	0xffffffff
 
 0008cab0 <BUILD_TIME>:
-   8cab0:	313a3631 35323a39 00000000              16:19:25....
+   8cab0:	303a3331 36303a34 00000000              13:04:06....
 
 0008cabc <BUILD_DATE>:
-   8cabc:	2072614d 32203032 00353230              Mar 20 2025.
+   8cabc:	2072614d 32203132 00353230              Mar 21 2025.
 
 0008cac8 <BLOCKSIZE>:
    8cac8:	00000004                                ....

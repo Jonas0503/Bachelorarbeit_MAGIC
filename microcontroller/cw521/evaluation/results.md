@@ -11,3 +11,17 @@
     - Changing blocks: steigen alle (schwach) linear an und bis auf "no_error" dauert alles ca. gleich lang
     - Changing faulty block: Es spiel keine Rolle, in welchem Block der Fehler ist (auch wenn 2 Blöcke betroffen sind)
     - Changing threshold: alles dauert ca. gleich lang und der threshold spielt keine Rolle (dauert immer gleich lang)
+
+
+## Hamming-Code pro Block
+
+- add parity: Nur ein Block geht viel schneller als der Rest? Ansonsten steigt alles linear an. Nur ab 150 Blöcken funktioniert die Zeitmessung nicht mehr richtig. Vielleicht zu viel Speicher genutzt?
+- verify:
+    - changing blocks: Steigt linear an, nimmt aber tendenziell leicht ab, je größer die Blockanzahl wird (bei no_error). Ansonsten steigt es linear an. Verglichen zwischen der Fehleranzahl dauert alles gleich lang (nur bei zwei Fehlern dauert es kürzer, da vorher aus der Schleife gegangen wird -> könnte man auch anders machen, sodass auch dies gleich lang läuft)
+    - changing faulty block: Bei einem Fehler ist es egal, in welchem Block der Fehler ist. Bei zwei Fehlern nicht (siehe oberer Punkt)
+    - changing number of affected blocks: Spielt keine Rolle, wie viele Blöcke betroffen sind. Bei zwei Fehlern dauert es kürzer aus schon genannten gründen
+
+
+## Vergleich von verify
+
+Hamming code braucht viel weniger Zeit, um Blöcke zu verifizieren

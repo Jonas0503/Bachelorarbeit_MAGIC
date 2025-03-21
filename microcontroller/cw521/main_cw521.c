@@ -526,6 +526,201 @@ void hc_add_parity_per_block(int start, int end, int interval, int number_of_mea
   }
 }
 
+
+void hc_verify_changing_blocks(int start, int end, int interval, int number_of_measurements, int blocks_affected, bool one_bit_error, bool two_bit_error, bool undetectable_error) {
+  // this respresents one ciphertext block
+  uint32_t one_block[4] = {0x12345678, 0xabcdef90, 0x87654321, 0x09fedcba};
+
+  // 16 chars (ASCII) -> one block
+  char *one_block_text = "1234ABCD5678EFGH";
+
+  // iterate over blocks
+  for (volatile int i = start; i <= end; i += interval) {
+    volatile uint32_t results[number_of_measurements]; // all cycle counts are saved here to calculate the avarage and standard deviation
+    // measure the cycle count [number_of_measurements] times
+    for (int f = 0; f < number_of_measurements; f++) {
+      bignum blocks[i];
+      int space_for_text = i * 16;
+      char text[space_for_text];
+
+      // fill the blocks and text
+      for (int k = 0; k < i; k++) {
+        blocks[k] = init_bignum(one_block);
+        if (k == 0) {
+          strcpy(text, one_block_text);
+        }
+        else {
+          strcat(text, one_block_text);
+        }
+      }
+
+      int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_from_string(text);
+
+      bignum blocks_parity[number_of_bignums_parity];
+      add_parity_to_bignum_array(blocks_parity, blocks, i, number_of_bignums_parity);
+
+      // corrupt the blocks
+      for (int k = 0; k < blocks_affected; k++) {
+        if (one_bit_error) {
+          blocks_parity[k] = one_bit_modification(blocks_parity[k], 42);
+        }
+        if (two_bit_error) {
+          blocks_parity[k] = one_bit_modification(blocks_parity[k], 42);
+          blocks_parity[k] = one_bit_modification(blocks_parity[k], 100);
+        }
+        if (undetectable_error) {
+          blocks_parity[k] = one_bit_modification(blocks_parity[k], 42);
+          blocks_parity[k] = one_bit_modification(blocks_parity[k], 100);
+          blocks_parity[k] = one_bit_modification(blocks_parity[k], 22);
+        }
+      }
+
+      reset_timer();
+      start_timer();
+
+      volatile hc_result res = verify_hamming_code(blocks_parity, number_of_bignums_parity);
+
+      volatile uint32_t number_of_cycles = get_cycles();
+      stop_timer();
+
+      results[f] = number_of_cycles;
+    }
+
+    volatile float avg = average(results, number_of_measurements);
+    volatile float sd = standard_deviation(results, number_of_measurements, avg);
+
+    // statement to set a breakpoint for printing
+    volatile int PRINT_VALUES = avg;
+  }
+}
+
+
+void hc_verify_changing_number_of_affected_blocks(int start, int end, int interval, int number_of_measurements, int number_of_blocks, bool one_bit_error, bool two_bit_error) {
+  // this respresents one ciphertext block
+  uint32_t one_block[4] = {0x12345678, 0xabcdef90, 0x87654321, 0x09fedcba};
+
+  // 16 chars (ASCII) -> one block
+  char *one_block_text = "1234ABCD5678EFGH";
+
+  // iterate over number of affected blocks
+  for (volatile int i = start; i <= end; i += interval) {
+    volatile uint32_t results[number_of_measurements]; // all cycle counts are saved here to calculate the avarage and standard deviation
+    // measure the cycle count [number_of_measurements] times
+    for (int f = 0; f < number_of_measurements; f++) {
+      bignum blocks[number_of_blocks];
+      int space_for_text = number_of_blocks * 16;
+      char text[space_for_text];
+
+      // fill the blocks and text
+      for (int k = 0; k < number_of_blocks; k++) {
+        blocks[k] = init_bignum(one_block);
+        if (k == 0) {
+          strcpy(text, one_block_text);
+        }
+        else {
+          strcat(text, one_block_text);
+        }
+      }
+
+      int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_from_string(text);
+
+      // add parity
+      bignum blocks_parity[number_of_bignums_parity];
+      add_parity_to_bignum_array(blocks_parity, blocks, number_of_blocks, number_of_bignums_parity);
+
+      // corrupt the blocks
+      for (int k = 0; k < i; k++) {
+        if (one_bit_error) {
+          blocks_parity[k] = one_bit_modification(blocks_parity[k], 42);
+        }
+        if (two_bit_error) {
+          blocks_parity[k] = one_bit_modification(blocks_parity[k], 42);
+          blocks_parity[k] = one_bit_modification(blocks_parity[k], 100);
+        }
+      }
+
+      reset_timer();
+      start_timer();
+
+      volatile hc_result res = verify_hamming_code(blocks_parity, number_of_bignums_parity);
+
+      volatile uint32_t number_of_cycles = get_cycles();
+      stop_timer();
+
+      results[f] = number_of_cycles;
+    }
+
+    volatile float avg = average(results, number_of_measurements);
+    volatile float sd = standard_deviation(results, number_of_measurements, avg);
+
+    // statement to set a breakpoint for printing
+    volatile int PRINT_VALUES = avg;
+  }
+}
+
+
+void hc_verify_changing_faulty_block(int start, int end, int interval, int number_of_measurements, int affected_blocks, int number_of_blocks, bool one_bit_error, bool two_bit_error) {
+  // this respresents one ciphertext block
+  uint32_t one_block[4] = {0x12345678, 0xabcdef90, 0x87654321, 0x09fedcba};
+
+  // 16 chars (ASCII) -> one block
+  char *one_block_text = "1234ABCD5678EFGH";
+
+  // iterate over blocks
+  for (volatile int i = start; i <= end; i += interval) {
+    volatile uint32_t results[number_of_measurements]; // all cycle counts are saved here to calculate the avarage and standard deviation
+    // measure the cycle count [number_of_measurements] times
+    for (int f = 0; f < number_of_measurements; f++) {
+      bignum blocks[number_of_blocks];
+      int space_for_text = number_of_blocks * 16;
+      char text[space_for_text];
+
+      // fill the blocks and text
+      for (int k = 0; k < number_of_blocks; k++) {
+        blocks[k] = init_bignum(one_block);
+        if (k == 0) {
+          strcpy(text, one_block_text);
+        }
+        else {
+          strcat(text, one_block_text);
+        }
+      }
+
+      int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_from_string(text);
+
+      bignum blocks_parity[number_of_bignums_parity];
+      add_parity_to_bignum_array(blocks_parity, blocks, number_of_blocks, number_of_bignums_parity);
+
+      // corrupt the blocks
+      for (int k = 0; k < affected_blocks; k++) {
+        if (one_bit_error) {
+          blocks_parity[i] = one_bit_modification(blocks_parity[i], 42);
+        }
+        if (two_bit_error) {
+          blocks_parity[i] = one_bit_modification(blocks_parity[i], 42);
+          blocks_parity[i] = one_bit_modification(blocks_parity[i], 100);
+        }
+      }
+
+      reset_timer();
+      start_timer();
+
+      volatile hc_result res = verify_hamming_code(blocks_parity, number_of_bignums_parity);
+
+      volatile uint32_t number_of_cycles = get_cycles();
+      stop_timer();
+
+      results[f] = number_of_cycles;
+    }
+
+    volatile float avg = average(results, number_of_measurements);
+    volatile float sd = standard_deviation(results, number_of_measurements, avg);
+
+    // statement to set a breakpoint for printing
+    volatile int PRINT_VALUES = avg;
+  }
+}
+
 // ------------------------------------------- my code end -----------------------------------------------------------------
 
 //Serial Number - will be read by device ID
@@ -673,7 +868,10 @@ int main(void)
   // verify_changing_threshold(1, 5, 1, 5, 1, false, false, false);
   // verify_changing_faulty_block(0, 2, 1, 5, 3, 1, false);
 
-  hc_add_parity_per_block(150, 250, 25, 1);
+  hc_add_parity_per_block(1, 10, 1, 30);
+  // hc_verify_changing_blocks(8, 8, 1, 30, 1, false, false, true);
+  // hc_verify_changing_number_of_affected_blocks(1, 10, 1, 30, 10, true, false);
+  // hc_verify_changing_faulty_block(10, 100, 10, 30, 1, 101, false, true);
 
   // --------------------------------------- my code end -------------------------------------------------------------------------------------------
 

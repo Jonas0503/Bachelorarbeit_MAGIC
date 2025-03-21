@@ -376,6 +376,12 @@ Discarded input sections
                 0x00000000      0x318 obj/main_cw521.o
  .text.verify_changing_faulty_block
                 0x00000000      0x280 obj/main_cw521.o
+ .text.hc_verify_changing_blocks
+                0x00000000      0x368 obj/main_cw521.o
+ .text.hc_verify_changing_number_of_affected_blocks
+                0x00000000      0x2d8 obj/main_cw521.o
+ .text.hc_verify_changing_faulty_block
+                0x00000000      0x2f8 obj/main_cw521.o
  .bss.cpu_irq_prev_interrupt_state
                 0x00000000        0x1 obj/main_cw521.o
  .bss.cpu_irq_critical_section_counter
@@ -1306,7 +1312,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 obj/./magic_bachelorarbeit/src/galois.o
  .debug_macro   0x00000000      0x170 obj/./magic_bachelorarbeit/src/galois.o
  .debug_line    0x00000000      0x4f7 obj/./magic_bachelorarbeit/src/galois.o
- .debug_str     0x00000000     0x7621 obj/./magic_bachelorarbeit/src/galois.o
+ .debug_str     0x00000000     0x760d obj/./magic_bachelorarbeit/src/galois.o
  .comment       0x00000000       0x46 obj/./magic_bachelorarbeit/src/galois.o
  .debug_frame   0x00000000       0xfc obj/./magic_bachelorarbeit/src/galois.o
  .ARM.attributes
@@ -1583,7 +1589,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 obj/./magic_bachelorarbeit/src/salsa20.o
  .debug_macro   0x00000000      0x170 obj/./magic_bachelorarbeit/src/salsa20.o
  .debug_line    0x00000000      0xe4e obj/./magic_bachelorarbeit/src/salsa20.o
- .debug_str     0x00000000     0x770f obj/./magic_bachelorarbeit/src/salsa20.o
+ .debug_str     0x00000000     0x76fb obj/./magic_bachelorarbeit/src/salsa20.o
  .comment       0x00000000       0x46 obj/./magic_bachelorarbeit/src/salsa20.o
  .debug_frame   0x00000000      0x1f0 obj/./magic_bachelorarbeit/src/salsa20.o
  .ARM.attributes
@@ -2971,7 +2977,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x45 obj/naeusb/sam3u_hal/chipid.o
  .debug_macro   0x00000000      0x3c3 obj/naeusb/sam3u_hal/chipid.o
  .debug_line    0x00000000      0xa8b obj/naeusb/sam3u_hal/chipid.o
- .debug_str     0x00000000    0x493e1 obj/naeusb/sam3u_hal/chipid.o
+ .debug_str     0x00000000    0x493cd obj/naeusb/sam3u_hal/chipid.o
  .comment       0x00000000       0x46 obj/naeusb/sam3u_hal/chipid.o
  .debug_frame   0x00000000       0xa0 obj/naeusb/sam3u_hal/chipid.o
  .ARM.attributes
@@ -3192,7 +3198,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x3c3 obj/naeusb/sam3u_hal/cycle_counter.o
  .debug_macro   0x00000000       0x22 obj/naeusb/sam3u_hal/cycle_counter.o
  .debug_line    0x00000000      0x916 obj/naeusb/sam3u_hal/cycle_counter.o
- .debug_str     0x00000000    0x493f9 obj/naeusb/sam3u_hal/cycle_counter.o
+ .debug_str     0x00000000    0x493e5 obj/naeusb/sam3u_hal/cycle_counter.o
  .comment       0x00000000       0x46 obj/naeusb/sam3u_hal/cycle_counter.o
  .debug_frame   0x00000000       0x20 obj/naeusb/sam3u_hal/cycle_counter.o
  .ARM.attributes
@@ -6227,7 +6233,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x5f obj/naeusb/sam3u_hal/spi.o
  .debug_macro   0x00000000       0x82 obj/naeusb/sam3u_hal/spi.o
  .debug_line    0x00000000      0xd06 obj/naeusb/sam3u_hal/spi.o
- .debug_str     0x00000000    0x4b532 obj/naeusb/sam3u_hal/spi.o
+ .debug_str     0x00000000    0x4b51e obj/naeusb/sam3u_hal/spi.o
  .comment       0x00000000       0x46 obj/naeusb/sam3u_hal/spi.o
  .debug_frame   0x00000000      0x118 obj/naeusb/sam3u_hal/spi.o
  .ARM.attributes
@@ -7190,7 +7196,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x45 obj/naeusb/sam3u_hal/tc.o
  .debug_macro   0x00000000      0x3c3 obj/naeusb/sam3u_hal/tc.o
  .debug_line    0x00000000      0xc3c obj/naeusb/sam3u_hal/tc.o
- .debug_str     0x00000000    0x495e6 obj/naeusb/sam3u_hal/tc.o
+ .debug_str     0x00000000    0x495d2 obj/naeusb/sam3u_hal/tc.o
  .comment       0x00000000       0x46 obj/naeusb/sam3u_hal/tc.o
  .debug_frame   0x00000000      0x188 obj/naeusb/sam3u_hal/tc.o
  .ARM.attributes
@@ -7454,7 +7460,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x3c3 obj/naeusb/sam3u_hal/twi.o
  .debug_macro   0x00000000       0x46 obj/naeusb/sam3u_hal/twi.o
  .debug_line    0x00000000     0x1174 obj/naeusb/sam3u_hal/twi.o
- .debug_str     0x00000000    0x49795 obj/naeusb/sam3u_hal/twi.o
+ .debug_str     0x00000000    0x49781 obj/naeusb/sam3u_hal/twi.o
  .comment       0x00000000       0x46 obj/naeusb/sam3u_hal/twi.o
  .debug_frame   0x00000000      0x1f4 obj/naeusb/sam3u_hal/twi.o
  .ARM.attributes
@@ -8431,7 +8437,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x2e obj/naeusb/sam3u_hal/usart_serial.o
  .debug_macro   0x00000000       0x1c obj/naeusb/sam3u_hal/usart_serial.o
  .debug_line    0x00000000      0xd2c obj/naeusb/sam3u_hal/usart_serial.o
- .debug_str     0x00000000    0x4b5d3 obj/naeusb/sam3u_hal/usart_serial.o
+ .debug_str     0x00000000    0x4b5bf obj/naeusb/sam3u_hal/usart_serial.o
  .comment       0x00000000       0x46 obj/naeusb/sam3u_hal/usart_serial.o
  .debug_frame   0x00000000       0xac obj/naeusb/sam3u_hal/usart_serial.o
  .ARM.attributes
@@ -11223,43 +11229,43 @@ LOAD linker stubs
  .comment       0x00000045       0x46 obj/naeusb/sam3u_hal/write.o
  .comment       0x00000045       0x46 obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
 
-.debug_info     0x00000000    0x1a94c
- .debug_info    0x00000000     0x3908 obj/main_cw521.o
- .debug_info    0x00003908      0xadc obj/naeusb_ballistic.o
- .debug_info    0x000043e4      0x541 obj/naeusb/naeusb.o
- .debug_info    0x00004925      0x716 obj/naeusb/naeusb_default.o
- .debug_info    0x0000503b      0x993 obj/./magic_bachelorarbeit/src/bignum.o
- .debug_info    0x000059ce      0xdf3 obj/./magic_bachelorarbeit/src/util_functions.o
- .debug_info    0x000067c1      0xf44 obj/./magic_bachelorarbeit/src/magic_mode.o
- .debug_info    0x00007705      0xc10 obj/./magic_bachelorarbeit/src/hamming_code.o
- .debug_info    0x00008315     0x162d obj/naeusb/udc.o
- .debug_info    0x00009942     0x1075 obj/naeusb/usb_xmem.o
- .debug_info    0x0000a9b7      0x27d obj/ui.o
- .debug_info    0x0000ac34      0x6bd obj/init.o
- .debug_info    0x0000b2f1      0x71f obj/naeusb/sam3u_hal/efc.o
- .debug_info    0x0000ba10       0xe1 obj/naeusb/sam3u_hal/exceptions.o
- .debug_info    0x0000baf1     0x19f8 obj/naeusb/sam3u_hal/flash_efc.o
- .debug_info    0x0000d4e9      0x1bf obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
- .debug_info    0x0000d6a8      0x1f5 obj/naeusb/sam3u_hal/led.o
- .debug_info    0x0000d89d      0xe57 obj/naeusb/sam3u_hal/pio_handler.o
- .debug_info    0x0000e6f4     0x16dc obj/naeusb/sam3u_hal/pio.o
- .debug_info    0x0000fdd0      0xe65 obj/naeusb/sam3u_hal/pmc.o
- .debug_info    0x00010c35      0x183 obj/naeusb/sam3u_hal/read.o
- .debug_info    0x00010db8      0x9b4 obj/naeusb/sam3u_hal/sleep.o
- .debug_info    0x0001176c      0x155 obj/naeusb/sam3u_hal/sleepmgr.o
- .debug_info    0x000118c1      0x8f0 obj/naeusb/sam3u_hal/smc.o
- .debug_info    0x000121b1      0x494 obj/naeusb/sam3u_hal/startup_sam3u.o
- .debug_info    0x00012645      0x4c8 obj/naeusb/sam3u_hal/syscalls.o
- .debug_info    0x00012b0d      0x9eb obj/naeusb/sam3u_hal/sysclk.o
- .debug_info    0x000134f8      0x3c8 obj/naeusb/sam3u_hal/system_sam3u.o
- .debug_info    0x000138c0      0x7d8 obj/naeusb/sam3u_hal/uart.o
- .debug_info    0x00014098      0x553 obj/naeusb/sam3u_hal/udi_vendor.o
- .debug_info    0x000145eb     0x39ce obj/naeusb/sam3u_hal/udphs_device.o
- .debug_info    0x00017fb9     0x2132 obj/naeusb/sam3u_hal/usart.o
- .debug_info    0x0001a0eb      0x184 obj/naeusb/sam3u_hal/write.o
- .debug_info    0x0001a26f      0x6dd obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
+.debug_info     0x00000000    0x1b5ec
+ .debug_info    0x00000000     0x45aa obj/main_cw521.o
+ .debug_info    0x000045aa      0xadc obj/naeusb_ballistic.o
+ .debug_info    0x00005086      0x541 obj/naeusb/naeusb.o
+ .debug_info    0x000055c7      0x716 obj/naeusb/naeusb_default.o
+ .debug_info    0x00005cdd      0x993 obj/./magic_bachelorarbeit/src/bignum.o
+ .debug_info    0x00006670      0xdf3 obj/./magic_bachelorarbeit/src/util_functions.o
+ .debug_info    0x00007463      0xf44 obj/./magic_bachelorarbeit/src/magic_mode.o
+ .debug_info    0x000083a7      0xc0e obj/./magic_bachelorarbeit/src/hamming_code.o
+ .debug_info    0x00008fb5     0x162d obj/naeusb/udc.o
+ .debug_info    0x0000a5e2     0x1075 obj/naeusb/usb_xmem.o
+ .debug_info    0x0000b657      0x27d obj/ui.o
+ .debug_info    0x0000b8d4      0x6bd obj/init.o
+ .debug_info    0x0000bf91      0x71f obj/naeusb/sam3u_hal/efc.o
+ .debug_info    0x0000c6b0       0xe1 obj/naeusb/sam3u_hal/exceptions.o
+ .debug_info    0x0000c791     0x19f8 obj/naeusb/sam3u_hal/flash_efc.o
+ .debug_info    0x0000e189      0x1bf obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
+ .debug_info    0x0000e348      0x1f5 obj/naeusb/sam3u_hal/led.o
+ .debug_info    0x0000e53d      0xe57 obj/naeusb/sam3u_hal/pio_handler.o
+ .debug_info    0x0000f394     0x16dc obj/naeusb/sam3u_hal/pio.o
+ .debug_info    0x00010a70      0xe65 obj/naeusb/sam3u_hal/pmc.o
+ .debug_info    0x000118d5      0x183 obj/naeusb/sam3u_hal/read.o
+ .debug_info    0x00011a58      0x9b4 obj/naeusb/sam3u_hal/sleep.o
+ .debug_info    0x0001240c      0x155 obj/naeusb/sam3u_hal/sleepmgr.o
+ .debug_info    0x00012561      0x8f0 obj/naeusb/sam3u_hal/smc.o
+ .debug_info    0x00012e51      0x494 obj/naeusb/sam3u_hal/startup_sam3u.o
+ .debug_info    0x000132e5      0x4c8 obj/naeusb/sam3u_hal/syscalls.o
+ .debug_info    0x000137ad      0x9eb obj/naeusb/sam3u_hal/sysclk.o
+ .debug_info    0x00014198      0x3c8 obj/naeusb/sam3u_hal/system_sam3u.o
+ .debug_info    0x00014560      0x7d8 obj/naeusb/sam3u_hal/uart.o
+ .debug_info    0x00014d38      0x553 obj/naeusb/sam3u_hal/udi_vendor.o
+ .debug_info    0x0001528b     0x39ce obj/naeusb/sam3u_hal/udphs_device.o
+ .debug_info    0x00018c59     0x2132 obj/naeusb/sam3u_hal/usart.o
+ .debug_info    0x0001ad8b      0x184 obj/naeusb/sam3u_hal/write.o
+ .debug_info    0x0001af0f      0x6dd obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
 
-.debug_abbrev   0x00000000     0x571c
+.debug_abbrev   0x00000000     0x571e
  .debug_abbrev  0x00000000      0x685 obj/main_cw521.o
  .debug_abbrev  0x00000685      0x410 obj/naeusb_ballistic.o
  .debug_abbrev  0x00000a95      0x2c8 obj/naeusb/naeusb.o
@@ -11267,231 +11273,231 @@ LOAD linker stubs
  .debug_abbrev  0x00001074      0x2e2 obj/./magic_bachelorarbeit/src/bignum.o
  .debug_abbrev  0x00001356      0x35c obj/./magic_bachelorarbeit/src/util_functions.o
  .debug_abbrev  0x000016b2      0x331 obj/./magic_bachelorarbeit/src/magic_mode.o
- .debug_abbrev  0x000019e3      0x2ae obj/./magic_bachelorarbeit/src/hamming_code.o
- .debug_abbrev  0x00001c91      0x503 obj/naeusb/udc.o
- .debug_abbrev  0x00002194      0x36b obj/naeusb/usb_xmem.o
- .debug_abbrev  0x000024ff       0xdc obj/ui.o
- .debug_abbrev  0x000025db      0x207 obj/init.o
- .debug_abbrev  0x000027e2      0x2d4 obj/naeusb/sam3u_hal/efc.o
- .debug_abbrev  0x00002ab6       0x6e obj/naeusb/sam3u_hal/exceptions.o
- .debug_abbrev  0x00002b24      0x327 obj/naeusb/sam3u_hal/flash_efc.o
- .debug_abbrev  0x00002e4b      0x11a obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
- .debug_abbrev  0x00002f65      0x128 obj/naeusb/sam3u_hal/led.o
- .debug_abbrev  0x0000308d      0x34f obj/naeusb/sam3u_hal/pio_handler.o
- .debug_abbrev  0x000033dc      0x309 obj/naeusb/sam3u_hal/pio.o
- .debug_abbrev  0x000036e5      0x287 obj/naeusb/sam3u_hal/pmc.o
- .debug_abbrev  0x0000396c      0x102 obj/naeusb/sam3u_hal/read.o
- .debug_abbrev  0x00003a6e      0x28d obj/naeusb/sam3u_hal/sleep.o
- .debug_abbrev  0x00003cfb       0xaa obj/naeusb/sam3u_hal/sleepmgr.o
- .debug_abbrev  0x00003da5      0x1bf obj/naeusb/sam3u_hal/smc.o
- .debug_abbrev  0x00003f64      0x16f obj/naeusb/sam3u_hal/startup_sam3u.o
- .debug_abbrev  0x000040d3      0x1c8 obj/naeusb/sam3u_hal/syscalls.o
- .debug_abbrev  0x0000429b      0x2df obj/naeusb/sam3u_hal/sysclk.o
- .debug_abbrev  0x0000457a      0x10a obj/naeusb/sam3u_hal/system_sam3u.o
- .debug_abbrev  0x00004684      0x21b obj/naeusb/sam3u_hal/uart.o
- .debug_abbrev  0x0000489f      0x229 obj/naeusb/sam3u_hal/udi_vendor.o
- .debug_abbrev  0x00004ac8      0x699 obj/naeusb/sam3u_hal/udphs_device.o
- .debug_abbrev  0x00005161      0x37e obj/naeusb/sam3u_hal/usart.o
- .debug_abbrev  0x000054df       0xe9 obj/naeusb/sam3u_hal/write.o
- .debug_abbrev  0x000055c8      0x154 obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
+ .debug_abbrev  0x000019e3      0x2b0 obj/./magic_bachelorarbeit/src/hamming_code.o
+ .debug_abbrev  0x00001c93      0x503 obj/naeusb/udc.o
+ .debug_abbrev  0x00002196      0x36b obj/naeusb/usb_xmem.o
+ .debug_abbrev  0x00002501       0xdc obj/ui.o
+ .debug_abbrev  0x000025dd      0x207 obj/init.o
+ .debug_abbrev  0x000027e4      0x2d4 obj/naeusb/sam3u_hal/efc.o
+ .debug_abbrev  0x00002ab8       0x6e obj/naeusb/sam3u_hal/exceptions.o
+ .debug_abbrev  0x00002b26      0x327 obj/naeusb/sam3u_hal/flash_efc.o
+ .debug_abbrev  0x00002e4d      0x11a obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
+ .debug_abbrev  0x00002f67      0x128 obj/naeusb/sam3u_hal/led.o
+ .debug_abbrev  0x0000308f      0x34f obj/naeusb/sam3u_hal/pio_handler.o
+ .debug_abbrev  0x000033de      0x309 obj/naeusb/sam3u_hal/pio.o
+ .debug_abbrev  0x000036e7      0x287 obj/naeusb/sam3u_hal/pmc.o
+ .debug_abbrev  0x0000396e      0x102 obj/naeusb/sam3u_hal/read.o
+ .debug_abbrev  0x00003a70      0x28d obj/naeusb/sam3u_hal/sleep.o
+ .debug_abbrev  0x00003cfd       0xaa obj/naeusb/sam3u_hal/sleepmgr.o
+ .debug_abbrev  0x00003da7      0x1bf obj/naeusb/sam3u_hal/smc.o
+ .debug_abbrev  0x00003f66      0x16f obj/naeusb/sam3u_hal/startup_sam3u.o
+ .debug_abbrev  0x000040d5      0x1c8 obj/naeusb/sam3u_hal/syscalls.o
+ .debug_abbrev  0x0000429d      0x2df obj/naeusb/sam3u_hal/sysclk.o
+ .debug_abbrev  0x0000457c      0x10a obj/naeusb/sam3u_hal/system_sam3u.o
+ .debug_abbrev  0x00004686      0x21b obj/naeusb/sam3u_hal/uart.o
+ .debug_abbrev  0x000048a1      0x229 obj/naeusb/sam3u_hal/udi_vendor.o
+ .debug_abbrev  0x00004aca      0x699 obj/naeusb/sam3u_hal/udphs_device.o
+ .debug_abbrev  0x00005163      0x37e obj/naeusb/sam3u_hal/usart.o
+ .debug_abbrev  0x000054e1       0xe9 obj/naeusb/sam3u_hal/write.o
+ .debug_abbrev  0x000055ca      0x154 obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
 
 .debug_loclists
-                0x00000000     0x9a1a
+                0x00000000     0xa2bf
  .debug_loclists
-                0x00000000      0xdeb obj/main_cw521.o
+                0x00000000     0x1690 obj/main_cw521.o
  .debug_loclists
-                0x00000deb      0x369 obj/naeusb_ballistic.o
+                0x00001690      0x369 obj/naeusb_ballistic.o
  .debug_loclists
-                0x00001154       0xb0 obj/naeusb/naeusb.o
+                0x000019f9       0xb0 obj/naeusb/naeusb.o
  .debug_loclists
-                0x00001204       0x30 obj/naeusb/naeusb_default.o
+                0x00001aa9       0x30 obj/naeusb/naeusb_default.o
  .debug_loclists
-                0x00001234      0x39c obj/./magic_bachelorarbeit/src/bignum.o
+                0x00001ad9      0x39c obj/./magic_bachelorarbeit/src/bignum.o
  .debug_loclists
-                0x000015d0      0x9de obj/./magic_bachelorarbeit/src/util_functions.o
+                0x00001e75      0x9de obj/./magic_bachelorarbeit/src/util_functions.o
  .debug_loclists
-                0x00001fae      0x73d obj/./magic_bachelorarbeit/src/magic_mode.o
+                0x00002853      0x73d obj/./magic_bachelorarbeit/src/magic_mode.o
  .debug_loclists
-                0x000026eb      0x9e6 obj/./magic_bachelorarbeit/src/hamming_code.o
+                0x00002f90      0x9e6 obj/./magic_bachelorarbeit/src/hamming_code.o
  .debug_loclists
-                0x000030d1      0x35f obj/naeusb/udc.o
+                0x00003976      0x35f obj/naeusb/udc.o
  .debug_loclists
-                0x00003430      0x4b3 obj/naeusb/usb_xmem.o
+                0x00003cd5      0x4b3 obj/naeusb/usb_xmem.o
  .debug_loclists
-                0x000038e3       0x55 obj/ui.o
+                0x00004188       0x55 obj/ui.o
  .debug_loclists
-                0x00003938       0x30 obj/init.o
+                0x000041dd       0x30 obj/init.o
  .debug_loclists
-                0x00003968      0x338 obj/naeusb/sam3u_hal/efc.o
+                0x0000420d      0x338 obj/naeusb/sam3u_hal/efc.o
  .debug_loclists
-                0x00003ca0     0x1208 obj/naeusb/sam3u_hal/flash_efc.o
+                0x00004545     0x1208 obj/naeusb/sam3u_hal/flash_efc.o
  .debug_loclists
-                0x00004ea8       0x17 obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
+                0x0000574d       0x17 obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
  .debug_loclists
-                0x00004ebf       0x84 obj/naeusb/sam3u_hal/led.o
+                0x00005764       0x84 obj/naeusb/sam3u_hal/led.o
  .debug_loclists
-                0x00004f43      0x41d obj/naeusb/sam3u_hal/pio_handler.o
+                0x000057e8      0x41d obj/naeusb/sam3u_hal/pio_handler.o
  .debug_loclists
-                0x00005360      0xc9c obj/naeusb/sam3u_hal/pio.o
+                0x00005c05      0xc9c obj/naeusb/sam3u_hal/pio.o
  .debug_loclists
-                0x00005ffc      0x5c7 obj/naeusb/sam3u_hal/pmc.o
+                0x000068a1      0x5c7 obj/naeusb/sam3u_hal/pmc.o
  .debug_loclists
-                0x000065c3       0x8c obj/naeusb/sam3u_hal/read.o
+                0x00006e68       0x8c obj/naeusb/sam3u_hal/read.o
  .debug_loclists
-                0x0000664f      0x35d obj/naeusb/sam3u_hal/sleep.o
+                0x00006ef4      0x35d obj/naeusb/sam3u_hal/sleep.o
  .debug_loclists
-                0x000069ac      0x277 obj/naeusb/sam3u_hal/smc.o
+                0x00007251      0x277 obj/naeusb/sam3u_hal/smc.o
  .debug_loclists
-                0x00006c23      0x10f obj/naeusb/sam3u_hal/syscalls.o
+                0x000074c8      0x10f obj/naeusb/sam3u_hal/syscalls.o
  .debug_loclists
-                0x00006d32      0x17f obj/naeusb/sam3u_hal/sysclk.o
+                0x000075d7      0x17f obj/naeusb/sam3u_hal/sysclk.o
  .debug_loclists
-                0x00006eb1      0x17a obj/naeusb/sam3u_hal/uart.o
+                0x00007756      0x17a obj/naeusb/sam3u_hal/uart.o
  .debug_loclists
-                0x0000702b       0xe4 obj/naeusb/sam3u_hal/udi_vendor.o
+                0x000078d0       0xe4 obj/naeusb/sam3u_hal/udi_vendor.o
  .debug_loclists
-                0x0000710f     0x19c2 obj/naeusb/sam3u_hal/udphs_device.o
+                0x000079b4     0x19c2 obj/naeusb/sam3u_hal/udphs_device.o
  .debug_loclists
-                0x00008ad1      0xe7a obj/naeusb/sam3u_hal/usart.o
+                0x00009376      0xe7a obj/naeusb/sam3u_hal/usart.o
  .debug_loclists
-                0x0000994b       0xcf obj/naeusb/sam3u_hal/write.o
+                0x0000a1f0       0xcf obj/naeusb/sam3u_hal/write.o
 
-.debug_aranges  0x00000000     0x10d0
+.debug_aranges  0x00000000     0x10e8
  .debug_aranges
-                0x00000000       0x98 obj/main_cw521.o
+                0x00000000       0xb0 obj/main_cw521.o
  .debug_aranges
-                0x00000098       0x90 obj/naeusb_ballistic.o
+                0x000000b0       0x90 obj/naeusb_ballistic.o
  .debug_aranges
-                0x00000128       0x68 obj/naeusb/naeusb.o
+                0x00000140       0x68 obj/naeusb/naeusb.o
  .debug_aranges
-                0x00000190       0x50 obj/naeusb/naeusb_default.o
+                0x000001a8       0x50 obj/naeusb/naeusb_default.o
  .debug_aranges
-                0x000001e0       0x88 obj/./magic_bachelorarbeit/src/bignum.o
+                0x000001f8       0x88 obj/./magic_bachelorarbeit/src/bignum.o
  .debug_aranges
-                0x00000268       0x88 obj/./magic_bachelorarbeit/src/util_functions.o
+                0x00000280       0x88 obj/./magic_bachelorarbeit/src/util_functions.o
  .debug_aranges
-                0x000002f0       0x58 obj/./magic_bachelorarbeit/src/magic_mode.o
+                0x00000308       0x58 obj/./magic_bachelorarbeit/src/magic_mode.o
  .debug_aranges
-                0x00000348       0x60 obj/./magic_bachelorarbeit/src/hamming_code.o
+                0x00000360       0x60 obj/./magic_bachelorarbeit/src/hamming_code.o
  .debug_aranges
-                0x000003a8       0x68 obj/naeusb/udc.o
+                0x000003c0       0x68 obj/naeusb/udc.o
  .debug_aranges
-                0x00000410       0x80 obj/naeusb/usb_xmem.o
+                0x00000428       0x80 obj/naeusb/usb_xmem.o
  .debug_aranges
-                0x00000490       0x38 obj/ui.o
+                0x000004a8       0x38 obj/ui.o
  .debug_aranges
-                0x000004c8       0x30 obj/init.o
+                0x000004e0       0x30 obj/init.o
  .debug_aranges
-                0x000004f8       0x80 obj/naeusb/sam3u_hal/efc.o
+                0x00000510       0x80 obj/naeusb/sam3u_hal/efc.o
  .debug_aranges
-                0x00000578       0x20 obj/naeusb/sam3u_hal/exceptions.o
+                0x00000590       0x20 obj/naeusb/sam3u_hal/exceptions.o
  .debug_aranges
-                0x00000598       0xb0 obj/naeusb/sam3u_hal/flash_efc.o
+                0x000005b0       0xb0 obj/naeusb/sam3u_hal/flash_efc.o
  .debug_aranges
-                0x00000648       0x28 obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
+                0x00000660       0x28 obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
  .debug_aranges
-                0x00000670       0x28 obj/naeusb/sam3u_hal/led.o
+                0x00000688       0x28 obj/naeusb/sam3u_hal/led.o
  .debug_aranges
-                0x00000698       0x50 obj/naeusb/sam3u_hal/pio_handler.o
+                0x000006b0       0x50 obj/naeusb/sam3u_hal/pio_handler.o
  .debug_aranges
-                0x000006e8      0x148 obj/naeusb/sam3u_hal/pio.o
+                0x00000700      0x148 obj/naeusb/sam3u_hal/pio.o
  .debug_aranges
-                0x00000830      0x1e0 obj/naeusb/sam3u_hal/pmc.o
+                0x00000848      0x1e0 obj/naeusb/sam3u_hal/pmc.o
  .debug_aranges
-                0x00000a10       0x20 obj/naeusb/sam3u_hal/read.o
+                0x00000a28       0x20 obj/naeusb/sam3u_hal/read.o
  .debug_aranges
-                0x00000a30       0x30 obj/naeusb/sam3u_hal/sleep.o
+                0x00000a48       0x30 obj/naeusb/sam3u_hal/sleep.o
  .debug_aranges
-                0x00000a60       0x18 obj/naeusb/sam3u_hal/sleepmgr.o
+                0x00000a78       0x18 obj/naeusb/sam3u_hal/sleepmgr.o
  .debug_aranges
-                0x00000a78       0xe8 obj/naeusb/sam3u_hal/smc.o
+                0x00000a90       0xe8 obj/naeusb/sam3u_hal/smc.o
  .debug_aranges
-                0x00000b60       0x20 obj/naeusb/sam3u_hal/startup_sam3u.o
+                0x00000b78       0x20 obj/naeusb/sam3u_hal/startup_sam3u.o
  .debug_aranges
-                0x00000b80       0x60 obj/naeusb/sam3u_hal/syscalls.o
+                0x00000b98       0x60 obj/naeusb/sam3u_hal/syscalls.o
  .debug_aranges
-                0x00000be0       0x40 obj/naeusb/sam3u_hal/sysclk.o
+                0x00000bf8       0x40 obj/naeusb/sam3u_hal/sysclk.o
  .debug_aranges
-                0x00000c20       0x30 obj/naeusb/sam3u_hal/system_sam3u.o
+                0x00000c38       0x30 obj/naeusb/sam3u_hal/system_sam3u.o
  .debug_aranges
-                0x00000c50       0xe8 obj/naeusb/sam3u_hal/uart.o
+                0x00000c68       0xe8 obj/naeusb/sam3u_hal/uart.o
  .debug_aranges
-                0x00000d38       0x48 obj/naeusb/sam3u_hal/udi_vendor.o
+                0x00000d50       0x48 obj/naeusb/sam3u_hal/udi_vendor.o
  .debug_aranges
-                0x00000d80       0xf8 obj/naeusb/sam3u_hal/udphs_device.o
+                0x00000d98       0xf8 obj/naeusb/sam3u_hal/udphs_device.o
  .debug_aranges
-                0x00000e78      0x220 obj/naeusb/sam3u_hal/usart.o
+                0x00000e90      0x220 obj/naeusb/sam3u_hal/usart.o
  .debug_aranges
-                0x00001098       0x20 obj/naeusb/sam3u_hal/write.o
+                0x000010b0       0x20 obj/naeusb/sam3u_hal/write.o
  .debug_aranges
-                0x000010b8       0x18 obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
+                0x000010d0       0x18 obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
 
 .debug_rnglists
-                0x00000000     0x2057
+                0x00000000     0x224e
  .debug_rnglists
-                0x00000000      0x51b obj/main_cw521.o
+                0x00000000      0x712 obj/main_cw521.o
  .debug_rnglists
-                0x0000051b       0xc0 obj/naeusb_ballistic.o
+                0x00000712       0xc0 obj/naeusb_ballistic.o
  .debug_rnglists
-                0x000005db       0x64 obj/naeusb/naeusb.o
+                0x000007d2       0x64 obj/naeusb/naeusb.o
  .debug_rnglists
-                0x0000063f       0x38 obj/naeusb/naeusb_default.o
+                0x00000836       0x38 obj/naeusb/naeusb_default.o
  .debug_rnglists
-                0x00000677      0x1df obj/./magic_bachelorarbeit/src/bignum.o
+                0x0000086e      0x1df obj/./magic_bachelorarbeit/src/bignum.o
  .debug_rnglists
-                0x00000856      0x12c obj/./magic_bachelorarbeit/src/util_functions.o
+                0x00000a4d      0x12c obj/./magic_bachelorarbeit/src/util_functions.o
  .debug_rnglists
-                0x00000982       0x94 obj/./magic_bachelorarbeit/src/magic_mode.o
+                0x00000b79       0x94 obj/./magic_bachelorarbeit/src/magic_mode.o
  .debug_rnglists
-                0x00000a16      0x12a obj/./magic_bachelorarbeit/src/hamming_code.o
+                0x00000c0d      0x12a obj/./magic_bachelorarbeit/src/hamming_code.o
  .debug_rnglists
-                0x00000b40      0x122 obj/naeusb/udc.o
+                0x00000d37      0x122 obj/naeusb/udc.o
  .debug_rnglists
-                0x00000c62       0xdb obj/naeusb/usb_xmem.o
+                0x00000e59       0xdb obj/naeusb/usb_xmem.o
  .debug_rnglists
-                0x00000d3d       0x25 obj/ui.o
+                0x00000f34       0x25 obj/ui.o
  .debug_rnglists
-                0x00000d62       0x37 obj/init.o
+                0x00000f59       0x37 obj/init.o
  .debug_rnglists
-                0x00000d99       0x68 obj/naeusb/sam3u_hal/efc.o
+                0x00000f90       0x68 obj/naeusb/sam3u_hal/efc.o
  .debug_rnglists
-                0x00000e01       0x13 obj/naeusb/sam3u_hal/exceptions.o
+                0x00000ff8       0x13 obj/naeusb/sam3u_hal/exceptions.o
  .debug_rnglists
-                0x00000e14      0x143 obj/naeusb/sam3u_hal/flash_efc.o
+                0x0000100b      0x143 obj/naeusb/sam3u_hal/flash_efc.o
  .debug_rnglists
-                0x00000f57       0x25 obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
+                0x0000114e       0x25 obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
  .debug_rnglists
-                0x00000f7c       0x19 obj/naeusb/sam3u_hal/led.o
+                0x00001173       0x19 obj/naeusb/sam3u_hal/led.o
  .debug_rnglists
-                0x00000f95       0x7d obj/naeusb/sam3u_hal/pio_handler.o
+                0x0000118c       0x7d obj/naeusb/sam3u_hal/pio_handler.o
  .debug_rnglists
-                0x00001012      0x2bf obj/naeusb/sam3u_hal/pio.o
+                0x00001209      0x2bf obj/naeusb/sam3u_hal/pio.o
  .debug_rnglists
-                0x000012d1      0x181 obj/naeusb/sam3u_hal/pmc.o
+                0x000014c8      0x181 obj/naeusb/sam3u_hal/pmc.o
  .debug_rnglists
-                0x00001452       0x13 obj/naeusb/sam3u_hal/read.o
+                0x00001649       0x13 obj/naeusb/sam3u_hal/read.o
  .debug_rnglists
-                0x00001465       0x58 obj/naeusb/sam3u_hal/sleep.o
+                0x0000165c       0x58 obj/naeusb/sam3u_hal/sleep.o
  .debug_rnglists
-                0x000014bd       0xa9 obj/naeusb/sam3u_hal/smc.o
+                0x000016b4       0xa9 obj/naeusb/sam3u_hal/smc.o
  .debug_rnglists
-                0x00001566       0x14 obj/naeusb/sam3u_hal/startup_sam3u.o
+                0x0000175d       0x14 obj/naeusb/sam3u_hal/startup_sam3u.o
  .debug_rnglists
-                0x0000157a       0x43 obj/naeusb/sam3u_hal/syscalls.o
+                0x00001771       0x43 obj/naeusb/sam3u_hal/syscalls.o
  .debug_rnglists
-                0x000015bd       0x43 obj/naeusb/sam3u_hal/sysclk.o
+                0x000017b4       0x43 obj/naeusb/sam3u_hal/sysclk.o
  .debug_rnglists
-                0x00001600       0x21 obj/naeusb/sam3u_hal/system_sam3u.o
+                0x000017f7       0x21 obj/naeusb/sam3u_hal/system_sam3u.o
  .debug_rnglists
-                0x00001621       0xa9 obj/naeusb/sam3u_hal/uart.o
+                0x00001818       0xa9 obj/naeusb/sam3u_hal/uart.o
  .debug_rnglists
-                0x000016ca       0x31 obj/naeusb/sam3u_hal/udi_vendor.o
+                0x000018c1       0x31 obj/naeusb/sam3u_hal/udi_vendor.o
  .debug_rnglists
-                0x000016fb      0x3f0 obj/naeusb/sam3u_hal/udphs_device.o
+                0x000018f2      0x3f0 obj/naeusb/sam3u_hal/udphs_device.o
  .debug_rnglists
-                0x00001aeb      0x559 obj/naeusb/sam3u_hal/usart.o
+                0x00001ce2      0x559 obj/naeusb/sam3u_hal/usart.o
  .debug_rnglists
-                0x00002044       0x13 obj/naeusb/sam3u_hal/write.o
+                0x0000223b       0x13 obj/naeusb/sam3u_hal/write.o
 
 .debug_macro    0x00000000    0x1aab6
  .debug_macro   0x00000000      0x7db obj/main_cw521.o
@@ -11706,190 +11712,190 @@ LOAD linker stubs
  .debug_macro   0x0001a13f      0x46a obj/naeusb/sam3u_hal/write.o
  .debug_macro   0x0001a5a9      0x50d obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
 
-.debug_line     0x00000000    0x20f71
- .debug_line    0x00000000     0x2888 obj/main_cw521.o
- .debug_line    0x00002888     0x12fc obj/naeusb_ballistic.o
- .debug_line    0x00003b84      0xdfe obj/naeusb/naeusb.o
- .debug_line    0x00004982      0xf70 obj/naeusb/naeusb_default.o
- .debug_line    0x000058f2      0xad2 obj/./magic_bachelorarbeit/src/bignum.o
- .debug_line    0x000063c4      0xd39 obj/./magic_bachelorarbeit/src/util_functions.o
- .debug_line    0x000070fd      0x849 obj/./magic_bachelorarbeit/src/magic_mode.o
- .debug_line    0x00007946      0xb4d obj/./magic_bachelorarbeit/src/hamming_code.o
- .debug_line    0x00008493     0x14ca obj/naeusb/udc.o
- .debug_line    0x0000995d     0x10b2 obj/naeusb/usb_xmem.o
- .debug_line    0x0000aa0f      0xca2 obj/ui.o
- .debug_line    0x0000b6b1      0xac5 obj/init.o
- .debug_line    0x0000c176      0xc47 obj/naeusb/sam3u_hal/efc.o
- .debug_line    0x0000cdbd      0x910 obj/naeusb/sam3u_hal/exceptions.o
- .debug_line    0x0000d6cd     0x1428 obj/naeusb/sam3u_hal/flash_efc.o
- .debug_line    0x0000eaf5      0xa23 obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
- .debug_line    0x0000f518      0xa1e obj/naeusb/sam3u_hal/led.o
- .debug_line    0x0000ff36      0xbe4 obj/naeusb/sam3u_hal/pio_handler.o
- .debug_line    0x00010b1a     0x16e0 obj/naeusb/sam3u_hal/pio.o
- .debug_line    0x000121fa     0x182e obj/naeusb/sam3u_hal/pmc.o
- .debug_line    0x00013a28      0x936 obj/naeusb/sam3u_hal/read.o
- .debug_line    0x0001435e      0xef7 obj/naeusb/sam3u_hal/sleep.o
- .debug_line    0x00015255      0x93a obj/naeusb/sam3u_hal/sleepmgr.o
- .debug_line    0x00015b8f      0xd59 obj/naeusb/sam3u_hal/smc.o
- .debug_line    0x000168e8      0x97a obj/naeusb/sam3u_hal/startup_sam3u.o
- .debug_line    0x00017262      0x4f4 obj/naeusb/sam3u_hal/syscalls.o
- .debug_line    0x00017756      0xc60 obj/naeusb/sam3u_hal/sysclk.o
- .debug_line    0x000183b6      0xba8 obj/naeusb/sam3u_hal/system_sam3u.o
- .debug_line    0x00018f5e      0xc58 obj/naeusb/sam3u_hal/uart.o
- .debug_line    0x00019bb6      0xadb obj/naeusb/sam3u_hal/udi_vendor.o
- .debug_line    0x0001a691     0x36a8 obj/naeusb/sam3u_hal/udphs_device.o
- .debug_line    0x0001dd39     0x1f46 obj/naeusb/sam3u_hal/usart.o
- .debug_line    0x0001fc7f      0x95a obj/naeusb/sam3u_hal/write.o
- .debug_line    0x000205d9      0x998 obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
+.debug_line     0x00000000    0x219de
+ .debug_line    0x00000000     0x32ef obj/main_cw521.o
+ .debug_line    0x000032ef     0x12fc obj/naeusb_ballistic.o
+ .debug_line    0x000045eb      0xdfe obj/naeusb/naeusb.o
+ .debug_line    0x000053e9      0xf70 obj/naeusb/naeusb_default.o
+ .debug_line    0x00006359      0xad2 obj/./magic_bachelorarbeit/src/bignum.o
+ .debug_line    0x00006e2b      0xd39 obj/./magic_bachelorarbeit/src/util_functions.o
+ .debug_line    0x00007b64      0x849 obj/./magic_bachelorarbeit/src/magic_mode.o
+ .debug_line    0x000083ad      0xb53 obj/./magic_bachelorarbeit/src/hamming_code.o
+ .debug_line    0x00008f00     0x14ca obj/naeusb/udc.o
+ .debug_line    0x0000a3ca     0x10b2 obj/naeusb/usb_xmem.o
+ .debug_line    0x0000b47c      0xca2 obj/ui.o
+ .debug_line    0x0000c11e      0xac5 obj/init.o
+ .debug_line    0x0000cbe3      0xc47 obj/naeusb/sam3u_hal/efc.o
+ .debug_line    0x0000d82a      0x910 obj/naeusb/sam3u_hal/exceptions.o
+ .debug_line    0x0000e13a     0x1428 obj/naeusb/sam3u_hal/flash_efc.o
+ .debug_line    0x0000f562      0xa23 obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
+ .debug_line    0x0000ff85      0xa1e obj/naeusb/sam3u_hal/led.o
+ .debug_line    0x000109a3      0xbe4 obj/naeusb/sam3u_hal/pio_handler.o
+ .debug_line    0x00011587     0x16e0 obj/naeusb/sam3u_hal/pio.o
+ .debug_line    0x00012c67     0x182e obj/naeusb/sam3u_hal/pmc.o
+ .debug_line    0x00014495      0x936 obj/naeusb/sam3u_hal/read.o
+ .debug_line    0x00014dcb      0xef7 obj/naeusb/sam3u_hal/sleep.o
+ .debug_line    0x00015cc2      0x93a obj/naeusb/sam3u_hal/sleepmgr.o
+ .debug_line    0x000165fc      0xd59 obj/naeusb/sam3u_hal/smc.o
+ .debug_line    0x00017355      0x97a obj/naeusb/sam3u_hal/startup_sam3u.o
+ .debug_line    0x00017ccf      0x4f4 obj/naeusb/sam3u_hal/syscalls.o
+ .debug_line    0x000181c3      0xc60 obj/naeusb/sam3u_hal/sysclk.o
+ .debug_line    0x00018e23      0xba8 obj/naeusb/sam3u_hal/system_sam3u.o
+ .debug_line    0x000199cb      0xc58 obj/naeusb/sam3u_hal/uart.o
+ .debug_line    0x0001a623      0xadb obj/naeusb/sam3u_hal/udi_vendor.o
+ .debug_line    0x0001b0fe     0x36a8 obj/naeusb/sam3u_hal/udphs_device.o
+ .debug_line    0x0001e7a6     0x1f46 obj/naeusb/sam3u_hal/usart.o
+ .debug_line    0x000206ec      0x95a obj/naeusb/sam3u_hal/write.o
+ .debug_line    0x00021046      0x998 obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
 
-.debug_str      0x00000000    0x5e881
- .debug_str     0x00000000    0x5e881 obj/main_cw521.o
-                              0x51889 (size before relaxing)
- .debug_str     0x0005e881    0x50a68 obj/naeusb_ballistic.o
- .debug_str     0x0005e881    0x50819 obj/naeusb/naeusb.o
- .debug_str     0x0005e881    0x509cc obj/naeusb/naeusb_default.o
- .debug_str     0x0005e881     0x76c7 obj/./magic_bachelorarbeit/src/bignum.o
- .debug_str     0x0005e881     0x81bb obj/./magic_bachelorarbeit/src/util_functions.o
- .debug_str     0x0005e881     0x77e5 obj/./magic_bachelorarbeit/src/magic_mode.o
- .debug_str     0x0005e881     0x805d obj/./magic_bachelorarbeit/src/hamming_code.o
- .debug_str     0x0005e881    0x4cce0 obj/naeusb/udc.o
- .debug_str     0x0005e881    0x50aaf obj/naeusb/usb_xmem.o
- .debug_str     0x0005e881    0x504bc obj/ui.o
- .debug_str     0x0005e881    0x4bbba obj/init.o
- .debug_str     0x0005e881    0x49726 obj/naeusb/sam3u_hal/efc.o
- .debug_str     0x0005e881    0x49295 obj/naeusb/sam3u_hal/exceptions.o
- .debug_str     0x0005e881    0x4b981 obj/naeusb/sam3u_hal/flash_efc.o
- .debug_str     0x0005e881    0x492f0 obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
- .debug_str     0x0005e881    0x4ae77 obj/naeusb/sam3u_hal/led.o
- .debug_str     0x0005e881    0x49cbb obj/naeusb/sam3u_hal/pio_handler.o
- .debug_str     0x0005e881    0x49c37 obj/naeusb/sam3u_hal/pio.o
- .debug_str     0x0005e881    0x49c08 obj/naeusb/sam3u_hal/pmc.o
- .debug_str     0x0005e881    0x4928f obj/naeusb/sam3u_hal/read.o
- .debug_str     0x0005e881    0x4adb7 obj/naeusb/sam3u_hal/sleep.o
- .debug_str     0x0005e881    0x49412 obj/naeusb/sam3u_hal/sleepmgr.o
- .debug_str     0x0005e881    0x4af1b obj/naeusb/sam3u_hal/smc.o
- .debug_str     0x0005e881    0x495d1 obj/naeusb/sam3u_hal/startup_sam3u.o
- .debug_str     0x0005e881     0x7b07 obj/naeusb/sam3u_hal/syscalls.o
- .debug_str     0x0005e881    0x4b4fb obj/naeusb/sam3u_hal/sysclk.o
- .debug_str     0x0005e881    0x4953f obj/naeusb/sam3u_hal/system_sam3u.o
- .debug_str     0x0005e881    0x49657 obj/naeusb/sam3u_hal/uart.o
- .debug_str     0x0005e881    0x4b7df obj/naeusb/sam3u_hal/udi_vendor.o
- .debug_str     0x0005e881    0x54555 obj/naeusb/sam3u_hal/udphs_device.o
- .debug_str     0x0005e881    0x49ce7 obj/naeusb/sam3u_hal/usart.o
- .debug_str     0x0005e881    0x49291 obj/naeusb/sam3u_hal/write.o
- .debug_str     0x0005e881    0x4b9b0 obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
+.debug_str      0x00000000    0x5e8c3
+ .debug_str     0x00000000    0x5e8c3 obj/main_cw521.o
+                              0x51977 (size before relaxing)
+ .debug_str     0x0005e8c3    0x50a54 obj/naeusb_ballistic.o
+ .debug_str     0x0005e8c3    0x50805 obj/naeusb/naeusb.o
+ .debug_str     0x0005e8c3    0x509b8 obj/naeusb/naeusb_default.o
+ .debug_str     0x0005e8c3     0x76b3 obj/./magic_bachelorarbeit/src/bignum.o
+ .debug_str     0x0005e8c3     0x81a7 obj/./magic_bachelorarbeit/src/util_functions.o
+ .debug_str     0x0005e8c3     0x77d1 obj/./magic_bachelorarbeit/src/magic_mode.o
+ .debug_str     0x0005e8c3     0x8049 obj/./magic_bachelorarbeit/src/hamming_code.o
+ .debug_str     0x0005e8c3    0x4cccc obj/naeusb/udc.o
+ .debug_str     0x0005e8c3    0x50a9b obj/naeusb/usb_xmem.o
+ .debug_str     0x0005e8c3    0x504a8 obj/ui.o
+ .debug_str     0x0005e8c3    0x4bba6 obj/init.o
+ .debug_str     0x0005e8c3    0x49712 obj/naeusb/sam3u_hal/efc.o
+ .debug_str     0x0005e8c3    0x49281 obj/naeusb/sam3u_hal/exceptions.o
+ .debug_str     0x0005e8c3    0x4b96d obj/naeusb/sam3u_hal/flash_efc.o
+ .debug_str     0x0005e8c3    0x492dc obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
+ .debug_str     0x0005e8c3    0x4ae63 obj/naeusb/sam3u_hal/led.o
+ .debug_str     0x0005e8c3    0x49ca7 obj/naeusb/sam3u_hal/pio_handler.o
+ .debug_str     0x0005e8c3    0x49c23 obj/naeusb/sam3u_hal/pio.o
+ .debug_str     0x0005e8c3    0x49bf4 obj/naeusb/sam3u_hal/pmc.o
+ .debug_str     0x0005e8c3    0x4927b obj/naeusb/sam3u_hal/read.o
+ .debug_str     0x0005e8c3    0x4ada3 obj/naeusb/sam3u_hal/sleep.o
+ .debug_str     0x0005e8c3    0x493fe obj/naeusb/sam3u_hal/sleepmgr.o
+ .debug_str     0x0005e8c3    0x4af07 obj/naeusb/sam3u_hal/smc.o
+ .debug_str     0x0005e8c3    0x495bd obj/naeusb/sam3u_hal/startup_sam3u.o
+ .debug_str     0x0005e8c3     0x7af3 obj/naeusb/sam3u_hal/syscalls.o
+ .debug_str     0x0005e8c3    0x4b4e7 obj/naeusb/sam3u_hal/sysclk.o
+ .debug_str     0x0005e8c3    0x4952b obj/naeusb/sam3u_hal/system_sam3u.o
+ .debug_str     0x0005e8c3    0x49643 obj/naeusb/sam3u_hal/uart.o
+ .debug_str     0x0005e8c3    0x4b7cb obj/naeusb/sam3u_hal/udi_vendor.o
+ .debug_str     0x0005e8c3    0x54541 obj/naeusb/sam3u_hal/udphs_device.o
+ .debug_str     0x0005e8c3    0x49cd3 obj/naeusb/sam3u_hal/usart.o
+ .debug_str     0x0005e8c3    0x4927d obj/naeusb/sam3u_hal/write.o
+ .debug_str     0x0005e8c3    0x4b99c obj/naeusb/sam3u_hal/usb_no_cdc/udi_vendor_desc.o
 
-.debug_frame    0x00000000     0x4764
- .debug_frame   0x00000000      0x2bc obj/main_cw521.o
- .debug_frame   0x000002bc      0x1d0 obj/naeusb_ballistic.o
- .debug_frame   0x0000048c       0xf8 obj/naeusb/naeusb.o
- .debug_frame   0x00000584       0xc8 obj/naeusb/naeusb_default.o
- .debug_frame   0x0000064c      0x240 obj/./magic_bachelorarbeit/src/bignum.o
- .debug_frame   0x0000088c      0x230 obj/./magic_bachelorarbeit/src/util_functions.o
- .debug_frame   0x00000abc      0x1b8 obj/./magic_bachelorarbeit/src/magic_mode.o
- .debug_frame   0x00000c74      0x198 obj/./magic_bachelorarbeit/src/hamming_code.o
- .debug_frame   0x00000e0c      0x144 obj/naeusb/udc.o
- .debug_frame   0x00000f50      0x170 obj/naeusb/usb_xmem.o
- .debug_frame   0x000010c0       0x80 obj/ui.o
- .debug_frame   0x00001140       0x58 obj/init.o
- .debug_frame   0x00001198      0x114 obj/naeusb/sam3u_hal/efc.o
- .debug_frame   0x000012ac       0x20 obj/naeusb/sam3u_hal/exceptions.o
- .debug_frame   0x000012cc      0x228 obj/naeusb/sam3u_hal/flash_efc.o
- .debug_frame   0x000014f4       0x3c obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
- .debug_frame   0x00001530       0x48 obj/naeusb/sam3u_hal/led.o
- .debug_frame   0x00001578       0xc8 obj/naeusb/sam3u_hal/pio_handler.o
- .debug_frame   0x00001640      0x2a4 obj/naeusb/sam3u_hal/pio.o
- .debug_frame   0x000018e4      0x3fc obj/naeusb/sam3u_hal/pmc.o
- .debug_frame   0x00001ce0       0x30 obj/naeusb/sam3u_hal/read.o
- .debug_frame   0x00001d10       0x68 obj/naeusb/sam3u_hal/sleep.o
- .debug_frame   0x00001d78      0x1bc obj/naeusb/sam3u_hal/smc.o
- .debug_frame   0x00001f34       0x28 obj/naeusb/sam3u_hal/startup_sam3u.o
- .debug_frame   0x00001f5c       0xb4 obj/naeusb/sam3u_hal/syscalls.o
- .debug_frame   0x00002010       0xac obj/naeusb/sam3u_hal/sysclk.o
- .debug_frame   0x000020bc       0x40 obj/naeusb/sam3u_hal/system_sam3u.o
- .debug_frame   0x000020fc      0x1bc obj/naeusb/sam3u_hal/uart.o
- .debug_frame   0x000022b8       0x9c obj/naeusb/sam3u_hal/udi_vendor.o
- .debug_frame   0x00002354      0x37c obj/naeusb/sam3u_hal/udphs_device.o
- .debug_frame   0x000026d0      0x4e0 obj/naeusb/sam3u_hal/usart.o
- .debug_frame   0x00002bb0       0x38 obj/naeusb/sam3u_hal/write.o
- .debug_frame   0x00002be8       0x34 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a(libm_a-w_pow.o)
- .debug_frame   0x00002c1c       0x30 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a(libm_a-w_sqrt.o)
- .debug_frame   0x00002c4c       0x20 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a(libm_a-s_finite.o)
- .debug_frame   0x00002c6c       0x38 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a(libm_a-e_sqrt.o)
- .debug_frame   0x00002ca4       0x80 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a(libm_a-e_pow.o)
- .debug_frame   0x00002d24       0x20 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a(libm_a-s_fabs.o)
- .debug_frame   0x00002d44       0x30 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a(libm_a-s_scalbn.o)
- .debug_frame   0x00002d74      0x11c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a(libm_a-math_err.o)
- .debug_frame   0x00002e90       0xac /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubdf3.o)
- .debug_frame   0x00002f3c       0x50 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/libgcc.a(_arm_muldivdf3.o)
- .debug_frame   0x00002f8c       0xc4 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpdf2.o)
- .debug_frame   0x00003050       0x20 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/libgcc.a(_arm_unorddf2.o)
- .debug_frame   0x00003070       0x24 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/libgcc.a(_arm_fixdfsi.o)
- .debug_frame   0x00003094       0x24 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/libgcc.a(_arm_truncdfsf2.o)
- .debug_frame   0x000030b8       0x4c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
- .debug_frame   0x00003104       0x38 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/libgcc.a(_arm_muldivsf3.o)
- .debug_frame   0x0000313c       0x24 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/libgcc.a(_arm_fixsfsi.o)
- .debug_frame   0x00003160       0x74 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-iprintf.o)
- .debug_frame   0x000031d4       0x8c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-vfiprintf.o)
- .debug_frame   0x00003260       0x28 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-sprint_r.o)
- .debug_frame   0x00003288       0x70 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-fflush.o)
- .debug_frame   0x000032f8      0x13c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-findfp.o)
- .debug_frame   0x00003434       0x60 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-fvwrite.o)
- .debug_frame   0x00003494       0x34 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-fwalk.o)
- .debug_frame   0x000034c8       0x20 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-setbuf.o)
- .debug_frame   0x000034e8       0x3c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-setvbuf.o)
- .debug_frame   0x00003524       0x80 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-sprintf.o)
- .debug_frame   0x000035a4       0x8c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-stdio.o)
- .debug_frame   0x00003630       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-wsetup.o)
- .debug_frame   0x0000365c       0x44 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-memmove.o)
- .debug_frame   0x000036a0       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-memset.o)
- .debug_frame   0x000036cc       0x28 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-strncpy.o)
- .debug_frame   0x000036f4       0xdc /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-locale.o)
- .debug_frame   0x000037d0       0x40 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-localeconv.o)
- .debug_frame   0x00003810       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-closer.o)
- .debug_frame   0x0000383c       0x3c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-reent.o)
- .debug_frame   0x00003878       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-lseekr.o)
- .debug_frame   0x000038a4       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-readr.o)
- .debug_frame   0x000038d0       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-writer.o)
- .debug_frame   0x000038fc       0x20 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-errno.o)
- .debug_frame   0x0000391c       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-init.o)
- .debug_frame   0x00003948       0xb0 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-lock.o)
- .debug_frame   0x000039f8       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-memchr-stub.o)
- .debug_frame   0x00003a24       0x28 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-memcpy.o)
- .debug_frame   0x00003a4c       0x20 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-strlen-stub.o)
- .debug_frame   0x00003a6c       0x5c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-__call_atexit.o)
- .debug_frame   0x00003ac8       0x20 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-atexit.o)
- .debug_frame   0x00003ae8       0x84 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-freer.o)
- .debug_frame   0x00003b6c       0x30 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-malloc.o)
- .debug_frame   0x00003b9c       0x4c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-mallocr.o)
- .debug_frame   0x00003be8      0x130 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-mbtowc_r.o)
- .debug_frame   0x00003d18       0x30 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-mlock.o)
- .debug_frame   0x00003d48       0x48 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-reallocr.o)
- .debug_frame   0x00003d90       0x9c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-wctomb_r.o)
- .debug_frame   0x00003e2c       0x60 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-wcrtomb.o)
- .debug_frame   0x00003e8c       0x50 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-wcsrtombs.o)
- .debug_frame   0x00003edc       0x20 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-ctype_.o)
- .debug_frame   0x00003efc       0x44 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-svfprintf.o)
- .debug_frame   0x00003f40       0x30 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-ssprint_r.o)
- .debug_frame   0x00003f70       0x3c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-fclose.o)
- .debug_frame   0x00003fac       0x6c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-makebuf.o)
- .debug_frame   0x00004018       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-fstatr.o)
- .debug_frame   0x00004044       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-isattyr.o)
- .debug_frame   0x00004070       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-sbrkr.o)
- .debug_frame   0x0000409c       0x34 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-fini.o)
- .debug_frame   0x000040d0       0x28 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-sysconf.o)
- .debug_frame   0x000040f8       0x30 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libm_a-s_frexp.o)
- .debug_frame   0x00004128       0x34 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-__atexit.o)
- .debug_frame   0x0000415c       0x84 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-dtoa.o)
- .debug_frame   0x000041e0      0x270 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-mprec.o)
- .debug_frame   0x00004450       0x88 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-wcsnrtombs.o)
- .debug_frame   0x000044d8       0x34 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-ssputs_r.o)
- .debug_frame   0x0000450c       0x40 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-assert.o)
- .debug_frame   0x0000454c       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-callocr.o)
- .debug_frame   0x00004578       0x6c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-fiprintf.o)
- .debug_frame   0x000045e4       0x28 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-abort.o)
- .debug_frame   0x0000460c      0x11c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-signal.o)
- .debug_frame   0x00004728       0x3c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-signalr.o)
+.debug_frame    0x00000000     0x480c
+ .debug_frame   0x00000000      0x364 obj/main_cw521.o
+ .debug_frame   0x00000364      0x1d0 obj/naeusb_ballistic.o
+ .debug_frame   0x00000534       0xf8 obj/naeusb/naeusb.o
+ .debug_frame   0x0000062c       0xc8 obj/naeusb/naeusb_default.o
+ .debug_frame   0x000006f4      0x240 obj/./magic_bachelorarbeit/src/bignum.o
+ .debug_frame   0x00000934      0x230 obj/./magic_bachelorarbeit/src/util_functions.o
+ .debug_frame   0x00000b64      0x1b8 obj/./magic_bachelorarbeit/src/magic_mode.o
+ .debug_frame   0x00000d1c      0x198 obj/./magic_bachelorarbeit/src/hamming_code.o
+ .debug_frame   0x00000eb4      0x144 obj/naeusb/udc.o
+ .debug_frame   0x00000ff8      0x170 obj/naeusb/usb_xmem.o
+ .debug_frame   0x00001168       0x80 obj/ui.o
+ .debug_frame   0x000011e8       0x58 obj/init.o
+ .debug_frame   0x00001240      0x114 obj/naeusb/sam3u_hal/efc.o
+ .debug_frame   0x00001354       0x20 obj/naeusb/sam3u_hal/exceptions.o
+ .debug_frame   0x00001374      0x228 obj/naeusb/sam3u_hal/flash_efc.o
+ .debug_frame   0x0000159c       0x3c obj/naeusb/sam3u_hal/interrupt_sam_nvic.o
+ .debug_frame   0x000015d8       0x48 obj/naeusb/sam3u_hal/led.o
+ .debug_frame   0x00001620       0xc8 obj/naeusb/sam3u_hal/pio_handler.o
+ .debug_frame   0x000016e8      0x2a4 obj/naeusb/sam3u_hal/pio.o
+ .debug_frame   0x0000198c      0x3fc obj/naeusb/sam3u_hal/pmc.o
+ .debug_frame   0x00001d88       0x30 obj/naeusb/sam3u_hal/read.o
+ .debug_frame   0x00001db8       0x68 obj/naeusb/sam3u_hal/sleep.o
+ .debug_frame   0x00001e20      0x1bc obj/naeusb/sam3u_hal/smc.o
+ .debug_frame   0x00001fdc       0x28 obj/naeusb/sam3u_hal/startup_sam3u.o
+ .debug_frame   0x00002004       0xb4 obj/naeusb/sam3u_hal/syscalls.o
+ .debug_frame   0x000020b8       0xac obj/naeusb/sam3u_hal/sysclk.o
+ .debug_frame   0x00002164       0x40 obj/naeusb/sam3u_hal/system_sam3u.o
+ .debug_frame   0x000021a4      0x1bc obj/naeusb/sam3u_hal/uart.o
+ .debug_frame   0x00002360       0x9c obj/naeusb/sam3u_hal/udi_vendor.o
+ .debug_frame   0x000023fc      0x37c obj/naeusb/sam3u_hal/udphs_device.o
+ .debug_frame   0x00002778      0x4e0 obj/naeusb/sam3u_hal/usart.o
+ .debug_frame   0x00002c58       0x38 obj/naeusb/sam3u_hal/write.o
+ .debug_frame   0x00002c90       0x34 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a(libm_a-w_pow.o)
+ .debug_frame   0x00002cc4       0x30 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a(libm_a-w_sqrt.o)
+ .debug_frame   0x00002cf4       0x20 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a(libm_a-s_finite.o)
+ .debug_frame   0x00002d14       0x38 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a(libm_a-e_sqrt.o)
+ .debug_frame   0x00002d4c       0x80 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a(libm_a-e_pow.o)
+ .debug_frame   0x00002dcc       0x20 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a(libm_a-s_fabs.o)
+ .debug_frame   0x00002dec       0x30 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a(libm_a-s_scalbn.o)
+ .debug_frame   0x00002e1c      0x11c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a(libm_a-math_err.o)
+ .debug_frame   0x00002f38       0xac /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubdf3.o)
+ .debug_frame   0x00002fe4       0x50 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/libgcc.a(_arm_muldivdf3.o)
+ .debug_frame   0x00003034       0xc4 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpdf2.o)
+ .debug_frame   0x000030f8       0x20 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/libgcc.a(_arm_unorddf2.o)
+ .debug_frame   0x00003118       0x24 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/libgcc.a(_arm_fixdfsi.o)
+ .debug_frame   0x0000313c       0x24 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/libgcc.a(_arm_truncdfsf2.o)
+ .debug_frame   0x00003160       0x4c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .debug_frame   0x000031ac       0x38 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/libgcc.a(_arm_muldivsf3.o)
+ .debug_frame   0x000031e4       0x24 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/libgcc.a(_arm_fixsfsi.o)
+ .debug_frame   0x00003208       0x74 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-iprintf.o)
+ .debug_frame   0x0000327c       0x8c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-vfiprintf.o)
+ .debug_frame   0x00003308       0x28 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-sprint_r.o)
+ .debug_frame   0x00003330       0x70 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-fflush.o)
+ .debug_frame   0x000033a0      0x13c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-findfp.o)
+ .debug_frame   0x000034dc       0x60 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-fvwrite.o)
+ .debug_frame   0x0000353c       0x34 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-fwalk.o)
+ .debug_frame   0x00003570       0x20 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-setbuf.o)
+ .debug_frame   0x00003590       0x3c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-setvbuf.o)
+ .debug_frame   0x000035cc       0x80 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-sprintf.o)
+ .debug_frame   0x0000364c       0x8c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-stdio.o)
+ .debug_frame   0x000036d8       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-wsetup.o)
+ .debug_frame   0x00003704       0x44 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-memmove.o)
+ .debug_frame   0x00003748       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-memset.o)
+ .debug_frame   0x00003774       0x28 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-strncpy.o)
+ .debug_frame   0x0000379c       0xdc /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-locale.o)
+ .debug_frame   0x00003878       0x40 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-localeconv.o)
+ .debug_frame   0x000038b8       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-closer.o)
+ .debug_frame   0x000038e4       0x3c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-reent.o)
+ .debug_frame   0x00003920       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-lseekr.o)
+ .debug_frame   0x0000394c       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-readr.o)
+ .debug_frame   0x00003978       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-writer.o)
+ .debug_frame   0x000039a4       0x20 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-errno.o)
+ .debug_frame   0x000039c4       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-init.o)
+ .debug_frame   0x000039f0       0xb0 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-lock.o)
+ .debug_frame   0x00003aa0       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-memchr-stub.o)
+ .debug_frame   0x00003acc       0x28 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-memcpy.o)
+ .debug_frame   0x00003af4       0x20 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-strlen-stub.o)
+ .debug_frame   0x00003b14       0x5c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-__call_atexit.o)
+ .debug_frame   0x00003b70       0x20 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-atexit.o)
+ .debug_frame   0x00003b90       0x84 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-freer.o)
+ .debug_frame   0x00003c14       0x30 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-malloc.o)
+ .debug_frame   0x00003c44       0x4c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-mallocr.o)
+ .debug_frame   0x00003c90      0x130 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-mbtowc_r.o)
+ .debug_frame   0x00003dc0       0x30 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-mlock.o)
+ .debug_frame   0x00003df0       0x48 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-reallocr.o)
+ .debug_frame   0x00003e38       0x9c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-wctomb_r.o)
+ .debug_frame   0x00003ed4       0x60 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-wcrtomb.o)
+ .debug_frame   0x00003f34       0x50 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-wcsrtombs.o)
+ .debug_frame   0x00003f84       0x20 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-ctype_.o)
+ .debug_frame   0x00003fa4       0x44 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-svfprintf.o)
+ .debug_frame   0x00003fe8       0x30 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-ssprint_r.o)
+ .debug_frame   0x00004018       0x3c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-fclose.o)
+ .debug_frame   0x00004054       0x6c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-makebuf.o)
+ .debug_frame   0x000040c0       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-fstatr.o)
+ .debug_frame   0x000040ec       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-isattyr.o)
+ .debug_frame   0x00004118       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-sbrkr.o)
+ .debug_frame   0x00004144       0x34 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-fini.o)
+ .debug_frame   0x00004178       0x28 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-sysconf.o)
+ .debug_frame   0x000041a0       0x30 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libm_a-s_frexp.o)
+ .debug_frame   0x000041d0       0x34 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-__atexit.o)
+ .debug_frame   0x00004204       0x84 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-dtoa.o)
+ .debug_frame   0x00004288      0x270 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-mprec.o)
+ .debug_frame   0x000044f8       0x88 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-wcsnrtombs.o)
+ .debug_frame   0x00004580       0x34 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-ssputs_r.o)
+ .debug_frame   0x000045b4       0x40 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-assert.o)
+ .debug_frame   0x000045f4       0x2c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-callocr.o)
+ .debug_frame   0x00004620       0x6c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-fiprintf.o)
+ .debug_frame   0x0000468c       0x28 /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-abort.o)
+ .debug_frame   0x000046b4      0x11c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-signal.o)
+ .debug_frame   0x000047d0       0x3c /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-signalr.o)
 
 .debug_line_str
                 0x00000000      0x1a8
@@ -12713,6 +12719,9 @@ hamming_weight                                    obj/./magic_bachelorarbeit/src
                                                   obj/./magic_bachelorarbeit/src/magic_mode.o
 hardware_init_hook                                /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/crt0.o
 hc_add_parity_per_block                           obj/main_cw521.o
+hc_verify_changing_blocks                         obj/main_cw521.o
+hc_verify_changing_faulty_block                   obj/main_cw521.o
+hc_verify_changing_number_of_affected_blocks      obj/main_cw521.o
 init_bignum                                       obj/./magic_bachelorarbeit/src/bignum.o
                                                   obj/./magic_bachelorarbeit/src/magic_mode.o
                                                   obj/./magic_bachelorarbeit/src/salsa20.o
@@ -13383,6 +13392,7 @@ verify_changing_blocks                            obj/main_cw521.o
 verify_changing_faulty_block                      obj/main_cw521.o
 verify_changing_threshold                         obj/main_cw521.o
 verify_hamming_code                               obj/./magic_bachelorarbeit/src/hamming_code.o
+                                                  obj/main_cw521.o
 vfiprintf                                         /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-vfiprintf.o)
 wcrtomb                                           /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-wcrtomb.o)
 wcsnrtombs                                        /home/jonas/Studium/Bachelorarbeit/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libg.a(libc_a-wcsnrtombs.o)

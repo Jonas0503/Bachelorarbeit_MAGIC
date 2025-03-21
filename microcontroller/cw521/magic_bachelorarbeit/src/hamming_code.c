@@ -56,7 +56,7 @@ void bignums_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128], bi
     for (int i = number_of_bignums-1; i >= 0; i--) {
         // iterate over all bits
         for (int k = 127; k >= 0; k--) {
-            // checks if bit index is used for parity and skip this position then
+            // checks if bit index is used for parity and if true skip this position
             if ((bit_index_parity_array & (bit_index_parity_array-1)) == 0) {
                 k++;
             }

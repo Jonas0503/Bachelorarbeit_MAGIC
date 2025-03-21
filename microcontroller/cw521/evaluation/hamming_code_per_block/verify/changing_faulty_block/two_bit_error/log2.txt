@@ -1,0 +1,51 @@
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 10; End: 100; Interval: 10; Number of blocks: 101; Number of affected blocks: 1; Measurements per faulty block: 30
+
+Faulty block index: 10
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 185037; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Average: 185037.000000
+Standard deviation: 0.000000
+
+Faulty block index: 20
+Number of cycles: 198713; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 198713; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 198713; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 198713; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 198713; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 198713; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 198713; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 198713; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 198713; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+Number of cycles: 198713; correction_successful? 0; one_bit_err? 0; two_bit_err? 1
+
+Program received signal SIGINT, Interrupt.
+0x00087c54 in strlen ()
