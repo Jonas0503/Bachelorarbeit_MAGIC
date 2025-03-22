@@ -1,0 +1,295 @@
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 1; End: 10; Interval: 1; Measurements per block: 10
+
+Number of blocks: 1
+Number of cycles: 162867855
+Number of cycles: 162867667
+Number of cycles: 162868469
+Number of cycles: 162866538
+Number of cycles: 162867396
+Number of cycles: 162868001
+Number of cycles: 162866960
+Number of cycles: 162867487
+Number of cycles: 162867763
+Number of cycles: 162867428
+Average: 162867536.000000
+Standard deviation: 502.537567
+
+Number of blocks: 2
+Number of cycles: 233368009
+Number of cycles: 233367849
+Number of cycles: 233367767
+Number of cycles: 233369657
+Number of cycles: 233369193
+Number of cycles: 233368859
+Number of cycles: 233368348
+Number of cycles: 233369117
+Number of cycles: 233368315
+Number of cycles: 233367608
+Average: 233368448.000000
+Standard deviation: 679.708191
+
+Number of blocks: 3
+Number of cycles: 303984265
+Number of cycles: 303984130
+Number of cycles: 303983565
+Number of cycles: 303984334
+Number of cycles: 303982814
+Number of cycles: 303986216
+Number of cycles: 303982470
+Number of cycles: 303983750
+Number of cycles: 303984471
+Number of cycles: 303985238
+Average: 303984096.000000
+Standard deviation: 1034.842651
+
+Number of blocks: 4
+Number of cycles: 374430237
+Number of cycles: 374432463
+Number of cycles: 374430503
+Number of cycles: 374431279
+Number of cycles: 374432665
+Number of cycles: 374430749
+Number of cycles: 374432852
+Number of cycles: 374431624
+Number of cycles: 374430659
+Number of cycles: 374431410
+Average: 374431456.000000
+Standard deviation: 901.298584
+
+Number of blocks: 5
+Number of cycles: 444933699
+Number of cycles: 444935470
+Number of cycles: 444935519
+Number of cycles: 444934878
+Number of cycles: 444936286
+Number of cycles: 444935731
+Number of cycles: 444934941
+Number of cycles: 444934728
+Number of cycles: 444934757
+Number of cycles: 444935393
+Average: 444935104.000000
+Standard deviation: 685.950439
+
+Number of blocks: 6
+Number of cycles: 515382921
+Number of cycles: 515382981
+Number of cycles: 515384391
+Number of cycles: 515384750
+Number of cycles: 515383983
+Number of cycles: 515383489
+Number of cycles: 515384239
+Number of cycles: 515383878
+Number of cycles: 515383020
+Number of cycles: 515383518
+Average: 515383648.000000
+Standard deviation: 621.245178
+
+Number of blocks: 7
+Number of cycles: 585965271
+Number of cycles: 585961833
+Number of cycles: 585963205
+Number of cycles: 585962733
+Number of cycles: 585963147
+Number of cycles: 585962009
+Number of cycles: 585961891
+Number of cycles: 585961860
+Number of cycles: 585962456
+Number of cycles: 585962802
+Average: 585962752.000000
+Standard deviation: 930.094177
+
+Number of blocks: 8
+Number of cycles: 656407216
+Number of cycles: 656403502
+Number of cycles: 656405024
+Number of cycles: 656406668
+Number of cycles: 656404531
+Number of cycles: 656403332
+Number of cycles: 656403469
+Number of cycles: 656405021
+Number of cycles: 656403616
+Number of cycles: 656406688
+Average: 656404864.000000
+Standard deviation: 1381.273560
+
+Number of blocks: 9
+Number of cycles: 727035054
+Number of cycles: 727036701
+Number of cycles: 727035128
+Number of cycles: 727035102
+Number of cycles: 727036124
+Number of cycles: 727033726
+Number of cycles: 727035693
+Number of cycles: 727035538
+Number of cycles: 727037079
+Number of cycles: 727036983
+Average: 727035712.000000
+Standard deviation: 996.017639
+
+Number of blocks: 10
+Number of cycles: 797463280
+Number of cycles: 797464070
+Number of cycles: 797467342
+Number of cycles: 797465202
+Number of cycles: 797465358
+Number of cycles: 797463573
+Number of cycles: 797463218
+Number of cycles: 797466799
+Number of cycles: 797466885
+Number of cycles: 797466337
+Average: 797465216.000000
+Standard deviation: 1545.967651
+
+
+Program received signal SIGINT, Interrupt.
+main () at main_cw521.c:936
+936	  while (true) {
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 1; End: 10; Interval: 1; Threshold: 1; Measurements per block: 10
+
+Number of blocks: 1
+Number of cycles: 168259470
+Number of cycles: 168258374
+Number of cycles: 168257432
+Number of cycles: 168259047
+Number of cycles: 168259501
+Number of cycles: 168258948
+Number of cycles: 168259204
+Number of cycles: 168258116
+Number of cycles: 168260545
+Number of cycles: 168258629
+Average: 168258912.000000
+Standard deviation: 804.547058
+
+Number of blocks: 2
+Number of cycles: 241432835
+Number of cycles: 241433732
+Number of cycles: 241433535
+Number of cycles: 241432994
+Number of cycles: 241433132
+Number of cycles: 241434363
+Number of cycles: 241432352
+Number of cycles: 241432024
+Number of cycles: 241432927
+Number of cycles: 241433083
+Average: 241433088.000000
+Standard deviation: 633.102844
+
+Number of blocks: 3
+Number of cycles: 314722972
+Number of cycles: 314724686
+Number of cycles: 314724386
+Number of cycles: 314725965
+Number of cycles: 314724258
+Number of cycles: 314723640
+Number of cycles: 314723476
+Number of cycles: 314724207
+Number of cycles: 314725327
+Number of cycles: 314723455
+Average: 314724256.000000
+Standard deviation: 886.463562
+
+Number of blocks: 4
+Number of cycles: 387842205
+Number of cycles: 387841507
+Number of cycles: 387841893
+Number of cycles: 387843400
+Number of cycles: 387841771
+Number of cycles: 387843667
+Number of cycles: 387844135
+Number of cycles: 387842157
+Number of cycles: 387844791
+Number of cycles: 387842716
+Average: 387842816.000000
+Standard deviation: 1071.641724
+
+Number of blocks: 5
+Number of cycles: 461018679
+Number of cycles: 461018798
+Number of cycles: 461019445
+Number of cycles: 461020432
+Number of cycles: 461017678
+Number of cycles: 461016322
+Number of cycles: 461020956
+Number of cycles: 461020374
+Number of cycles: 461018726
+Number of cycles: 461017240
+Average: 461018816.000000
+Standard deviation: 1417.314575
+
+Number of blocks: 6
+Number of cycles: 534143962
+Number of cycles: 534143371
+Number of cycles: 534142563
+Number of cycles: 534141713
+Number of cycles: 534142678
+Number of cycles: 534140341
+Number of cycles: 534141620
+Number of cycles: 534143833
+Number of cycles: 534144058
+Number of cycles: 534143681
+Average: 534142784.000000
+Standard deviation: 1150.042725
+
+Number of blocks: 7
+Number of cycles: 607393336
+Number of cycles: 607395696
+Number of cycles: 607392833
+Number of cycles: 607392942
+Number of cycles: 607394839
+Number of cycles: 607396000
+Number of cycles: 607395982
+Number of cycles: 607391791
+Number of cycles: 607392267
+Number of cycles: 607394747
+Average: 607394048.000000
+Standard deviation: 1506.924805
+
+Number of blocks: 8
+Number of cycles: 680505582
+Number of cycles: 680505058
+Number of cycles: 680507405
+Number of cycles: 680510191
+Number of cycles: 680508623
+Number of cycles: 680507744
+Number of cycles: 680507654
+Number of cycles: 680509149
+Number of cycles: 680506255
+Number of cycles: 680506476
+Average: 680507328.000000
+Standard deviation: 1558.239014
+
+Number of blocks: 9
+Number of cycles: 753811946
+Number of cycles: 753809346
+Number of cycles: 753811098
+Number of cycles: 753812618
+Number of cycles: 753812326
+Number of cycles: 753812901
+Number of cycles: 753811292
+Number of cycles: 753810384
+Number of cycles: 753809387
+Number of cycles: 753810993
+Average: 753811264.000000
+Standard deviation: 1183.048340
+
+Number of blocks: 10
+Number of cycles: 826912088
+Number of cycles: 826907065
+Number of cycles: 826911921
+Number of cycles: 826910549
+Number of cycles: 826911404
+Number of cycles: 826912314
+Number of cycles: 826913456
+Number of cycles: 826911007
+Number of cycles: 826911372
+Number of cycles: 826911583
+Average: 826911296.000000
+Standard deviation: 1590.886108
+
+
+Program received signal SIGINT, Interrupt.
+main () at main_cw521.c:936
+warning: Source file is more recent than executable.
+936	  while (true) {

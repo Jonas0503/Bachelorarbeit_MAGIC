@@ -90,6 +90,12 @@ void test_is_bignum_not_zero_false(void) {
 }
 
 
+void test_is_bignum_zero_true(void) {
+    bignum a = init_bignum_to_zero();
+    TEST_CHECK(!is_bignum_not_zero(a));
+}
+
+
 void test_shift_left_by_one_bignum_no_new_block(void) {
     // 112796474524809765425598623508679786908
     uint32_t ahex[] = {0x54dbcf8f, 0xfd761f7c, 0x2c239ae3, 0x2732819c};
@@ -243,6 +249,7 @@ TEST_LIST = {
     {"xor_same_numbers_and_overwrite_the_number", test_xor_same_numbers_and_overwrite_the_number},
     {"is_bignum_not_zero_true", test_is_bignum_not_zero_true},
     {"is_bignum_not_zero_false", test_is_bignum_not_zero_false},
+    {"is_bignum_zero_true", test_is_bignum_zero_true},
     {"shift_left_by_one_bignum_no_new_block", test_shift_left_by_one_bignum_no_new_block},
     {"shift_left_by_one_bignum_new_block_and_overwrite_variable", test_shift_left_by_one_bignum_new_block_and_overwrite_variable},
     {"shift_right_by_one", test_shift_right_by_one},

@@ -41,9 +41,9 @@
 #include "magic_bachelorarbeit/src/salsa20.h"
 #include "magic_bachelorarbeit/src/magic_mode.h"
 #include "magic_bachelorarbeit/src/hamming_code.h"
+#include "magic_bachelorarbeit/src/examples.h"
 
 #include "stdint.h"
-#include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
 
@@ -666,7 +666,7 @@ void hc_verify_changing_faulty_block(int start, int end, int interval, int numbe
   // 16 chars (ASCII) -> one block
   char *one_block_text = "1234ABCD5678EFGH";
 
-  // iterate over blocks
+  // iterate over faulty blocks
   for (volatile int i = start; i <= end; i += interval) {
     volatile uint32_t results[number_of_measurements]; // all cycle counts are saved here to calculate the avarage and standard deviation
     // measure the cycle count [number_of_measurements] times
@@ -711,6 +711,62 @@ void hc_verify_changing_faulty_block(int start, int end, int interval, int numbe
       stop_timer();
 
       results[f] = number_of_cycles;
+    }
+
+    volatile float avg = average(results, number_of_measurements);
+    volatile float sd = standard_deviation(results, number_of_measurements, avg);
+
+    // statement to set a breakpoint for printing
+    volatile int PRINT_VALUES = avg;
+  }
+}
+
+
+void complete_changing_blocks(int start, int end, int interval, int number_of_measurements, int threshold, bool use_magic_mode) {
+  // 16 chars (ASCII) -> one block
+  char *one_block_text = "1234ABCD5678EFGH";
+
+  // iterate over blocks
+  for (volatile int i = start; i <= end; i += interval) {
+    volatile uint32_t results[number_of_measurements]; // all cycle counts are saved here to calculate the avarage and standard deviation
+    // measure the cycle count [number_of_measurements] times
+    for (int f = 0; f < number_of_measurements; f++) {
+      int space_for_text = i * 16;
+      char text[space_for_text];
+
+      // fill the text
+      for (int k = 0; k < i; k++) {
+        if (k == 0) {
+          strcpy(text, one_block_text);
+        }
+        else {
+          strcat(text, one_block_text);
+        }
+      }
+
+      // measure cycles for MAGIC or Hamming Code
+      if (use_magic_mode) {
+        reset_timer();
+        start_timer();
+
+        magic_mode_complete(text, threshold);
+
+        volatile uint32_t number_of_cycles = get_cycles();
+        stop_timer();
+
+        results[f] = number_of_cycles;
+      }
+      else {
+        reset_timer();
+        start_timer();
+
+        hamming_code_per_block_complete(text);
+
+        volatile uint32_t number_of_cycles = get_cycles();
+        stop_timer();
+
+        results[f] = number_of_cycles;
+      }
     }
 
     volatile float avg = average(results, number_of_measurements);
@@ -863,15 +919,17 @@ int main(void)
   // decryption_changing_blocks(1, 10, 1, 10);
   // tag_generation_given_blocks_changing_blocks(1, 10, 1, 10);
   // find_hash_key_changing_blocks(1, 3, 1, 10, 1);
-  // find_hash_key_changing_threshold(1, 2, 1, 5, 2);
+  find_hash_key_changing_threshold(1, 7, 1, 2, 1);
   // verify_changing_blocks(1, 5, 1, 5, 1, false, false, false);
   // verify_changing_threshold(1, 5, 1, 5, 1, false, false, false);
   // verify_changing_faulty_block(0, 2, 1, 5, 3, 1, false);
 
-  hc_add_parity_per_block(1, 10, 1, 30);
+  // hc_add_parity_per_block(1, 10, 1, 30);
   // hc_verify_changing_blocks(8, 8, 1, 30, 1, false, false, true);
   // hc_verify_changing_number_of_affected_blocks(1, 10, 1, 30, 10, true, false);
   // hc_verify_changing_faulty_block(10, 100, 10, 30, 1, 101, false, true);
+
+  // complete_changing_blocks(1, 2, 1, 2, 2, true);
 
   // --------------------------------------- my code end -------------------------------------------------------------------------------------------
 

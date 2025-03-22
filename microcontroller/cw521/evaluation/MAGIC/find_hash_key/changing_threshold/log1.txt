@@ -27,3 +27,37 @@ Program received signal SIGINT, Interrupt.
 
 
 // Threshold 3: ca. eine Stunde laufen gelassen
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+No symbol "start" in current context.
+Dprintf 13 at 0x80278: file main_cw521.c, line 260.
+Dprintf 14 at 0x802a4: file main_cw521.c, line 264.
+Dprintf 15 at 0x80332: file main_cw521.c, line 282.
+Dprintf 16 at 0x80364: file main_cw521.c, line 289.
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 1; End: 7; Interval: 1; Number of blocks: 1; Measurements per threshold: 2
+
+Threshold: 1
+Number of cycles: 126549790; hash_key found?: 1
+Number of cycles: 126550767; hash_key found?: 1
+Average: 126550280.000000
+Standard deviation: 488.000000
+
+Threshold: 2
+Number of cycles: 2723985677; hash_key found?: 1
+Number of cycles: 2723987386; hash_key found?: 1
+Average: 2723986432.000000
+Standard deviation: 905.096680
+
+Threshold: 3
+Number of cycles: 2966450890; hash_key found?: 1
+Number of cycles: 2966419681; hash_key found?: 1
+Average: 2966435328.000000
+Standard deviation: 15616.000000
+
+Threshold: 4
+
+Program received signal SIGINT, Interrupt.
+0x000810c6 in is_bignum_not_zero (n=...) at magic_bachelorarbeit/src/bignum.c:101
+101	    for (int i = 0; i < BLOCKSIZE; i++) {
+Detaching from program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf, Remote target
+Remote connection closed

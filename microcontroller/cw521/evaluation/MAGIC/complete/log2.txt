@@ -1,0 +1,19 @@
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 1; End: 2; Interval: 1; Threshold: 2; Measurements per block: 2
+
+Number of blocks: 1
+Number of cycles: 2826801282
+Number of cycles: 2826804130
+Average: 2826802688.000000
+Standard deviation: 1536.000000
+
+Number of blocks: 2
+Number of cycles: 3536293451
+Number of cycles: 3536296974
+Average: 3536295168.000000
+Standard deviation: 1792.000000
+
+
+Program received signal SIGINT, Interrupt.
+main () at main_cw521.c:936
+936	  while (true) {

@@ -2,7 +2,7 @@
 
 CC = gcc
 CFLAGS = -g -Wall -Wextra
-OBJS = ./obj/galois.o ./obj/bignum.o ./obj/util_functions.o ./obj/salsa20.o ./obj/magic_mode.o ./obj/hamming_code.o
+OBJS = ./obj/galois.o ./obj/bignum.o ./obj/util_functions.o ./obj/salsa20.o ./obj/magic_mode.o ./obj/hamming_code.o ./obj/examples.o
 OBJ_MAIN_FILE = ./obj/main.o
 BIN_TEST_GALOIS = ./bin/test_galois.bin
 BIN_TEST_BIGNUM = ./bin/test_bignum.bin

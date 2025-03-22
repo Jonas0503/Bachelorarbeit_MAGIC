@@ -35,7 +35,7 @@ TARGET = cw521
 # List C source files here.
 # Header files (.h) are automatically pulled in.
 MAGIC = ./magic_bachelorarbeit/src
-MAGIC_FILES = $(MAGIC)/galois.c $(MAGIC)/bignum.c $(MAGIC)/util_functions.c $(MAGIC)/salsa20.c $(MAGIC)/magic_mode.c $(MAGIC)/hamming_code.c
+MAGIC_FILES = $(MAGIC)/galois.c $(MAGIC)/bignum.c $(MAGIC)/util_functions.c $(MAGIC)/salsa20.c $(MAGIC)/magic_mode.c $(MAGIC)/hamming_code.c $(MAGIC)/examples.c
 
 SRC += main_cw521.c naeusb_ballistic.c naeusb/naeusb.c naeusb/naeusb_default.c $(MAGIC_FILES)
 SRC += naeusb/udc.c  naeusb/usb_xmem.c ui.c init.c
