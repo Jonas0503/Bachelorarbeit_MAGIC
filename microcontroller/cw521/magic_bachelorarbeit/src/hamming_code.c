@@ -6,7 +6,7 @@
 #include "math.h"
 
 
-int number_of_encrypted_ciphertext_blocks_with_parity_from_string(char *text) {
+int number_of_encrypted_ciphertext_blocks_with_parity_per_block_from_string(char *text) {
     int plaintext_size = strlen(text);
 
     // number of bignums without parity
@@ -37,7 +37,32 @@ int number_of_encrypted_ciphertext_blocks_with_parity_from_string(char *text) {
 }
 
 
-void bignums_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128], bignum *bignum_blocks, int number_of_bignums, int number_of_bignums_with_parity) {
+int number_of_encrypted_ciphertext_blocks_with_parity_all_blocks(char *text) {
+    int plaintext_size = strlen(text);
+
+    // number of bignums without parity
+    int number_of_filled_chunks = (((plaintext_size - 1) / BLOCKSIZE) + 1);
+    int number_of_ciphertext_blocks = (number_of_filled_chunks + (BLOCKSIZE-1)) / BLOCKSIZE;
+
+    // determine number of necessary parity bits (log_2([bits_used]))
+    int bits_used = number_of_ciphertext_blocks * 128;
+    int number_of_parity_bits = 1 + (int)log2(bits_used);
+
+    // number of ciphertext blocks to add
+    int ciphertext_blocks_to_add;
+    if (number_of_parity_bits % 128 == 0) {
+        ciphertext_blocks_to_add = (number_of_parity_bits / 128);
+    }
+    else {
+        ciphertext_blocks_to_add = (number_of_parity_bits / 128) + 1;
+    }
+
+    // number of ciphertext blocks with parity
+    return number_of_ciphertext_blocks + ciphertext_blocks_to_add;
+}
+
+
+void bignums_to_bit_arrays_with_space_for_parity_bits_per_block(bool bit_arrays[][128], bignum *bignum_blocks, int number_of_bignums, int number_of_bignums_with_parity) {
     // all fields should be zero at the start
     for (int i = 0; i < number_of_bignums_with_parity; i++) {
         for (int k = 0; k < 128; k++) {
@@ -49,7 +74,7 @@ void bignums_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128], bi
     bool bit_arrays_no_parity[number_of_bignums][128];
     bignum_array_to_bit_arrays(bit_arrays_no_parity, bignum_blocks, number_of_bignums);
 
-    volatile int index_bit_arrays_parity = number_of_bignums_with_parity-1;
+    int index_bit_arrays_parity = number_of_bignums_with_parity-1;
     int bit_index_parity_array = 127;
 
     // iterate over all bit arrays starting from the back
@@ -76,7 +101,48 @@ void bignums_to_bit_arrays_with_space_for_parity_bits(bool bit_arrays[][128], bi
 }
 
 
-void set_parity_bits(bool bit_arrays[][128], int number_of_bignums_with_parity) {
+void bignums_to_bit_arrays_with_space_for_parity_bits_all_blocks(bool bit_arrays[][128], bignum *bignum_blocks, int number_of_bignums, int number_of_bignums_with_parity) {
+    // all fields should be zero at the start
+    for (int i = 0; i < number_of_bignums_with_parity; i++) {
+        for (int k = 0; k < 128; k++) {
+            bit_arrays[i][k] = false;
+        }
+    }
+
+    // makes everything easier
+    bool bit_arrays_no_parity[number_of_bignums][128];
+    bignum_array_to_bit_arrays(bit_arrays_no_parity, bignum_blocks, number_of_bignums);
+
+    int index_bit_arrays_parity = number_of_bignums_with_parity-1;
+    int index_full_parity = (128 * number_of_bignums_with_parity) - 1;
+    int bit_index_parity_array = 127;
+
+    // iterate over all bit arrays starting from the back
+    for (int i = number_of_bignums-1; i >= 0; i--) {
+        // iterate over all bits
+        for (int k = 127; k >= 0; k--) {
+            // checks if bit index is used for parity and if true skip this position
+            if ((index_full_parity & (index_full_parity-1)) == 0) {
+                k++;
+            }
+            else {
+                bit_arrays[index_bit_arrays_parity][bit_index_parity_array] = bit_arrays_no_parity[i][k];
+            }
+
+            bit_index_parity_array--;
+            index_full_parity--;
+
+            // bit array with parity bits is full -> go to the next one
+            if (bit_index_parity_array == -1) {
+                index_bit_arrays_parity--;
+                bit_index_parity_array = 127;
+            }
+        }
+    }
+}
+
+
+void set_parity_bits_per_block(bool bit_arrays[][128], int number_of_bignums_with_parity) {
     int result_xor_all_set_bits = 0;
     int number_of_set_bits = 0;
 
@@ -115,6 +181,43 @@ void set_parity_bits(bool bit_arrays[][128], int number_of_bignums_with_parity) 
 }
 
 
+void set_parity_bits_all_blocks(bool bit_arrays[][128], int number_of_bignums_with_parity) {
+    int result_xor_all_set_bits = 0;
+    int number_of_set_bits = 0;
+
+    // iterate over all bits starting from the last (least significant) bit
+    for (int i = 0; i < number_of_bignums_with_parity; i++) {
+        for (int k = 0; k < 128; k++) {
+            // XOR all set bits together and count them
+            if (bit_arrays[i][k]) {
+                result_xor_all_set_bits ^= (k + (128 * i));
+                number_of_set_bits++;
+            }
+        }
+    }
+
+    int number_of_parity_bits = (int)log2(number_of_bignums_with_parity * 128);
+
+    // iterate over the bits from the result of the XOR
+    for (int k = 0; k < number_of_parity_bits; k++) {
+        // a one indicates the position for a change in the parity bits
+        if ((result_xor_all_set_bits >> k) & 1) {
+            int index_parity_bit = (int)pow(2, k);
+            bit_arrays[index_parity_bit / 128][index_parity_bit % 128] = !(bit_arrays[index_parity_bit / 128][index_parity_bit % 128]);
+
+            if (bit_arrays[index_parity_bit / 128][index_parity_bit % 128]) {
+                number_of_set_bits++;
+            }
+        }
+    }
+
+    // set the first bit to detect two bit errors
+    if (number_of_set_bits % 2 == 1) {
+        bit_arrays[0][0] = true;
+    }
+}
+
+
 void bit_arrays_to_bignum_array(bignum *bignum_array, int number_of_bignums, bool bit_arrays[][128]) {
     // iterate over all blocks
     for (int i = 0; i < number_of_bignums; i++) {
@@ -134,12 +237,22 @@ void bit_arrays_to_bignum_array(bignum *bignum_array, int number_of_bignums, boo
 }
 
 
-void add_parity_to_bignum_array(bignum *bignums_with_parity, bignum *bignum_blocks, int number_of_bignums, int number_of_bignums_with_parity) {
+void add_parity_per_block_to_bignum_array(bignum *bignums_with_parity, bignum *bignum_blocks, int number_of_bignums, int number_of_bignums_with_parity) {
     // contains the bit representation of bignum_blocks with space for the parity bits
     bool bit_arrays[number_of_bignums_with_parity][128];
 
-    bignums_to_bit_arrays_with_space_for_parity_bits(bit_arrays, bignum_blocks, number_of_bignums, number_of_bignums_with_parity);
-    set_parity_bits(bit_arrays, number_of_bignums_with_parity);
+    bignums_to_bit_arrays_with_space_for_parity_bits_per_block(bit_arrays, bignum_blocks, number_of_bignums, number_of_bignums_with_parity);
+    set_parity_bits_per_block(bit_arrays, number_of_bignums_with_parity);
+    bit_arrays_to_bignum_array(bignums_with_parity, number_of_bignums_with_parity, bit_arrays);
+}
+
+
+void add_parity_all_blocks_to_bignum_array(bignum *bignums_with_parity, bignum *bignum_blocks, int number_of_bignums, int number_of_bignums_with_parity) {
+    // contains the bit representation of bignum_blocks with space for the parity bits
+    bool bit_arrays[number_of_bignums_with_parity][128];
+
+    bignums_to_bit_arrays_with_space_for_parity_bits_all_blocks(bit_arrays, bignum_blocks, number_of_bignums, number_of_bignums_with_parity);
+    set_parity_bits_all_blocks(bit_arrays, number_of_bignums_with_parity);
     bit_arrays_to_bignum_array(bignums_with_parity, number_of_bignums_with_parity, bit_arrays);
 }
 
@@ -171,7 +284,7 @@ void bignum_array_to_bit_arrays(bool bit_arrays[][128], bignum *bignum_blocks, i
 }
 
 
-hc_result verify_hamming_code(bignum *ciphertext_blocks, int number_of_bignums) {
+hc_result verify_hamming_code_per_block(bignum *ciphertext_blocks, int number_of_bignums) {
     hc_result result;
 
     bool bit_arrays[number_of_bignums][128];
@@ -194,15 +307,10 @@ hc_result verify_hamming_code(bignum *ciphertext_blocks, int number_of_bignums) 
 
         // two bit error was detected
         if ((result_xor_all_set_bits != 0) && ((number_of_set_bits % 2) == 0)) {
-            bignum bignum_array_zero[1];
-            bignum zero = init_bignum_to_zero();
-            bignum_array_zero[0] = zero;
-
             result.correction_successful = false;
             result.one_bit_error = false;
             result.two_bit_error = true;
-            result.ciphertext_blocks_with_parity = bignum_array_zero;
-            result.tag_with_parity = init_bignum_to_zero();
+            result.ciphertext_blocks_with_parity = ciphertext_blocks;
 
             return result;
         }
@@ -226,27 +334,77 @@ hc_result verify_hamming_code(bignum *ciphertext_blocks, int number_of_bignums) 
         result.one_bit_error = true;
         result.two_bit_error = false;
         result.ciphertext_blocks_with_parity = ciphertext_blocks;
-        result.tag_with_parity = init_bignum_to_zero();
 
         return result;
     }
 
     // no error -> result_xor_all_set_bits is zero in each block
-    bignum bignum_array_zero[1];
-    bignum zero = init_bignum_to_zero();
-    bignum_array_zero[0] = zero;
-
     result.correction_successful =  true;
     result.one_bit_error = false;
     result.two_bit_error = false;
-    result.ciphertext_blocks_with_parity = bignum_array_zero;
-    result.tag_with_parity = init_bignum_to_zero();
+    result.ciphertext_blocks_with_parity = ciphertext_blocks;
 
     return result;
 }
 
 
-void remove_parity_from_encrypted_ciphertext_blocks(bignum *blocks_no_parity, bignum *ciphertext_blocks_with_parity, int number_of_blocks_with_parity, int number_of_blocks) {
+hc_result verify_hamming_code_all_blocks(bignum *ciphertext_blocks, int number_of_bignums) {
+    hc_result result;
+
+    bool bit_arrays[number_of_bignums][128];
+    bignum_array_to_bit_arrays(bit_arrays, ciphertext_blocks, number_of_bignums);
+
+    int result_xor_all_set_bits = 0;
+    int number_of_set_bits = 0;
+
+    // iterate over all bignums/blocks
+    for (int i = 0; i < number_of_bignums; i++) {
+        // iterate over all bits
+        for (int k = 0; k < 128; k++) {
+            // XOR all set bits together and count them
+            if (bit_arrays[i][k]) {
+                result_xor_all_set_bits ^= (k + (128 * i));
+                number_of_set_bits++;
+            }
+        }
+    }
+
+    // two bit error was detected
+    if ((result_xor_all_set_bits != 0) && ((number_of_set_bits % 2) == 0)) {
+        result.correction_successful = false;
+        result.one_bit_error = false;
+        result.two_bit_error = true;
+        result.ciphertext_blocks_with_parity = ciphertext_blocks;
+
+        return result;
+    }
+
+    // one bit error gets corrected
+    if ((result_xor_all_set_bits != 0) && ((number_of_set_bits % 2) == 1)) {
+        bit_arrays[result_xor_all_set_bits / 128][result_xor_all_set_bits % 128] = !(bit_arrays[result_xor_all_set_bits / 128][result_xor_all_set_bits % 128]);
+
+        // convert the corrected blocks
+        bit_arrays_to_bignum_array(ciphertext_blocks, number_of_bignums, bit_arrays);
+
+        result.correction_successful = true;
+        result.one_bit_error = true;
+        result.two_bit_error = false;
+        result.ciphertext_blocks_with_parity = ciphertext_blocks;
+
+        return result;
+    }
+
+    // no error -> result_xor_all_set_bits is zero
+    result.correction_successful =  true;
+    result.one_bit_error = false;
+    result.two_bit_error = false;
+    result.ciphertext_blocks_with_parity = ciphertext_blocks;
+
+    return result;
+}
+
+
+void remove_parity_per_block_from_encrypted_ciphertext_blocks(bignum *blocks_no_parity, bignum *ciphertext_blocks_with_parity, int number_of_blocks_with_parity, int number_of_blocks) {
     bool bit_arrays_parity[number_of_blocks_with_parity][128];
     bignum_array_to_bit_arrays(bit_arrays_parity, ciphertext_blocks_with_parity, number_of_blocks_with_parity);
 
@@ -285,6 +443,45 @@ void remove_parity_from_encrypted_ciphertext_blocks(bignum *blocks_no_parity, bi
 }
 
 
+void remove_parity_all_blocks_from_encrypted_ciphertext_blocks(bignum *blocks_no_parity, bignum *ciphertext_blocks_with_parity, int number_of_blocks_with_parity, int number_of_blocks) {
+    bool bit_arrays_parity[number_of_blocks_with_parity][128];
+    bignum_array_to_bit_arrays(bit_arrays_parity, ciphertext_blocks_with_parity, number_of_blocks_with_parity);
+
+    bool bit_arrays_no_parity[number_of_blocks][128];
+    for (int i = 0; i < number_of_blocks; i++) {
+        for (int k = 0; k < 128; k++) {
+            bit_arrays_no_parity[i][k] = false;
+        }
+    }
+
+    // converts the bit arrays with parity to bit arrays with no parity
+    int counter_no_parity_blocks = 127;
+    int array_index = number_of_blocks-1;
+    // iterate over all blocks
+    for (int i = number_of_blocks_with_parity-1; i >= 0; i--) {
+        // iterate over all bits
+        for (int k = 127; k >= 0; k--) {
+            // skip bit if the index is a power of two
+            if (((k + (128 * i)) & ((k + (128 * i)) - 1)) == 0) {
+                continue;
+            }
+
+            // add bit to the array with no parity values and decrement the counter
+            bit_arrays_no_parity[array_index][counter_no_parity_blocks] = bit_arrays_parity[i][k];
+            counter_no_parity_blocks--;
+
+            // start with a new block for bit_arrays_no_parity if all indices are filled
+            if (counter_no_parity_blocks == -1) {
+                counter_no_parity_blocks = 127;
+                array_index--;
+            }
+        }
+    }
+
+    bit_arrays_to_bignum_array(blocks_no_parity, number_of_blocks, bit_arrays_no_parity);
+}
+
+
 void print_bit_arrays(bool bit_arrays[][128], int number_of_blocks) {
     for (int i = 0; i < number_of_blocks; i++) {
         printf("0b");
@@ -293,4 +490,13 @@ void print_bit_arrays(bool bit_arrays[][128], int number_of_blocks) {
         }
         printf("\n");
     }
+}
+
+
+void print_hc_result(hc_result res, int number_of_blocks) {
+    printf("correction_successful: %i\n", res.correction_successful);
+    printf("one_bit_error: %i\n", res.one_bit_error);
+    printf("two_bit_error: %i\n", res.two_bit_error);
+    printf("blocks_with_parity:\n");
+    print_bignum_array(res.ciphertext_blocks_with_parity, number_of_blocks);
 }

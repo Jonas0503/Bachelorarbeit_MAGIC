@@ -504,13 +504,13 @@ void hc_add_parity_per_block(int start, int end, int interval, int number_of_mea
         }
       }
 
-      int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_from_string(text);
+      int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_per_block_from_string(text);
 
       reset_timer();
       start_timer();
 
       volatile bignum blocks_parity[number_of_bignums_parity];
-      add_parity_to_bignum_array(blocks_parity, blocks, i, number_of_bignums_parity);
+      add_parity_per_block_to_bignum_array(blocks_parity, blocks, i, number_of_bignums_parity);
 
       volatile uint32_t number_of_cycles = get_cycles();
       stop_timer();
@@ -554,10 +554,10 @@ void hc_verify_changing_blocks(int start, int end, int interval, int number_of_m
         }
       }
 
-      int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_from_string(text);
+      int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_per_block_from_string(text);
 
       bignum blocks_parity[number_of_bignums_parity];
-      add_parity_to_bignum_array(blocks_parity, blocks, i, number_of_bignums_parity);
+      add_parity_per_block_to_bignum_array(blocks_parity, blocks, i, number_of_bignums_parity);
 
       // corrupt the blocks
       for (int k = 0; k < blocks_affected; k++) {
@@ -578,7 +578,7 @@ void hc_verify_changing_blocks(int start, int end, int interval, int number_of_m
       reset_timer();
       start_timer();
 
-      volatile hc_result res = verify_hamming_code(blocks_parity, number_of_bignums_parity);
+      volatile hc_result res = verify_hamming_code_per_block(blocks_parity, number_of_bignums_parity);
 
       volatile uint32_t number_of_cycles = get_cycles();
       stop_timer();
@@ -622,11 +622,11 @@ void hc_verify_changing_number_of_affected_blocks(int start, int end, int interv
         }
       }
 
-      int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_from_string(text);
+      int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_per_block_from_string(text);
 
       // add parity
       bignum blocks_parity[number_of_bignums_parity];
-      add_parity_to_bignum_array(blocks_parity, blocks, number_of_blocks, number_of_bignums_parity);
+      add_parity_per_block_to_bignum_array(blocks_parity, blocks, number_of_blocks, number_of_bignums_parity);
 
       // corrupt the blocks
       for (int k = 0; k < i; k++) {
@@ -642,7 +642,7 @@ void hc_verify_changing_number_of_affected_blocks(int start, int end, int interv
       reset_timer();
       start_timer();
 
-      volatile hc_result res = verify_hamming_code(blocks_parity, number_of_bignums_parity);
+      volatile hc_result res = verify_hamming_code_per_block(blocks_parity, number_of_bignums_parity);
 
       volatile uint32_t number_of_cycles = get_cycles();
       stop_timer();
@@ -686,10 +686,10 @@ void hc_verify_changing_faulty_block(int start, int end, int interval, int numbe
         }
       }
 
-      int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_from_string(text);
+      int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_per_block_from_string(text);
 
       bignum blocks_parity[number_of_bignums_parity];
-      add_parity_to_bignum_array(blocks_parity, blocks, number_of_blocks, number_of_bignums_parity);
+      add_parity_per_block_to_bignum_array(blocks_parity, blocks, number_of_blocks, number_of_bignums_parity);
 
       // corrupt the blocks
       for (int k = 0; k < affected_blocks; k++) {
@@ -705,7 +705,7 @@ void hc_verify_changing_faulty_block(int start, int end, int interval, int numbe
       reset_timer();
       start_timer();
 
-      volatile hc_result res = verify_hamming_code(blocks_parity, number_of_bignums_parity);
+      volatile hc_result res = verify_hamming_code_per_block(blocks_parity, number_of_bignums_parity);
 
       volatile uint32_t number_of_cycles = get_cycles();
       stop_timer();
