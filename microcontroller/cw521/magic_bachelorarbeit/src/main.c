@@ -22,6 +22,18 @@ int main() {
     print_bignum_array(blocks_no_parity, 1);
     printf("\n");
 
+    bool bits[2][128];
+    bignums_to_bit_arrays_with_space_for_parity_bits_all_blocks(bits, blocks_no_parity, 1, 2);
+    print_bit_arrays(bits, 2);
+    set_parity_bits_all_blocks(bits, 2);
+    for (int i = 0; i < 2; i++) {
+        for (int k = 0; k < 128; k++) {
+            if (k % 32 == 0) printf("\n");
+            printf("%i, ", bits[i][k]);
+        }
+        printf("\n");
+    }
+
     bignum blocks_parity[2];
     add_parity_all_blocks_to_bignum_array(blocks_parity, blocks_no_parity, 1, 2);
     print_bignum_array(blocks_parity, 2);

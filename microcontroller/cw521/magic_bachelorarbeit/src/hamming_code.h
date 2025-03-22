@@ -13,27 +13,38 @@ typedef struct {
 } hc_result;
 
 
-/// @brief Calculates the number of ciphertext blocks with parity values from a ASCII string which gets encrypted.
+/// @brief Calculates the number of ciphertext blocks with parity values per block from a ASCII string which gets encrypted.
 /// @param text The ASCII string for the calculation.
-/// @return The number of ciphertext blocks with parity values in each ciphertext block.
+/// @return The number of ciphertext blocks with parity values per blocks in each ciphertext block.
 int number_of_encrypted_ciphertext_blocks_with_parity_per_block_from_string(char *text);
 
+/// @brief Calculates the number of ciphertext blocks with parity values over all blocks from a ASCII string which gets encrypted.
+/// @param text The ASCII string for the calculation.
+/// @return The number of ciphertext blocks with parity values over all blocks.
 int number_of_encrypted_ciphertext_blocks_with_parity_all_blocks(char *text);
 
-/// @brief Converts the bignum to an array of bits with space for the parity bits at powers of two.
+/// @brief Converts the bignum to an array of bits with space for the parity bits at powers of two in each block separately.
 /// @param bit_arrays The bignum array represented as an array with array of bits. Has space for parity bits in each array. This array contains the result.
 /// @param bignum_blocks The bignum array to be converted.
 /// @param number_of_bignums The number of bignum blocks without parity.
 /// @param number_of_bignums_with_parity The number of bignum blocks with parity.
 void bignums_to_bit_arrays_with_space_for_parity_bits_per_block(bool bit_arrays[][128], bignum *bignum_blocks, int number_of_bignums, int number_of_bignums_with_parity);
 
+/// @brief Converts the bignum to an array of bits with space for the parity bits at powers of two over all blocks.
+/// @param bit_arrays The bignum array represented as an array with array of bits. Has space for parity bits over all blocks. This array contains the result.
+/// @param bignum_blocks The bignum array to be converted.
+/// @param number_of_bignums The number of bignum blocks without parity.
+/// @param number_of_bignums_with_parity The number of bignum blocks with parity.
 void bignums_to_bit_arrays_with_space_for_parity_bits_all_blocks(bool bit_arrays[][128], bignum *bignum_blocks, int number_of_bignums, int number_of_bignums_with_parity);
 
-/// @brief Sets the parity bits in each bit array to detect two bit errors and correct a one bit error (even parity).
+/// @brief Sets the parity bits in each bit array separately to detect two bit errors and correct a one bit error (even parity).
 /// @param bit_arrays The bits arrays with space for the parity bits.
 /// @param number_of_bignums_with_parity The number of 128-bit arrays int bit_arrays.
 void set_parity_bits_per_block(bool bit_arrays[][128], int number_of_bignums_with_parity);
 
+/// @brief Sets the parity bits over all blocks to detect two bit errors and correct a one bit error (even parity).
+/// @param bit_arrays The bits arrays with space for the parity bits.
+/// @param number_of_bignums_with_parity The number of 128-bit arrays int bit_arrays.
 void set_parity_bits_all_blocks(bool bit_arrays[][128], int number_of_bignums_with_parity);
 
 /// @brief Converts the arrays of bits to the corresponding bignum array.
@@ -42,13 +53,18 @@ void set_parity_bits_all_blocks(bool bit_arrays[][128], int number_of_bignums_wi
 /// @param bit_arrays The bit arrays to convert.
 void bit_arrays_to_bignum_array(bignum *bignum_array, int number_of_bignums, bool bit_arrays[][128]);
 
-/// @brief Add the parity bits to each bignum block.
+/// @brief Add the parity bits to each bignum block separately.
 /// @param bignums_with_parity The resulting bignums with parity values in each bignum.
 /// @param bignum_blocks The bignum to add parity values to.
 /// @param number_of_bignums The size of bignum_blocks.
 /// @param number_of_bignums_with_parity The size of bignums_with_parity.
 void add_parity_per_block_to_bignum_array(bignum *bignums_with_parity, bignum *bignum_blocks, int number_of_bignums, int number_of_bignums_with_parity);
 
+/// @brief Add the parity bits over all bignum blocks.
+/// @param bignums_with_parity The resulting bignums with parity values over all bignum blocks.
+/// @param bignum_blocks The bignum to add parity values to.
+/// @param number_of_bignums The size of bignum_blocks.
+/// @param number_of_bignums_with_parity The size of bignums_with_parity.
 void add_parity_all_blocks_to_bignum_array(bignum *bignums_with_parity, bignum *bignum_blocks, int number_of_bignums, int number_of_bignums_with_parity);
 
 /// @brief Converts the bignum blocks into the corresponding binary representation.
@@ -59,10 +75,14 @@ void bignum_array_to_bit_arrays(bool bit_arrays[][128], bignum *bignum_blocks, i
 
 /// @brief Checks the bignum blocks with hamming code in each block.
 /// @param ciphertext_blocks The blocks which gets verified and corrected if possible.
-/// @param number_of_bignums The size of ciphertext_blocks.
+/// @param number_of_bignums The size of ciphertext_blocks with parity values in each block.
 /// @return The result of the hamming code check in form of a struct.
 hc_result verify_hamming_code_per_block(bignum *ciphertext_blocks, int number_of_bignums);
 
+/// @brief Checks the bignum blocks with hamming code over all blocks.
+/// @param ciphertext_blocks The blocks which gets verified and corrected if possible.
+/// @param number_of_bignums The size of ciphertext_blocks with parity values over all blocks.
+/// @return The result of the hamming code check in form of a struct.
 hc_result verify_hamming_code_all_blocks(bignum *ciphertext_blocks, int number_of_bignums);
 
 /// @brief Converts the bignum array with parity values in each block to a bignum array with all parity values removed.
@@ -72,6 +92,11 @@ hc_result verify_hamming_code_all_blocks(bignum *ciphertext_blocks, int number_o
 /// @param number_of_blocks The number of blocks of the resulting bignum array.
 void remove_parity_per_block_from_encrypted_ciphertext_blocks(bignum *blocks_no_parity, bignum *ciphertext_blocks_with_parity, int number_of_blocks_with_parity, int number_of_blocks);
 
+/// @brief Converts the bignum array with parity values over all blocks to a bignum array with all parity values removed.
+/// @param blocks_no_parity The resulting bignum array with no parity values.
+/// @param ciphertext_blocks_with_parity The current bignum array with parity values over all blocks.
+/// @param number_of_blocks_with_parity The number of blocks with parity values over all blocks.
+/// @param number_of_blocks The number of blocks of the resulting bignum array.
 void remove_parity_all_blocks_from_encrypted_ciphertext_blocks(bignum *blocks_no_parity, bignum *ciphertext_blocks_with_parity, int number_of_blocks_with_parity, int number_of_blocks);
 
 /// @brief Prints each 128-bit block to a new line.
@@ -79,4 +104,7 @@ void remove_parity_all_blocks_from_encrypted_ciphertext_blocks(bignum *blocks_no
 /// @param number_of_blocks The number of blocks to be printed.
 void print_bit_arrays(bool bit_arrays[][128], int number_of_blocks);
 
+/// @brief Prints the hc_result in a readable format.
+/// @param res The hc_result to be printed.
+/// @param number_of_blocks The number of blocks with parity values to be printed.
 void print_hc_result(hc_result res, int number_of_blocks);
