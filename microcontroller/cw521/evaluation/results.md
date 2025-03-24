@@ -22,6 +22,19 @@
     - changing number of affected blocks: Spielt keine Rolle, wie viele Blöcke betroffen sind. Bei zwei Fehlern dauert es kürzer aus schon genannten gründen
 
 
+## Hamming-Code über alle Blöcke
+
+- add parity: Alles steigt linear an. Nur ab 150 Blöcken funktioniert die Zeitmessung nicht mehr richtig. Vielleicht zu viel Speicher genutzt?
+- verify:
+    - changing blocks: Steigt alles linear an. Nur bei one_bit_error dauert es im Gesamten länger, da der Block noch korrigiert werden muss
+    - changing faulty block: Die Anzahl der Blöcke macht keinen Unterschied
+
+
 ## Vergleich von verify
 
-Hamming code braucht viel weniger Zeit, um Blöcke zu verifizieren
+Hamming-Code braucht viel weniger Zeit, um Blöcke zu verifizieren, wobei die Korrektur dort über alle Blöcke hinweg schneller ist
+
+
+## Complete
+
+MAGIC braucht in allen Fällen viel länger. Hamming-Code ist über alle Blöcke hinweg schneller

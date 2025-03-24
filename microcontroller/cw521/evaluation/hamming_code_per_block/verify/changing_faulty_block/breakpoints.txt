@@ -1,4 +1,0 @@
-dprintf main_cw521.c:663, "Start: %i; End: %i; Interval: %i; Number of blocks: %i; Number of affected blocks: %i; Measurements per faulty block: %i\n\n", start, end, interval, number_of_blocks, affected_blocks, number_of_measurements
-dprintf main_cw521.c:671, "Faulty block index: %i\n", i
-dprintf main_cw521.c:713, "Number of cycles: %lu; correction_successful? %i; one_bit_err? %i; two_bit_err? %i\n", number_of_cycles, res.correction_successful, res.one_bit_error, res.two_bit_error
-dprintf main_cw521.c:720, "Average: %f\nStandard deviation: %f\n\n", avg, sd

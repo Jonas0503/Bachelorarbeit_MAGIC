@@ -1,0 +1,84 @@
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 50; End: 250; Interval: 25; Measurements per block: 15
+
+Number of blocks: 50
+Number of cycles: 731719
+Number of cycles: 731680
+Number of cycles: 731673
+Number of cycles: 731691
+Number of cycles: 731654
+Number of cycles: 731688
+Number of cycles: 731705
+Number of cycles: 731632
+Number of cycles: 731669
+Number of cycles: 731649
+Number of cycles: 732031
+Number of cycles: 731681
+Number of cycles: 731702
+Number of cycles: 731644
+Number of cycles: 731686
+Average: 731700.250000
+Standard deviation: 91.396187
+
+Number of blocks: 75
+Number of cycles: 1082327
+Number of cycles: 1082286
+Number of cycles: 1082297
+Number of cycles: 1082669
+Number of cycles: 1082262
+Number of cycles: 1082266
+Number of cycles: 1082285
+Number of cycles: 1082211
+Number of cycles: 1082341
+Number of cycles: 1082656
+Number of cycles: 1082289
+Number of cycles: 1082305
+Number of cycles: 1082310
+Number of cycles: 1082269
+Number of cycles: 1082497
+Average: 1082351.375000
+Standard deviation: 135.830124
+
+Number of blocks: 100
+Number of cycles: 1425686
+Number of cycles: 1425504
+Number of cycles: 1425627
+Number of cycles: 1425711
+Number of cycles: 1425667
+Number of cycles: 1425720
+Number of cycles: 1425676
+Number of cycles: 1425707
+Number of cycles: 1425664
+Number of cycles: 1425709
+Number of cycles: 1425714
+Number of cycles: 1425695
+Number of cycles: 1425705
+Number of cycles: 1425769
+Number of cycles: 1425524
+Average: 1425671.750000
+Standard deviation: 69.120155
+
+Number of blocks: 125
+Number of cycles: 1769123
+Number of cycles: 1769078
+Number of cycles: 1768983
+Number of cycles: 1768875
+Number of cycles: 1769119
+Number of cycles: 1769111
+Number of cycles: 1768867
+Number of cycles: 1769052
+Number of cycles: 1768906
+Number of cycles: 1768815
+Number of cycles: 1769071
+Number of cycles: 1768861
+Number of cycles: 1769119
+Number of cycles: 1769057
+Number of cycles: 1768923
+Average: 1768997.375000
+Standard deviation: 107.906555
+
+Number of blocks: 150
+
+Program received signal SIGINT, Interrupt.
+Dummy_Handler () at naeusb/sam3u_hal/exceptions.c:169
+169		while (1) {

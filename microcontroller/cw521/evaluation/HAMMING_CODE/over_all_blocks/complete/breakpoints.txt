@@ -1,0 +1,4 @@
+dprintf main_cw521.c:791, "Start: %i; End: %i; Interval: %i; Measurements per block: %i\n\n", start, end, interval, number_of_measurements
+dprintf main_cw521.c:795, "Number of blocks: %i\n", i
+dprintf main_cw521.c:843, "Number of cycles: %lu\n", number_of_cycles
+dprintf main_cw521.c:851, "Average: %f\nStandard deviation: %f\n\n", avg, sd

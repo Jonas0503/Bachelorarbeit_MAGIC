@@ -52,3 +52,22 @@ void hamming_code_per_block_complete(char *text) {
     blocks_parity[0] = one_bit_modification(blocks_parity[0], 42);
     volatile hc_result res = verify_hamming_code_per_block(blocks_parity, number_of_bignums_parity);
 }
+
+
+void hamming_code_all_blocks_complete(char *text) {
+    int number_of_bignums = calculate_number_of_bignums_from_string(text);
+    int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_per_block_from_string(text);
+
+    uint32_t key[8];
+    uint32_t nonce[2];
+    random_bignum_key_nonce(key, nonce, 0);
+
+    bignum ciphertext_blocks[number_of_bignums];
+    plaintext_to_ciphertext_blocks(ciphertext_blocks, text, key, nonce);
+
+    bignum blocks_parity[number_of_bignums_parity];
+    add_parity_all_blocks_to_bignum_array(blocks_parity, ciphertext_blocks, number_of_bignums, number_of_bignums_parity);
+
+    blocks_parity[0] = one_bit_modification(blocks_parity[0], 42);
+    volatile hc_result res = verify_hamming_code_all_blocks(blocks_parity, number_of_bignums_parity);
+}

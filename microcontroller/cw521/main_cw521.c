@@ -477,7 +477,7 @@ void verify_changing_faulty_block(int start_block_index, int end_block_index, in
 }
 
 
-void hc_add_parity_per_block(int start, int end, int interval, int number_of_measurements) {
+void hc_add_parity(int start, int end, int interval, int number_of_measurements, bool per_block) {
   // this respresents one ciphertext block
   uint32_t one_block[4] = {0x12345678, 0xabcdef90, 0x87654321, 0x09fedcba};
 
@@ -504,18 +504,34 @@ void hc_add_parity_per_block(int start, int end, int interval, int number_of_mea
         }
       }
 
-      int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_per_block_from_string(text);
+      if (per_block) {
+        int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_per_block_from_string(text);
 
-      reset_timer();
-      start_timer();
+        reset_timer();
+        start_timer();
 
-      volatile bignum blocks_parity[number_of_bignums_parity];
-      add_parity_per_block_to_bignum_array(blocks_parity, blocks, i, number_of_bignums_parity);
+        volatile bignum blocks_parity[number_of_bignums_parity];
+        add_parity_per_block_to_bignum_array(blocks_parity, blocks, i, number_of_bignums_parity);
 
-      volatile uint32_t number_of_cycles = get_cycles();
-      stop_timer();
+        volatile uint32_t number_of_cycles = get_cycles();
+        stop_timer();
 
-      results[f] = number_of_cycles;
+        results[f] = number_of_cycles;
+      }
+      else {
+        int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_all_blocks(text);
+
+        reset_timer();
+        start_timer();
+
+        volatile bignum blocks_parity[number_of_bignums_parity];
+        add_parity_all_blocks_to_bignum_array(blocks_parity, blocks, i, number_of_bignums_parity);
+
+        volatile uint32_t number_of_cycles = get_cycles();
+        stop_timer();
+
+        results[f] = number_of_cycles;
+      }
     }
 
     volatile float avg = average(results, number_of_measurements);
@@ -527,7 +543,7 @@ void hc_add_parity_per_block(int start, int end, int interval, int number_of_mea
 }
 
 
-void hc_verify_changing_blocks(int start, int end, int interval, int number_of_measurements, int blocks_affected, bool one_bit_error, bool two_bit_error, bool undetectable_error) {
+void hc_verify_changing_blocks(int start, int end, int interval, int number_of_measurements, int blocks_affected, bool one_bit_error, bool two_bit_error, bool undetectable_error, bool per_block) {
   // this respresents one ciphertext block
   uint32_t one_block[4] = {0x12345678, 0xabcdef90, 0x87654321, 0x09fedcba};
 
@@ -554,10 +570,21 @@ void hc_verify_changing_blocks(int start, int end, int interval, int number_of_m
         }
       }
 
-      int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_per_block_from_string(text);
+      int number_of_bignums_parity;
+      if (per_block) {
+        number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_per_block_from_string(text);
+      }
+      else {
+        number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_all_blocks(text);
+      }
 
       bignum blocks_parity[number_of_bignums_parity];
-      add_parity_per_block_to_bignum_array(blocks_parity, blocks, i, number_of_bignums_parity);
+      if (per_block) {
+        add_parity_per_block_to_bignum_array(blocks_parity, blocks, i, number_of_bignums_parity);
+      }
+      else {
+        add_parity_all_blocks_to_bignum_array(blocks_parity, blocks, i, number_of_bignums_parity);
+      }
 
       // corrupt the blocks
       for (int k = 0; k < blocks_affected; k++) {
@@ -575,15 +602,28 @@ void hc_verify_changing_blocks(int start, int end, int interval, int number_of_m
         }
       }
 
-      reset_timer();
-      start_timer();
+      if (per_block) {
+        reset_timer();
+        start_timer();
 
-      volatile hc_result res = verify_hamming_code_per_block(blocks_parity, number_of_bignums_parity);
+        volatile hc_result res = verify_hamming_code_per_block(blocks_parity, number_of_bignums_parity);
 
-      volatile uint32_t number_of_cycles = get_cycles();
-      stop_timer();
+        volatile uint32_t number_of_cycles = get_cycles();
+        stop_timer();
 
-      results[f] = number_of_cycles;
+        results[f] = number_of_cycles;
+      }
+      else {
+        reset_timer();
+        start_timer();
+
+        volatile hc_result res = verify_hamming_code_all_blocks(blocks_parity, number_of_bignums_parity);
+
+        volatile uint32_t number_of_cycles = get_cycles();
+        stop_timer();
+
+        results[f] = number_of_cycles;
+      }
     }
 
     volatile float avg = average(results, number_of_measurements);
@@ -659,7 +699,7 @@ void hc_verify_changing_number_of_affected_blocks(int start, int end, int interv
 }
 
 
-void hc_verify_changing_faulty_block(int start, int end, int interval, int number_of_measurements, int affected_blocks, int number_of_blocks, bool one_bit_error, bool two_bit_error) {
+void hc_verify_changing_faulty_block(int start, int end, int interval, int number_of_measurements, int affected_blocks, int number_of_blocks, bool one_bit_error, bool two_bit_error, bool per_block) {
   // this respresents one ciphertext block
   uint32_t one_block[4] = {0x12345678, 0xabcdef90, 0x87654321, 0x09fedcba};
 
@@ -686,10 +726,21 @@ void hc_verify_changing_faulty_block(int start, int end, int interval, int numbe
         }
       }
 
-      int number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_per_block_from_string(text);
+      int number_of_bignums_parity;
+      if (per_block) {
+        number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_per_block_from_string(text);
+      }
+      else {
+        number_of_bignums_parity = number_of_encrypted_ciphertext_blocks_with_parity_all_blocks(text);
+      }
 
       bignum blocks_parity[number_of_bignums_parity];
-      add_parity_per_block_to_bignum_array(blocks_parity, blocks, number_of_blocks, number_of_bignums_parity);
+      if (per_block) {
+        add_parity_per_block_to_bignum_array(blocks_parity, blocks, i, number_of_bignums_parity);
+      }
+      else {
+        add_parity_all_blocks_to_bignum_array(blocks_parity, blocks, i, number_of_bignums_parity);
+      }
 
       // corrupt the blocks
       for (int k = 0; k < affected_blocks; k++) {
@@ -702,15 +753,28 @@ void hc_verify_changing_faulty_block(int start, int end, int interval, int numbe
         }
       }
 
-      reset_timer();
-      start_timer();
+      if (per_block) {
+        reset_timer();
+        start_timer();
 
-      volatile hc_result res = verify_hamming_code_per_block(blocks_parity, number_of_bignums_parity);
+        volatile hc_result res = verify_hamming_code_per_block(blocks_parity, number_of_bignums_parity);
 
-      volatile uint32_t number_of_cycles = get_cycles();
-      stop_timer();
+        volatile uint32_t number_of_cycles = get_cycles();
+        stop_timer();
 
-      results[f] = number_of_cycles;
+        results[f] = number_of_cycles;
+      }
+      else {
+        reset_timer();
+        start_timer();
+
+        volatile hc_result res = verify_hamming_code_all_blocks(blocks_parity, number_of_bignums_parity);
+
+        volatile uint32_t number_of_cycles = get_cycles();
+        stop_timer();
+
+        results[f] = number_of_cycles;
+      }
     }
 
     volatile float avg = average(results, number_of_measurements);
@@ -722,7 +786,7 @@ void hc_verify_changing_faulty_block(int start, int end, int interval, int numbe
 }
 
 
-void complete_changing_blocks(int start, int end, int interval, int number_of_measurements, int threshold, bool use_magic_mode) {
+void complete_changing_blocks(int start, int end, int interval, int number_of_measurements, int threshold, bool use_magic_mode, bool hc_per_block) {
   // 16 chars (ASCII) -> one block
   char *one_block_text = "1234ABCD5678EFGH";
 
@@ -756,11 +820,22 @@ void complete_changing_blocks(int start, int end, int interval, int number_of_me
 
         results[f] = number_of_cycles;
       }
-      else {
+      else if (hc_per_block) {
         reset_timer();
         start_timer();
 
         hamming_code_per_block_complete(text);
+
+        volatile uint32_t number_of_cycles = get_cycles();
+        stop_timer();
+
+        results[f] = number_of_cycles;
+      }
+      else {
+        reset_timer();
+        start_timer();
+
+        hamming_code_all_blocks_complete(text);
 
         volatile uint32_t number_of_cycles = get_cycles();
         stop_timer();
@@ -919,17 +994,17 @@ int main(void)
   // decryption_changing_blocks(1, 10, 1, 10);
   // tag_generation_given_blocks_changing_blocks(1, 10, 1, 10);
   // find_hash_key_changing_blocks(1, 3, 1, 10, 1);
-  find_hash_key_changing_threshold(1, 7, 1, 2, 1);
+  // find_hash_key_changing_threshold(1, 7, 1, 2, 1);
   // verify_changing_blocks(1, 5, 1, 5, 1, false, false, false);
   // verify_changing_threshold(1, 5, 1, 5, 1, false, false, false);
   // verify_changing_faulty_block(0, 2, 1, 5, 3, 1, false);
 
-  // hc_add_parity_per_block(1, 10, 1, 30);
-  // hc_verify_changing_blocks(8, 8, 1, 30, 1, false, false, true);
+  // hc_add_parity(50, 250, 25, 15, false);
+  // hc_verify_changing_blocks(1, 10, 1, 30, 1, false, false, true, false);
   // hc_verify_changing_number_of_affected_blocks(1, 10, 1, 30, 10, true, false);
-  // hc_verify_changing_faulty_block(10, 100, 10, 30, 1, 101, false, true);
+  // hc_verify_changing_faulty_block(0, 9, 1, 30, 1, 10, false, true, false);
 
-  // complete_changing_blocks(1, 2, 1, 2, 2, true);
+  complete_changing_blocks(1, 10, 1, 30, 0, false, false);
 
   // --------------------------------------- my code end -------------------------------------------------------------------------------------------
 
