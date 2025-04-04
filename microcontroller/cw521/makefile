@@ -37,7 +37,10 @@ TARGET = cw521
 MAGIC = ./magic_bachelorarbeit/src
 MAGIC_FILES = $(MAGIC)/galois.c $(MAGIC)/bignum.c $(MAGIC)/util_functions.c $(MAGIC)/salsa20.c $(MAGIC)/magic_mode.c $(MAGIC)/hamming_code.c $(MAGIC)/examples.c
 
-SRC += main_cw521.c naeusb_ballistic.c naeusb/naeusb.c naeusb/naeusb_default.c $(MAGIC_FILES)
+MAGIC_TEST = ./magic_bachelorarbeit/test
+MAGIC_TEST_FILES = $(MAGIC_TEST)/test_bignum.c $(MAGIC_TEST)/test_galois.c $(MAGIC_TEST)/test_hamming_code.c $(MAGIC_TEST)/test_magic_mode.c $(MAGIC_TEST)/test_salsa20.c $(MAGIC_TEST)/test_util_functions.c
+
+SRC += main_cw521.c naeusb_ballistic.c naeusb/naeusb.c naeusb/naeusb_default.c $(MAGIC_FILES) $(MAGIC_TEST_FILES)
 SRC += naeusb/udc.c  naeusb/usb_xmem.c ui.c init.c
 
 LINKERFILE = naeusb/flash_sam3u4.ld

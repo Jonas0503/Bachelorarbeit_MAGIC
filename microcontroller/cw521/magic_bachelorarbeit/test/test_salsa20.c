@@ -1,8 +1,15 @@
-#include "acutest.h"
+#ifndef LOCAL
+#include "magic_bachelorarbeit/src/salsa20.h"
+#include "magic_bachelorarbeit/src/bignum.h"
+#include "magic_bachelorarbeit/src/util_functions.h"
+#else
 #include "salsa20.h"
 #include "bignum.h"
-
+#include "util_functions.h"
+#endif
 #include "stdbool.h"
+#include "string.h"
+#include "assert.h"
 
 
 // Test values from:
@@ -21,7 +28,7 @@ bool are_states_equal(uint32_t state1[16], uint32_t state2[16]) {
 }
 
 
-bool are_messages_equal(uint32_t *ciphertext, u_int32_t *expected, uint64_t message_length, int stream_start) {
+bool are_messages_equal(uint32_t *ciphertext, uint32_t *expected, uint64_t message_length, int stream_start) {
     for (uint64_t i = 0; i < message_length; i++) {
         if (ciphertext[i+stream_start] != expected[i]) return false;
     }
@@ -33,16 +40,16 @@ bool are_messages_equal(uint32_t *ciphertext, u_int32_t *expected, uint64_t mess
 // --------------------------- end: helper functions in this test file ---------------------------
 
 
-void test_shift_left_and_rotate(void) {
+void test_shift_left_and_rotate() {
     // my test value
     uint32_t expected = 0xA194C67E;
     uint32_t result = shift_left_and_rotate(0xd43298cf, 3);
 
-    TEST_CHECK(result == expected);
+    assert(result == expected);
 }
 
 
-void test_quarterround_1(void) {
+void test_quarterround_1() {
     uint32_t a, b, c, d;
     a = 0x0;
     b = 0x0;
@@ -51,14 +58,14 @@ void test_quarterround_1(void) {
 
     quarterround(&a, &b, &c, &d);
 
-    TEST_CHECK(a == 0x0);
-    TEST_CHECK(b == 0x0);
-    TEST_CHECK(c == 0x0);
-    TEST_CHECK(d == 0x0);
+    assert(a == 0x0);
+    assert(b == 0x0);
+    assert(c == 0x0);
+    assert(d == 0x0);
 }
 
 
-void test_quarterround_2(void) {
+void test_quarterround_2() {
     uint32_t a, b, c, d;
     a = 0xe7e8c006;
     b = 0xc4f9417d;
@@ -67,14 +74,14 @@ void test_quarterround_2(void) {
 
     quarterround(&a, &b, &c, &d);
 
-    TEST_CHECK(a == 0xe876d72b);
-    TEST_CHECK(b == 0x9361dfd5);
-    TEST_CHECK(c == 0xf1460244);
-    TEST_CHECK(d == 0x948541a3);
+    assert(a == 0xe876d72b);
+    assert(b == 0x9361dfd5);
+    assert(c == 0xf1460244);
+    assert(d == 0x948541a3);
 }
 
 
-void test_rowround_1(void) {
+void test_rowround_1() {
     uint32_t state[16] = {
         0x00000001, 0x00000000, 0x00000000, 0x00000000,
         0x00000001, 0x00000000, 0x00000000, 0x00000000,
@@ -91,11 +98,11 @@ void test_rowround_1(void) {
 
     rowround(state);
 
-    TEST_CHECK(are_states_equal(state, state_expected));
+    assert(are_states_equal(state, state_expected));
 }
 
 
-void test_rowround_2(void) {
+void test_rowround_2() {
     uint32_t state[16] = {
         0x08521bd6, 0x1fe88837, 0xbb2aa576, 0x3aa26365,
         0xc54c6a5b, 0x2fc74c2f, 0x6dd39cc3, 0xda0a64f6,
@@ -112,11 +119,11 @@ void test_rowround_2(void) {
 
     rowround(state);
 
-    TEST_CHECK(are_states_equal(state, state_expected));
+    assert(are_states_equal(state, state_expected));
 }
 
 
-void test_columnround_1(void) {
+void test_columnround_1() {
     uint32_t state[16] = {
         0x00000001, 0x00000000, 0x00000000, 0x00000000,
         0x00000001, 0x00000000, 0x00000000, 0x00000000,
@@ -133,11 +140,11 @@ void test_columnround_1(void) {
 
     columnround(state);
 
-    TEST_CHECK(are_states_equal(state, state_expected));
+    assert(are_states_equal(state, state_expected));
 }
 
 
-void test_columnround_2(void) {
+void test_columnround_2() {
     uint32_t state[16] = {
         0x08521bd6, 0x1fe88837, 0xbb2aa576, 0x3aa26365,
         0xc54c6a5b, 0x2fc74c2f, 0x6dd39cc3, 0xda0a64f6,
@@ -154,11 +161,11 @@ void test_columnround_2(void) {
 
     columnround(state);
 
-    TEST_CHECK(are_states_equal(state, state_expected));
+    assert(are_states_equal(state, state_expected));
 }
 
 
-void test_doubleround_1(void) {
+void test_doubleround_1() {
     uint32_t state[16] = {
         0x00000001, 0x00000000, 0x00000000, 0x00000000,
         0x00000000, 0x00000000, 0x00000000, 0x00000000,
@@ -175,11 +182,11 @@ void test_doubleround_1(void) {
 
     doubleround(state);
 
-    TEST_CHECK(are_states_equal(state, state_expected));
+    assert(are_states_equal(state, state_expected));
 }
 
 
-void test_doubleround_2(void) {
+void test_doubleround_2() {
     uint32_t state[16] = {
         0xde501066, 0x6f9eb8f7, 0xe4fbbd9b, 0x454e3f57,
         0xb75540d3, 0x43e93a4c, 0x3a6f2aa0, 0x726d6b36,
@@ -196,31 +203,31 @@ void test_doubleround_2(void) {
 
     doubleround(state);
 
-    TEST_CHECK(are_states_equal(state, state_expected));
+    assert(are_states_equal(state, state_expected));
 }
 
 
-void test_littleendian_1(void) {
+void test_littleendian_1() {
     uint32_t input = 0x564b1e09;
     uint32_t expected = 0x091e4b56;
 
     uint32_t result = littleendian(input);
 
-    TEST_CHECK(result == expected);
+    assert(result == expected);
 }
 
 
-void test_littleendian_2(void) {
+void test_littleendian_2() {
     uint32_t input = 0xfffffffa;
     uint32_t expected = 0xfaffffff;
 
     uint32_t result = littleendian(input);
 
-    TEST_CHECK(result == expected);
+    assert(result == expected);
 }
 
 
-void test_salsa20_hash(void) {
+void test_salsa20_hash() {
     uint32_t state_in[16] = {
         0xd39f0d73, 0x4c3752b7, 0x0375de25, 0xbfbbea88,
         0x31edb330, 0x016ab2db, 0xafc7a630, 0x5610b3cf,
@@ -239,11 +246,11 @@ void test_salsa20_hash(void) {
 
     salsa20_hash(state_in, result);
 
-    TEST_CHECK(are_states_equal(result, expected));
+    assert(are_states_equal(result, expected));
 }
 
 
-void test_salsa20_expansion(void) {
+void test_salsa20_expansion() {
     uint32_t key[8] = {
         0x01020304, 0x05060708, 0x090a0b0c, 0x0d0e0f10,
         0xc9cacbcc, 0xcdcecfd0, 0xd1d2d3d4, 0xd5d6d7d8
@@ -266,12 +273,12 @@ void test_salsa20_expansion(void) {
 
     salsa20_expansion(state, result, key, nonce);
 
-    TEST_CHECK(are_states_equal(result, expected));
+    assert(are_states_equal(result, expected));
 }
 
 // https://github.com/das-labor/legacy/blob/master/microcontroller-2/arm-crypto-lib/testvectors/salsa20-256.64-verified.test-vectors#L13
 // (von GitHub) Set 1, vector#  0:
-void test_salsa20_encryption_decryption_1(void) {
+void test_salsa20_encryption_decryption_1() {
     uint32_t key[8] = {
         0x80000000, 0x0, 0x0, 0x0,
         0x0, 0x0, 0x0, 0x0
@@ -297,21 +304,21 @@ void test_salsa20_encryption_decryption_1(void) {
 
     salsa20_encryption_decryption(key, nonce, plaintext, ciphertext, 128);
 
-    TEST_CHECK(are_messages_equal(ciphertext, expected_1, 16, 0));
-    TEST_CHECK(are_messages_equal(ciphertext, expected_2, 16, 64));
+    assert(are_messages_equal(ciphertext, expected_1, 16, 0));
+    assert(are_messages_equal(ciphertext, expected_2, 16, 64));
 
     // Decryption
     uint32_t result_decryption[128];
     uint32_t result_decryption_expected[128] = {0x0};
 
     salsa20_encryption_decryption(key, nonce, ciphertext, result_decryption, 128);
-    TEST_CHECK(are_messages_equal(result_decryption, result_decryption_expected, 128, 0));
+    assert(are_messages_equal(result_decryption, result_decryption_expected, 128, 0));
 }
 
 
 // https://github.com/das-labor/legacy/blob/master/microcontroller-2/arm-crypto-lib/testvectors/salsa20-256.64-verified.test-vectors#L2119
 // (von GitHub) Set 3, vector#234:
-void test_salsa20_encryption_decryption_2(void) {
+void test_salsa20_encryption_decryption_2() {
     uint32_t key[8] = {
         0xEAEBECED, 0xEEEFF0F1, 0xF2F3F4F5, 0xF6F7F8F9,
         0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
@@ -337,19 +344,19 @@ void test_salsa20_encryption_decryption_2(void) {
 
     // Encryption
     salsa20_encryption_decryption(key, nonce, plaintext, ciphertext, 128);
-    TEST_CHECK(are_messages_equal(ciphertext, expected_1, 16, 48));
-    TEST_CHECK(are_messages_equal(ciphertext, expected_2, 16, 112));
+    assert(are_messages_equal(ciphertext, expected_1, 16, 48));
+    assert(are_messages_equal(ciphertext, expected_2, 16, 112));
 
     // Decryption
     uint32_t result_decryption[128];
     uint32_t result_decryption_expected[128] = {0x0};
 
     salsa20_encryption_decryption(key, nonce, ciphertext, result_decryption, 128);
-    TEST_CHECK(are_messages_equal(result_decryption, result_decryption_expected, 128, 0));
+    assert(are_messages_equal(result_decryption, result_decryption_expected, 128, 0));
 }
 
 
-void test_plaintext_to_blocks_and_back_to_plaintext(void) {
+void test_plaintext_to_blocks_and_back_to_plaintext() {
     char *text = "Hallo Welt!Hallo Welt!Hallo Welt!Hallo Welt!Hallo Welt!";
     uint32_t key[8] = {
         0x80000000, 0x0, 0x0, 0x0,
@@ -365,26 +372,25 @@ void test_plaintext_to_blocks_and_back_to_plaintext(void) {
     unsigned char plaintext[number_of_chars];
     ciphertext_blocks_to_plaintext_as_str(plaintext, ciphertext_blocks, number_of_blocks, key, nonce);
 
-    TEST_CHECK(strcmp(text, (char *)plaintext) == 0);
+    assert(strcmp(text, (char *)plaintext) == 0);
 }
 
 
-TEST_LIST = {
-    {"shift_left_and_rotate", test_shift_left_and_rotate},
-    {"quarterround_1", test_quarterround_1},
-    {"quarterround_2", test_quarterround_2},
-    {"rowround_1", test_rowround_1},
-    {"rowround_2", test_rowround_2},
-    {"columnround_1", test_columnround_1},
-    {"columnround_2", test_columnround_2},
-    {"doubleround_1", test_doubleround_1},
-    {"doubleround_2", test_doubleround_2},
-    {"littleendian_1", test_littleendian_1},
-    {"littleendian_2", test_littleendian_2},
-    {"salsa20_hash", test_salsa20_hash},
-    {"salsa20_expansion", test_salsa20_expansion},
-    {"salsa20_encryption_decryption_1", test_salsa20_encryption_decryption_1},
-    {"salsa20_encryption_decryption_2", test_salsa20_encryption_decryption_2},
-    {"plaintext_to_blocks_and_back_to_plaintext", test_plaintext_to_blocks_and_back_to_plaintext},
-    {NULL, NULL}
-};
+void run_tests_salsa20() {
+    test_shift_left_and_rotate();
+    test_quarterround_1();
+    test_quarterround_2();
+    test_rowround_1();
+    test_rowround_2();
+    test_columnround_1();
+    test_columnround_2();
+    test_doubleround_1();
+    test_doubleround_2();
+    test_littleendian_1();
+    test_littleendian_2();
+    test_salsa20_hash();
+    test_salsa20_expansion();
+    test_salsa20_encryption_decryption_1();
+    test_salsa20_encryption_decryption_2();
+    test_plaintext_to_blocks_and_back_to_plaintext();
+}

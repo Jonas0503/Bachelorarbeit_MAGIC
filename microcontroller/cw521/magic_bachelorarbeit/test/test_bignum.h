@@ -1,0 +1,21 @@
+void test_init_bignum();
+void test_init_bignum_array();
+void test_init_bignum_to_zero();
+void test_init_bignum_to_one();
+void test_xor_bignum_different_numbers();
+void test_xor_same_numbers_and_overwrite_the_number();
+void test_is_bignum_not_zero_true();
+void test_is_bignum_not_zero_false();
+void test_shift_left_by_one_bignum_no_new_block();
+void test_shift_left_by_one_bignum_new_block_and_overwrite_variable();
+void test_shift_right_by_one();
+void test_shift_right_by_one_overwrite_variable();
+void test_is_bignum_odd_true();
+void test_is_bignum_odd_false();
+void test_is_bignum_inside_galois_field_true();
+void test_is_bignum_inside_galois_field_false();
+void test_copy_bignum();
+void test_are_bignums_equal_true();
+void test_are_bignums_equal_false();
+
+void run_tests_bignum();

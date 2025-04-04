@@ -1,20 +1,24 @@
-#include "acutest.h"
+#ifndef LOCAL
+#include "magic_bachelorarbeit/src/galois.h"
+#else
 #include "galois.h"
+#endif
+#include "assert.h"
 
 
-void test_irreducible_polynom_128(void) {
+void test_irreducible_polynom_128() {
     // With "extern" I can use the const IRREDUCIBLE_POLYNOMIAL_128 in this file
     extern const bignum IRREDUCIBLE_POLYNOMIAL_128;
     bignum polynom = IRREDUCIBLE_POLYNOMIAL_128;
 
-    TEST_CHECK(polynom.chunks[3] == 0x00000087);
-    TEST_CHECK(polynom.chunks[2] == 0x00000000);
-    TEST_CHECK(polynom.chunks[1] == 0x00000000);
-    TEST_CHECK(polynom.chunks[0] == 0x00000000);
+    assert(polynom.chunks[3] == 0x00000087);
+    assert(polynom.chunks[2] == 0x00000000);
+    assert(polynom.chunks[1] == 0x00000000);
+    assert(polynom.chunks[0] == 0x00000000);
 }
 
 
-void test_add_sub_two_different_numbers(void) {
+void test_add_sub_two_different_numbers() {
     // 112796474524809765425598623508679786908
     uint32_t ahex[] = {0x54dbcf8f, 0xfd761f7c, 0x2c239ae3, 0x2732819c};
     // 64355660103880947803722881228455682368
@@ -28,12 +32,12 @@ void test_add_sub_two_different_numbers(void) {
     bignum result_add = add(a, b);
 
     for (int i = 0; i < 4; i++) {
-        TEST_CHECK(result_add.chunks[i] == expected[i]);
+        assert(result_add.chunks[i] == expected[i]);
     }
 }
 
 
-void test_add_same_numbers_and_overwrite_the_number(void) {
+void test_add_same_numbers_and_overwrite_the_number() {
     // 112796474524809765425598623508679786908
     uint32_t ahex[] = {0x54dbcf8f, 0xfd761f7c, 0x2c239ae3, 0x2732819c};
 
@@ -42,12 +46,12 @@ void test_add_same_numbers_and_overwrite_the_number(void) {
     a = add(a, a);
 
     for (int i = 0; i < 4; i++) {
-        TEST_CHECK(a.chunks[i] == 0x0);
+        assert(a.chunks[i] == 0x0);
     }
 }
 
 
-void test_mult_two_different_numbers(void) {
+void test_mult_two_different_numbers() {
     // 112796474524809765425598623508679786908
     uint32_t ahex[] = {0x54dbcf8f, 0xfd761f7c, 0x2c239ae3, 0x2732819c};
     // 64355660103880947803722881228455682368
@@ -60,12 +64,12 @@ void test_mult_two_different_numbers(void) {
     bignum result = mult(a, b);
 
     for (int i = 0; i < 4; i++) {
-        TEST_CHECK(result.chunks[i] == expected[i]);
+        assert(result.chunks[i] == expected[i]);
     }
 }
 
 
-void test_mult_same_numbers_and_overwrite_the_number(void) {
+void test_mult_same_numbers_and_overwrite_the_number() {
     // 112796474524809765425598623508679786908
     uint32_t ahex[] = {0x54dbcf8f, 0xfd761f7c, 0x2c239ae3, 0x2732819c};
     // 333683291628008625591354273616078342104
@@ -76,12 +80,12 @@ void test_mult_same_numbers_and_overwrite_the_number(void) {
     a = mult(a, a);
 
     for (int i = 0; i < 4; i++) {
-        TEST_CHECK(a.chunks[i] == expected[i]);
+        assert(a.chunks[i] == expected[i]);
     }
 }
 
 
-void test_mult_inverse(void) {
+void test_mult_inverse() {
     // 112796474524809765425598623508679786908
     uint32_t ahex[] = {0x54dbcf8f, 0xfd761f7c, 0x2c239ae3, 0x2732819c};
     // 41136419426691436761356546764598741865
@@ -91,12 +95,12 @@ void test_mult_inverse(void) {
     bignum result = mult_inverse(a);
 
     for (int i = 0; i < 4; i++) {
-        TEST_CHECK(result.chunks[i] == expected[i]);
+        assert(result.chunks[i] == expected[i]);
     }
 }
 
 
-void test_mult_inverse_with_overwriting_the_number(void) {
+void test_mult_inverse_with_overwriting_the_number() {
     // 112796474524809765425598623508679786908
     uint32_t ahex[] = {0x54dbcf8f, 0xfd761f7c, 0x2c239ae3, 0x2732819c};
     // 41136419426691436761356546764598741865
@@ -107,18 +111,16 @@ void test_mult_inverse_with_overwriting_the_number(void) {
     a = mult_inverse(a);
 
     for (int i = 0; i < 4; i++) {
-        TEST_CHECK(a.chunks[i] == expected[i]);
+        assert(a.chunks[i] == expected[i]);
     }
 }
 
-
-TEST_LIST = {
-    {"irreducible_polynom_128", test_irreducible_polynom_128},
-    {"add_sub_two_different_numbers", test_add_sub_two_different_numbers},
-    {"test_add_same_numbers_and_overwrite_the_number", test_add_same_numbers_and_overwrite_the_number},
-    {"mult_two_different_numbers", test_mult_two_different_numbers},
-    {"mult_same_numbers_and_overwrite_the_number", test_mult_same_numbers_and_overwrite_the_number},
-    {"mult_inverse", test_mult_inverse},
-    {"mult_inverse_with_overwriting_the_number", test_mult_inverse_with_overwriting_the_number},
-    {NULL, NULL}
-};
+void run_tests_galois() {
+    test_irreducible_polynom_128();
+    test_add_sub_two_different_numbers();
+    test_add_same_numbers_and_overwrite_the_number();
+    test_mult_two_different_numbers();
+    test_mult_same_numbers_and_overwrite_the_number();
+    test_mult_inverse();
+    test_mult_inverse_with_overwriting_the_number();
+}

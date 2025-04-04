@@ -1,11 +1,15 @@
-#include "acutest.h"
+#ifndef LOCAL
+#include "magic_bachelorarbeit/src/util_functions.h"
+#include "magic_bachelorarbeit/src/galois.h"
+#else
 #include "util_functions.h"
 #include "galois.h"
-
+#endif
 #include "string.h"
+#include "assert.h"
 
 
-void test_convert_64_bit_into_two_32_bit_a_is_less_than_32_bits(void) {
+void test_convert_64_bit_into_two_32_bit_a_is_less_than_32_bits() {
     uint64_t a = 0xff53cda4;
     uint32_t b, c, expected_b, expected_c;
     expected_b = 0x0;
@@ -13,12 +17,12 @@ void test_convert_64_bit_into_two_32_bit_a_is_less_than_32_bits(void) {
 
     convert_64_bit_into_two_32_bit(a, &b, &c);
 
-    TEST_CHECK(expected_b == b);
-    TEST_CHECK(expected_c == c);
+    assert(expected_b == b);
+    assert(expected_c == c);
 }
 
 
-void test_convert_64_bit_into_two_32_bit_a_is_more_than_32_bits(void) {
+void test_convert_64_bit_into_two_32_bit_a_is_more_than_32_bits() {
     uint64_t a = 0xff53cda44357;
     uint32_t b, c, expected_b, expected_c;
     expected_b = 0xff53;
@@ -26,12 +30,12 @@ void test_convert_64_bit_into_two_32_bit_a_is_more_than_32_bits(void) {
 
     convert_64_bit_into_two_32_bit(a, &b, &c);
 
-    TEST_CHECK(expected_b == b);
-    TEST_CHECK(expected_c == c);
+    assert(expected_b == b);
+    assert(expected_c == c);
 }
 
 
-void test_convert_two_32_bit_into_64_bit(void) {
+void test_convert_two_32_bit_into_64_bit() {
     uint32_t b, c;
     b = 0xff53;
     c = 0xcda44357;
@@ -39,27 +43,27 @@ void test_convert_two_32_bit_into_64_bit(void) {
     uint64_t res_expected = 0xff53cda44357;
     uint64_t res = convert_two_32_bit_into_64_bit(b, c);
 
-    TEST_CHECK(res_expected == res);
+    assert(res_expected == res);
 }
 
 
-void test_calculate_number_of_bignums_from_string(void) {
+void test_calculate_number_of_bignums_from_string() {
     char *text = "Hallo Welt! 123 - ABC?";
     const int result = calculate_number_of_bignums_from_string(text);
 
-    TEST_CHECK(result == 2);
+    assert(result == 2);
 }
 
 
-void test_calculate_number_of_bignums_from_empty_string(void) {
+void test_calculate_number_of_bignums_from_empty_string() {
     char *text = "";
     const int result = calculate_number_of_bignums_from_string(text);
 
-    TEST_CHECK(result == 1);
+    assert(result == 1);
 }
 
 
-void test_string_to_bignum(void) {
+void test_string_to_bignum() {
     char *text = "Hallo Welt! 123 - ABC?";
     uint32_t expected1[] = {0x57656C74, 0x21203132, 0x33202D20, 0x4142433F};
     uint32_t expected0[] = {0x0, 0x0, 0x4861, 0x6C6C6F20};
@@ -69,23 +73,23 @@ void test_string_to_bignum(void) {
 
     for (int k = 0; k < 2; k++) {
         for (int i = 0; i < 4; i++) {
-            if (k == 0) TEST_CHECK(result[k].chunks[i] == expected0[i]);
-            if (k == 1) TEST_CHECK(result[k].chunks[i] == expected1[i]);
+            if (k == 0) assert(result[k].chunks[i] == expected0[i]);
+            if (k == 1) assert(result[k].chunks[i] == expected1[i]);
         }
     }
 }
 
 
-void test_string_to_bignum_with_empty_string(void) {
+void test_string_to_bignum_with_empty_string() {
     char *text = "";
     bignum result[1];
     string_to_bignum_array(result, text);
 
-    TEST_CHECK(!is_bignum_not_zero(result[0]));
+    assert(!is_bignum_not_zero(result[0]));
 }
 
 
-void test_calculate_number_of_chars_from_bignum_array(void) {
+void test_calculate_number_of_chars_from_bignum_array() {
     uint32_t hex1[] = {0x57656C74, 0x21203132, 0x33202D20, 0x4142433F};
     uint32_t hex0[] = {0x0, 0x0, 0x4861, 0x6C6C6F20};
     bignum n0 = init_bignum(hex0);
@@ -94,11 +98,11 @@ void test_calculate_number_of_chars_from_bignum_array(void) {
 
     const int result = calculate_number_of_chars_from_bignum_array(array, 2);
 
-    TEST_CHECK(result == 23);
+    assert(result == 23);
 }
 
 
-void test_bignum_to_string(void) {
+void test_bignum_to_string() {
     uint32_t hex1[] = {0x57656C74, 0x21203132, 0x33202D20, 0x4142433F};
     uint32_t hex0[] = {0x0, 0x0, 0x4861, 0x6C6C6F20};
     bignum n0 = init_bignum(hex0);
@@ -110,11 +114,11 @@ void test_bignum_to_string(void) {
 
     bignum_array_to_string(result, array, 2);
 
-    TEST_CHECK(strcmp((char *)result, expected) == 0);
+    assert(strcmp((char *)result, expected) == 0);
 }
 
 
-void test_ciphertext_bignum_blocks_to_one_bignum(void) {
+void test_ciphertext_bignum_blocks_to_one_bignum() {
     uint32_t a_hex[] = {0x213ad298, 0x656fdb21, 0x656fdb21, 0x656fdb21};
     uint32_t b_hex[] = {0x3453acca, 0x3453acca, 0x8797efa0, 0x3453acca};
     bignum a = init_bignum(a_hex);
@@ -130,22 +134,22 @@ void test_ciphertext_bignum_blocks_to_one_bignum(void) {
     bignum_blocks_to_one_array(result, blocks, 2);
 
     for (int i = 0; i < 8; i++) {
-        TEST_CHECK(result[i] == expected[i]);
+        assert(result[i] == expected[i]);
     }
 }
 
 
-void test_hamming_weight(void) {
+void test_hamming_weight() {
     uint32_t a_hex[] = {0x0, 0x0, 0x0, 0x123de};
     bignum a = init_bignum(a_hex);
 
     int result = hamming_weight(a);
 
-    TEST_CHECK(result == 10);
+    assert(result == 10);
 }
 
 
-void test_polynom_to_bignum(void) {
+void test_polynom_to_bignum() {
     int indices[] = {127, 100, 42, 5, 0};
     int size = 5;
     uint32_t expected[] = {0x80000010, 0x00000000, 0x00000400, 0x00000021};
@@ -153,13 +157,13 @@ void test_polynom_to_bignum(void) {
     bignum n = polynom_to_bignum(indices, size);
 
     for (int i = 0; i < 4; i++) {
-        TEST_CHECK(n.chunks[i] == expected[i]);
+        assert(n.chunks[i] == expected[i]);
     }
 }
 
 
-void test_check_hash_key_false(void) {
-    int threshold = 2;
+void assert_hash_key_false() {
+    int threshold = 1;
     int number_of_blocks = 2;
 
     bignum hash_key = init_bignum_to_zero();
@@ -170,12 +174,12 @@ void test_check_hash_key_false(void) {
 
     bool result = check_hash_key(threshold, number_of_blocks, hash_key, hash_key_copy, hash_key_inverse, hash_key_inverse_copy);
 
-    TEST_CHECK(!result);
+    assert(!result);
 }
 
 
-void test_check_hash_key_true(void) {
-    int threshold = 2;
+void assert_hash_key_true() {
+    int threshold = 1;
     int number_of_blocks = 2;
 
     uint32_t hex[] = {0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff};
@@ -187,11 +191,11 @@ void test_check_hash_key_true(void) {
 
     bool result = check_hash_key(threshold, number_of_blocks, hash_key, hash_key_copy, hash_key_inverse, hash_key_inverse_copy);
 
-    TEST_CHECK(result);
+    assert(result);
 }
 
 
-void test_one_bit_modification_last_block_one_to_zero(void) {
+void test_one_bit_modification_last_block_one_to_zero() {
     uint32_t hex[] = {0x12300000, 0x00000000, 0x00000000, 0x00000042};
     bignum n = init_bignum(hex);
     uint32_t expected[] = {0x12300000, 0x00000000, 0x00000000, 0x00000040};
@@ -199,12 +203,12 @@ void test_one_bit_modification_last_block_one_to_zero(void) {
     bignum result = one_bit_modification(n, 1);
 
     for (int i = 0; i < 4; i++) {
-        TEST_CHECK(result.chunks[i] == expected[i]);
+        assert(result.chunks[i] == expected[i]);
     }
 }
 
 
-void test_one_bit_modification_first_block_zero_to_one(void) {
+void test_one_bit_modification_first_block_zero_to_one() {
     uint32_t hex[] = {0x12300000, 0x00000000, 0x00000000, 0x00000042};
     bignum n = init_bignum(hex);
     uint32_t expected[] = {0x52300000, 0x00000000, 0x00000000, 0x00000042};
@@ -212,51 +216,49 @@ void test_one_bit_modification_first_block_zero_to_one(void) {
     bignum result = one_bit_modification(n, 126);
 
     for (int i = 0; i < 4; i++) {
-        TEST_CHECK(result.chunks[i] == expected[i]);
+        assert(result.chunks[i] == expected[i]);
     }
 }
 
 
-void test_average(void) {
+void test_average() {
     uint32_t values[10] = {3, 56, 324, 213, 2, 87, 123, 7, 786, 1};
     float expected = 160.2;
 
     float res = average(values, 10);
 
-    TEST_CHECK(expected == res);
+    assert(expected == res);
 }
 
 
-void test_standard_deviation(void) {
+void test_standard_deviation() {
     uint32_t values[10] = {3, 56, 324, 213, 2, 87, 123, 7, 786, 1};
     float expected = 231.818375;
     float avg = average(values, 10);
 
     float res = standard_deviation(values, 10, avg);
-    printf("%f\n", res);
 
-    TEST_CHECK(expected == res);
+    assert(expected == res);
 }
 
 
-TEST_LIST = {
-    {"convert_64_bit_into_two_32_bit_a_is_less_than_32_bits", test_convert_64_bit_into_two_32_bit_a_is_less_than_32_bits},
-    {"convert_64_bit_into_two_32_bit_a_is_more_than_32_bits", test_convert_64_bit_into_two_32_bit_a_is_more_than_32_bits},
-    {"convert_two_32_bit_into_64_bit", test_convert_two_32_bit_into_64_bit},
-    {"calculate_number_of_bignums_from_string", test_calculate_number_of_bignums_from_string},
-    {"calculate_number_of_bignums_from_empty_string", test_calculate_number_of_bignums_from_empty_string},
-    {"string_to_bignum_array", test_string_to_bignum},
-    {"string_to_bignum_with_empty_string", test_string_to_bignum_with_empty_string},
-    {"calculate_number_of_chars_from_bignum_array", test_calculate_number_of_chars_from_bignum_array},
-    {"bignum_array_to_string", test_bignum_to_string},
-    {"ciphertext_bignum_blocks_to_one_bignum", test_ciphertext_bignum_blocks_to_one_bignum},
-    {"hamming_weight", test_hamming_weight},
-    {"polynom_to_bignum", test_polynom_to_bignum},
-    {"check_hash_key_false", test_check_hash_key_false},
-    {"check_hash_key_true", test_check_hash_key_true},
-    {"one_bit_modification_last_block_one_to_zero", test_one_bit_modification_last_block_one_to_zero},
-    {"one_bit_modification_first_block_zero_to_one", test_one_bit_modification_first_block_zero_to_one},
-    {"average", test_average},
-    {"standard_deviation", test_standard_deviation},
-    {NULL, NULL}
-};
+void run_tests_util_functions() {
+    test_convert_64_bit_into_two_32_bit_a_is_less_than_32_bits();
+    test_convert_64_bit_into_two_32_bit_a_is_more_than_32_bits();
+    test_convert_two_32_bit_into_64_bit();
+    test_calculate_number_of_bignums_from_string();
+    test_calculate_number_of_bignums_from_empty_string();
+    test_string_to_bignum();
+    test_string_to_bignum_with_empty_string();
+    test_calculate_number_of_chars_from_bignum_array();
+    test_bignum_to_string();
+    test_ciphertext_bignum_blocks_to_one_bignum();
+    test_hamming_weight();
+    test_polynom_to_bignum();
+    assert_hash_key_false();
+    assert_hash_key_true();
+    test_one_bit_modification_last_block_one_to_zero();
+    test_one_bit_modification_first_block_zero_to_one();
+    test_average();
+    test_standard_deviation();
+}

@@ -9,6 +9,7 @@
 
 /// @brief The return type for the verify function.
 typedef struct {
+    bool error;
     bool correction_successful;
     bignum *ciphertext_blocks;
     bignum tag;

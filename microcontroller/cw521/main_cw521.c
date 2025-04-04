@@ -43,8 +43,18 @@
 #include "magic_bachelorarbeit/src/hamming_code.h"
 #include "magic_bachelorarbeit/src/examples.h"
 
+#include "magic_bachelorarbeit/test/test_bignum.h"
+#include "magic_bachelorarbeit/test/test_galois.h"
+#include "magic_bachelorarbeit/test/test_hamming_code.h"
+#include "magic_bachelorarbeit/test/test_magic_mode.h"
+#include "magic_bachelorarbeit/test/test_salsa20.h"
+#include "magic_bachelorarbeit/test/test_util_functions.h"
+
 #include "stdint.h"
 #include "stdlib.h"
+#include "string.h"
+#include "stdbool.h"
+#include "assert.h"
 #include "string.h"
 
 
@@ -1004,7 +1014,16 @@ int main(void)
   // hc_verify_changing_number_of_affected_blocks(1, 10, 1, 30, 10, true, false);
   // hc_verify_changing_faulty_block(0, 9, 1, 30, 1, 10, false, true, false);
 
-  complete_changing_blocks(1, 10, 1, 30, 0, false, false);
+  // complete_changing_blocks(1, 10, 1, 30, 0, false, false);
+
+  // ------------ all tests start ------------------------
+  // run_tests_bignum();
+  // run_tests_galois();
+  // run_tests_hamming_code();
+  // run_tests_magic_mode();
+  // run_tests_salsa20();
+  // run_tests_util_functions();
+  // ------------ all tests end --------------------------
 
   // --------------------------------------- my code end -------------------------------------------------------------------------------------------
 

@@ -1,0 +1,20 @@
+void test_convert_64_bit_into_two_32_bit_a_is_less_than_32_bits();
+void test_convert_64_bit_into_two_32_bit_a_is_more_than_32_bits();
+void test_convert_two_32_bit_into_64_bit();
+void test_calculate_number_of_bignums_from_string();
+void test_calculate_number_of_bignums_from_empty_string();
+void test_string_to_bignum();
+void test_string_to_bignum_with_empty_string();
+void test_calculate_number_of_chars_from_bignum_array();
+void test_bignum_to_string();
+void test_ciphertext_bignum_blocks_to_one_bignum();
+void test_hamming_weight();
+void test_polynom_to_bignum();
+void assert_hash_key_false();
+void assert_hash_key_true();
+void test_one_bit_modification_last_block_one_to_zero();
+void test_one_bit_modification_first_block_zero_to_one();
+void test_average();
+void test_standard_deviation();
+
+void run_tests_util_functions();

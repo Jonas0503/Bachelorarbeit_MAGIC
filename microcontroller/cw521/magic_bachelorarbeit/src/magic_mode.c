@@ -122,13 +122,10 @@ verify_result verify(bignum authorized_data, bignum ciphertext_blocks[], int num
 
     // no block is corrupted
     if (are_bignums_equal(new_tag, tag)) {
-        bignum bignum_array[1];
-        bignum zero = init_bignum_to_zero();
-        bignum_array[0] = zero;
-
+        result.error = false;
         result.correction_successful =  true;
-        result.ciphertext_blocks = bignum_array;
-        result.tag = init_bignum_to_zero();
+        result.ciphertext_blocks = ciphertext_blocks;
+        result.tag = tag;
 
         return result;
     }
@@ -152,6 +149,7 @@ verify_result verify(bignum authorized_data, bignum ciphertext_blocks[], int num
         if (error_index != -1) {
             ciphertext_blocks[error_index] = add(ciphertext_blocks[error_index], syndrome_values[error_index]);
 
+            result.error = true;
             result.correction_successful = true;
             result.ciphertext_blocks = ciphertext_blocks;
             result.tag = tag;
@@ -161,6 +159,7 @@ verify_result verify(bignum authorized_data, bignum ciphertext_blocks[], int num
         else {
             // correct error in the tag
             if (can_correct_parity(tag, new_tag, threshold)) {
+                result.error = true;
                 result.correction_successful = true;
                 result.ciphertext_blocks = ciphertext_blocks;
                 result.tag = new_tag;
@@ -169,13 +168,10 @@ verify_result verify(bignum authorized_data, bignum ciphertext_blocks[], int num
             }
             // uncorrectable error (more than one ciphertext is corrupted)
             else {
-                bignum bignum_array[1];
-                bignum zero = init_bignum_to_zero();
-                bignum_array[0] = zero;
-
+                result.error = true;
                 result.correction_successful = false;
-                result.ciphertext_blocks = bignum_array;
-                result.tag = init_bignum_to_zero();
+                result.ciphertext_blocks = ciphertext_blocks;
+                result.tag = tag;
 
                 return result;
             }

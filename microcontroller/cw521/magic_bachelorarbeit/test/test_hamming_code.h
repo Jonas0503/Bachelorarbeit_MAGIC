@@ -1,0 +1,23 @@
+void test_calculate_number_of_ciphertext_blocks_with_parity_per_block_from_string();
+void test_calculate_number_of_ciphertext_blocks_with_parity_per_block_from_string_two_blocks();
+void test_calculate_number_of_ciphertext_blocks_with_parity_all_blocks_from_string_1();
+void test_calculate_number_of_ciphertext_blocks_with_parity_all_blocks_from_string_2();
+void test_bignums_to_bit_arrays_with_space_for_parity_bits_per_block();
+void test_bignums_to_bit_arrays_with_space_for_parity_bits_all_blocks();
+void test_set_parity_bits_per_block();
+void test_set_parity_bits_all_blocks();
+void test_bit_arrays_to_bignum_array();
+void test_add_parity_all_blocks_to_bignum_array();
+void test_bignum_array_to_bit_arrays();
+void test_verify_hamming_code_per_block_two_bit_error_in_one_block();
+void test_verify_hamming_code_per_block_one_bit_error_in_one_block();
+void test_verify_hamming_code_per_block_no_error();
+void test_verify_hamming_code_per_block_two_bit_error_in_two_blocks();
+void test_verify_hamming_code_per_block_one_bit_error_in_two_blocks();
+void test_verify_hamming_code_all_blocks_no_error();
+void test_verify_hamming_code_all_blocks_one_bit_error();
+void test_verify_hamming_code_all_blocks_two_bit_error();
+void test_remove_parity_per_block_from_encrypted_ciphertext_blocks();
+void test_remove_parity_all_blocks_from_encrypted_ciphertext_blocks();
+
+void run_tests_hamming_code();
