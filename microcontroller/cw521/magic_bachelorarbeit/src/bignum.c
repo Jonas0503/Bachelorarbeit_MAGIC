@@ -11,7 +11,7 @@
 bignum init_bignum(uint32_t hex[4]) {
     bignum n;
 
-    // most significant bytes (MSB) are in chunks[0] and least significant bytes (LSB) are in chunks[size-1]
+    // most significant bytes (MSB) are in chunks[0] and least significant bytes (LSB) are in chunks[3]
     for (int i = 0; i < BLOCKSIZE; i++) {
         n.chunks[i] = hex[i];
     }

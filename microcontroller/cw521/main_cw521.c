@@ -1009,12 +1009,13 @@ int main(void)
   // verify_changing_threshold(1, 5, 1, 5, 1, false, false, false);
   // verify_changing_faulty_block(0, 2, 1, 5, 3, 1, false);
 
-  // hc_add_parity(50, 250, 25, 15, false);
+  hc_add_parity(50, 250, 25, 15, true);
   // hc_verify_changing_blocks(1, 10, 1, 30, 1, false, false, true, false);
   // hc_verify_changing_number_of_affected_blocks(1, 10, 1, 30, 10, true, false);
   // hc_verify_changing_faulty_block(0, 9, 1, 30, 1, 10, false, true, false);
 
   // complete_changing_blocks(1, 10, 1, 30, 0, false, false);
+<<<<<<< Updated upstream
 
   // ------------ all tests start ------------------------
   // run_tests_bignum();
@@ -1024,6 +1025,8 @@ int main(void)
   // run_tests_salsa20();
   // run_tests_util_functions();
   // ------------ all tests end --------------------------
+=======
+>>>>>>> Stashed changes
 
   // --------------------------------------- my code end -------------------------------------------------------------------------------------------
 
