@@ -170,7 +170,7 @@ void plaintext_to_ciphertext_blocks(bignum *ciphertext_blocks, char *plaintext, 
 
     uint32_t one_block[4];
 
-    // ciphertext array to an array of bignums which represents the several blocks for MAGIC
+    // ciphertext array to an array of bignums which represents several blocks
     for (int i = 0, k = 0; i < number_of_chunks; i++, k++) {
         one_block[i%4] = ciphertext_hex[i];
 
