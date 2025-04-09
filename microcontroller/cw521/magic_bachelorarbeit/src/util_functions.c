@@ -216,7 +216,7 @@ bool check_hash_key(int threshold, int number_of_blocks, bignum hash_key, bignum
             // set value in the combination array
             combination[index_combinations] = index_bit_indices;
 
-            // if combination array is full do the calculations
+            // if combination array is complete do the calculations
             if (index_combinations == threshold-1) {
                 bignum error_vector = polynom_to_bignum(combination, threshold);
 
