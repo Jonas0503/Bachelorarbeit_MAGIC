@@ -1,0 +1,347 @@
+Starting program: /home/jonas/Studium/Bachelorarbeit/MAGIC_Bachelorarbeit/microcontroller/cw521/cw521.elf 
+Start: 10; End: 100; Interval: 10; Measurements per block: 30
+
+Number of blocks: 10
+Number of cycles: 90494
+Number of cycles: 90318
+Number of cycles: 90315
+Number of cycles: 90494
+Number of cycles: 90495
+Number of cycles: 90503
+Number of cycles: 90491
+Number of cycles: 90465
+Number of cycles: 90265
+Number of cycles: 90317
+Number of cycles: 90330
+Number of cycles: 90312
+Number of cycles: 90492
+Number of cycles: 90482
+Number of cycles: 90319
+Number of cycles: 90321
+Number of cycles: 90322
+Number of cycles: 90311
+Number of cycles: 90488
+Number of cycles: 90496
+Number of cycles: 90497
+Number of cycles: 90498
+Number of cycles: 90489
+Number of cycles: 90323
+Number of cycles: 90269
+Number of cycles: 90313
+Number of cycles: 90505
+Number of cycles: 90504
+Number of cycles: 90342
+Number of cycles: 90239
+Average: 90400.296875
+Standard deviation: 94.725983
+
+Number of blocks: 20
+Number of cycles: 180418
+Number of cycles: 180468
+Number of cycles: 180466
+Number of cycles: 180482
+Number of cycles: 180467
+Number of cycles: 180442
+Number of cycles: 180806
+Number of cycles: 180478
+Number of cycles: 180464
+Number of cycles: 180407
+Number of cycles: 180416
+Number of cycles: 180409
+Number of cycles: 180474
+Number of cycles: 180466
+Number of cycles: 180449
+Number of cycles: 180406
+Number of cycles: 180462
+Number of cycles: 180387
+Number of cycles: 180469
+Number of cycles: 180427
+Number of cycles: 180444
+Number of cycles: 180473
+Number of cycles: 180471
+Number of cycles: 180449
+Number of cycles: 180470
+Number of cycles: 180454
+Number of cycles: 180461
+Number of cycles: 180469
+Number of cycles: 180402
+Number of cycles: 180491
+Average: 180461.562500
+Standard deviation: 69.529678
+
+Number of blocks: 30
+Number of cycles: 265581
+Number of cycles: 265579
+Number of cycles: 265534
+Number of cycles: 265765
+Number of cycles: 265562
+Number of cycles: 265580
+Number of cycles: 265591
+Number of cycles: 265549
+Number of cycles: 265769
+Number of cycles: 265580
+Number of cycles: 265584
+Number of cycles: 265589
+Number of cycles: 265585
+Number of cycles: 265550
+Number of cycles: 265612
+Number of cycles: 265595
+Number of cycles: 265762
+Number of cycles: 265610
+Number of cycles: 265510
+Number of cycles: 265600
+Number of cycles: 265580
+Number of cycles: 265556
+Number of cycles: 265512
+Number of cycles: 265500
+Number of cycles: 265597
+Number of cycles: 265558
+Number of cycles: 265653
+Number of cycles: 265592
+Number of cycles: 265771
+Number of cycles: 265535
+Average: 265598.031250
+Standard deviation: 73.407753
+
+Number of blocks: 40
+Number of cycles: 355739
+Number of cycles: 355702
+Number of cycles: 355566
+Number of cycles: 355668
+Number of cycles: 355571
+Number of cycles: 355557
+Number of cycles: 355634
+Number of cycles: 355916
+Number of cycles: 355727
+Number of cycles: 355672
+Number of cycles: 355724
+Number of cycles: 355616
+Number of cycles: 355636
+Number of cycles: 355505
+Number of cycles: 355510
+Number of cycles: 355747
+Number of cycles: 355759
+Number of cycles: 355696
+Number of cycles: 355745
+Number of cycles: 355562
+Number of cycles: 355739
+Number of cycles: 355679
+Number of cycles: 355756
+Number of cycles: 355501
+Number of cycles: 355733
+Number of cycles: 355504
+Number of cycles: 355561
+Number of cycles: 355508
+Number of cycles: 355514
+Number of cycles: 355559
+Average: 355643.531250
+Standard deviation: 103.595276
+
+Number of blocks: 50
+Number of cycles: 445649
+Number of cycles: 445830
+Number of cycles: 445682
+Number of cycles: 445656
+Number of cycles: 445670
+Number of cycles: 445702
+Number of cycles: 445871
+Number of cycles: 445658
+Number of cycles: 445647
+Number of cycles: 445676
+Number of cycles: 445647
+Number of cycles: 445691
+Number of cycles: 445716
+Number of cycles: 445640
+Number of cycles: 445642
+Number of cycles: 445660
+Number of cycles: 445643
+Number of cycles: 445689
+Number of cycles: 445659
+Number of cycles: 445670
+Number of cycles: 445558
+Number of cycles: 445575
+Number of cycles: 445718
+Number of cycles: 445623
+Number of cycles: 445541
+Number of cycles: 445674
+Number of cycles: 445902
+Number of cycles: 445722
+Number of cycles: 445681
+Number of cycles: 445697
+Average: 445679.625000
+Standard deviation: 75.703140
+
+Number of blocks: 60
+Number of cycles: 530796
+Number of cycles: 530803
+Number of cycles: 530677
+Number of cycles: 530793
+Number of cycles: 530958
+Number of cycles: 530854
+Number of cycles: 530823
+Number of cycles: 530842
+Number of cycles: 530860
+Number of cycles: 530789
+Number of cycles: 530818
+Number of cycles: 530658
+Number of cycles: 530976
+Number of cycles: 530756
+Number of cycles: 530750
+Number of cycles: 530815
+Number of cycles: 531008
+Number of cycles: 530801
+Number of cycles: 530855
+Number of cycles: 530777
+Number of cycles: 530811
+Number of cycles: 530972
+Number of cycles: 530821
+Number of cycles: 530828
+Number of cycles: 530862
+Number of cycles: 530777
+Number of cycles: 530960
+Number of cycles: 530997
+Number of cycles: 530792
+Number of cycles: 531035
+Average: 530842.125000
+Standard deviation: 91.975624
+
+Number of blocks: 70
+Number of cycles: 620968
+Number of cycles: 620840
+Number of cycles: 620952
+Number of cycles: 620770
+Number of cycles: 621000
+Number of cycles: 620945
+Number of cycles: 620998
+Number of cycles: 620918
+Number of cycles: 620985
+Number of cycles: 620743
+Number of cycles: 620988
+Number of cycles: 620871
+Number of cycles: 620892
+Number of cycles: 620958
+Number of cycles: 620675
+Number of cycles: 620874
+Number of cycles: 620991
+Number of cycles: 620925
+Number of cycles: 621005
+Number of cycles: 620936
+Number of cycles: 620990
+Number of cycles: 620897
+Number of cycles: 620925
+Number of cycles: 620986
+Number of cycles: 620775
+Number of cycles: 620888
+Number of cycles: 620715
+Number of cycles: 620996
+Number of cycles: 620969
+Number of cycles: 620942
+Average: 620910.625000
+Standard deviation: 90.316383
+
+Number of blocks: 80
+Number of cycles: 710911
+Number of cycles: 710808
+Number of cycles: 711074
+Number of cycles: 711068
+Number of cycles: 710887
+Number of cycles: 710916
+Number of cycles: 710906
+Number of cycles: 710889
+Number of cycles: 711122
+Number of cycles: 710959
+Number of cycles: 710886
+Number of cycles: 711142
+Number of cycles: 710906
+Number of cycles: 710981
+Number of cycles: 710967
+Number of cycles: 710917
+Number of cycles: 710893
+Number of cycles: 710925
+Number of cycles: 710927
+Number of cycles: 710978
+Number of cycles: 711052
+Number of cycles: 710923
+Number of cycles: 710935
+Number of cycles: 710922
+Number of cycles: 711129
+Number of cycles: 710963
+Number of cycles: 710912
+Number of cycles: 710997
+Number of cycles: 710982
+Number of cycles: 710829
+Average: 710956.937500
+Standard deviation: 82.484245
+
+Number of blocks: 90
+Number of cycles: 796192
+Number of cycles: 795974
+Number of cycles: 795999
+Number of cycles: 796069
+Number of cycles: 796044
+Number of cycles: 796031
+Number of cycles: 795933
+Number of cycles: 796071
+Number of cycles: 796175
+Number of cycles: 796099
+Number of cycles: 796025
+Number of cycles: 795933
+Number of cycles: 796068
+Number of cycles: 795959
+Number of cycles: 795942
+Number of cycles: 796284
+Number of cycles: 796125
+Number of cycles: 796026
+Number of cycles: 796544
+Number of cycles: 796166
+Number of cycles: 796225
+Number of cycles: 796249
+Number of cycles: 796147
+Number of cycles: 796040
+Number of cycles: 795999
+Number of cycles: 795949
+Number of cycles: 796046
+Number of cycles: 796291
+Number of cycles: 796034
+Number of cycles: 796160
+Average: 796093.250000
+Standard deviation: 131.811783
+
+Number of blocks: 100
+Number of cycles: 880248
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Number of cycles: 872207
+Average: 872475.312500
+Standard deviation: 1443.403809
+
+
+Program received signal SIGINT, Interrupt.
+main () at main_cw521.c:1103
+1103	  while (true) {

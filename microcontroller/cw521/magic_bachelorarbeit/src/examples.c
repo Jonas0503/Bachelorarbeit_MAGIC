@@ -50,7 +50,10 @@ void hamming_code_per_block_complete(char *text) {
     add_parity_per_block_to_bignum_array(blocks_parity, ciphertext_blocks, number_of_bignums, number_of_bignums_parity);
 
     blocks_parity[0] = one_bit_modification(blocks_parity[0], 42);
-    volatile hc_result res = verify_hamming_code_per_block(blocks_parity, number_of_bignums_parity);
+    hc_result res = verify_hamming_code_per_block(blocks_parity, number_of_bignums_parity);
+
+    volatile bignum blocks_no_parity[number_of_bignums];
+    remove_parity_per_block_from_encrypted_ciphertext_blocks(blocks_no_parity, res.ciphertext_blocks_with_parity, number_of_bignums_parity, number_of_bignums);
 }
 
 
@@ -69,5 +72,8 @@ void hamming_code_all_blocks_complete(char *text) {
     add_parity_all_blocks_to_bignum_array(blocks_parity, ciphertext_blocks, number_of_bignums, number_of_bignums_parity);
 
     blocks_parity[0] = one_bit_modification(blocks_parity[0], 42);
-    volatile hc_result res = verify_hamming_code_all_blocks(blocks_parity, number_of_bignums_parity);
+    hc_result res = verify_hamming_code_all_blocks(blocks_parity, number_of_bignums_parity);
+
+    volatile bignum blocks_no_parity[number_of_bignums];
+    remove_parity_all_blocks_from_encrypted_ciphertext_blocks(blocks_no_parity, res.ciphertext_blocks_with_parity, number_of_bignums_parity, number_of_bignums);
 }
