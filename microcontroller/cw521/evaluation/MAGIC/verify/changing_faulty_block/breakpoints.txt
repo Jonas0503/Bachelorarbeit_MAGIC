@@ -1,4 +1,4 @@
-dprintf main_cw521.c:425, "Start index: %i; End index: %i; Interval: %i; Number of blocks: %i; Threshold: %i; Measurements per faulty block: %i\n\n", start_block_index, end_block_index, interval, number_of_blocks, threshold, number_of_measurements
-dprintf main_cw521.c:439, "Faulty block index: %i\n", i
-dprintf main_cw521.c:468, "Number of cycles: %lu; error_corrected? %i\n", number_of_cycles, res.correction_successful
-dprintf main_cw521.c:475, "Average: %f\nStandard deviation: %f\n\n", avg, sd
+dprintf main_cw521.c:435, "Start index: %i; End index: %i; Interval: %i; Number of blocks: %i; Threshold: %i; Measurements per faulty block: %i\n\n", start_block_index, end_block_index, interval, number_of_blocks, threshold, number_of_measurements
+dprintf main_cw521.c:449, "Faulty block index: %i\n", i
+dprintf main_cw521.c:478, "Number of cycles: %lu; error_corrected? %i\n", number_of_cycles, res.correction_successful
+dprintf main_cw521.c:485, "Average: %f\nStandard deviation: %f\n\n", avg, sd

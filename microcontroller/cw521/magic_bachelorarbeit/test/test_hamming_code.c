@@ -2,10 +2,12 @@
 #include "magic_bachelorarbeit/src/hamming_code.h"
 #include "magic_bachelorarbeit/src/util_functions.h"
 #include "magic_bachelorarbeit/src/salsa20.h"
+#include "magic_bachelorarbeit/src/magic_mode.h"
 #else
 #include "hamming_code.h"
 #include "util_functions.h"
 #include "salsa20.h"
+#include "magic_mode.h"
 #endif
 #include "stdio.h"
 #include "assert.h"
@@ -312,8 +314,18 @@ void test_verify_hamming_code_per_block_two_bit_error_in_one_block() {
         0xEAEBECED, 0xEEEFF0F1, 0xF2F3F4F5, 0xF6F7F8F9,
         0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
     };
-
     uint32_t nonce[2] = {0x0, 0x1};
+
+    uint32_t blinding_key[8] = {
+        0xEAEBECED, 0xEEEFF2F1, 0xF2F3F4F5, 0xF6F7F8F9,
+        0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
+    };
+    uint32_t blinding_nonce[2] = {0x0, 0x2};
+
+    uint32_t hash_hex[4] = {0xEAEBECED, 0xEEEFF2F1, 0xF2F3F4F5, 0xF6F7F8F9};
+    bignum hash_key = init_bignum(hash_hex);
+
+    bignum authorized_data = init_bignum_to_zero();
 
     bignum ciphertext_blocks[number_of_bignums];
     plaintext_to_ciphertext_blocks(ciphertext_blocks, s, key, nonce);
@@ -321,10 +333,12 @@ void test_verify_hamming_code_per_block_two_bit_error_in_one_block() {
     bignum blocks_parity[number_of_bignums_parity];
     add_parity_per_block_to_bignum_array(blocks_parity, ciphertext_blocks, number_of_bignums, number_of_bignums_parity);
 
+    bignum tag = ciphertext_blocks_to_tag(blocks_parity, number_of_bignums_parity, hash_key, authorized_data, blinding_key, blinding_nonce);
+
     blocks_parity[0] = one_bit_modification(blocks_parity[0], 42);
     blocks_parity[0] = one_bit_modification(blocks_parity[0], 100);
 
-    hc_result res = verify_hamming_code_per_block(blocks_parity, number_of_bignums_parity);
+    hc_result res = verify_hamming_code_per_block(authorized_data, blocks_parity, number_of_bignums_parity, tag, hash_key, blinding_key, blinding_nonce);
 
     assert(!res.correction_successful);
     assert(!res.one_bit_error);
@@ -344,8 +358,18 @@ void test_verify_hamming_code_per_block_one_bit_error_in_one_block() {
         0xEAEBECED, 0xEEEFF0F1, 0xF2F3F4F5, 0xF6F7F8F9,
         0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
     };
-
     uint32_t nonce[2] = {0x0, 0x1};
+
+    uint32_t blinding_key[8] = {
+        0xEAEBECED, 0xEEEFF2F1, 0xF2F3F4F5, 0xF6F7F8F9,
+        0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
+    };
+    uint32_t blinding_nonce[2] = {0x0, 0x2};
+
+    uint32_t hash_hex[4] = {0xEAEBECED, 0xEEEFF2F1, 0xF2F3F4F5, 0xF6F7F8F9};
+    bignum hash_key = init_bignum(hash_hex);
+
+    bignum authorized_data = init_bignum_to_zero();
 
     bignum ciphertext_blocks[number_of_bignums];
     plaintext_to_ciphertext_blocks(ciphertext_blocks, s, key, nonce);
@@ -355,9 +379,11 @@ void test_verify_hamming_code_per_block_one_bit_error_in_one_block() {
     add_parity_per_block_to_bignum_array(blocks_parity, ciphertext_blocks, number_of_bignums, number_of_bignums_parity);
     add_parity_per_block_to_bignum_array(blocks_parity_correct, ciphertext_blocks, number_of_bignums, number_of_bignums_parity);
 
+    bignum tag = ciphertext_blocks_to_tag(blocks_parity, number_of_bignums_parity, hash_key, authorized_data, blinding_key, blinding_nonce);
+
     blocks_parity[0] = one_bit_modification(blocks_parity[0], 42);
 
-    hc_result res = verify_hamming_code_per_block(blocks_parity, number_of_bignums_parity);
+    hc_result res = verify_hamming_code_per_block(authorized_data, blocks_parity, number_of_bignums_parity, tag, hash_key, blinding_key, blinding_nonce);
 
     assert(res.correction_successful);
     assert(res.one_bit_error);
@@ -377,8 +403,18 @@ void test_verify_hamming_code_per_block_no_error() {
         0xEAEBECED, 0xEEEFF0F1, 0xF2F3F4F5, 0xF6F7F8F9,
         0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
     };
-
     uint32_t nonce[2] = {0x0, 0x1};
+
+    uint32_t blinding_key[8] = {
+        0xEAEBECED, 0xEEEFF2F1, 0xF2F3F4F5, 0xF6F7F8F9,
+        0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
+    };
+    uint32_t blinding_nonce[2] = {0x0, 0x2};
+
+    uint32_t hash_hex[4] = {0xEAEBECED, 0xEEEFF2F1, 0xF2F3F4F5, 0xF6F7F8F9};
+    bignum hash_key = init_bignum(hash_hex);
+
+    bignum authorized_data = init_bignum_to_zero();
 
     bignum ciphertext_blocks[number_of_bignums];
     plaintext_to_ciphertext_blocks(ciphertext_blocks, s, key, nonce);
@@ -386,7 +422,9 @@ void test_verify_hamming_code_per_block_no_error() {
     bignum blocks_parity[number_of_bignums_parity];
     add_parity_per_block_to_bignum_array(blocks_parity, ciphertext_blocks, number_of_bignums, number_of_bignums_parity);
 
-    hc_result res = verify_hamming_code_per_block(blocks_parity, number_of_bignums_parity);
+    bignum tag = ciphertext_blocks_to_tag(blocks_parity, number_of_bignums_parity, hash_key, authorized_data, blinding_key, blinding_nonce);
+
+    hc_result res = verify_hamming_code_per_block(authorized_data, blocks_parity, number_of_bignums_parity, tag, hash_key, blinding_key, blinding_nonce);
 
     assert(res.correction_successful);
     assert(!res.one_bit_error);
@@ -406,8 +444,18 @@ void test_verify_hamming_code_per_block_two_bit_error_in_two_blocks() {
         0xEAEBECED, 0xEEEFF0F1, 0xF2F3F4F5, 0xF6F7F8F9,
         0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
     };
-
     uint32_t nonce[2] = {0x0, 0x1};
+
+    uint32_t blinding_key[8] = {
+        0xEAEBECED, 0xEEEFF2F1, 0xF2F3F4F5, 0xF6F7F8F9,
+        0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
+    };
+    uint32_t blinding_nonce[2] = {0x0, 0x2};
+
+    uint32_t hash_hex[4] = {0xEAEBECED, 0xEEEFF2F1, 0xF2F3F4F5, 0xF6F7F8F9};
+    bignum hash_key = init_bignum(hash_hex);
+
+    bignum authorized_data = init_bignum_to_zero();
 
     bignum ciphertext_blocks[number_of_bignums];
     plaintext_to_ciphertext_blocks(ciphertext_blocks, s, key, nonce);
@@ -415,12 +463,14 @@ void test_verify_hamming_code_per_block_two_bit_error_in_two_blocks() {
     bignum blocks_parity[number_of_bignums_parity];
     add_parity_per_block_to_bignum_array(blocks_parity, ciphertext_blocks, number_of_bignums, number_of_bignums_parity);
 
+    bignum tag = ciphertext_blocks_to_tag(blocks_parity, number_of_bignums_parity, hash_key, authorized_data, blinding_key, blinding_nonce);
+
     blocks_parity[0] = one_bit_modification(blocks_parity[0], 42);
     blocks_parity[0] = one_bit_modification(blocks_parity[0], 100);
     blocks_parity[1] = one_bit_modification(blocks_parity[1], 33);
     blocks_parity[1] = one_bit_modification(blocks_parity[1], 45);
 
-    hc_result res = verify_hamming_code_per_block(blocks_parity, number_of_bignums_parity);
+    hc_result res = verify_hamming_code_per_block(authorized_data, blocks_parity, number_of_bignums_parity, tag, hash_key, blinding_key, blinding_nonce);
 
     assert(!res.correction_successful);
     assert(!res.one_bit_error);
@@ -440,8 +490,18 @@ void test_verify_hamming_code_per_block_one_bit_error_in_two_blocks() {
         0xEAEBECED, 0xEEEFF0F1, 0xF2F3F4F5, 0xF6F7F8F9,
         0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
     };
-
     uint32_t nonce[2] = {0x0, 0x1};
+
+    uint32_t blinding_key[8] = {
+        0xEAEBECED, 0xEEEFF2F1, 0xF2F3F4F5, 0xF6F7F8F9,
+        0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
+    };
+    uint32_t blinding_nonce[2] = {0x0, 0x2};
+
+    uint32_t hash_hex[4] = {0xEAEBECED, 0xEEEFF2F1, 0xF2F3F4F5, 0xF6F7F8F9};
+    bignum hash_key = init_bignum(hash_hex);
+
+    bignum authorized_data = init_bignum_to_zero();
 
     bignum ciphertext_blocks[number_of_bignums];
     plaintext_to_ciphertext_blocks(ciphertext_blocks, s, key, nonce);
@@ -451,10 +511,12 @@ void test_verify_hamming_code_per_block_one_bit_error_in_two_blocks() {
     add_parity_per_block_to_bignum_array(blocks_parity, ciphertext_blocks, number_of_bignums, number_of_bignums_parity);
     add_parity_per_block_to_bignum_array(blocks_parity_correct, ciphertext_blocks, number_of_bignums, number_of_bignums_parity);
 
+    bignum tag = ciphertext_blocks_to_tag(blocks_parity, number_of_bignums_parity, hash_key, authorized_data, blinding_key, blinding_nonce);
+
     blocks_parity[0] = one_bit_modification(blocks_parity[0], 42);
     blocks_parity[1] = one_bit_modification(blocks_parity[1], 110);
 
-    hc_result res = verify_hamming_code_per_block(blocks_parity, number_of_bignums_parity);
+    hc_result res = verify_hamming_code_per_block(authorized_data, blocks_parity, number_of_bignums_parity, tag, hash_key, blinding_key, blinding_nonce);
 
     assert(res.correction_successful);
     assert(res.one_bit_error);
@@ -474,8 +536,18 @@ void test_verify_hamming_code_all_blocks_no_error() {
         0xEAEBECED, 0xEEEFF0F1, 0xF2F3F4F5, 0xF6F7F8F9,
         0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
     };
-
     uint32_t nonce[2] = {0x0, 0x1};
+
+    uint32_t blinding_key[8] = {
+        0xEAEBECED, 0xEEEFF2F1, 0xF2F3F4F5, 0xF6F7F8F9,
+        0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
+    };
+    uint32_t blinding_nonce[2] = {0x0, 0x2};
+
+    uint32_t hash_hex[4] = {0xEAEBECED, 0xEEEFF2F1, 0xF2F3F4F5, 0xF6F7F8F9};
+    bignum hash_key = init_bignum(hash_hex);
+
+    bignum authorized_data = init_bignum_to_zero();
 
     bignum ciphertext_blocks[number_of_bignums];
     plaintext_to_ciphertext_blocks(ciphertext_blocks, s, key, nonce);
@@ -483,7 +555,9 @@ void test_verify_hamming_code_all_blocks_no_error() {
     bignum blocks_parity[number_of_bignums_parity];
     add_parity_all_blocks_to_bignum_array(blocks_parity, ciphertext_blocks, number_of_bignums, number_of_bignums_parity);
 
-    hc_result res = verify_hamming_code_all_blocks(blocks_parity, number_of_bignums_parity);
+    bignum tag = ciphertext_blocks_to_tag(blocks_parity, number_of_bignums_parity, hash_key, authorized_data, blinding_key, blinding_nonce);
+
+    hc_result res = verify_hamming_code_all_blocks(authorized_data, blocks_parity, number_of_bignums_parity, tag, hash_key, blinding_key, blinding_nonce);
 
     assert(res.correction_successful);
     assert(!res.one_bit_error);
@@ -503,8 +577,18 @@ void test_verify_hamming_code_all_blocks_one_bit_error() {
         0xEAEBECED, 0xEEEFF0F1, 0xF2F3F4F5, 0xF6F7F8F9,
         0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
     };
-
     uint32_t nonce[2] = {0x0, 0x1};
+
+    uint32_t blinding_key[8] = {
+        0xEAEBECED, 0xEEEFF2F1, 0xF2F3F4F5, 0xF6F7F8F9,
+        0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
+    };
+    uint32_t blinding_nonce[2] = {0x0, 0x2};
+
+    uint32_t hash_hex[4] = {0xEAEBECED, 0xEEEFF2F1, 0xF2F3F4F5, 0xF6F7F8F9};
+    bignum hash_key = init_bignum(hash_hex);
+
+    bignum authorized_data = init_bignum_to_zero();
 
     bignum ciphertext_blocks[number_of_bignums];
     plaintext_to_ciphertext_blocks(ciphertext_blocks, s, key, nonce);
@@ -514,9 +598,11 @@ void test_verify_hamming_code_all_blocks_one_bit_error() {
     add_parity_all_blocks_to_bignum_array(blocks_parity, ciphertext_blocks, number_of_bignums, number_of_bignums_parity);
     add_parity_all_blocks_to_bignum_array(blocks_parity_correct, ciphertext_blocks, number_of_bignums, number_of_bignums_parity);
 
+    bignum tag = ciphertext_blocks_to_tag(blocks_parity, number_of_bignums_parity, hash_key, authorized_data, blinding_key, blinding_nonce);
+
     blocks_parity[1] = one_bit_modification(blocks_parity[1], 42);
 
-    hc_result res = verify_hamming_code_all_blocks(blocks_parity, number_of_bignums_parity);
+    hc_result res = verify_hamming_code_all_blocks(authorized_data, blocks_parity, number_of_bignums_parity, tag, hash_key, blinding_key, blinding_nonce);
 
     assert(res.correction_successful);
     assert(res.one_bit_error);
@@ -536,8 +622,18 @@ void test_verify_hamming_code_all_blocks_two_bit_error() {
         0xEAEBECED, 0xEEEFF0F1, 0xF2F3F4F5, 0xF6F7F8F9,
         0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
     };
-
     uint32_t nonce[2] = {0x0, 0x1};
+
+    uint32_t blinding_key[8] = {
+        0xEAEBECED, 0xEEEFF2F1, 0xF2F3F4F5, 0xF6F7F8F9,
+        0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
+    };
+    uint32_t blinding_nonce[2] = {0x0, 0x2};
+
+    uint32_t hash_hex[4] = {0xEAEBECED, 0xEEEFF2F1, 0xF2F3F4F5, 0xF6F7F8F9};
+    bignum hash_key = init_bignum(hash_hex);
+
+    bignum authorized_data = init_bignum_to_zero();
 
     bignum ciphertext_blocks[number_of_bignums];
     plaintext_to_ciphertext_blocks(ciphertext_blocks, s, key, nonce);
@@ -547,10 +643,12 @@ void test_verify_hamming_code_all_blocks_two_bit_error() {
     add_parity_all_blocks_to_bignum_array(blocks_parity, ciphertext_blocks, number_of_bignums, number_of_bignums_parity);
     add_parity_all_blocks_to_bignum_array(blocks_parity_correct, ciphertext_blocks, number_of_bignums, number_of_bignums_parity);
 
+    bignum tag = ciphertext_blocks_to_tag(blocks_parity, number_of_bignums_parity, hash_key, authorized_data, blinding_key, blinding_nonce);
+
     blocks_parity[0] = one_bit_modification(blocks_parity[0], 31);
     blocks_parity[1] = one_bit_modification(blocks_parity[1], 42);
 
-    hc_result res = verify_hamming_code_all_blocks(blocks_parity, number_of_bignums_parity);
+    hc_result res = verify_hamming_code_all_blocks(authorized_data, blocks_parity, number_of_bignums_parity, tag, hash_key, blinding_key, blinding_nonce);
 
     assert(!res.correction_successful);
     assert(!res.one_bit_error);

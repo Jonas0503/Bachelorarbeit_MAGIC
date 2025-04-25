@@ -1,5 +1,6 @@
 #include "hamming_code.h"
 #include "util_functions.h"
+#include "magic_mode.h"
 
 #include "string.h"
 #include "stdio.h"
@@ -284,8 +285,19 @@ void bignum_array_to_bit_arrays(bool bit_arrays[][128], bignum *bignum_blocks, i
 }
 
 
-hc_result verify_hamming_code_per_block(bignum *ciphertext_blocks, int number_of_bignums) {
+hc_result verify_hamming_code_per_block(bignum authorized_data, bignum ciphertext_blocks[], int number_of_bignums, bignum tag, bignum hash_key, uint32_t blinding_key[8], uint32_t blinding_nonce[2]) {
     hc_result result;
+    bignum new_tag = ciphertext_blocks_to_tag(ciphertext_blocks, number_of_bignums, hash_key, authorized_data, blinding_key, blinding_nonce);
+
+    // no block is corrupted
+    if (are_bignums_equal(new_tag, tag)) {
+        result.correction_successful =  true;
+        result.one_bit_error = false;
+        result.two_bit_error = false;
+        result.ciphertext_blocks_with_parity = ciphertext_blocks;
+
+        return result;
+    }
 
     bool bit_arrays[number_of_bignums][128];
     bignum_array_to_bit_arrays(bit_arrays, ciphertext_blocks, number_of_bignums);
@@ -337,19 +349,22 @@ hc_result verify_hamming_code_per_block(bignum *ciphertext_blocks, int number_of
 
         return result;
     }
-
-    // no error -> result_xor_all_set_bits is zero in each block
-    result.correction_successful =  true;
-    result.one_bit_error = false;
-    result.two_bit_error = false;
-    result.ciphertext_blocks_with_parity = ciphertext_blocks;
-
-    return result;
 }
 
 
-hc_result verify_hamming_code_all_blocks(bignum *ciphertext_blocks, int number_of_bignums) {
+hc_result verify_hamming_code_all_blocks(bignum authorized_data, bignum ciphertext_blocks[], int number_of_bignums, bignum tag, bignum hash_key, uint32_t blinding_key[8], uint32_t blinding_nonce[2]) {
     hc_result result;
+    bignum new_tag = ciphertext_blocks_to_tag(ciphertext_blocks, number_of_bignums, hash_key, authorized_data, blinding_key, blinding_nonce);
+
+    // no block is corrupted
+    if (are_bignums_equal(new_tag, tag)) {
+        result.correction_successful =  true;
+        result.one_bit_error = false;
+        result.two_bit_error = false;
+        result.ciphertext_blocks_with_parity = ciphertext_blocks;
+
+        return result;
+    }
 
     bool bit_arrays[number_of_bignums][128];
     bignum_array_to_bit_arrays(bit_arrays, ciphertext_blocks, number_of_bignums);
@@ -393,14 +408,6 @@ hc_result verify_hamming_code_all_blocks(bignum *ciphertext_blocks, int number_o
 
         return result;
     }
-
-    // no error -> result_xor_all_set_bits is zero
-    result.correction_successful =  true;
-    result.one_bit_error = false;
-    result.two_bit_error = false;
-    result.ciphertext_blocks_with_parity = ciphertext_blocks;
-
-    return result;
 }
 
 

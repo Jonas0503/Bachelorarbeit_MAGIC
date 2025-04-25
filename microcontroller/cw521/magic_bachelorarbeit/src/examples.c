@@ -41,7 +41,12 @@ void hamming_code_per_block_complete(char *text) {
 
     uint32_t key[8];
     uint32_t nonce[2];
-    random_bignum_key_nonce(key, nonce, 0);
+    bignum hash_key = random_bignum_key_nonce(key, nonce, 0);
+
+    uint32_t blinding_key[8];
+    uint32_t blinding_nonce[2];
+    bignum authorized_data = init_bignum_to_zero();
+    random_bignum_key_nonce(blinding_key, blinding_nonce, 1);
 
     bignum ciphertext_blocks[number_of_bignums];
     plaintext_to_ciphertext_blocks(ciphertext_blocks, text, key, nonce);
@@ -49,8 +54,10 @@ void hamming_code_per_block_complete(char *text) {
     bignum blocks_parity[number_of_bignums_parity];
     add_parity_per_block_to_bignum_array(blocks_parity, ciphertext_blocks, number_of_bignums, number_of_bignums_parity);
 
+    bignum tag = ciphertext_blocks_to_tag(blocks_parity, number_of_bignums_parity, hash_key, authorized_data, blinding_key, blinding_nonce);
+
     blocks_parity[0] = one_bit_modification(blocks_parity[0], 42);
-    hc_result res = verify_hamming_code_per_block(blocks_parity, number_of_bignums_parity);
+    hc_result res = verify_hamming_code_per_block(authorized_data, blocks_parity, number_of_bignums_parity, tag, hash_key, blinding_key, blinding_nonce);
 
     volatile bignum blocks_no_parity[number_of_bignums];
     remove_parity_per_block_from_encrypted_ciphertext_blocks(blocks_no_parity, res.ciphertext_blocks_with_parity, number_of_bignums_parity, number_of_bignums);
@@ -63,7 +70,12 @@ void hamming_code_all_blocks_complete(char *text) {
 
     uint32_t key[8];
     uint32_t nonce[2];
-    random_bignum_key_nonce(key, nonce, 0);
+    bignum hash_key = random_bignum_key_nonce(key, nonce, 0);
+
+    uint32_t blinding_key[8];
+    uint32_t blinding_nonce[2];
+    bignum authorized_data = init_bignum_to_zero();
+    random_bignum_key_nonce(blinding_key, blinding_nonce, 1);
 
     bignum ciphertext_blocks[number_of_bignums];
     plaintext_to_ciphertext_blocks(ciphertext_blocks, text, key, nonce);
@@ -71,8 +83,10 @@ void hamming_code_all_blocks_complete(char *text) {
     bignum blocks_parity[number_of_bignums_parity];
     add_parity_all_blocks_to_bignum_array(blocks_parity, ciphertext_blocks, number_of_bignums, number_of_bignums_parity);
 
+    bignum tag = ciphertext_blocks_to_tag(blocks_parity, number_of_bignums_parity, hash_key, authorized_data, blinding_key, blinding_nonce);
+
     blocks_parity[0] = one_bit_modification(blocks_parity[0], 42);
-    hc_result res = verify_hamming_code_all_blocks(blocks_parity, number_of_bignums_parity);
+    hc_result res = verify_hamming_code_all_blocks(authorized_data, blocks_parity, number_of_bignums_parity, tag, hash_key, blinding_key, blinding_nonce);
 
     volatile bignum blocks_no_parity[number_of_bignums];
     remove_parity_all_blocks_from_encrypted_ciphertext_blocks(blocks_no_parity, res.ciphertext_blocks_with_parity, number_of_bignums_parity, number_of_bignums);

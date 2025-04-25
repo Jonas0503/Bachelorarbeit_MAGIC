@@ -77,13 +77,13 @@ void bignum_array_to_bit_arrays(bool bit_arrays[][128], bignum *bignum_blocks, i
 /// @param ciphertext_blocks The blocks which gets verified and corrected if possible.
 /// @param number_of_bignums The size of ciphertext_blocks with parity values in each block.
 /// @return The result of the hamming code check in form of a struct.
-hc_result verify_hamming_code_per_block(bignum *ciphertext_blocks, int number_of_bignums);
+hc_result verify_hamming_code_per_block(bignum authorized_data, bignum ciphertext_blocks[], int number_of_bignums, bignum tag, bignum hash_key, uint32_t blinding_key[8], uint32_t blinding_nonce[2]);
 
 /// @brief Checks the bignum blocks with hamming code over all blocks.
 /// @param ciphertext_blocks The blocks which gets verified and corrected if possible.
 /// @param number_of_bignums The size of ciphertext_blocks with parity values over all blocks.
 /// @return The result of the hamming code check in form of a struct.
-hc_result verify_hamming_code_all_blocks(bignum *ciphertext_blocks, int number_of_bignums);
+hc_result verify_hamming_code_all_blocks(bignum authorized_data, bignum ciphertext_blocks[], int number_of_bignums, bignum tag, bignum hash_key, uint32_t blinding_key[8], uint32_t blinding_nonce[2]);
 
 /// @brief Converts the bignum array with parity values in each block to a bignum array with all parity values removed.
 /// @param blocks_no_parity The resulting bignum array with no parity values.
