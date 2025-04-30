@@ -1,4 +1,4 @@
-dprintf main_cw521.c:224, "Start: %i; End: %i; Interval: %i; Threshold: %i; Measurements per block: %i\n\n", start, end, interval, threshold, number_of_measurements
-dprintf main_cw521.c:228, "Number of blocks: %i\n", i
-dprintf main_cw521.c:246, "Number of cycles: %lu; hash_key found?: %i\n", number_of_cycles, hash_key_found
-dprintf main_cw521.c:253, "Average: %f\nStandard deviation: %f\n\n", avg, sd
+dprintf main_cw521.c:234, "Start: %i; End: %i; Interval: %i; Threshold: %i; Measurements per block: %i\n\n", start, end, interval, threshold, number_of_measurements
+dprintf main_cw521.c:238, "Number of blocks: %i\n", i
+dprintf main_cw521.c:256, "Number of cycles: %lu; hash_key found?: %i\n", number_of_cycles, hash_key_found
+dprintf main_cw521.c:263, "Average: %f\nStandard deviation: %f\n\n", avg, sd

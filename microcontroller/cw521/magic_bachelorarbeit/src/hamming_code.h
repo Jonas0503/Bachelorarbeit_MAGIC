@@ -73,15 +73,25 @@ void add_parity_all_blocks_to_bignum_array(bignum *bignums_with_parity, bignum *
 /// @param number_of_bignums The number of bignums in bignum_blocks.
 void bignum_array_to_bit_arrays(bool bit_arrays[][128], bignum *bignum_blocks, int number_of_bignums);
 
-/// @brief Checks the bignum blocks with hamming code in each block.
-/// @param ciphertext_blocks The blocks which gets verified and corrected if possible.
-/// @param number_of_bignums The size of ciphertext_blocks with parity values in each block.
+/// @brief Checks the bignum blocks with hamming code over all blocks and checks the tag.
+/// @param authorized_data Additional data which is not encrypted.
+/// @param ciphertext_blocks  The ciphertext blocks with parity values per block.
+/// @param number_of_bignums The size of the ciphertext array with parity values per block.
+/// @param tag The created tag by the blinding cipher.
+/// @param hash_key An arbitrary bignum.
+/// @param blinding_key A key for the blinding cipher. Must be different then the key for the plaintext encryption.
+/// @param blinding_nonce A nonce for the blinding cipher. Must be different then the nonce for the plaintext encryption.
 /// @return The result of the hamming code check in form of a struct.
 hc_result verify_hamming_code_per_block(bignum authorized_data, bignum ciphertext_blocks[], int number_of_bignums, bignum tag, bignum hash_key, uint32_t blinding_key[8], uint32_t blinding_nonce[2]);
 
-/// @brief Checks the bignum blocks with hamming code over all blocks.
-/// @param ciphertext_blocks The blocks which gets verified and corrected if possible.
-/// @param number_of_bignums The size of ciphertext_blocks with parity values over all blocks.
+/// @brief Checks the bignum blocks with hamming code over all blocks and checks the tag.
+/// @param authorized_data Additional data which is not encrypted.
+/// @param ciphertext_blocks  The ciphertext blocks with parity values over all blocks.
+/// @param number_of_bignums The size of the ciphertext array with parity values over all blocks.
+/// @param tag The created tag by the blinding cipher.
+/// @param hash_key An arbitrary bignum.
+/// @param blinding_key A key for the blinding cipher. Must be different then the key for the plaintext encryption.
+/// @param blinding_nonce A nonce for the blinding cipher. Must be different then the nonce for the plaintext encryption.
 /// @return The result of the hamming code check in form of a struct.
 hc_result verify_hamming_code_all_blocks(bignum authorized_data, bignum ciphertext_blocks[], int number_of_bignums, bignum tag, bignum hash_key, uint32_t blinding_key[8], uint32_t blinding_nonce[2]);
 

@@ -17,6 +17,7 @@ bignum find_hash_key_value(int threshold, int number_of_blocks, int max_number_o
         return init_bignum_to_zero();
     }
 
+    // generate random hash key
     uint32_t key[8];
     uint32_t nonce[2];
     bignum hash_key = random_bignum_key_nonce(key, nonce, seed);
@@ -25,6 +26,7 @@ bignum find_hash_key_value(int threshold, int number_of_blocks, int max_number_o
     bignum hash_key_inverse = mult_inverse(hash_key);
     bignum original_hash_key_inverse = copy_bignum(hash_key_inverse);
 
+    // checks the hash key for every threshold value
     for (int threshold_value = 1; threshold_value <= threshold; threshold_value++) {
         bool result = check_hash_key(threshold_value, number_of_blocks, hash_key, original_hash_key, hash_key_inverse, original_hash_key_inverse);
 

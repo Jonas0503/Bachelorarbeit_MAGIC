@@ -184,7 +184,7 @@ void decryption_changing_blocks(int start, int end, int interval, int number_of_
 }
 
 
-void tag_generation_given_blocks_changing_blocks(int start, int end, int interval, int number_of_measurements) {
+void tag_generation_changing_blocks(int start, int end, int interval, int number_of_measurements) {
   uint32_t key[8] = {
     0xEAEBECED, 0xEEEFF0F1, 0xF2F3F4F5, 0xF6F7F8F9,
     0xFAFBFCFD, 0xFEFF0001, 0x02030405, 0x06070809
@@ -1104,14 +1104,14 @@ int main(void)
 
   // encryption_changing_blocks(50, 250, 25, 1);
   // decryption_changing_blocks(1, 10, 1, 10);
-  // tag_generation_given_blocks_changing_blocks(1, 10, 1, 10);
+  // tag_generation_changing_blocks(1, 10, 1, 10);
   // find_hash_key_changing_blocks(1, 3, 1, 10, 1);
   // find_hash_key_changing_threshold(1, 7, 1, 2, 1);
   // verify_changing_blocks(1, 10, 1, 10, 1, false, true, false);
   // verify_changing_threshold(1, 5, 1, 5, 1, false, false, false);
   // verify_changing_faulty_block(0, 9, 1, 30, 10, 1, true);
 
-  // hc_add_parity(1, 10, 1, 10, true);
+  hc_add_parity(10, 100, 10, 30, false);
   // hc_verify_changing_blocks(1, 10, 1, 30, 1, false, false, true, true);
   // hc_verify_changing_number_of_affected_blocks(1, 10, 1, 30, 10, false, true);
   // hc_verify_changing_faulty_block(10, 50, 10, 20, 1, 51, false, true, true);

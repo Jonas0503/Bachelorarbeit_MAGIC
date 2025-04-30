@@ -1,4 +1,4 @@
-dprintf main_cw521.c:178, "Start: %i; End: %i; Interval: %i; Measurements per block: %i\n\n", start, end, interval, number_of_measurements
-dprintf main_cw521.c:189, "Number of blocks: %i\n", i
-dprintf main_cw521.c:210, "Number of cycles: %lu\n", number_of_cycles
-dprintf main_cw521.c:217, "Average: %f\nStandard deviation: %f\n\n", avg, sd
+dprintf main_cw521.c:188, "Start: %i; End: %i; Interval: %i; Measurements per block: %i\n\n", start, end, interval, number_of_measurements
+dprintf main_cw521.c:199, "Number of blocks: %i\n", i
+dprintf main_cw521.c:220, "Number of cycles: %lu\n", number_of_cycles
+dprintf main_cw521.c:227, "Average: %f\nStandard deviation: %f\n\n", avg, sd
