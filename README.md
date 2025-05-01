@@ -1,93 +1,17 @@
-# MAGIC_Bachelorarbeit
+# Evaluierung der Fehlerkorrektur und authentifizierten Verschlüsselung des MAGIC-Modus auf einem Mikrocontroller mit externem Speicher
+
+## Allgemeines
+Mit dieser Arbeit handelt es sich um meine Bachelorarbeit an der Hochschule RheinMain. Dazu wurde eine Implementierung des MAGIC-Modus erstellt und mit dem Hamming-Code bezüglich der Fehlerkorrektur verglichen. Dazu wurden die Takte auf einem Mikrocontroller mit externen SRAM gemessen. Dabei handelt es sich um das ChipSHOUTER® CW521 Ballistic Gel Board. Die Messergebnisse befinden sich im Ordner ``evaluation``. Die PDF-Datei dieser Arbeit befindet sich im Hauptordner von diesem Projekt. Darin werden unter anderem die jeweiligen Programmteile genauer erläutert.
+
+## Abstract
+### Deutsch
+Das Ziel dieser Bachelorarbeit ist es herauszufinden, wie gut der MAGIC-Modus auf einem eingebetteten System funktioniert. Dazu wurde MAGIC selbst implementiert und mit dem Hamming-Code verglichen. Für die Evaluierung werden die Taktzyklen und der Speicherverbrauch auf dem eingebetteten System betrachtet. Die Evaluierungsergebnisse zeigen, dass der Hamming-Code in Bezug auf die Fehlerkorrektur deutlich schneller ist, aber mindestens 128 Bits zusätzlichen Speicher dafür benötigt. Jedoch kann der MAGIC-Modus in der Theorie mehr Fehler erkennen und korrigieren als der Hamming-Code. Dies zeigt, dass man nach aktuellem Stand in der Regel weiterhin den Hamming-Code verwenden sollte. Nur wenn die Speicherkapazität und eine geringere Komplexität eine sehr hohe Priorität haben, sollte man den MAGIC-Modus auf einem eingebetteten System einsetzen.
+
+### English
+The aim of this bachelor’s thesis is to find out how well the MAGIC mode works on an embedded system. For this purpose, it was implemented and compared with the Hamming code. For the evaluation, the clock cycles and the memory consumption on the embedded system were analysed. The evaluation results show that the Hamming code is significantly faster in terms of error correction, but requires at least 128 bits of additional memory. However, the MAGIC mode in theory can recognise and correct more errors than the Hamming code. This shows, that, as things stand at present, the Hamming code should generally continue to be used. Only if memory capacity and lower complexity have a very high priority should the MAGIC mode be used on an embedded system.
 
 
+## Programm und Tests ausführen
+Es gbit zwei Makefiles in diesem Projekt. Ein [Makefile](./microcontroller/cw521/makefile) ist für die Kompilierung für den Mikrocontroller zuständig. Wie man die Datei und Tests auf dem Mikrocontroller ausführt, kann man in der PDF-Datei nachlesen.
 
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.cs.hs-rm.de/jgilb001/magic_bachelorarbeit.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab.cs.hs-rm.de/jgilb001/magic_bachelorarbeit/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Das andere [Makefile](./microcontroller/cw521/magic_bachelorarbeit/Makefile) sorgt für eine lokale Kompilierung. Bei der lokalen Kompilierung wird eine ausführbare Datei im Ordner ``./microcontroller/cw521/magic_bachelorarbeit/bin`` erstellt, die man dann ausführen kann. Dieses Makefile erstellt erstellt außerdem in diesem Ordner mit dem Kommando ``make test`` eine ausführbare Datei für die lokale Ausführung der Tests.
