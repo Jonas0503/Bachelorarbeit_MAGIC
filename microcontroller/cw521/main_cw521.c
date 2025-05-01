@@ -1111,7 +1111,7 @@ int main(void)
   // verify_changing_threshold(1, 5, 1, 5, 1, false, false, false);
   // verify_changing_faulty_block(0, 9, 1, 30, 10, 1, true);
 
-  hc_add_parity(10, 100, 10, 30, false);
+  // hc_add_parity(10, 100, 10, 30, false);
   // hc_verify_changing_blocks(1, 10, 1, 30, 1, false, false, true, true);
   // hc_verify_changing_number_of_affected_blocks(1, 10, 1, 30, 10, false, true);
   // hc_verify_changing_faulty_block(10, 50, 10, 20, 1, 51, false, true, true);
