@@ -1,7 +1,7 @@
 # Evaluierung der Fehlerkorrektur und authentifizierten Verschlüsselung des MAGIC-Modus auf einem Mikrocontroller mit externem Speicher
 
 ## Allgemeines
-Mit dieser Arbeit handelt es sich um meine Bachelorarbeit an der Hochschule RheinMain. Dazu wurde eine Implementierung des MAGIC-Modus erstellt und mit dem Hamming-Code bezüglich der Fehlerkorrektur verglichen. Dazu wurden die Takte auf einem Mikrocontroller mit externen SRAM gemessen. Dabei handelt es sich um das ChipSHOUTER® CW521 Ballistic Gel Board. Die Messergebnisse befinden sich im Ordner ``evaluation``. Die PDF-Datei dieser Arbeit befindet sich im Hauptordner von diesem Projekt. Darin werden unter anderem die jeweiligen Programmteile genauer erläutert.
+Mit dieser Arbeit handelt es sich um meine Bachelorarbeit an der Hochschule RheinMain. Dazu wurde eine Implementierung des MAGIC-Modus erstellt und mit dem Hamming-Code bezüglich der Fehlerkorrektur verglichen. Dazu wurden die Takte auf einem Mikrocontroller mit externen SRAM gemessen. Dabei handelt es sich um das ChipSHOUTER® CW521 Ballistic Gel Board. Die Messergebnisse befinden sich im Ordner ``evaluation``. Die [PDF-Datei](./Bachelorarbeit_AI_Jonas_Gilbert_1288740.pdf) dieser Arbeit befindet sich im Hauptordner von diesem Projekt. Darin werden unter anderem die jeweiligen Programmteile genauer erläutert.
 
 ## Abstract
 ### Deutsch
@@ -12,6 +12,6 @@ In this bachelor thesis, the MAGIC mode should be evaluated on a microcontroller
 
 
 ## Programm und Tests ausführen
-Es gbit zwei Makefiles in diesem Projekt. Ein [Makefile](./microcontroller/cw521/makefile) ist für die Kompilierung für den Mikrocontroller zuständig. Wie man die Datei und Tests auf dem Mikrocontroller ausführt, kann man in der PDF-Datei nachlesen.
+Es gbit zwei Makefiles in diesem Projekt. Ein [Makefile](./microcontroller/cw521/makefile) ist für die Kompilierung für den Mikrocontroller zuständig. Wie man die Datei und Tests auf dem Mikrocontroller ausführt, kann man in der [PDF-Datei](./Bachelorarbeit_AI_Jonas_Gilbert_1288740.pdf) nachlesen.
 
 Das andere [Makefile](./microcontroller/cw521/magic_bachelorarbeit/Makefile) sorgt für eine lokale Kompilierung. Bei der lokalen Kompilierung wird eine ausführbare Datei im Ordner ``./microcontroller/cw521/magic_bachelorarbeit/bin`` erstellt, die man dann ausführen kann. Dieses Makefile erstellt erstellt außerdem in diesem Ordner mit dem Kommando ``make test`` eine ausführbare Datei für die lokale Ausführung der Tests.
